@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:background="#fff" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewGreat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#359635"
+        android:padding="40dp"
+        android:text="Great Job!!!!"
+        android:textColor="#fff"
+        android:textSize="55dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewExplanation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Now you will practice."
+        android:textSize="20dp"
+        android:padding="20dp"/>
+
+    <TextView
+        android:id="@+id/textViewExplanation2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You will see each picture for 5 seconds. Make use of the time and study each picture for as long as you can."
+        android:textSize="20dp"
+        android:padding="20dp"/>
+
+    <TextView
+        android:id="@+id/textViewExplanation3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tap the 'Begin' button when you are ready to start."
+        android:textSize="20dp"
+        android:padding="20dp"/>
+
+    <Button
+        android:id="@+id/bntNextExample"
+        android:layout_width="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borders"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="70dp"
+        android:text="Next" />
+
+    <TextView
+        android:id="@+id/textViewBottomeEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#359635"
+        android:padding="40dp"
+        android:text=" " />
+</LinearLayout>
