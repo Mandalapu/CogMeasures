@@ -34,30 +34,30 @@
             android:layout_marginTop="100dp">
 
             <ImageView
-                style="@style/figure"
+                style="@style/visfigure"
                 android:layout_marginEnd="80dp"
                 android:padding="2dp"
                 android:background="@color/green"
                 app:imageUrl="@{item.options.getResourceId(0,0)}" />
 
             <ImageView
-                style="@style/figure"
+                style="@style/visfigure"
                 app:imageUrl="@{item.options.getResourceId(1,0)}" />
 
             <ImageView
-                style="@style/figure"
+                style="@style/visfigure"
                 app:imageUrl="@{item.options.getResourceId(2,0)}" />
 
             <ImageView
-                style="@style/figure"
+                style="@style/visfigure"
                 app:imageUrl="@{item.options.getResourceId(3,0)}" />
 
             <ImageView
-                style="@style/figure"
+                style="@style/visfigure"
                 app:imageUrl="@{item.options.getResourceId(4,0)}" />
 
             <ImageView
-                style="@style/figure"
+                style="@style/visfigure"
                 app:imageUrl="@{item.options.getResourceId(5,0)}" />
         </LinearLayout>
 
