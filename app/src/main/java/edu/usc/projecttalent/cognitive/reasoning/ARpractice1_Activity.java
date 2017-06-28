@@ -30,8 +30,7 @@ public class ARpractice1_Activity extends Activity {
 		final Queue<ARExample> exampleList = new LinkedList<>();
 		Resources res = getResources();
 		TypedArray arr = res.obtainTypedArray(R.array.ar_ex_2);
-		exampleList.add(new ARExample(getString(R.string.practice), arr, getString(R.string.practiceq1), false));
-		exampleList.add(new ARExample("", arr, getString(R.string.pr_wrong), true));
+		exampleList.add(new ARExample(getString(R.string.ar_instr_header), arr, getString(R.string.pr_wrong), true));
 
         final ActivitySecArBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sec_ar_);
         binding.setItem(exampleList.remove());

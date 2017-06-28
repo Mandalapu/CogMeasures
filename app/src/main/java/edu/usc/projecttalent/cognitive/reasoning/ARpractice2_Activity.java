@@ -30,7 +30,7 @@ public class ARpractice2_Activity extends Activity {
         Resources res = getResources();
         TypedArray arr = res.obtainTypedArray(R.array.ar_ex_3);
         exampleList.add(new ARExample(getString(R.string.practiceq2), arr, "", false));
-        exampleList.add(new ARExample("", arr, getString(R.string.pr_explain), true));
+        exampleList.add(new ARExample(getString(R.string.ar_instr_header), arr, getString(R.string.pr_explain), true));
 
         mContext = this;
         final ActivitySecArBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sec_ar_);

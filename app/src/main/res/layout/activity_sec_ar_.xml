@@ -22,7 +22,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="@{item.instructions}"
             android:textSize="30sp" />
 
@@ -38,38 +37,110 @@
             android:id="@+id/options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:gravity="center">
 
-            <ImageView
-                style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(1,0)}"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 1? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 1? 2: 0}" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ImageView
-                style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(2,0)}"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 2? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 2? 2: 0}" />
+                <ImageView
+                    style="@style/figure"
+                    app:imageUrl="@{item.options.getResourceId(1,0)}"
+                    android:background="@{item.answer &amp;&amp; item.ansOption == 1? @drawable/black:null}"
+                    android:padding="@{item.answer &amp;&amp; item.ansOption == 1? 2: 0}" />
 
-            <ImageView
-                style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(3,0)}"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 3? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 3? 2: 0}" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text="(A)"/>
 
-            <ImageView
-                style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(4,0)}"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 4? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 4? 2: 0}" />
+            </LinearLayout>
 
-            <ImageView
-                style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(5,0)}"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 5? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 5? 2: 0}" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    style="@style/figure"
+                    app:imageUrl="@{item.options.getResourceId(2,0)}"
+                    android:background="@{item.answer &amp;&amp; item.ansOption == 2? @drawable/black:null}"
+                    android:padding="@{item.answer &amp;&amp; item.ansOption == 2? 2: 0}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="(B)"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    style="@style/figure"
+                    app:imageUrl="@{item.options.getResourceId(3,0)}"
+                    android:background="@{item.answer &amp;&amp; item.ansOption == 3? @drawable/black:null}"
+                    android:padding="@{item.answer &amp;&amp; item.ansOption == 3? 2: 0}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="(C)"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    style="@style/figure"
+                    app:imageUrl="@{item.options.getResourceId(4,0)}"
+                    android:background="@{item.answer &amp;&amp; item.ansOption == 4? @drawable/black:null}"
+                    android:padding="@{item.answer &amp;&amp; item.ansOption == 4? 2: 0}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="(D)"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    style="@style/figure"
+                    app:imageUrl="@{item.options.getResourceId(5,0)}"
+                    android:background="@{item.answer &amp;&amp; item.ansOption == 5? @drawable/black:null}"
+                    android:padding="@{item.answer &amp;&amp; item.ansOption == 5? 2: 0}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="(E)"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

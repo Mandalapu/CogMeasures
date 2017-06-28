@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.CountDownTimer;
+import android.util.Log;
 
 /**
  * Created by anind on 5/18/2017.
@@ -47,7 +48,11 @@ public class QuestionTimer extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        mContext.unregisterReceiver(mReceiver);
+        try {
+            mContext.unregisterReceiver(mReceiver);
+        } catch (Exception e) {
+            Log.e("anindya", "Receiver is not registered.");
+        }
         if(mWarningDialog.isShowing())
             mWarningDialog.dismiss();
         mQuitDialog.show();
