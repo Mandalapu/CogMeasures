@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#fff">
+
+    <TextView
+        android:id="@+id/textNone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#C18686"
+        android:padding="40dp"
+        android:text=" "
+        android:textColor="#fff"
+        android:textSize="55dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewExplanation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thank you for completing the test."
+        android:textSize="20dp"
+        android:padding="20dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/textViewExplanation2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You may now exit by tapping on the exit button below."
+        android:textSize="20dp"
+        android:padding="20dp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borders"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="70dp"
+        android:text="Exit" />
+
+    <TextView
+        android:id="@+id/textViewBottomeEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C18686"
+        android:padding="40dp"
+        android:text=" " />
+
+</LinearLayout>

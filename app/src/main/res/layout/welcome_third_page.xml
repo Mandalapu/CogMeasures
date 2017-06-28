@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:background="#fff" android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/truck_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/truck_one"
+        android:adjustViewBounds="false"
+        android:layout_marginRight="62dp"
+        android:layout_marginEnd="62dp"
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/truck_two"
+        android:layout_toStartOf="@+id/truck_two" />
+
+    <ImageView
+        android:id="@+id/truck_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/truck_two"
+        android:adjustViewBounds="false"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="40dp"
+        android:layout_alignBottom="@+id/truck_three"
+        android:layout_toLeftOf="@+id/truck_three"
+        android:layout_toStartOf="@+id/truck_three" />
+
+    <ImageView
+        android:id="@+id/truck_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/truck_three"
+        android:adjustViewBounds="false"
+        android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_alignTop="@+id/truck_one"
+        android:layout_toLeftOf="@+id/imageView4"
+        android:layout_toStartOf="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/truck_four"
+        android:adjustViewBounds="false"
+        android:layout_marginRight="36dp"
+        android:layout_marginEnd="71dp"
+        android:layout_alignBottom="@+id/truck_two"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Now click on the picture you have seen."
+        android:textSize="25dp"
+        android:textColor="#383232"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp" />
+
+
+</RelativeLayout>
