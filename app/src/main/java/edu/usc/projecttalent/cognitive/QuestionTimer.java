@@ -47,6 +47,7 @@ public class QuestionTimer extends CountDownTimer {
 
     @Override
     public void onFinish() {
+        mContext.unregisterReceiver(mReceiver);
         if(mWarningDialog.isShowing())
             mWarningDialog.dismiss();
         mQuitDialog.show();
@@ -64,8 +65,10 @@ public class QuestionTimer extends CountDownTimer {
     }
 
     public static void stopTimer() {
-        if(mTimer != null)
+        if(mTimer != null) {
             mTimer.cancel();
+            mContext.unregisterReceiver(mReceiver);
+        }
     }
 
     private static void createDialogs() {
