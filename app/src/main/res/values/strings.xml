@@ -10,7 +10,7 @@
         \t&#8226; If a task includes multiple-choice questions, select only one answer.\n
         \t&#8226; There is only one right answer for each question.\n\n
         Press the NEXT button to begin the first task.</string>
-    <string name="finish_message">Please click \"Finish\" to proceed into next section.</string>
+    <string name="finish_message">Please press \"Finish\" to proceed into next section.</string>
 
     <string name="begin">Begin</string>
     <string name="button_str_back">Back</string>
@@ -210,11 +210,11 @@
 		&#8226; Some of the questions may be easy but others may be hard. Just do the best you can.\n
 		&#8226; It is more important to answer the item correctly than to answer quickly, so take a little time to think before answering.\n
 		&#8226; In a few cases, more than one number may be correct. Please give only one answer per box. If your answer is one of the correct answers, you will receive credit.\n
-		&#8226; You can go on to the next item at any time by clicking \'Next\'.\n\n
-		If you are ready to begin, please click \'Next\'.
+		&#8226; You can go on to the next item at any time by pressing \'Next\'.\n\n
+		If you are ready to begin, please press \'Next\'.
 	</string>
     <string name="clear">Undo</string>
-    <string name="clicknext">Please click \'Next\' to continue.</string>
+    <string name="clicknext">Please press \"Next\" to continue.</string>
     <string name="ns_example1">
         {
           \"id\": 1,
@@ -327,20 +327,20 @@
     <string name="ar_text">INSTRUCTIONS\n\n
 		Each item in this task consists of a set of figures arranged in a pattern, formed according to certain rules. Look at the following patterns in example.
 	</string>
-    <string name="ar_text1">The question mark(?) in the lower right corner of the box shows where a figure is missing in the pattern. You are to decide which of the five
-        figures under the pattern belongs where the \"?\" is.\n\n
-        Please click \"Next\" to continue.</string>
+    <string name="ar_text1">The question mark (?) in the lower right corner of the box shows where a figure is missing in the pattern. You are to decide which of the five
+        figures (A, B, C, D or E) under the pattern belongs where the \"?\" is.\n\n
+        Please press \"Next\" to continue.</string>
 
     <string name="ar_text3">In the case of the example, the figure in the bottom left is larger than the one above it but otherwise
         same. In the top row, the figure at the right is the same as the one to the left of it except that it has been turned upside down. Following these rules,
         the missing figure should be larger than the one above it, and exactly the same size as the one to the left of it, but upside down. Therefore, E is the answer
         to this question.\n\n
-        Please click \"Next\" to continue.
+        Please press \"Next\" to continue.
 	</string>
 
     <string name="ar_instr1">INSTRUCTIONS\n\nIn each question, you are to decide what figure belongs where the \"?\" is in the pattern. To do this you have
         to figure out what the rule is according to which the drawings change, going from row to row, and what the rule is for the changes going from column to column.
-        The items have different kinds of patterns and different rules by which the drawings change.\n\nPlease click \"Next\" to continue.</string>
+        The items have different kinds of patterns and different rules by which the drawings change.\n\nPlease press \"Next\" to continue.</string>
 
     <string name="start_task">Would you like to see another example, or are you ready to start this task?</string>
     <string name="example">Another example</string>
@@ -349,7 +349,7 @@
    <string name="pr_wrong">Please see the next example. Going from left to right, the circles get larger, and going from top to bottom they get darker.
         Therefore the answer has to be a circle which is the largest of the three sizes, and the darkest. Choices C and E are both the right size, but E is the only
        large circle with the correct shading. Thus E is the only drawing that fits in the pattern formed by the other circles. E is the answer that should be chosen.\n\n
-        Please click \"Next\" to continue.
+        Please press \"Next\" to continue.
 	</string>
 
     <string name="practiceq2">INSTRUCTIONS\n\nNow look at another example, which is quite different from either of the previous ones.\n\n
@@ -357,13 +357,13 @@
     <string name="pr_explain">What is the missing figure here? If you study the pattern you will see that going from left to right there is one more line in each figure
         than in the one to the left of it. Going from top to bottom, the number of lines in any figure is one less than in the figure just above it. Therefore, the
         missing figure should have three lines. The answer is choice C (the three lines, slanting in the proper direction).\n\n
-        Please click \"Next\" to continue.</string>
+        Please press \"Next\" to continue.</string>
     <string name="ar_intro">INSTRUCTIONS\n\n
 		&#8226; You will now be asked six more questions like the ones you just did. \n
 		&#8226; For each question, decide what rules the pattern follows. Choose the answer that belongs in \"?\" by tapping on the answer.\n
 		&#8226; Many of the patterns are based on rules that are different from the ones in the sample items.\n
 		&#8226; Do not spend too much time on any one question. \n\n
-		If you are ready to begin, please click \"Next\".
+		If you are ready to begin, please press \"Next\".
 	</string>
     <string name="start_now">Start Now</string>
 
@@ -373,18 +373,19 @@
     <!-- 2D visualization -->
     <string name="sp_1_instr">INSTRUCTIONS\n\nLook at the drawings below. The first drawing is shaped like the letter L. The rest of the drawings are like the first, except that they
     have been turned in different directions. </string>
-    <string name="sp_next">Please click \"Next\" to continue.</string>
+    <string name="sp_next">Please press \"Next\" to continue.</string>
     <string name="sp_1_sol"> If you think of the drawing at the left below as being made out of wire and lying on a table, the positions shown in each of the other four
-        drawings could be taken simply by turning the wire figure at the left around, without lifting it off the table. \n\n Please click \"Next\" to continue.</string>
+        drawings could be taken simply by turning the wire figure at the left around, without lifting it off the table. \n\n Please press \"Next\" to continue.</string>
     <string name="sp_2_instr">INSTRUCTIONS\n\nNow look at the next row of drawings. The first drawing is shaped like the letter P. But even if the rest of the drawings were
         turned (rotated), they would still be backwards; you would have to lift the figure at the left off the table and flip it over to make any of the other figures. </string>
-    <string name="sp_intro"> In this task each question has one drawing at the left and five similar drawings to the right of it but only one of the five drawings on the
-        right exactly matches the drawing at the left if you turn it around. The rest of the drawings are backwards even when they are turned around.</string>
+    <string name="sp_intro"> INSTRUCTIONS\n\nIn this task each question has one drawing at the left and five similar drawings to the right of it but only one of the five drawings on the
+        right exactly matches the drawing at the left if you turn it around. The rest of the drawings are backwards even when they are turned around.
+        \n\nPlease press \"Next\" to continue.</string>
     <string name="sp_3_instr">INSTRUCTIONS\n\nNow look at the sample question below.\nWhich one of the choices, when turned around, exactly matches the diagram at the left?</string>
     <string name="sp_3_sol">INSTRUCTIONS\n\nYou should have picked the fourth answer choice. All of the other choices have been \"lifted off the table and flipped over\" as well as turned around,
         and thus are backwards. For the sample question, the fourth answer has been selected.</string>
     <string name="sp_begin">For each question in this task, choose the one drawing which, when turned around or rotated, is exactly like the basic drawing at the left.\n\n
-        If you are ready to begin, please click \"Next\".</string>
+        If you are ready to begin, please press \"Next\".</string>
     <string name="sp_question">Choose the one drawing which, when turned (rotated), exactly matches the drawing at the left.</string>
     <!-- 2D visualization -->
 

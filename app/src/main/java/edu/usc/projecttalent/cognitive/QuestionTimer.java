@@ -72,7 +72,11 @@ public class QuestionTimer extends CountDownTimer {
     public static void stopTimer() {
         if(mTimer != null) {
             mTimer.cancel();
-            mContext.unregisterReceiver(mReceiver);
+            try {
+                mContext.unregisterReceiver(mReceiver);
+            } catch (Exception e) {
+                Log.e("anindya", "Receiver not registered.");
+            }
         }
     }
 

@@ -170,13 +170,9 @@ public class SP31_Activity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                unregisterReceiver(mReceiver);
-                super.finish();
-            }
-        }
+        setResult(Activity.RESULT_OK, data);
+        unregisterReceiver(mReceiver);
+        super.finish();
     }
 
 }
