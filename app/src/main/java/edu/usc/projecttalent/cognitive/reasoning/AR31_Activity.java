@@ -23,6 +23,7 @@ import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
+import edu.usc.projecttalent.cognitive.reaction_time.MainActivity_Reac;
 import edu.usc.projecttalent.cognitive.spatial.SPpractice_Activity;
 
 public class AR31_Activity extends Activity {
@@ -162,7 +163,7 @@ public class AR31_Activity extends Activity {
     private void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add AR section to survey.
-        startActivityForResult(new Intent(mContext, SPpractice_Activity.class), 1);
+        startActivityForResult(new Intent(mContext, MainActivity_Reac.class), 1);
     }
 
 	@Override

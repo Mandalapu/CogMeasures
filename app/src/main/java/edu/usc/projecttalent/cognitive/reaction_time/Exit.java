@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.spatial.SPpractice_Activity;
 
 /**
  * Created by kayigwe on 6/26/17.
@@ -27,7 +28,7 @@ public class Exit extends Activity {
         spacebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getApplicationContext(), ReactionTime.class));
+                startActivity(new Intent(getApplicationContext(), SPpractice_Activity.class));
                 //finish();
             }
         });

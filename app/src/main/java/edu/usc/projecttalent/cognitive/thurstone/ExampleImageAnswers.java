@@ -1,6 +1,7 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.reasoning.ARIntro_Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -514,7 +515,8 @@ public class ExampleImageAnswers extends Activity {
                     exitBtn.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {
-                            startActivity(new Intent(getApplicationContext(), EndTest.class));
+                            //startActivity(new Intent(getApplicationContext(), EndTest.class));
+                            startActivity(new Intent(getApplicationContext(), ARIntro_Activity.class));
                         }
                     });
 

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import edu.usc.projecttalent.cognitive.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_Reac extends AppCompatActivity {
 
     Button spacebar;
 

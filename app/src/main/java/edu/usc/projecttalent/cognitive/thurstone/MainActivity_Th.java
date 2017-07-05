@@ -12,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.os.Build;
 import android.view.WindowManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_Th extends AppCompatActivity {
 
     private Button btn;
     private Intent myIntent;

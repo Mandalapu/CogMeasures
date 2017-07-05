@@ -1,6 +1,7 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.reasoning.ARIntro_Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -649,7 +650,9 @@ public class TestImageAnswers extends Activity {
                         exitBtn.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(getApplicationContext(), EndTest.class));
+
+                                //change to different activity here
+                                startActivity(new Intent(getApplicationContext(), ARIntro_Activity.class));
                             }
                         });
 
@@ -2076,6 +2079,7 @@ public class TestImageAnswers extends Activity {
                             @Override
                             public void onClick(View v) {
                                 //startActivity(new Intent(getApplicationContext(), ExampleImageChange.class));
+                                startActivity(new Intent(getApplicationContext(), ARIntro_Activity.class));
                             }
                         });
 
@@ -2095,6 +2099,7 @@ public class TestImageAnswers extends Activity {
                             @Override
                             public void onClick(View v) {
                                 //startActivity(new Intent(getApplicationContext(), TestImageChange.class));
+                                startActivity(new Intent(getApplicationContext(), ARIntro_Activity.class));
                             }
                         });
 

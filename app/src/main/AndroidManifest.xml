@@ -32,12 +32,12 @@
         <activity android:name=".spatial.SPIntro_Activity" />
         <activity android:name=".spatial.SP31_Activity" />
         <activity android:name=".reaction_time.Exit" />
-        <activity android:name=".reaction_time.MainActivity" />
+        <activity android:name=".reaction_time.MainActivity_Reac" />
         <activity android:name=".reaction_time.ReactionTime" />
         <activity android:name=".thurstone.EndTest" />
         <activity android:name=".thurstone.ExampleImageAnswers" />
         <activity android:name=".thurstone.ExampleImageChange" />
-        <activity android:name=".thurstone.MainActivity" />
+        <activity android:name=".thurstone.MainActivity_Th" />
         <activity android:name=".thurstone.PopExample" />
         <activity android:name=".thurstone.SecondActivity" />
         <activity android:name=".thurstone.TestImageAnswers" />
