@@ -28,6 +28,7 @@ import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
+import edu.usc.projecttalent.cognitive.thurstone.MainActivity_Th;
 
 public class Set3Item1Activity extends Activity {
     int mScore;
@@ -240,7 +241,8 @@ public class Set3Item1Activity extends Activity {
     private void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add number section to survey.
-        startActivityForResult(new Intent(mContext, SecAR_Activity.class), 1);
+        //startActivityForResult(new Intent(mContext, SecAR_Activity.class), 1);
+        startActivityForResult(new Intent(mContext, MainActivity_Th.class), 1);
     }
 
 	@Override

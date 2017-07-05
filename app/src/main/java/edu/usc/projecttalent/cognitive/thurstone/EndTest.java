@@ -2,6 +2,7 @@ package edu.usc.projecttalent.cognitive.thurstone;
 
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.reasoning.ARIntro_Activity;
+import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,7 +37,7 @@ public class EndTest extends Activity {
     private class MyOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(getApplicationContext(), ARIntro_Activity.class));
+            startActivity(new Intent(getApplicationContext(), SecAR_Activity.class));
         }
     }
 }
