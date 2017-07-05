@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, MainActivity_Th.class);
-               // Intent intent = new Intent(mContext, VocabIntro.class);
+                //Intent intent = new Intent(mContext, MainActivity_Th.class);
+                Intent intent = new Intent(mContext, VocabIntro.class);
                 startActivityForResult(intent, 1);
             }
         });
