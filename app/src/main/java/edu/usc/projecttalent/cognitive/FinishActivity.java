@@ -24,6 +24,7 @@ public class FinishActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //log here to print
                 Survey survey = Survey.getSurvey();
                 survey.endSurvey();
                 Intent intent = new Intent();

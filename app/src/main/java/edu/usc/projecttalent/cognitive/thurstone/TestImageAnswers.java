@@ -1,6 +1,9 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.model.Answer;
+import edu.usc.projecttalent.cognitive.model.Block;
+import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.reasoning.ARIntro_Activity;
 import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
@@ -15,6 +18,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.drawable.Drawable;
+import edu.usc.projecttalent.cognitive.model.Answer;
+import edu.usc.projecttalent.cognitive.model.Block;
+import edu.usc.projecttalent.cognitive.model.Section;
+import edu.usc.projecttalent.cognitive.model.Survey;
 
 /**
  * Created by kayigwe on 6/24/17.
@@ -26,10 +33,14 @@ public class TestImageAnswers extends Activity {
     ImageView imageView_two;
     ImageView image_three;
     ImageView imageView_four;
+    Section mSection;
+
     Button btn;
     int correct = 0;
     int btnPress = 0;
     String chosen = "n";
+    boolean correcti;
+    int index = 0;
 
     /*
     Array of correct answers
@@ -50,9 +61,34 @@ public class TestImageAnswers extends Activity {
         final ImageView imageView_four = (ImageView) findViewById(R.id.imageView_four);
         Button btn = (Button) findViewById(R.id.btnSwitch);
 
+
+        final Block mBlock;
+
+
+        //Section mSection;
+        mSection = new Section("Thurstone");
+
+        //QuestionTimer.startTimer(mContext);
+
+        /*mAnswer = new Answer();
+        mAnswer.endAnswer(index, correct);
+        mBlock.addAnswer(mAnswer);
+        28 TIMES*/
+
+        /*mBlock.endBlock(mScore);
+        mSection.addBlock(mBlock);
+        mSection.endSection(); //end this section.
+        Survey.getSurvey().addSection(mSection); //add vocab section to survey.*/
+
+        mBlock = new Block(1);
+        Answer mAnswer;
+        mAnswer = new Answer();
+        mAnswer.endAnswer(index, correcti);
+        mBlock.addAnswer(mAnswer);
         imageView_one.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                index = 1;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "a";
@@ -67,12 +103,14 @@ public class TestImageAnswers extends Activity {
                 imageView_two.setImageResource(R.mipmap.jacket_two);
                 imageView_three.setImageResource(R.mipmap.jacket_three);
                 imageView_four.setImageResource(R.mipmap.jacket_four);
+
             }
         });
 
         imageView_two.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                index = 2;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -93,6 +131,7 @@ public class TestImageAnswers extends Activity {
         imageView_three.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                index = 3;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -113,6 +152,7 @@ public class TestImageAnswers extends Activity {
         imageView_four.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                index = 4;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -131,10 +171,24 @@ public class TestImageAnswers extends Activity {
         });
 
         btn.setOnClickListener(new View.OnClickListener(){
+            Answer mAnswer;
+
             @Override
             public void onClick(View v) {
                 if (chosen == "a"){
                     correct++;
+
+                    correcti = true;
+                    mAnswer = new Answer();
+                    mAnswer.endAnswer(index, correcti);
+                    mBlock.addAnswer(mAnswer);
+                }
+                else if (chosen == "b"){
+
+                    correcti = false;
+                    mAnswer = new Answer();
+                    mAnswer.endAnswer(index, correcti);
+                    mBlock.addAnswer(mAnswer);
                 }
                 else if (chosen == "n"){
                     //pop up don't let person move on
@@ -164,6 +218,7 @@ public class TestImageAnswers extends Activity {
                             @Override
                             public void onClick(View v) {
                                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                                index = 1;
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                     chosen = "b";
                                     imageView_one.setBackground(highlight);
@@ -180,6 +235,7 @@ public class TestImageAnswers extends Activity {
                             @Override
                             public void onClick(View v) {
                                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                                index = 2;
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                     chosen = "b";
                                     imageView_two.setBackground(highlight);
@@ -196,6 +252,7 @@ public class TestImageAnswers extends Activity {
                             @Override
                             public void onClick(View v) {
                                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                                index = 3;
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                     chosen = "b";
                                     imageView_three.setBackground(highlight);
@@ -212,6 +269,7 @@ public class TestImageAnswers extends Activity {
                             @Override
                             public void onClick(View v) {
                                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                                index = 4;
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                     chosen = "a";
                                     imageView_four.setBackground(highlight);
@@ -222,7 +280,8 @@ public class TestImageAnswers extends Activity {
                                     imageView_four.setBackgroundDrawable(highlight);
                                 }
                             }
-                        });}
+                        });
+                    }
 
                     else if (btnPress == 2) {
                         imageView_one.setImageResource(R.mipmap.horse_one);
@@ -233,6 +292,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -249,6 +309,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -265,6 +326,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -281,6 +343,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -303,6 +366,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -319,6 +383,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -335,6 +400,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -351,6 +417,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -373,6 +440,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -389,6 +457,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -405,6 +474,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -421,6 +491,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -443,6 +514,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -459,6 +531,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -475,6 +548,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -491,6 +565,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -513,6 +588,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -529,6 +605,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -545,6 +622,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -561,6 +639,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -583,6 +662,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -599,6 +679,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -615,6 +696,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -631,6 +713,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -674,6 +757,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -690,6 +774,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -706,6 +791,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -722,6 +808,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -744,6 +831,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -760,6 +848,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -776,6 +865,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -792,6 +882,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -814,6 +905,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -830,6 +922,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -846,6 +939,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -862,6 +956,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -884,6 +979,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -900,6 +996,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -916,6 +1013,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -932,6 +1030,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -954,6 +1053,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -970,6 +1070,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -986,6 +1087,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1002,6 +1104,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1025,6 +1128,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1041,6 +1145,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1057,6 +1162,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1073,6 +1179,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1095,6 +1202,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1111,6 +1219,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1127,6 +1236,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1143,6 +1253,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1165,6 +1276,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1181,6 +1293,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1197,6 +1310,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1213,6 +1327,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1235,6 +1350,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1251,6 +1367,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1267,6 +1384,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1283,6 +1401,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1305,6 +1424,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1321,6 +1441,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1337,6 +1458,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1353,6 +1475,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1375,6 +1498,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1391,6 +1515,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1407,6 +1532,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1423,6 +1549,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1445,6 +1572,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1461,6 +1589,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1477,6 +1606,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1493,6 +1623,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1515,6 +1646,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1531,6 +1663,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1547,6 +1680,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1563,6 +1697,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1585,6 +1720,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1601,6 +1737,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1617,6 +1754,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1633,6 +1771,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1655,6 +1794,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1671,6 +1811,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1687,6 +1828,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1703,6 +1845,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1725,6 +1868,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 1;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_one.setBackground(highlight);
@@ -1741,6 +1885,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1757,6 +1902,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1773,6 +1919,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1794,6 +1941,7 @@ public class TestImageAnswers extends Activity {
                     imageView_one.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 1;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1811,6 +1959,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 2;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_two.setBackground(highlight);
@@ -1827,6 +1976,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "b";
+                            index = 3;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_three.setBackground(highlight);
@@ -1843,6 +1993,7 @@ public class TestImageAnswers extends Activity {
                         @Override
                         public void onClick(View v) {
                             chosen = "a";
+                            index = 4;
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 imageView_four.setBackground(highlight);
@@ -1864,6 +2015,7 @@ public class TestImageAnswers extends Activity {
                     imageView_one.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 1;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1880,6 +2032,7 @@ public class TestImageAnswers extends Activity {
                     imageView_two.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 2;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1896,6 +2049,7 @@ public class TestImageAnswers extends Activity {
                     imageView_three.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 3;
                             chosen = "a";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1912,6 +2066,7 @@ public class TestImageAnswers extends Activity {
                     imageView_four.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 4;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1934,6 +2089,7 @@ public class TestImageAnswers extends Activity {
                     imageView_one.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 1;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1950,6 +2106,7 @@ public class TestImageAnswers extends Activity {
                     imageView_two.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 2;
                             chosen = "a";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1966,6 +2123,7 @@ public class TestImageAnswers extends Activity {
                     imageView_three.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 3;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1982,6 +2140,7 @@ public class TestImageAnswers extends Activity {
                     imageView_four.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 4;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -2004,6 +2163,7 @@ public class TestImageAnswers extends Activity {
                     imageView_one.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 1;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -2020,6 +2180,7 @@ public class TestImageAnswers extends Activity {
                     imageView_two.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 2;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -2036,6 +2197,7 @@ public class TestImageAnswers extends Activity {
                     imageView_three.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 3;
                             chosen = "b";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -2052,6 +2214,7 @@ public class TestImageAnswers extends Activity {
                     imageView_four.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            index = 4;
                             chosen = "a";
                             Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
