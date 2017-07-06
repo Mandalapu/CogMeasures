@@ -2272,6 +2272,11 @@ public class TestImageAnswers extends Activity {
                         dialog.show();
                         dialog.setCanceledOnTouchOutside(false);
 
+                        mBlock.endBlock(correct);
+                        mSection.addBlock(mBlock);
+                        mSection.endSection(); //end this section.
+                        Survey.getSurvey().addSection(mSection);
+
                     }
                 }
             }
