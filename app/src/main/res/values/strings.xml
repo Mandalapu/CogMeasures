@@ -408,5 +408,6 @@
     <string name="switch_sv">Switch to spatial visualization.</string>
     <string name="sp_section_title">Spatial Visualization</string>
     <string name="ar_instr_header">INSTRUCTIONS</string>
+    <string name="reaction_time">Reaction Time</string>
     <!--Context switch -->
 </resources>
