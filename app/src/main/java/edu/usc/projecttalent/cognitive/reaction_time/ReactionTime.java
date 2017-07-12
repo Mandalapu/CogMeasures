@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.Random;
 
@@ -47,6 +48,7 @@ public class ReactionTime extends Activity {
             public void run() {
                 handler.postDelayed(this, randomTime);
                 imageView.setImageResource(R.drawable.red_circle_large);
+                
                 if (imageView.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red_circle_large).getConstantState()) {
                     mAnswer = new Answer();
                 }

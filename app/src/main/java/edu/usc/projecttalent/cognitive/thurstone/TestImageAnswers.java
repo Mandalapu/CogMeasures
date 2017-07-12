@@ -89,6 +89,7 @@ public class TestImageAnswers extends Activity {
             @Override
             public void onClick(View v) {
                 index = 1;
+                correcti = true;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "a";
@@ -111,6 +112,7 @@ public class TestImageAnswers extends Activity {
             @Override
             public void onClick(View v) {
                 index = 2;
+                correcti = false;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -132,6 +134,7 @@ public class TestImageAnswers extends Activity {
             @Override
             public void onClick(View v) {
                 index = 3;
+                correcti = false;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -153,6 +156,7 @@ public class TestImageAnswers extends Activity {
             @Override
             public void onClick(View v) {
                 index = 4;
+                correcti = false;
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
