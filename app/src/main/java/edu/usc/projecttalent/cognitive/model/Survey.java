@@ -8,6 +8,7 @@ import java.util.Date;
  */
 
 public class Survey {
+    int userId;
     Date start;
     ArrayList<Section> sections;
     Date end;
@@ -31,5 +32,9 @@ public class Survey {
         if(survey == null)
             survey = new Survey();
         return survey;
+    }
+
+    public void setUser(int id) {
+        survey.userId = id;
     }
 }

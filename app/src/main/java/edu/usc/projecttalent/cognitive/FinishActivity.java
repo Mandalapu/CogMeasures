@@ -52,9 +52,6 @@ public class FinishActivity extends AppCompatActivity {
                         Log.e("anindya", t.getMessage());
                     }
                 });
-                for(int i=0; i<result.length(); i+=500) {
-                    Log.e("anindya", result.substring(i, Math.min(i+500, result.length())));
-                }
 
                 intent.putExtra(JSON, result);
                 setResult(RESULT_OK, intent);

@@ -26,6 +26,7 @@ public class ReactionTime extends Activity {
     Section mSection;
     Block mBlock;
     Answer mAnswer;
+    long start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class ReactionTime extends Activity {
         imageView.setImageResource(R.drawable.cross);
 
         final Handler handler = new Handler();
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -50,13 +52,14 @@ public class ReactionTime extends Activity {
 
                 if (imageView.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red_circle_large).getConstantState()) {
                     mAnswer = new Answer();
+                    start = System.currentTimeMillis();
                 }
                 btnSpace.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         imageView.setImageResource(R.drawable.cross);
-                        mAnswer.endAnswer(0, true);
+                        mAnswer.endAnswer(System.currentTimeMillis() - start);
                         mBlock.addAnswer(mAnswer);
                         counter++;
                         if (counter >= 20) {
