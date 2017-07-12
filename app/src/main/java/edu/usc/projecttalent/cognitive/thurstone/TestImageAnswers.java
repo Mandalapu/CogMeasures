@@ -4,7 +4,6 @@ import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.reasoning.ARIntro_Activity;
 import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 import android.app.Activity;
@@ -18,9 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.drawable.Drawable;
-import edu.usc.projecttalent.cognitive.model.Answer;
-import edu.usc.projecttalent.cognitive.model.Block;
-import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
 
 /**
@@ -59,7 +55,7 @@ public class TestImageAnswers extends Activity {
         final ImageView imageView_two = (ImageView) findViewById(R.id.imageView_two);
         final ImageView imageView_three = (ImageView) findViewById(R.id.imageView_three);
         final ImageView imageView_four = (ImageView) findViewById(R.id.imageView_four);
-        Button btn = (Button) findViewById(R.id.btnSwitch);
+        final Button btn = (Button) findViewById(R.id.btnSwitch);
 
 
         final Block mBlock;
@@ -85,11 +81,13 @@ public class TestImageAnswers extends Activity {
         mAnswer = new Answer();
         mAnswer.endAnswer(index, correcti);
         mBlock.addAnswer(mAnswer);
+        btn.setEnabled(false);
         imageView_one.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 index = 1;
                 correcti = true;
+                btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "a";
@@ -113,6 +111,7 @@ public class TestImageAnswers extends Activity {
             public void onClick(View v) {
                 index = 2;
                 correcti = false;
+                btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -135,6 +134,7 @@ public class TestImageAnswers extends Activity {
             public void onClick(View v) {
                 index = 3;
                 correcti = false;
+                btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -157,6 +157,7 @@ public class TestImageAnswers extends Activity {
             public void onClick(View v) {
                 index = 4;
                 correcti = false;
+                btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     chosen = "b";
@@ -748,6 +749,11 @@ public class TestImageAnswers extends Activity {
                         AlertDialog dialog = mBuilder.create();
                         dialog.show();
                         dialog.setCanceledOnTouchOutside(false);
+
+                        mBlock.endBlock(correct);
+                        mSection.addBlock(mBlock);
+                        mSection.endSection(); //end this section.
+                        Survey.getSurvey().addSection(mSection);
                     }
 
                 }
@@ -2255,6 +2261,11 @@ public class TestImageAnswers extends Activity {
                         AlertDialog dialog = mBuilder.create();
                         dialog.show();
                         dialog.setCanceledOnTouchOutside(false);
+
+                        mBlock.endBlock(correct);
+                        mSection.addBlock(mBlock);
+                        mSection.endSection(); //end this section.
+                        Survey.getSurvey().addSection(mSection);
 
                     }
                     else {

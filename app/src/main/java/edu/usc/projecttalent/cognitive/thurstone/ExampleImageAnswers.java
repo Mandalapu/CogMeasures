@@ -1,7 +1,10 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
 import edu.usc.projecttalent.cognitive.R;
-import edu.usc.projecttalent.cognitive.reasoning.ARIntro_Activity;
+import edu.usc.projecttalent.cognitive.model.Answer;
+import edu.usc.projecttalent.cognitive.model.Block;
+import edu.usc.projecttalent.cognitive.model.Section;
+import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 import android.app.Activity;
@@ -27,10 +30,14 @@ public class ExampleImageAnswers extends Activity {
     ImageView imageView_two;
     ImageView image_three;
     ImageView imageView_four;
+    Section mSection;
+
     Button btn;
     int correct = 0;
     int btnPress = 0;
     String chosen = "n";
+    boolean correcti;
+    int index = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,12 +49,28 @@ public class ExampleImageAnswers extends Activity {
         final ImageView imageView_three = (ImageView) findViewById(R.id.imageView_three);
         final ImageView imageView_four = (ImageView) findViewById(R.id.imageView_four);
         final Button btn = (Button) findViewById(R.id.btnSwitch);
+
+        final Block mBlock;
+
+
+        //Section mSection;
+        mSection = new Section("Thurstone_Example");
+
+
+        mBlock = new Block(1);
+        Answer mAnswer;
+        mAnswer = new Answer();
+        mAnswer.endAnswer(index, correcti);
+        mBlock.addAnswer(mAnswer);
+
+
         btn.setEnabled(false);
         imageView_one.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 chosen = "b";
+                correcti = false;
                 btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -69,6 +92,7 @@ public class ExampleImageAnswers extends Activity {
             @Override
             public void onClick(View v) {
                 chosen = "b";
+                correcti = false;
                 btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -90,6 +114,7 @@ public class ExampleImageAnswers extends Activity {
             @Override
             public void onClick(View v) {
                 chosen = "a";
+                correcti = true;
                 btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -111,6 +136,7 @@ public class ExampleImageAnswers extends Activity {
             @Override
             public void onClick(View v) {
                 chosen = "b";
+                correcti = false;
                 btn.setEnabled(true);
                 Drawable highlight = getResources().getDrawable( R.drawable.highlight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -130,10 +156,23 @@ public class ExampleImageAnswers extends Activity {
 
 
         btn.setOnClickListener(new View.OnClickListener(){
+            Answer mAnswer;
+
             @Override
             public void onClick(View v) {
                 if (chosen == "a"){
                     correct++;
+                    correcti = true;
+                    mAnswer = new Answer();
+                    mAnswer.endAnswer(index, correcti);
+                    mBlock.addAnswer(mAnswer);
+                }
+                else if (chosen == "b"){
+
+                    correcti = false;
+                    mAnswer = new Answer();
+                    mAnswer.endAnswer(index, correcti);
+                    mBlock.addAnswer(mAnswer);
                 }
                 else if (chosen == "n"){
                     //pop up don't let person move on
@@ -526,6 +565,11 @@ public class ExampleImageAnswers extends Activity {
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
 
+                    mBlock.endBlock(correct);
+                    mSection.addBlock(mBlock);
+                    mSection.endSection(); //end this section.
+                    Survey.getSurvey().addSection(mSection);
+
                 }
                 else {
                     AlertDialog.Builder mBuilder= new AlertDialog.Builder(ExampleImageAnswers.this);
@@ -544,6 +588,11 @@ public class ExampleImageAnswers extends Activity {
                     AlertDialog dialog = mBuilder.create();
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
+
+                    mBlock.endBlock(correct);
+                    mSection.addBlock(mBlock);
+                    mSection.endSection(); //end this section.
+                    Survey.getSurvey().addSection(mSection);
 
                 }
             }
