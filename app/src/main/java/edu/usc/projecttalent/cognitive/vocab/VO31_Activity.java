@@ -68,7 +68,7 @@ public class VO31_Activity extends AppCompatActivity {
         final ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
         mAnswer = new Answer(); //Create new answer object. Start-time is saved.
         binding.setItem(mQueue.remove()); //show first question.
-        QuestionTimer.startTimer(mContext); //start timer for first question.
+        QuestionTimer.startTimer(mContext, 2); //start timer for first question.
 
         final RadioGroup options = (RadioGroup) findViewById(R.id.options);
 
@@ -93,7 +93,7 @@ public class VO31_Activity extends AppCompatActivity {
                     if (!mQueue.isEmpty()) { //Other questions from this block left.
                         mAnswer = new Answer();
                         binding.setItem(mQueue.remove());
-                        QuestionTimer.startTimer(mContext);
+                        QuestionTimer.startTimer(mContext, 2);
                         mFtWarn = true;
                     } else { // a block has ended. End this block and prepare for new block.
                         mBlock.endBlock(mScore); //end block.
@@ -106,7 +106,7 @@ public class VO31_Activity extends AppCompatActivity {
                             mQueue.addAll(mList);
                             mScore = 0; //reset the score for the new block.
                             binding.setItem(mQueue.remove());
-                            QuestionTimer.startTimer(mContext);
+                            QuestionTimer.startTimer(mContext, 2);
                             mFtWarn = true;
                         } else { //both blocks have been shown. proceed to next section.
                             finishSection();
@@ -148,7 +148,7 @@ public class VO31_Activity extends AppCompatActivity {
             if(action.equals(QuestionTimer.QUIT)) {
                 finishSection(); //go to end of section.
             } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
-                QuestionTimer.startTimer(mContext);
+                QuestionTimer.startTimer(mContext, 2);
             }
         }
     };

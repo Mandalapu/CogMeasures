@@ -27,6 +27,8 @@ public class QuestionTimer extends CountDownTimer {
     public static final String RESUME = "cognitive.resume";
     public static final String NOANSWER = "cognitive.noanswer";
 
+    static long time = 3;
+
 
     private QuestionTimer(long millisInFuture, long countDownInterval, Context context) {
         super(millisInFuture, countDownInterval);
@@ -39,7 +41,7 @@ public class QuestionTimer extends CountDownTimer {
 
     @Override
     public void onTick(long millisUntilFinished) {
-        if(millisUntilFinished <= 60*1000 && !shown) {
+        if (millisUntilFinished <= 60 * 1000 && !shown) {
             mWarningDialog.show();
             shown = true;
             mContext.sendBroadcast(new Intent(WARNING));
@@ -53,14 +55,21 @@ public class QuestionTimer extends CountDownTimer {
         } catch (Exception e) {
             Log.e("anindya", "Receiver is not registered.");
         }
-        if(mWarningDialog.isShowing())
+        if (mWarningDialog.isShowing())
             mWarningDialog.dismiss();
         mQuitDialog.show();
     }
 
     public static void startTimer(Context context) {
-        if(mTimer == null) {
-            mTimer = new QuestionTimer(2*60 * 1000, 1000, context); //change to 2*60
+        startTimer(context, 3);
+    }
+
+    public static void startTimer(Context context, long minutes) {
+        if (mTimer == null || time != minutes) {
+            time = minutes;
+            if (mTimer != null)
+                mTimer.cancel();
+            mTimer = new QuestionTimer(time * 60 * 1000, 1000, context); //time = 2 for vocab, 3 for others
         }
         mContext = context;
         createDialogs();
@@ -70,7 +79,7 @@ public class QuestionTimer extends CountDownTimer {
     }
 
     public static void stopTimer() {
-        if(mTimer != null) {
+        if (mTimer != null) {
             mTimer.cancel();
             try {
                 mContext.unregisterReceiver(mReceiver);
@@ -81,7 +90,7 @@ public class QuestionTimer extends CountDownTimer {
     }
 
     private static void createDialogs() {
-        mWarningDialog =  new AlertDialog.Builder(mContext)
+        mWarningDialog = new AlertDialog.Builder(mContext)
                 .setMessage(R.string.msg2)
                 .setNeutralButton(R.string.ok, null)
                 .create();
@@ -109,7 +118,7 @@ public class QuestionTimer extends CountDownTimer {
     static BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals(NOANSWER)) {
+            if (intent.getAction().equals(NOANSWER)) {
                 mAnsDialog.show();
             }
         }
