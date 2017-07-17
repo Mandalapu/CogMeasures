@@ -605,4 +605,13 @@ public class ExampleImageAnswers extends Activity {
     @Override
     public void onBackPressed() {
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                setResult(Activity.RESULT_OK, data);
+                super.finish();
+            }
+        }
+    }
 }
