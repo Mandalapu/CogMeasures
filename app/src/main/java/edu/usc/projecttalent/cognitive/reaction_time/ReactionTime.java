@@ -1,7 +1,10 @@
 package edu.usc.projecttalent.cognitive.reaction_time;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,6 +13,8 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
+import edu.usc.projecttalent.cognitive.FinishActivity;
+import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.model.*;
 
@@ -23,6 +28,7 @@ public class ReactionTime extends Activity {
     private int[] times_milli = new int[]{2000, 3000, 4000, 5000, 6000, 7000, 8000};
     int counter = 0;
 
+    Context mContext;
     Section mSection;
     Block mBlock;
     Answer mAnswer;
@@ -35,6 +41,15 @@ public class ReactionTime extends Activity {
 
         mSection = new Section(getString(R.string.reaction_time));
         mBlock = new Block(1);
+        //QuestionTimer.startTimer(mContext);
+
+        //prepare timer.
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(QuestionTimer.WARNING);
+        filter.addAction(QuestionTimer.QUIT);
+        filter.addAction(QuestionTimer.RESUME);
+        registerReceiver(mReceiver, filter);
+
 
         btnSpace = (Button) findViewById(R.id.buttonSpace);
         final int randomTime = (times_milli[new Random().nextInt(times_milli.length)]);
@@ -73,6 +88,32 @@ public class ReactionTime extends Activity {
         }, randomTime);
     }
 
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action.equals(QuestionTimer.QUIT)) {
+                finishSection(); //go to end of section.
+            } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
+                QuestionTimer.startTimer(mContext);
+            }
+        }
+    };
+
+    private void finishSection() {
+        mSection.endSection(); //end this section.
+        Survey.getSurvey().addSection(mSection); //add V2D section to survey.
+        Intent intent = new Intent(mContext, Exit.class);
+        startActivityForResult(intent, 1);
+    }
+
     @Override
     public void onBackPressed() {}
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        setResult(Activity.RESULT_OK, data);
+        unregisterReceiver(mReceiver);
+        super.finish();
+    }
 }
