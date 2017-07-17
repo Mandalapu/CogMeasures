@@ -77,10 +77,12 @@ public class ReactionTime extends Activity {
                         mAnswer.endAnswer(System.currentTimeMillis() - start);
                         mBlock.addAnswer(mAnswer);
                         counter++;
-                        if (counter >= 20) {
+                        if (counter >= 4) {
                             mSection.addBlock(mBlock);
-                            Survey.getSurvey().addSection(mSection);
-                            startActivity(new Intent(getApplicationContext(), Exit.class));
+                            mSection.endSection(); //end this section.
+                            //Survey.getSurvey().addSection(mSection);
+                            //startActivity(new Intent(getApplicationContext(), Exit.class));
+                            finishSection();
                         }
                     }
                 });
@@ -93,6 +95,9 @@ public class ReactionTime extends Activity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if(action.equals(QuestionTimer.QUIT)) {
+                mSection.addBlock(mBlock);
+                mSection.endSection(); //end this section.
+                //Survey.getSurvey().addSection(mSection);
                 finishSection(); //go to end of section.
             } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
                 QuestionTimer.startTimer(mContext);
@@ -101,7 +106,6 @@ public class ReactionTime extends Activity {
     };
 
     private void finishSection() {
-        mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add V2D section to survey.
         Intent intent = new Intent(mContext, Exit.class);
         startActivityForResult(intent, 1);
