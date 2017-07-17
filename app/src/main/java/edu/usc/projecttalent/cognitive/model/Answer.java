@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Answer {
     Date start;
-    int user_ans;
+    long user_ans;
     boolean correct;
     Date end;
 
@@ -16,9 +16,14 @@ public class Answer {
         this.start = new Date();
     }
 
-    public void endAnswer(int user_ans, boolean correct) {
+    public void endAnswer(long user_ans, boolean correct) {
         this.user_ans = user_ans;
         this.correct = correct;
+        this.end = new Date();
+    }
+
+    public void endAnswer(long user_ans) {
+        this.user_ans = user_ans;
         this.end = new Date();
     }
 }

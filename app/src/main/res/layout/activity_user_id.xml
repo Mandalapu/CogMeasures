@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="edu.usc.projecttalent.cognitive.UserID"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="@string/userIdinstr"/>
+
+    <EditText
+        android:id="@+id/uid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/numAns"
+        android:inputType="number"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="@string/clicknext"/>
+
+    <Button
+        android:id="@+id/next"
+        style="@style/next"/>
+</LinearLayout>

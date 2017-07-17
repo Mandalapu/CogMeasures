@@ -10,7 +10,9 @@
         \t&#8226; If a task includes multiple-choice questions, select only one answer.\n
         \t&#8226; There is only one right answer for each question.\n\n
         Press the NEXT button to begin the first task.</string>
-    <string name="finish_message">Please press \"Finish\" to proceed into next section.</string>
+    <string name="finish_message">You have completed the puzzles.\n\n
+        IMPORTANT! Please press \"Finish\" to be sure all of your answers are saved.\n\n
+        Once you press \"Finish\" the program will close. Press the droidSURVEY button to complete the survey questions.</string>
 
     <string name="begin">Begin</string>
     <string name="button_str_back">Back</string>
@@ -346,7 +348,7 @@
     <string name="example">Another example</string>
     <string name="start_task_confirm">Start task</string>
 
-   <string name="pr_wrong">Please see the next example. Going from left to right, the circles get larger, and going from top to bottom they get darker.
+    <string name="pr_wrong">Please see the next example. Going from left to right, the circles get larger, and going from top to bottom they get darker.
         Therefore the answer has to be a circle which is the largest of the three sizes, and the darkest. Choices C and E are both the right size, but E is the only
        large circle with the correct shading. Thus E is the only drawing that fits in the pattern formed by the other circles. E is the answer that should be chosen.\n\n
         Please press \"Next\" to continue.
@@ -409,5 +411,6 @@
     <string name="sp_section_title">Spatial Visualization</string>
     <string name="ar_instr_header">INSTRUCTIONS</string>
     <string name="reaction_time">Reaction Time</string>
+    <string name="userIdinstr">Please enter your user ID.\n\nThis is the same number you entered for the first part of the survey.</string>
     <!--Context switch -->
 </resources>
