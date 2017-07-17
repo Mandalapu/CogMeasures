@@ -42,7 +42,7 @@ public class ExampleImageChange extends Activity {
                         // check whether position increased to length then set it to 0
                         // so it will show images in circuler
                         if (position >= imageArray.length){
-                            startActivity(new Intent(getApplicationContext(), ExampleImageAnswers.class));
+                            startActivityForResult(new Intent(getApplicationContext(), ExampleImageAnswers.class), 1);
                             mTimer.cancel();}
                         else
                             imageChangeExample.setImageResource(imageArray[position]);

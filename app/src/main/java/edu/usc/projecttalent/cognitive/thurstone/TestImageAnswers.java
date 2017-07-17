@@ -741,7 +741,7 @@ public class TestImageAnswers extends Activity {
                             public void onClick(View v) {
 
                                 //change to different activity here
-                                startActivity(new Intent(getApplicationContext(), SecAR_Activity.class));
+                                startActivityForResult(new Intent(getApplicationContext(), SecAR_Activity.class), 1);
                             }
                         });
 
@@ -2244,16 +2244,13 @@ public class TestImageAnswers extends Activity {
                     if (correct == 0){
                         AlertDialog.Builder mBuilder= new AlertDialog.Builder(TestImageAnswers.this);
                         View myView = getLayoutInflater().inflate(R.layout.end_test, null);
-                        TextView top = (TextView) myView.findViewById(R.id.textNone);
-                        TextView explanationText = (TextView) myView.findViewById(R.id.textViewExplanation);
 
                         //The start example test button
                         Button exitBtn = (Button) myView.findViewById(R.id.bntNextExample);
                         exitBtn.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v) {
-                                //startActivity(new Intent(getApplicationContext(), ExampleImageChange.class));
-                                startActivity(new Intent(getApplicationContext(), SecAR_Activity.class));
+                                startActivityForResult(new Intent(getApplicationContext(), SecAR_Activity.class), 1);
                             }
                         });
 
@@ -2277,8 +2274,7 @@ public class TestImageAnswers extends Activity {
                         exitBtn.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v) {
-                                //startActivity(new Intent(getApplicationContext(), TestImageChange.class));
-                                startActivity(new Intent(getApplicationContext(), SecAR_Activity.class));
+                                startActivityForResult(new Intent(getApplicationContext(), SecAR_Activity.class), 1);
                             }
                         });
 
@@ -2300,8 +2296,7 @@ public class TestImageAnswers extends Activity {
 
     }
     @Override
-    public void onBackPressed() {
-    }
+    public void onBackPressed() {}
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {

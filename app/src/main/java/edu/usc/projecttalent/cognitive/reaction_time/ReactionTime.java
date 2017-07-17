@@ -50,6 +50,7 @@ public class ReactionTime extends Activity {
         filter.addAction(QuestionTimer.RESUME);
         registerReceiver(mReceiver, filter);
 
+        mContext = this;
 
         btnSpace = (Button) findViewById(R.id.buttonSpace);
         final int randomTime = (times_milli[new Random().nextInt(times_milli.length)]);

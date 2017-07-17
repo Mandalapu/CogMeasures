@@ -48,7 +48,6 @@ public class EndTest extends Activity {
     private void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add V2D section to survey.
-        //startActivity(new Intent(getApplicationContext(), SecAR_Activity.class));
         Intent intent = new Intent(getApplicationContext(), SecAR_Activity.class);
         startActivityForResult(intent, 1);
     }

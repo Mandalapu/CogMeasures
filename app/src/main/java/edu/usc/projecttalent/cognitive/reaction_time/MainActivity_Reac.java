@@ -24,7 +24,7 @@ public class MainActivity_Reac extends AppCompatActivity {
         spacebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ReactionTime.class));
+                startActivityForResult(new Intent(getApplicationContext(), ReactionTime.class), 1);
             }
         });
     }

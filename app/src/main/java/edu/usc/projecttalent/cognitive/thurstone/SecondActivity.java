@@ -74,7 +74,7 @@ public class SecondActivity extends Activity {
                 nextBtn.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getApplicationContext(), ExampleImageChange.class));
+                        startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1);
                     }
                 });
 
@@ -89,7 +89,6 @@ public class SecondActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //image 3
-                //startActivity(new Intent(SecondActivity.this,PopExample.class));
                 AlertDialog.Builder mBuilder= new AlertDialog.Builder(SecondActivity.this);
                 View myView = getLayoutInflater().inflate(R.layout.popup_correctwrong_examples, null);
                 TextView greatText = (TextView) myView.findViewById(R.id.textViewGreat);
@@ -100,7 +99,7 @@ public class SecondActivity extends Activity {
                 nextBtn.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getApplicationContext(), ExampleImageChange.class));
+                        startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1);
                     }
                 });
 

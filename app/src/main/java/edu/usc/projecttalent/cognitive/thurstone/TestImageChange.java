@@ -45,7 +45,7 @@ public class TestImageChange extends Activity {
                         position++;
                         // check whether position increased to length then set it to 0
                         if (position >= imageArray.length){
-                            startActivity(new Intent(getApplicationContext(), TestImageAnswers.class));
+                            startActivityForResult(new Intent(getApplicationContext(), TestImageAnswers.class), 1);
                             mTimer.cancel();}
                         else
                             imageChangeReal.setImageResource(imageArray[position]);

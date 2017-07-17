@@ -26,13 +26,8 @@ import android.widget.TextView;
 
 public class ExampleImageAnswers extends Activity {
 
-    ImageView imageView_one;
-    ImageView imageView_two;
-    ImageView image_three;
-    ImageView imageView_four;
     Section mSection;
 
-    Button btn;
     int correct = 0;
     int btnPress = 0;
     String chosen = "n";
@@ -547,16 +542,13 @@ public class ExampleImageAnswers extends Activity {
                 if (correct == 0){
                     AlertDialog.Builder mBuilder= new AlertDialog.Builder(ExampleImageAnswers.this);
                     View myView = getLayoutInflater().inflate(R.layout.end_test, null);
-                    TextView top = (TextView) myView.findViewById(R.id.textNone);
-                    TextView explanationText = (TextView) myView.findViewById(R.id.textViewExplanation);
 
                     //The start example test button
                     Button exitBtn = (Button) myView.findViewById(R.id.bntNextExample);
                     exitBtn.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {
-                            //startActivity(new Intent(getApplicationContext(), EndTest.class));
-                            startActivity(new Intent(getApplicationContext(), SecAR_Activity.class));
+                            startActivityForResult(new Intent(getApplicationContext(), SecAR_Activity.class), 1);
                         }
                     });
 
@@ -580,7 +572,7 @@ public class ExampleImageAnswers extends Activity {
                     beginBtn.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {
-                            startActivity(new Intent(getApplicationContext(), TestImageChange.class));
+                            startActivityForResult(new Intent(getApplicationContext(), TestImageChange.class), 1);
                         }
                     });
 
