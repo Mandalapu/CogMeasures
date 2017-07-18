@@ -78,7 +78,7 @@ public class ReactionTime extends Activity {
                         mAnswer.endAnswer(System.currentTimeMillis() - start);
                         mBlock.addAnswer(mAnswer);
                         counter++;
-                        if (counter >= 4) {
+                        if (counter >= 20) {
                             mSection.addBlock(mBlock);
                             mSection.endSection(); //end this section.
                             //Survey.getSurvey().addSection(mSection);
