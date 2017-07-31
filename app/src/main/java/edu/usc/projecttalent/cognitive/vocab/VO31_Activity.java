@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -38,113 +37,105 @@ import edu.usc.projecttalent.cognitive.numbers.SecNS_Activity;
  */
 
 public class VO31_Activity extends AppCompatActivity {
-    private Context mContext;
     private int mScore;
     private boolean mFtWarn; //first time warning for no selection.
 
     private Section mSection;
     private Answer mAnswer;
     private Block mBlock;
-    private ArrayList<VocabItem> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocab);
 
-        mContext = this;
-        mSection = new Section(getString(R.string.vocabulary)); //make new section.
-        mScore = 0; //reset score at the beginning of block.
-        mFtWarn = true; //FTU logic.
+        mSection = new Section(getString(R.string.vocabulary));
+        mScore = 0;
+        mFtWarn = true;
 
-        //prepare timer.
         IntentFilter filter = new IntentFilter();
         filter.addAction(QuestionTimer.WARNING);
         filter.addAction(QuestionTimer.QUIT);
         filter.addAction(QuestionTimer.RESUME);
         registerReceiver(mReceiver, filter);
 
-        mBlock = new Block(3); //first block is Block 3.
+        mBlock = new Block(3);
 
-        final Type question = new TypeToken<ArrayList<VocabItem>>(){}.getType();
-        mList = new Gson().fromJson(getString(R.string.vocab3), question);
+        Type question = new TypeToken<ArrayList<VocabItem>>(){}.getType();
         Queue<VocabItem> mQueue = new LinkedList<>();
-        mQueue.addAll(mList); //Add all questions of Block 3 to queue.
+        mQueue.addAll(new Gson().fromJson(getString(R.string.vocab3), question));
 
-        final ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
-        mAnswer = new Answer(); //Create new answer object. Start-time is saved.
-        binding.setItem(mQueue.remove()); //show first question.
-        QuestionTimer.startTimer(mContext, 2); //start timer for first question.
+        ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
+        mAnswer = new Answer();
+        binding.setItem(mQueue.remove());
+        QuestionTimer.startTimer(this, 2);
 
-        final RadioGroup options = (RadioGroup) findViewById(R.id.options);
+        RadioGroup options = (RadioGroup) findViewById(R.id.options);
 
         Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(options.getCheckedRadioButtonId() == -1 && mFtWarn) {
-                    mFtWarn = false;
-                    sendBroadcast(new Intent(QuestionTimer.NOANSWER));
+        button.setOnClickListener(v -> {
+            if(options.getCheckedRadioButtonId() == -1 && mFtWarn) {
+                mFtWarn = false;
+                sendBroadcast(new Intent(QuestionTimer.NOANSWER));
+            } else {
+                int answer = binding.getItem().answer;
+                RadioButton checked = (RadioButton) options.findViewById(options.getCheckedRadioButtonId());
+                int index = options.indexOfChild(checked);
+                options.clearCheck();
+                boolean correct = false;
+                if (answer == index) {
+                    mScore++;
+                    correct = true;
+                }
+                mAnswer.endAnswer(index, correct);
+                mBlock.addAnswer(mAnswer);
+                if (!mQueue.isEmpty()) {
+                    mAnswer = new Answer();
+                    binding.setItem(mQueue.remove());
+                    QuestionTimer.startTimer(this, 2);
+                    mFtWarn = true;
                 } else {
-                    int answer = binding.getItem().answer; //Retrieve correct answer.
-                    RadioButton checked = (RadioButton) options.findViewById(options.getCheckedRadioButtonId());
-                    int index = options.indexOfChild(checked); //Retrieve user answer.
-                    options.clearCheck(); //Clear radio button for next question
-                    boolean correct = false;
-                    if (answer == index) {
-                        mScore++; //if answer is correct, update score.
-                        correct = true;
-                    }
-                    mAnswer.endAnswer(index, correct); //Record answer and end time.
-                    mBlock.addAnswer(mAnswer); //Add answer to block.
-                    if (!mQueue.isEmpty()) { //Other questions from this block left.
-                        mAnswer = new Answer();
+                    mBlock.endBlock(mScore);
+                    mSection.addBlock(mBlock);
+
+                    if (mSection.getBlockSize() == 1) {
+                        int block = nextSet();
+                        mBlock = new Block(getBlockId(block));
+                        mQueue.addAll(new Gson().fromJson(getString(block), question));
+                        mScore = 0;
                         binding.setItem(mQueue.remove());
-                        QuestionTimer.startTimer(mContext, 2);
+                        QuestionTimer.startTimer(this, 2);
                         mFtWarn = true;
-                    } else { // a block has ended. End this block and prepare for new block.
-                        mBlock.endBlock(mScore); //end block.
-                        mSection.addBlock(mBlock); //add this block to the vocabulary section.
-
-                        if (mSection.getBlockSize() == 1) { //only block 3 has been shown yet. show new block.
-                            int block = nextSet(); //find next set based on score.
-                            mBlock = new Block(getBlockId(block)); //create new block.
-                            mList = new Gson().fromJson(getString(block), question); //get new questions.
-                            mQueue.addAll(mList);
-                            mScore = 0; //reset the score for the new block.
-                            binding.setItem(mQueue.remove());
-                            QuestionTimer.startTimer(mContext, 2);
-                            mFtWarn = true;
-                        } else { //both blocks have been shown. proceed to next section.
-                            finishSection();
-                        }
+                    } else {
+                        finishSection();
                     }
-                }
-            }
-
-            private int nextSet() {
-                switch (mScore) {
-                    case 0: return R.string.vocab1;
-                    case 1: return R.string.vocab2;
-                    case 2: return R.string.vocab4;
-                    default: return R.string.vocab5;
-                }
-            }
-
-            private int getBlockId(int set) {
-                switch(set) {
-                    case R.string.vocab1: return 1;
-                    case R.string.vocab2: return 2;
-                    case R.string.vocab4: return 4;
-                    default: return 5;
                 }
             }
         });
     }
 
+    private int nextSet() {
+        switch (mScore) {
+            case 0: return R.string.vocab1;
+            case 1: return R.string.vocab2;
+            case 2: return R.string.vocab4;
+            default: return R.string.vocab5;
+        }
+    }
+
+    private int getBlockId(int set) {
+        switch(set) {
+            case R.string.vocab1: return 1;
+            case R.string.vocab2: return 2;
+            case R.string.vocab4: return 4;
+            default: return 5;
+        }
+    }
+
     private void finishSection() {
-        mSection.endSection(); //end this section.
-        Survey.getSurvey().addSection(mSection); //add vocab section to survey.
-        startActivityForResult(new Intent(mContext, SecNS_Activity.class), 1);
+        mSection.endSection();
+        Survey.getSurvey().addSection(mSection);
+        startActivityForResult(new Intent(this, SecNS_Activity.class), 1);
     }
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -152,9 +143,9 @@ public class VO31_Activity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if(action.equals(QuestionTimer.QUIT)) {
-                finishSection(); //go to end of section.
-            } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
-                QuestionTimer.startTimer(mContext, 2);
+                finishSection();
+            } else if (action.equals(QuestionTimer.RESUME)) {
+                QuestionTimer.startTimer(getApplicationContext(), 2);
             }
         }
     };

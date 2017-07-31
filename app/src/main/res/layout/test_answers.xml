@@ -27,7 +27,7 @@
             android:layout_height="250dip"
             android:layout_margin="10dp"
             android:padding="3dp"
-            android:src="@mipmap/jacket_one" />
+            android:src="@drawable/jacket_one" />
 
         <ImageView
             android:id="@+id/imageView_two"
@@ -35,7 +35,7 @@
             android:layout_height="230dip"
             android:layout_margin="10dp"
             android:padding="3dp"
-            android:src="@mipmap/jacket_two" />
+            android:src="@drawable/jacket_two" />
 
         <ImageView
             android:id="@+id/imageView_three"
@@ -43,7 +43,7 @@
             android:layout_height="250dip"
             android:layout_margin="10dp"
             android:padding="3dp"
-            android:src="@mipmap/jacket_three" />
+            android:src="@drawable/jacket_three" />
 
         <ImageView
             android:id="@+id/imageView_four"
@@ -51,7 +51,7 @@
             android:layout_height="240dip"
             android:layout_margin="10dp"
             android:padding="3dp"
-            android:src="@mipmap/jacket_four" />
+            android:src="@drawable/jacket_four" />
     </TableRow>
 
     <Button

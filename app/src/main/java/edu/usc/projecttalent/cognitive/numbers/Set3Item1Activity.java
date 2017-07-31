@@ -113,116 +113,114 @@ public class Set3Item1Activity extends Activity {
         QuestionTimer.startTimer(mContext); //start the timer for first question.
 
         Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(answer.getText().toString().equals("") && mFtWarn) {
-                    mFtWarn = false;
-                    sendBroadcast(new Intent(QuestionTimer.NOANSWER));
-                } else {
-                    NSQuestion curQuestion = binding.getItem();
-                    if (curQuestion.ansPositions == null) { //only one option.
-                        int userAns = -99; //invalid. user did not select an answer;
-                        try {
-                            userAns = Integer.parseInt(answer.getText().toString());
-                        } catch (Exception ignored) {}
-                        answer.setText("");
-                        int ans = curQuestion.options[curQuestion.ansPosition];
-                        boolean correct = false;
-                        if (userAns == ans) {
-                            mScore++; //correct answer.
-                        } else if (curQuestion.ansOptions != null) {
-                            int[] answers = curQuestion.ansOptions;
-                            for (int answer : answers) {
-                                if (userAns == answer) { //if there are multiple answers to the same question.
-                                    mScore++;
-                                    correct = true;
-                                    break;
-                                }
+        button.setOnClickListener(v -> {
+            if(answer.getText().toString().equals("") && mFtWarn) {
+                mFtWarn = false;
+                sendBroadcast(new Intent(QuestionTimer.NOANSWER));
+            } else {
+                NSQuestion curQuestion = binding.getItem();
+                if (curQuestion.ansPositions == null) { //only one option.
+                    int userAns = -99; //invalid. user did not select an answer;
+                    try {
+                        userAns = Integer.parseInt(answer.getText().toString());
+                    } catch (Exception ignored) {}
+                    answer.setText("");
+                    int ans = curQuestion.options[curQuestion.ansPosition];
+                    boolean correct = false;
+                    if (userAns == ans) {
+                        mScore++; //correct answer.
+                    } else if (curQuestion.ansOptions != null) {
+                        int[] answers = curQuestion.ansOptions;
+                        for (int answer1 : answers) {
+                            if (userAns == answer1) { //if there are multiple answers to the same question.
+                                mScore++;
+                                correct = true;
+                                break;
                             }
                         }
-                        mAnswer.endAnswer(userAns, correct); //end answer.
-                        mBlock.addAnswer(mAnswer); //add answer to block.
+                    }
+                    mAnswer.endAnswer(userAns, correct); //end answer.
+                    mBlock.addAnswer(mAnswer); //add answer to block.
+                } else {
+                    //This section is for Sec 5 Q 3.
+                    //Hardcoding this section because there is only 1 out of 15 such questions.
+                    //Generalizing this would involve lots of complicated code.
+                    int userAns1 = -99;
+                    int userAns2 = -99;
+                    try {
+                        userAns1 = Integer.parseInt(answer.getText().toString());
+                        userAns2 = Integer.parseInt(answer2.getText().toString());
+                    } catch (Exception ignored) {}
+                    boolean correct = false;
+                    if ((userAns1 == 72 && userAns2 == 76) || (userAns1 == 78 && userAns2 == 82)) {
+                        correct = true;
+                        mScore++;
+                    }
+                    mAnswer.endAnswer(userAns1, correct); //TODO: // FIXME: 6/3/2017
+                    mBlock.addAnswer(mAnswer);
+                }
+
+
+                if (!mQueue.isEmpty()) { //more questions in the same block.
+                    mAnswer = new Answer();
+                    NSQuestion item1 = mQueue.remove();
+                    item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.ansPositions == null? 1:2)); //to select the one item instruction.
+                    binding.setItem(item1); //add new question.
+                    QuestionTimer.startTimer(mContext);
+                    mFtWarn = true;
+                    curQuestion = binding.getItem();
+                    if (curQuestion.ansPositions == null) {
+                        series.removeView(answer); //update position of answer box.
+                        series.addView(answer, binding.getItem().ansPosition);
                     } else {
-                        //This section is for Sec 5 Q 3.
-                        //Hardcoding this section because there is only 1 out of 15 such questions.
-                        //Generalizing this would involve lots of complicated code.
-                        int userAns1 = -99;
-                        int userAns2 = -99;
-                        try {
-                            userAns1 = Integer.parseInt(answer.getText().toString());
-                            userAns2 = Integer.parseInt(answer2.getText().toString());
-                        } catch (Exception ignored) {}
-                        boolean correct = false;
-                        if ((userAns1 == 72 && userAns2 == 76) || (userAns1 == 78 && userAns2 == 82)) {
-                            correct = true;
-                            mScore++;
-                        }
-                        mAnswer.endAnswer(userAns1, correct); //TODO: // FIXME: 6/3/2017
-                        mBlock.addAnswer(mAnswer);
+                        EditText answer21 = (EditText) series.findViewById(R.id.answer2);
+                        series.removeView(answer21);
+                        series.addView(answer21, 2);
                     }
 
 
-                    if (!mQueue.isEmpty()) { //more questions in the same block.
-                        mAnswer = new Answer();
-                        NSQuestion item = mQueue.remove();
-                        item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item.ansPositions == null? 1:2)); //to select the one item instruction.
-                        binding.setItem(item); //add new question.
+                } else { //a block has ended. end this block and prepare for new block.
+                    mBlock.endBlock(mScore);
+                    mSection.addBlock(mBlock);
+
+                    if (mSection.getBlockSize() == 1) { //only block 3 has been shown yet. show next block.
+                        int block = nextSet();
+                        mBlock = new Block(getBlockId(block));
+                        mList = new Gson().fromJson(getString(block), question); //get new questions.
+                        mQueue.addAll(mList);
+                        mScore = 0; //reset the score for the new block.
+                        NSQuestion item1 = mQueue.remove();
+                        item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.ansPositions == null? 1:2)); //to select the one item instruction.
+                        binding.setItem(item1);
                         QuestionTimer.startTimer(mContext);
                         mFtWarn = true;
-                        curQuestion = binding.getItem();
-                        if (curQuestion.ansPositions == null) {
-                            series.removeView(answer); //update position of answer box.
-                            series.addView(answer, binding.getItem().ansPosition);
-                        } else {
-                            EditText answer2 = (EditText) series.findViewById(R.id.answer2);
-                            series.removeView(answer2);
-                            series.addView(answer2, 2);
-                        }
-
-
-                    } else { //a block has ended. end this block and prepare for new block.
-                        mBlock.endBlock(mScore);
-                        mSection.addBlock(mBlock);
-
-                        if (mSection.getBlockSize() == 1) { //only block 3 has been shown yet. show next block.
-                            int block = nextSet();
-                            mBlock = new Block(getBlockId(block));
-                            mList = new Gson().fromJson(getString(block), question); //get new questions.
-                            mQueue.addAll(mList);
-                            mScore = 0; //reset the score for the new block.
-                            NSQuestion item = mQueue.remove();
-                            item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item.ansPositions == null? 1:2)); //to select the one item instruction.
-                            binding.setItem(item);
-                            QuestionTimer.startTimer(mContext);
-                            mFtWarn = true;
-                            series.removeView(answer); //update position of answer box.
-                            series.addView(answer, binding.getItem().ansPosition);
-                        } else {
-                            finishSection();
-                        }
+                        series.removeView(answer); //update position of answer box.
+                        series.addView(answer, binding.getItem().ansPosition);
+                    } else {
+                        finishSection();
                     }
-                }
-            }
-
-            private int getBlockId(int set) {
-                switch(set) {
-                    case R.string.ns_1: return 1;
-                    case R.string.ns_2: return 2;
-                    case R.string.ns_4: return 4;
-                    default: return 5;
-                }
-            }
-
-            private int nextSet() {
-                switch (mScore) {
-                    case 0: return R.string.ns_1;
-                    case 1: return R.string.ns_2;
-                    case 2: return R.string.ns_4;
-                    default: return R.string.ns_5;
                 }
             }
         });
 	}
+
+    private int getBlockId(int set) {
+        switch(set) {
+            case R.string.ns_1: return 1;
+            case R.string.ns_2: return 2;
+            case R.string.ns_4: return 4;
+            default: return 5;
+        }
+    }
+
+    private int nextSet() {
+        switch (mScore) {
+            case 0: return R.string.ns_1;
+            case 1: return R.string.ns_2;
+            case 2: return R.string.ns_4;
+            default: return R.string.ns_5;
+        }
+    }
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override

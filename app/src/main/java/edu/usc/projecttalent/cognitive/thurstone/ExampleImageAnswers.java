@@ -1,24 +1,22 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
-import edu.usc.projecttalent.cognitive.R;
-import edu.usc.projecttalent.cognitive.model.Answer;
-import edu.usc.projecttalent.cognitive.model.Block;
-import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.model.Survey;
-import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.model.Answer;
+import edu.usc.projecttalent.cognitive.model.Block;
+import edu.usc.projecttalent.cognitive.model.Section;
+import edu.usc.projecttalent.cognitive.model.Survey;
+import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 /**
  * Created by kayigwe on 6/24/17.

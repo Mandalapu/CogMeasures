@@ -24,7 +24,6 @@ public class SecondActivity extends Activity {
     private ImageView imageView_two;
     private ImageView imageView_three;
     private ImageView imageView_four;
-    private ImageView imageViewExample;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +64,10 @@ public class SecondActivity extends Activity {
                //image 1,2,4
                 AlertDialog.Builder mBuilder= new AlertDialog.Builder(SecondActivity.this);
                 View myView = getLayoutInflater().inflate(R.layout.popup_wrong_examples, null);
-                imageViewExample = (ImageView) myView.findViewById(R.id.imageViewExample);
-                TextView greatText = (TextView) myView.findViewById(R.id.textViewGreat);
-                TextView explanationText = (TextView) myView.findViewById(R.id.textViewExplanation);
 
                 //The start example test button
                 Button nextBtn = (Button) myView.findViewById(R.id.bntNextExample);
-                nextBtn.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1);
-                    }
-                });
+                nextBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1));
 
                 mBuilder.setView(myView);
                 AlertDialog dialog = mBuilder.create();
@@ -91,17 +82,10 @@ public class SecondActivity extends Activity {
                 //image 3
                 AlertDialog.Builder mBuilder= new AlertDialog.Builder(SecondActivity.this);
                 View myView = getLayoutInflater().inflate(R.layout.popup_correctwrong_examples, null);
-                TextView greatText = (TextView) myView.findViewById(R.id.textViewGreat);
-                TextView explanationText = (TextView) myView.findViewById(R.id.textViewExplanation);
 
                 //The start example test button
                 Button nextBtn = (Button) myView.findViewById(R.id.bntNextExample);
-                nextBtn.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1);
-                    }
-                });
+                nextBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1));
 
                 mBuilder.setView(myView);
                 AlertDialog dialog = mBuilder.create();
@@ -111,8 +95,8 @@ public class SecondActivity extends Activity {
         }
     }
     @Override
-    public void onBackPressed() {
-    }
+    public void onBackPressed() {}
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <array name="ar_ex_1">
         <item>@drawable/ar_001_main</item>
         <item>@drawable/ar_001_1</item>

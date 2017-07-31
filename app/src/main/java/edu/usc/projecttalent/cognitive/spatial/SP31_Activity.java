@@ -61,19 +61,19 @@ public class SP31_Activity extends Activity {
         mBlock = new Block(3); //first block is Block 3.
         mFtWarn = true; //for FTU.
 
-        final Resources res = getResources();
+        Resources res = getResources();
         TypedArray questions = res.obtainTypedArray(R.array.sp_3); //all questions of Set 3.
         //get questions for set 3.
         mQueue = new LinkedList<>();
         for(int i=0; i<questions.length(); i++) {
             mQueue.add(new ARExample(res.obtainTypedArray(questions.getResourceId(i, 0)))); //each question. sp_31 .. sp_33.
         }
-        final ActivitySp31Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_sp31_);
+        ActivitySp31Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_sp31_);
         binding.setItem(mQueue.remove());
         mAnswer = new Answer();
         QuestionTimer.startTimer(mContext);
 
-        final LinearLayout options = (LinearLayout) findViewById(R.id.options);
+        LinearLayout options = (LinearLayout) findViewById(R.id.options);
         for(int i=1; i<options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
                 v.setPadding(2, 2, 2, 2);
@@ -85,69 +85,67 @@ public class SP31_Activity extends Activity {
         }
 
        Button next = (Button) findViewById(R.id.next);
-       next.setOnClickListener(new View.OnClickListener() {
-           public void onClick(View v) {
-               if (oldView == null && mFtWarn) {
-                   mFtWarn = false;
-                   sendBroadcast(new Intent(QuestionTimer.NOANSWER));
+       next.setOnClickListener(v -> {
+           if (oldView == null && mFtWarn) {
+               mFtWarn = false;
+               sendBroadcast(new Intent(QuestionTimer.NOANSWER));
+           } else {
+               ARExample question = binding.getItem();
+               boolean correct = false;
+               if (options.indexOfChild(oldView) == question.ansOption) {
+                   mScore++; //correct answer.
+                   correct = true;
+               }
+               mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView), correct);
+               mBlock.addAnswer(mAnswer);
+               if (oldView != null)
+                   oldView.setBackground(null);
+               oldView = null;
+               if (!mQueue.isEmpty()) {
+                   mAnswer = new Answer();
+                   binding.setItem(mQueue.remove());
+                   QuestionTimer.startTimer(mContext);
+                   mFtWarn = true;
                } else {
-                   ARExample question = binding.getItem();
-                   boolean correct = false;
-                   if (options.indexOfChild(oldView) == question.ansOption) {
-                       mScore++; //correct answer.
-                       correct = true;
-                   }
-                   mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView), correct);
-                   mBlock.addAnswer(mAnswer);
-                   if (oldView != null)
-                       oldView.setBackground(null);
-                   oldView = null;
-                   if (!mQueue.isEmpty()) {
-                       mAnswer = new Answer();
+                   mBlock.endBlock(mScore);
+                   mSection.addBlock(mBlock);
+                   if (mSection.getBlockSize() == 1) { //get next block.
+                       int block = nextSet();
+                       mBlock = new Block(getBlockId(block));
+                       TypedArray questions1 = res.obtainTypedArray(block); //all questions of Set X.
+                       mQueue = new LinkedList<>();
+                       for (int i = 0; i < questions1.length(); i++) {
+                           mQueue.add(new ARExample(res.obtainTypedArray(questions1.getResourceId(i, 0)))); //each question. sp_x1 .. sp_x3.
+                       }
+                       mScore = 0;
                        binding.setItem(mQueue.remove());
                        QuestionTimer.startTimer(mContext);
                        mFtWarn = true;
                    } else {
-                       mBlock.endBlock(mScore);
-                       mSection.addBlock(mBlock);
-                       if (mSection.getBlockSize() == 1) { //get next block.
-                           int block = nextSet();
-                           mBlock = new Block(getBlockId(block));
-                           TypedArray questions = res.obtainTypedArray(block); //all questions of Set X.
-                           mQueue = new LinkedList<>();
-                           for (int i = 0; i < questions.length(); i++) {
-                               mQueue.add(new ARExample(res.obtainTypedArray(questions.getResourceId(i, 0)))); //each question. sp_x1 .. sp_x3.
-                           }
-                           mScore = 0;
-                           binding.setItem(mQueue.remove());
-                           QuestionTimer.startTimer(mContext);
-                           mFtWarn = true;
-                       } else {
-                           finishSection();
-                       }
+                       finishSection();
                    }
-               }
-           }
-
-           private int getBlockId(int block) {
-               switch (block) {
-                   case R.array.sp_1: return 1;
-                   case R.array.sp_2: return 2;
-                   case R.array.sp_4: return 4;
-                   default: return 5;
-               }
-           }
-
-           private int nextSet() {
-               switch (mScore) {
-                   case 0: return R.array.sp_1;
-                   case 1: return R.array.sp_2;
-                   case 2: return R.array.sp_4;
-                   default: return R.array.sp_5;
                }
            }
        });
 	}
+
+    private int getBlockId(int block) {
+        switch (block) {
+            case R.array.sp_1: return 1;
+            case R.array.sp_2: return 2;
+            case R.array.sp_4: return 4;
+            default: return 5;
+        }
+    }
+
+    private int nextSet() {
+        switch (mScore) {
+            case 0: return R.array.sp_1;
+            case 1: return R.array.sp_2;
+            case 2: return R.array.sp_4;
+            default: return R.array.sp_5;
+        }
+    }
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override

@@ -19,20 +19,21 @@ import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.model.*;
 
 /**
- * Created by kayigwe on 6/25/17.
+ * Reaction time class.
+ * @author Kay (initial), Anindya Dutta (optimization)
+ * @version 2.0
  */
 
 public class ReactionTime extends Activity {
-    ImageView imageView;
-    Button btnSpace;
+    private ImageView imageView;
+    private Button btnSpace;
     private int[] times_milli = new int[]{2000, 3000, 4000, 5000, 6000, 7000, 8000};
-    int counter = 0;
+    private int counter = 0;
 
-    Context mContext;
-    Section mSection;
-    Block mBlock;
-    Answer mAnswer;
-    long start;
+    private Section mSection;
+    private Block mBlock;
+    private Answer mAnswer;
+    private long start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,6 @@ public class ReactionTime extends Activity {
 
         mSection = new Section(getString(R.string.reaction_time));
         mBlock = new Block(1);
-        //QuestionTimer.startTimer(mContext);
 
         //prepare timer.
         IntentFilter filter = new IntentFilter();
@@ -49,8 +49,6 @@ public class ReactionTime extends Activity {
         filter.addAction(QuestionTimer.QUIT);
         filter.addAction(QuestionTimer.RESUME);
         registerReceiver(mReceiver, filter);
-
-        mContext = this;
 
         btnSpace = (Button) findViewById(R.id.buttonSpace);
         final int randomTime = (times_milli[new Random().nextInt(times_milli.length)]);
@@ -70,45 +68,38 @@ public class ReactionTime extends Activity {
                     mAnswer = new Answer();
                     start = System.currentTimeMillis();
                 }
-                btnSpace.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        imageView.setImageResource(R.drawable.cross);
-                        mAnswer.endAnswer(System.currentTimeMillis() - start);
-                        mBlock.addAnswer(mAnswer);
-                        counter++;
-                        if (counter >= 20) {
-                            mSection.addBlock(mBlock);
-                            mSection.endSection(); //end this section.
-                            //Survey.getSurvey().addSection(mSection);
-                            //startActivity(new Intent(getApplicationContext(), Exit.class));
-                            finishSection();
-                        }
+                btnSpace.setOnClickListener(v -> {
+                    imageView.setImageResource(R.drawable.cross);
+                    mAnswer.endAnswer(System.currentTimeMillis() - start);
+                    mBlock.addAnswer(mAnswer);
+                    counter++;
+                    if (counter >= 20) {
+                        mSection.addBlock(mBlock);
+                        mSection.endSection();
+                        finishSection();
                     }
                 });
             }
         }, randomTime);
     }
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if(action.equals(QuestionTimer.QUIT)) {
                 mSection.addBlock(mBlock);
-                mSection.endSection(); //end this section.
-                //Survey.getSurvey().addSection(mSection);
-                finishSection(); //go to end of section.
-            } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
-                QuestionTimer.startTimer(mContext);
+                mSection.endSection();
+                finishSection();
+            } else if (action.equals(QuestionTimer.RESUME)) {
+                QuestionTimer.startTimer(getApplicationContext());
             }
         }
     };
 
     private void finishSection() {
-        Survey.getSurvey().addSection(mSection); //add V2D section to survey.
-        Intent intent = new Intent(mContext, Exit.class);
+        Survey.getSurvey().addSection(mSection);
+        Intent intent = new Intent(this, Exit.class);
         startActivityForResult(intent, 1);
     }
 

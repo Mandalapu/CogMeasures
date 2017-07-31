@@ -7,6 +7,7 @@ import retrofit2.http.POST;
 
 /**
  * API Endpoint for Retrofit interface.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */

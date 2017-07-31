@@ -11,16 +11,16 @@ import java.util.TimerTask;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
- * Created by kayigwe on 6/24/17.
+ * Change the images in the test.
  */
 
 public class TestImageChange extends Activity {
 
-    int[] imageArray = {R.drawable.zero, R.mipmap.jacket_one_dark, R.mipmap.girl_four_dark, R.mipmap.horse_one_dark, R.mipmap.pumpkin_four_dark, R.mipmap.umbrella_four_dark, R.mipmap.chicken_two_dark,
-                        R.mipmap.duck_four_dark, R.mipmap.elephant_one, R.mipmap.girl_door_one, R.mipmap.cake_two, R.mipmap.fire_hat_one, R.mipmap.baby_bird_one,
-                        R.mipmap.boat_three, R.mipmap.ship_four, R.mipmap.row_boat_two, R.mipmap.clown_three, R.mipmap.nest_four, R.mipmap.party_hat_three,
-                        R.mipmap.girl_window_one, R.mipmap.key_three, R.mipmap.butterfly_three, R.mipmap.chick_two, R.mipmap.house_one, R.mipmap.toys_three,
-                        R.mipmap.toy_egg_four, R.mipmap.kennel_three, R.mipmap.boots_two, R.mipmap.box_four};
+    int[] imageArray = {R.drawable.zero, R.drawable.jacket_one_dark, R.drawable.girl_four_dark, R.drawable.horse_one_dark, R.drawable.pumpkin_four_dark, R.drawable.umbrella_four_dark, R.drawable.chicken_two_dark,
+            R.drawable.duck_four_dark, R.drawable.elephant_one, R.drawable.girl_door_one, R.drawable.cake_two, R.drawable.fire_hat_one, R.drawable.baby_bird_one,
+            R.drawable.boat_three, R.drawable.ship_four, R.drawable.row_boat_two, R.drawable.clown_three, R.drawable.nest_four, R.drawable.party_hat_three,
+            R.drawable.girl_window_one, R.drawable.key_three, R.drawable.butterfly_three, R.drawable.chick_two, R.drawable.house_one, R.drawable.toys_three,
+            R.drawable.toy_egg_four, R.drawable.kennel_three, R.drawable.boots_two, R.drawable.box_four};
 
     // Declare globally
     private int position = -1;
@@ -38,25 +38,21 @@ public class TestImageChange extends Activity {
             @Override
             public void run() {
                 // As timer is not a Main/UI thread need to do all UI task on runOnUiThread
-                TestImageChange.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // increase your position so new image will show
-                        position++;
-                        // check whether position increased to length then set it to 0
-                        if (position >= imageArray.length){
-                            startActivityForResult(new Intent(getApplicationContext(), TestImageAnswers.class), 1);
-                            mTimer.cancel();}
-                        else
-                            imageChangeReal.setImageResource(imageArray[position]);
-                    }
+                TestImageChange.this.runOnUiThread(() -> {
+                    position++;
+                    if (position >= imageArray.length) {
+                        startActivityForResult(new Intent(getApplicationContext(), TestImageAnswers.class), 1);
+                        mTimer.cancel();
+                    } else
+                        imageChangeReal.setImageResource(imageArray[position]);
                 });
             }
         }, 0, 5000);
     }
+
     @Override
-    public void onBackPressed() {
-    }
+    public void onBackPressed() {}
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
@@ -66,5 +62,5 @@ public class TestImageChange extends Activity {
             }
         }
     }
-    }
+}
 
