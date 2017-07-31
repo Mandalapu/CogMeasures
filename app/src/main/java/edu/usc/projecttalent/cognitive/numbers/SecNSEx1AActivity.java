@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,15 +12,19 @@ import android.widget.LinearLayout;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySecNsex1ABinding;
 
+/**
+ * Number section example 1 answer.
+ * @author Anindya Dutta
+ * @version 2.0
+ */
+
 public class SecNSEx1AActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-        final NSExample example = (NSExample) getIntent().getExtras().get("example");
-        final Context mContext = this;
-
+        NSExample example = (NSExample) getIntent().getExtras().get("example");
         ActivitySecNsex1ABinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sec_nsex1_a);
         binding.setItem(example);
 
@@ -31,17 +34,15 @@ public class SecNSEx1AActivity extends Activity {
         series.addView(answer, example.ansPosition);
 
 		Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent;
-                if(example.id == 1) {
-                    intent = new Intent(mContext, SecNS_Activity.class);
-                    intent.putExtra("second", true);
-                } else {
-                    intent = new Intent(mContext, SecNSIntro_Activity.class);
-                }
-				startActivityForResult(intent, 1);
+        button.setOnClickListener(v -> {
+            Intent intent;
+            if(example.id == 1) {
+                intent = new Intent(this, SecNS_Activity.class);
+                intent.putExtra("second", true);
+            } else {
+                intent = new Intent(this, SecNSIntro_Activity.class);
             }
+            startActivityForResult(intent, 1);
         });
 	}
 

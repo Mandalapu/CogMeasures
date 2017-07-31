@@ -26,16 +26,23 @@ import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.ARExample;
 
+/**
+ * Block-adaptive test for Spatial 2D Visualization.
+ * Show block 3 first. Based on score, show one of blocks 1, 2, 4 or 5.
+ * @author Anindya Dutta
+ *
+ */
+
 public class SP31_Activity extends Activity {
 
-    int mScore;
-    Section mSection;
-    Context mContext;
-    Block mBlock;
-    boolean mFtWarn;
-    Queue<ARExample> mQueue;
-    Answer mAnswer;
-    View oldView;
+    private int mScore;
+    private Section mSection;
+    private Context mContext;
+    private Block mBlock;
+    private boolean mFtWarn;
+    private Queue<ARExample> mQueue;
+    private Answer mAnswer;
+    private View oldView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,6 @@ public class SP31_Activity extends Activity {
         for(int i=0; i<questions.length(); i++) {
             mQueue.add(new ARExample(res.obtainTypedArray(questions.getResourceId(i, 0)))); //each question. sp_31 .. sp_33.
         }
-
         final ActivitySp31Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_sp31_);
         binding.setItem(mQueue.remove());
         mAnswer = new Answer();
@@ -69,15 +75,12 @@ public class SP31_Activity extends Activity {
 
         final LinearLayout options = (LinearLayout) findViewById(R.id.options);
         for(int i=1; i<options.getChildCount(); i++) {
-            (options.getChildAt(i)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.setPadding(2, 2, 2, 2);
-                    v.setBackgroundColor(getResources().getColor(R.color.black));
-                    if (oldView != null)
-                        oldView.setBackground(null);
-                    oldView = v;
-                }
+            (options.getChildAt(i)).setOnClickListener(v -> {
+                v.setPadding(2, 2, 2, 2);
+                v.setBackgroundColor(getResources().getColor(R.color.black));
+                if (oldView != null)
+                    oldView.setBackground(null);
+                oldView = v;
             });
         }
 

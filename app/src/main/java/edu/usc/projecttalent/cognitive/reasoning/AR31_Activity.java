@@ -24,18 +24,24 @@ import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reaction_time.MainActivity_Reac;
-import edu.usc.projecttalent.cognitive.spatial.SPpractice_Activity;
+
+/**
+ * Block-adaptive test for Abstract Reasoning.
+ * Show block 3 first. Based on score, show one of blocks 1, 2, 4 or 5.
+ * @author Anindya Dutta
+ * @version 2.0
+ */
 
 public class AR31_Activity extends Activity {
 
-    int mScore;
-    Section mSection;
-    Context mContext;
-    Block mBlock;
-    boolean mFtWarn;
-    Queue<ARExample> mQueue;
-    Answer mAnswer;
-    View oldView;
+    private int mScore;
+    private Section mSection;
+    private Context mContext;
+    private Block mBlock;
+    private boolean mFtWarn;
+    private Queue<ARExample> mQueue;
+    private Answer mAnswer;
+    private View oldView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +76,12 @@ public class AR31_Activity extends Activity {
 
         final LinearLayout options = (LinearLayout) findViewById(R.id.options);
         for(int i=0; i<options.getChildCount(); i++) {
-            (options.getChildAt(i)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.setPadding(2, 2, 2, 2);
-                    v.setBackgroundColor(getResources().getColor(R.color.black));
-                    if (oldView != null)
-                        oldView.setBackground(null);
-                    oldView = v;
-                }
+            (options.getChildAt(i)).setOnClickListener(v -> {
+                v.setPadding(2, 2, 2, 2);
+                v.setBackgroundColor(getResources().getColor(R.color.black));
+                if (oldView != null)
+                    oldView.setBackground(null);
+                oldView = v;
             });
         }
 

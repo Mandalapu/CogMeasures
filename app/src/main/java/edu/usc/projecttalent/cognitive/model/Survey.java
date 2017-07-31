@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by anind on 5/22/2017.
+ * Model for survey for retrofit.
+ *
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class Survey {
-    int userId;
-    Date start;
-    ArrayList<Section> sections;
-    Date end;
+    private int userId;
+    private Date start;
+    private ArrayList<Section> sections;
+    private Date end;
 
-    static Survey survey;
+    private static Survey survey;
 
     public Survey() {
         start = new Date();
@@ -29,7 +32,7 @@ public class Survey {
     }
 
     public static Survey getSurvey() {
-        if(survey == null)
+        if (survey == null)
             survey = new Survey();
         return survey;
     }

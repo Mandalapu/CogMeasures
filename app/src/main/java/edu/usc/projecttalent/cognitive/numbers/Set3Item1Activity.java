@@ -27,8 +27,14 @@ import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
-import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 import edu.usc.projecttalent.cognitive.thurstone.MainActivity_Th;
+
+/**
+ * Block-adaptive test for Number section.
+ * Show block 3 first. Based on score, show one of blocks 1, 2, 4 or 5.
+ * @author Anindya Dutta
+ * @version 2.0
+ */
 
 public class Set3Item1Activity extends Activity {
     int mScore;
@@ -81,31 +87,26 @@ public class Set3Item1Activity extends Activity {
         series.addView(answer, binding.getItem().ansPosition); //set the edit box to correct position.
 
         //setting up number pad and undo.
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(answer2.hasFocus())
-                    answer2.append(((Button)v).getText());
-                else
-                    answer.append(((Button)v).getText()); //extra code for Set 5 Q3.
-            }
+        View.OnClickListener listener = v -> {
+            if(answer2.hasFocus())
+                answer2.append(((Button)v).getText());
+            else
+                answer.append(((Button)v).getText()); //extra code for Set 5 Q3.
         };
         for(int i=0; i<numPad.getChildCount(); i++) {
             ((Button)(numPad.getChildAt(i))).setText(Integer.toString(i)); //set the number from 0 to 9 dynamically.
             (numPad.getChildAt(i)).setOnClickListener(listener);
         }
 
-        (findViewById(R.id.undo)).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(answer2.hasFocus()) {
-                    int length = answer2.length();
-                    if (length > 0)
-                        answer2.getText().delete(length - 1, length);
-                } else {
-                    int length = answer.length();
-                    if (length > 0)
-                        answer.getText().delete(length - 1, length);
-                }
+        (findViewById(R.id.undo)).setOnClickListener(v -> {
+            if(answer2.hasFocus()) {
+                int length = answer2.length();
+                if (length > 0)
+                    answer2.getText().delete(length - 1, length);
+            } else {
+                int length = answer.length();
+                if (length > 0)
+                    answer.getText().delete(length - 1, length);
             }
         });
 
@@ -123,8 +124,7 @@ public class Set3Item1Activity extends Activity {
                         int userAns = -99; //invalid. user did not select an answer;
                         try {
                             userAns = Integer.parseInt(answer.getText().toString());
-                        } catch (Exception e) {
-                        }
+                        } catch (Exception ignored) {}
                         answer.setText("");
                         int ans = curQuestion.options[curQuestion.ansPosition];
                         boolean correct = false;
@@ -132,9 +132,8 @@ public class Set3Item1Activity extends Activity {
                             mScore++; //correct answer.
                         } else if (curQuestion.ansOptions != null) {
                             int[] answers = curQuestion.ansOptions;
-                            for (int i = 0; i < answers.length; i++) {
-                                ans = answers[i];
-                                if (userAns == ans) { //if there are multiple answers to the same question.
+                            for (int answer : answers) {
+                                if (userAns == answer) { //if there are multiple answers to the same question.
                                     mScore++;
                                     correct = true;
                                     break;
@@ -152,8 +151,7 @@ public class Set3Item1Activity extends Activity {
                         try {
                             userAns1 = Integer.parseInt(answer.getText().toString());
                             userAns2 = Integer.parseInt(answer2.getText().toString());
-                        } catch (Exception e) {
-                        }
+                        } catch (Exception ignored) {}
                         boolean correct = false;
                         if ((userAns1 == 72 && userAns2 == 76) || (userAns1 == 78 && userAns2 == 82)) {
                             correct = true;

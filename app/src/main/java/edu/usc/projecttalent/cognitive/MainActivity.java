@@ -5,30 +5,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 
-import edu.usc.projecttalent.cognitive.model.Survey;
-import edu.usc.projecttalent.cognitive.reaction_time.MainActivity_Reac;
-import edu.usc.projecttalent.cognitive.thurstone.MainActivity_Th;
-import edu.usc.projecttalent.cognitive.thurstone.TestImageAnswers;
 import edu.usc.projecttalent.cognitive.vocab.VocabIntro;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Introduction page that welcomes users to Cognitive Measures.
+ * @author Anindya Dutta
+ * @version 2.0
+ */
 
-    Context mContext;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mContext = this;
         Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, VocabIntro.class);
-                startActivityForResult(intent, 1);
-            }
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, VocabIntro.class);
+            startActivityForResult(intent, 1);
         });
     }
 

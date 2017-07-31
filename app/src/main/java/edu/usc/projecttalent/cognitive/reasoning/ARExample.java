@@ -5,7 +5,9 @@ import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
 /**
- * Created by anind on 6/4/2017.
+ * JSON object encapsulation for Abstract reasoning examples.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class ARExample {

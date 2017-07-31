@@ -12,41 +12,34 @@ import android.widget.Button;
 
 import edu.usc.projecttalent.cognitive.R;
 
-public class ARInstructions extends AppCompatActivity {
+/**
+ * Instructions for Abstract reasoning section.
+ * @author Anindya Dutta
+ * @version 2.0
+ */
 
-    Context mContext;
+public class ARInstructions extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arinstructions);
 
-        mContext = this;
-
         Button next = (Button) findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog dialog = new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.start_now)
-                        .setMessage(R.string.start_task)
-                        .setNegativeButton(R.string.example, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(mContext, ARpractice1_Activity.class);
-                                startActivityForResult(intent, 1);
-                            }
-                        })
-                        .setPositiveButton(R.string.start_task_confirm, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(mContext, ARIntro_Activity.class);
-                                startActivityForResult(intent, 1);
-                            }
-                        })
-                        .setCancelable(false).create();
-                dialog.show();
-            }
+        next.setOnClickListener(v -> {
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle(R.string.start_now)
+                    .setMessage(R.string.start_task)
+                    .setNegativeButton(R.string.example, (dialog1, which) -> {
+                        Intent intent = new Intent(this, ARpractice1_Activity.class);
+                        startActivityForResult(intent, 1);
+                    })
+                    .setPositiveButton(R.string.start_task_confirm, (dialog2, which) -> {
+                        Intent intent = new Intent(this, ARIntro_Activity.class);
+                        startActivityForResult(intent, 1);
+                    })
+                    .setCancelable(false).create();
+            dialog.show();
         });
     }
 

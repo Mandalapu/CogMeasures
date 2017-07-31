@@ -1,7 +1,9 @@
 package edu.usc.projecttalent.cognitive.vocab;
 
 /**
- * Created by anind on 5/17/2017.
+ * JSON encapsulation for vocabulary question.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class VocabItem {

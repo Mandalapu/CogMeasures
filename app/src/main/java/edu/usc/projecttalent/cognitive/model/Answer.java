@@ -3,14 +3,16 @@ package edu.usc.projecttalent.cognitive.model;
 import java.util.Date;
 
 /**
- * Created by anind on 5/22/2017.
+ * Model for answer for retrofit.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class Answer {
-    Date start;
-    long user_ans;
-    boolean correct;
-    Date end;
+    private Date start;
+    private long user_ans;
+    private boolean correct;
+    private Date end;
 
     public Answer() {
         this.start = new Date();

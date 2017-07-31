@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import java.util.LinkedList;
@@ -30,16 +29,14 @@ public class SecAR_Activity extends Activity {
         final ActivitySecArBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sec_ar_);
         binding.setItem(exampleList.remove());
         Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(!exampleList.isEmpty())
-                    binding.setItem(exampleList.remove());
-                else {
-                    Intent intent = new Intent(SecAR_Activity.this, ARInstructions.class);
-                    startActivityForResult(intent, 1);
-                }
-
+        button.setOnClickListener(v -> {
+            if(!exampleList.isEmpty())
+                binding.setItem(exampleList.remove());
+            else {
+                Intent intent = new Intent(SecAR_Activity.this, ARInstructions.class);
+                startActivityForResult(intent, 1);
             }
+
         });
 	}
 	@Override

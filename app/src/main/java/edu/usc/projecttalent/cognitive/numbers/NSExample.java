@@ -3,7 +3,9 @@ package edu.usc.projecttalent.cognitive.numbers;
 import java.io.Serializable;
 
 /**
- * Created by anind on 5/26/2017.
+ * Number section example JSON encapsulation.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class NSExample implements Serializable {

@@ -1,17 +1,19 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
 /**
- * Created by anind on 5/31/2017.
+ * Number section question JSON encapsulation.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class NSQuestion {
     public int[] options;
     public int ansPosition;
-    public int[] ansOptions;
+    int[] ansOptions;
     public int[] ansPositions;
     public String instr;
 
-    public void setInstr(String instr) {
+    void setInstr(String instr) {
         this.instr = instr;
     }
 }

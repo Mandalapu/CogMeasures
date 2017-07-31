@@ -3,14 +3,15 @@ package edu.usc.projecttalent.cognitive;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.CountDownTimer;
 import android.util.Log;
 
 /**
- * Created by anind on 5/18/2017.
+ * Timer set for each question. Warning show up on one minute. Quit on two minutes.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class QuestionTimer extends CountDownTimer {
@@ -27,7 +28,7 @@ public class QuestionTimer extends CountDownTimer {
     public static final String RESUME = "cognitive.resume";
     public static final String NOANSWER = "cognitive.noanswer";
 
-    static long time = 3;
+    private static long time = 3;
 
 
     private QuestionTimer(long millisInFuture, long countDownInterval, Context context) {
@@ -78,7 +79,7 @@ public class QuestionTimer extends CountDownTimer {
         mTimer.start();
     }
 
-    public static void stopTimer() {
+    static void stopTimer() {
         if (mTimer != null) {
             mTimer.cancel();
             try {
@@ -96,18 +97,8 @@ public class QuestionTimer extends CountDownTimer {
                 .create();
         mQuitDialog = new AlertDialog.Builder(mContext)
                 .setMessage(R.string.quit_resume)
-                .setNegativeButton(R.string.quit, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mContext.sendBroadcast(new Intent(QUIT));
-                    }
-                })
-                .setPositiveButton(R.string.resume, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mContext.sendBroadcast(new Intent(RESUME));
-                    }
-                })
+                .setNegativeButton(R.string.quit, (dialog, which) -> mContext.sendBroadcast(new Intent(QUIT)))
+                .setPositiveButton(R.string.resume, (dialog, which) -> mContext.sendBroadcast(new Intent(RESUME)))
                 .setCancelable(false).create();
         mAnsDialog = new AlertDialog.Builder(mContext)
                 .setMessage(R.string.msg3)
@@ -115,7 +106,7 @@ public class QuestionTimer extends CountDownTimer {
                 .create();
     }
 
-    static BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private static BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(NOANSWER)) {

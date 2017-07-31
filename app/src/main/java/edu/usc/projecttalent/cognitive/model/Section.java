@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by anind on 5/22/2017.
+ * Model for section for retrofit.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class Section {
-    String name;
-    Date start;
-    ArrayList<Block> blocks;
-    Date end;
+    private String name;
+    private Date start;
+    private ArrayList<Block> blocks;
+    private Date end;
 
     public Section(String name) {
         this.name = name;

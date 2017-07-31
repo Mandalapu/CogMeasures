@@ -3,7 +3,6 @@ package edu.usc.projecttalent.cognitive.numbers;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import edu.usc.projecttalent.cognitive.R;
@@ -15,11 +14,9 @@ public class SecNSIntro_Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sec_nsintro_);
 		Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-    			Intent intent = new Intent(SecNSIntro_Activity.this, Set3Item1Activity.class);
-				startActivityForResult(intent, 1);
-            }
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(SecNSIntro_Activity.this, Set3Item1Activity.class);
+            startActivityForResult(intent, 1);
         });
 	}
 

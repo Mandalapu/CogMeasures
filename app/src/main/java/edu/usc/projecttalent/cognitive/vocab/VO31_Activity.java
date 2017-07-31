@@ -30,16 +30,22 @@ import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.numbers.SecNS_Activity;
 
-public class VO31_Activity extends AppCompatActivity {
-    Context mContext;
-    int mScore;
-    boolean mFtWarn; //first time warning for no selection.
+/**
+ * Block-adaptive test for Vocabulary.
+ * Show block 3 first. Based on score, show one of blocks 1, 2, 4 or 5.
+ * @author Anindya Dutta
+ * @version 2.0
+ */
 
-    Section mSection;
-    Answer mAnswer;
-    Block mBlock;
-    Queue<VocabItem> mQueue;
-    ArrayList<VocabItem> mList;
+public class VO31_Activity extends AppCompatActivity {
+    private Context mContext;
+    private int mScore;
+    private boolean mFtWarn; //first time warning for no selection.
+
+    private Section mSection;
+    private Answer mAnswer;
+    private Block mBlock;
+    private ArrayList<VocabItem> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +68,7 @@ public class VO31_Activity extends AppCompatActivity {
 
         final Type question = new TypeToken<ArrayList<VocabItem>>(){}.getType();
         mList = new Gson().fromJson(getString(R.string.vocab3), question);
-        mQueue = new LinkedList<>();
+        Queue<VocabItem> mQueue = new LinkedList<>();
         mQueue.addAll(mList); //Add all questions of Block 3 to queue.
 
         final ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);

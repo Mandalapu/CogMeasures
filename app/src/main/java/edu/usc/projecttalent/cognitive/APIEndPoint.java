@@ -6,10 +6,12 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
- * Created by anind on 7/10/2017.
+ * API Endpoint for Retrofit interface.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
-public interface APIEndPoint {
+interface APIEndPoint {
 
     @POST("add.php")
     @FormUrlEncoded

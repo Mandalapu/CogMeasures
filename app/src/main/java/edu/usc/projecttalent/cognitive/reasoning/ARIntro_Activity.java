@@ -3,10 +3,15 @@ package edu.usc.projecttalent.cognitive.reasoning;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import edu.usc.projecttalent.cognitive.R;
+
+/**
+ * Introduction to the abstract reasoning section.
+ * @author Anindya Dutta
+ * @version 2.0
+ */
 
 public class ARIntro_Activity extends Activity {
 
@@ -15,11 +20,9 @@ public class ARIntro_Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_arintro_);
 		Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-				Intent intent = new Intent(ARIntro_Activity.this, AR31_Activity.class);
-				startActivityForResult(intent, 1);
-            }
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AR31_Activity.class);
+            startActivityForResult(intent, 1);
         });
 	}
 

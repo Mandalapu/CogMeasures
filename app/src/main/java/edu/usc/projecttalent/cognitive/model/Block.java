@@ -3,13 +3,15 @@ package edu.usc.projecttalent.cognitive.model;
 import java.util.ArrayList;
 
 /**
- * Created by anind on 5/22/2017.
+ * Model for block for retrofit.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class Block {
-    int number;
-    ArrayList<Answer> answers;
-    int score;
+    private int number;
+    private ArrayList<Answer> answers;
+    private int score;
 
     public Block(int number){
         this.number = number;
