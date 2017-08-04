@@ -7,16 +7,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
+import android.support.v4.content.ContextCompat;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.Random;
 
-import edu.usc.projecttalent.cognitive.FinishActivity;
 import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
-import edu.usc.projecttalent.cognitive.model.*;
+import edu.usc.projecttalent.cognitive.model.Answer;
+import edu.usc.projecttalent.cognitive.model.Block;
+import edu.usc.projecttalent.cognitive.model.Section;
+import edu.usc.projecttalent.cognitive.model.Survey;
 
 /**
  * Reaction time class.
@@ -64,7 +66,8 @@ public class ReactionTime extends Activity {
                 handler.postDelayed(this, randomTime);
                 imageView.setImageResource(R.drawable.red_circle_large);
 
-                if (imageView.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red_circle_large).getConstantState()) {
+                if (imageView.getDrawable().getConstantState() ==
+                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.red_circle_large).getConstantState()) {
                     mAnswer = new Answer();
                     start = System.currentTimeMillis();
                 }

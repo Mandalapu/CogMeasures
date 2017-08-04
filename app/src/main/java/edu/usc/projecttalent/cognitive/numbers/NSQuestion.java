@@ -7,13 +7,49 @@ package edu.usc.projecttalent.cognitive.numbers;
  */
 
 public class NSQuestion {
-    public int[] options;
-    public int ansPosition;
-    int[] ansOptions;
-    public int[] ansPositions;
-    public String instr;
+    private int[] options;
+    private int ansPosition;
+    private int[] ansOptions;
+    private int[] ansPositions;
+    private String instr;
 
-    void setInstr(String instr) {
+    public int[] getOptions() {
+        return options;
+    }
+
+    public void setOptions(int[] options) {
+        this.options = options;
+    }
+
+    public int getAnsPosition() {
+        return ansPosition;
+    }
+
+    public void setAnsPosition(int ansPosition) {
+        this.ansPosition = ansPosition;
+    }
+
+    public int[] getAnsOptions() {
+        return ansOptions;
+    }
+
+    public void setAnsOptions(int[] ansOptions) {
+        this.ansOptions = ansOptions;
+    }
+
+    public int[] getAnsPositions() {
+        return ansPositions;
+    }
+
+    public void setAnsPositions(int[] ansPositions) {
+        this.ansPositions = ansPositions;
+    }
+
+    public String getInstr() {
+        return instr;
+    }
+
+    public void setInstr(String instr) {
         this.instr = instr;
     }
 }

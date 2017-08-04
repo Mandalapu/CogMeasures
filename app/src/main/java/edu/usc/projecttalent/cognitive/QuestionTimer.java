@@ -31,7 +31,6 @@ public class QuestionTimer extends CountDownTimer {
 
     private static long time = 3;
 
-
     private QuestionTimer(long millisInFuture, long countDownInterval, Context context) {
         super(millisInFuture, countDownInterval);
         mContext = context;

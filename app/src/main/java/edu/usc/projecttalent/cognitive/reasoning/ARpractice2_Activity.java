@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -48,7 +49,7 @@ public class ARpractice2_Activity extends Activity {
             options.getChildAt(i).setOnClickListener(v -> {
                 if(!exampleList.isEmpty()) {
                     v.setPadding(1, 1, 1, 1);
-                    v.setBackgroundColor(getResources().getColor(R.color.black));
+                    v.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
                     if (oldView != null)
                         oldView.setBackground(null);
                     oldView = v;

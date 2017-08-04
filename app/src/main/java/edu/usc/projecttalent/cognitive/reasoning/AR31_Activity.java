@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -70,16 +71,16 @@ public class AR31_Activity extends Activity {
             mQueue.add(new ARExample(res.obtainTypedArray(questions.getResourceId(i, 0)))); //each question. ar_31 .. ar_33.
         }
 
-        final ActivityAr31Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar31_);
+        ActivityAr31Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar31_);
         binding.setItem(mQueue.remove());
         mAnswer = new Answer();
         QuestionTimer.startTimer(mContext);
 
-        final LinearLayout options = (LinearLayout) findViewById(R.id.options);
+        LinearLayout options = (LinearLayout) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
                 v.setPadding(2, 2, 2, 2);
-                v.setBackgroundColor(getResources().getColor(R.color.black));
+                v.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
                 if (oldView != null)
                     oldView.setBackground(null);
                 oldView = v;
@@ -94,7 +95,7 @@ public class AR31_Activity extends Activity {
             } else {
                 ARExample question = binding.getItem();
                 boolean correct = false;
-                if (options.indexOfChild(oldView) == question.ansOption) {
+                if (options.indexOfChild(oldView) == question.getAnsOption()) {
                     mScore++; //correct answer.
                     correct = true;
                 }

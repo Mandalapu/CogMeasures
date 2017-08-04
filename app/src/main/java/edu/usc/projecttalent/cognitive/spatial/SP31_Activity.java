@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -77,7 +78,7 @@ public class SP31_Activity extends Activity {
         for(int i=1; i<options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
                 v.setPadding(2, 2, 2, 2);
-                v.setBackgroundColor(getResources().getColor(R.color.black));
+                v.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
                 if (oldView != null)
                     oldView.setBackground(null);
                 oldView = v;
@@ -92,7 +93,7 @@ public class SP31_Activity extends Activity {
            } else {
                ARExample question = binding.getItem();
                boolean correct = false;
-               if (options.indexOfChild(oldView) == question.ansOption) {
+               if (options.indexOfChild(oldView) == question.getAnsOption()) {
                    mScore++; //correct answer.
                    correct = true;
                }

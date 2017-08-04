@@ -7,7 +7,31 @@ package edu.usc.projecttalent.cognitive.vocab;
  */
 
 public class VocabItem {
-    public String question;
-    public String[] options;
-    public int answer;
+    private String question;
+    private String[] options;
+    private int answer;
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String[] getOptions() {
+        return options;
+    }
+
+    public void setOptions(String[] options) {
+        this.options = options;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
 }

@@ -1,66 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#fff">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".spatial.SP31_Activity">
 
+    <data>
 
-    <TextView
-        android:id="@+id/textView3"
+        <variable
+            name="item"
+            type="edu.usc.projecttalent.cognitive.thurstone.THItem" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Now, click on the picture you have studied."
-        android:textSize="40dp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:textColor="#000"/>
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="271dp"
-        android:layout_margin="20dp"
-        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView_one"
-            android:layout_width="250dip"
-            android:layout_height="250dip"
-            android:layout_margin="10dp"
-            android:padding="3dp"
-            android:src="@drawable/cop_one" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal"
+            android:text="@string/instr_thurs"
+            android:textColor="#000"
+            android:textSize="40sp" />
 
-        <ImageView
-            android:id="@+id/imageView_two"
-            android:layout_width="270dip"
-            android:layout_height="230dip"
-            android:layout_margin="10dp"
-            android:padding="3dp"
-            android:src="@drawable/cop_two" />
+        <TableRow
+            android:id="@+id/options"
+            android:layout_width="match_parent"
+            android:layout_height="271dp"
+            android:layout_margin="20dp"
+            android:gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView_three"
-            android:layout_width="300dip"
-            android:layout_height="250dip"
-            android:layout_margin="10dp"
-            android:padding="3dp"
-            android:src="@drawable/cop_three" />
+            <ImageView
+                style="@style/thurimg"
+                app:imageUrl="@{item.options.getResourceId(0,0)}" />
 
-        <ImageView
-            android:id="@+id/imageView_four"
-            android:layout_width="350dip"
-            android:layout_height="240dip"
-            android:layout_margin="10dp"
-            android:padding="3dp"
-            android:src="@drawable/cop_four" />
-    </TableRow>
+            <ImageView
+                style="@style/thurimg"
+                app:imageUrl="@{item.options.getResourceId(1,0)}" />
 
-    <Button
-        android:id="@+id/btnSwitch"
-        android:layout_width="167dp"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:background="@drawable/borders"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="70dp"/>
-</LinearLayout>
+            <ImageView
+                style="@style/thurimg"
+                app:imageUrl="@{item.options.getResourceId(2,0)}" />
+
+            <ImageView
+                style="@style/thurimg"
+                app:imageUrl="@{item.options.getResourceId(3,0)}" />
+        </TableRow>
+
+        <Button
+            android:id="@id/next"
+            style="@style/next" />
+    </LinearLayout>
+</layout>

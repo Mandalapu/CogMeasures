@@ -11,11 +11,11 @@ import android.widget.ImageView;
  */
 
 public class ARExample {
-    public String instructions;
-    public TypedArray options;
-    public String details;
-    public boolean answer;
-    public int ansOption;
+    private String instructions;
+    private TypedArray options;
+    private String details;
+    private boolean answer;
+    private int ansOption;
 
     @SuppressWarnings("ResourceType")
     public ARExample(String instructions, TypedArray options, String details, boolean answer) {
@@ -23,8 +23,7 @@ public class ARExample {
         this.options = options;
         this.details = details;
         this.answer = answer;
-        if(answer)
-            this.ansOption = options.getInt(6, -1);
+        this.ansOption = answer? options.getInt(6, -1): -1;
     }
 
     @SuppressWarnings("ResourceType")
@@ -36,5 +35,46 @@ public class ARExample {
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, int imageUrl) {
         view.setImageResource(imageUrl);
+    }
+
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public TypedArray getOptions() {
+        return options;
+    }
+
+    public void setOptions(TypedArray options) {
+        this.options = options;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public boolean isAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
+    }
+
+    public int getAnsOption() {
+        return ansOption;
+    }
+
+    public void setAnsOption(int ansOption) {
+        this.ansOption = ansOption;
     }
 }

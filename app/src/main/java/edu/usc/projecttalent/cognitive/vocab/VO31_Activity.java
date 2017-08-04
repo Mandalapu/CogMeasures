@@ -78,7 +78,7 @@ public class VO31_Activity extends AppCompatActivity {
                 mFtWarn = false;
                 sendBroadcast(new Intent(QuestionTimer.NOANSWER));
             } else {
-                int answer = binding.getItem().answer;
+                int answer = binding.getItem().getAnswer();
                 RadioButton checked = (RadioButton) options.findViewById(options.getCheckedRadioButtonId());
                 int index = options.indexOfChild(checked);
                 options.clearCheck();

@@ -3,14 +3,22 @@ package edu.usc.projecttalent.cognitive.thurstone;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TableRow;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.databinding.ExampleAnswersBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
@@ -18,358 +26,90 @@ import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 /**
- * Created by kayigwe on 6/24/17.
+ * Thurstone example activity.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class ExampleImageAnswers extends Activity {
 
-    int correct = 0;
-    int btnPress = 0;
-    String chosen = "n";
-    boolean correcti;
-    int index = 0;
+    private View oldView;
+    private int score;
+    private Answer mAnswer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.example_answers);
 
-        ImageView img1 = (ImageView) findViewById(R.id.imageView_one),
-                  img2 = (ImageView) findViewById(R.id.imageView_two),
-                  img3 = (ImageView) findViewById(R.id.imageView_three),
-                  img4 = (ImageView) findViewById(R.id.imageView_four);
-        Button btn = (Button) findViewById(R.id.btnSwitch);
-
-        Section mSection = new Section("Thurstone Example");
+        Section mSection = new Section(getString(R.string.thurs_example));
         Block mBlock = new Block(1);
+        Drawable highlight = ContextCompat.getDrawable(this, R.drawable.highlight);
+
+        Resources res = getResources();
+        TypedArray questions = res.obtainTypedArray(R.array.th_practice);
+        Queue<THItem> mQueue = new LinkedList<>();
+        for (int i = 0; i < questions.length(); i++) {
+            mQueue.add(new THItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
+        }
+
+        ExampleAnswersBinding binding = DataBindingUtil.setContentView(this, R.layout.example_answers);
+        binding.setItem(mQueue.remove());
+        Button btn = (Button) findViewById(R.id.next);
         btn.setEnabled(false);
 
-        img1.setOnClickListener(v -> {
-            chosen = "b";
-            correcti = false;
-            btn.setEnabled(true);
-            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-            img1.setBackground(highlight);
-            img2.setBackground(null);
-            img3.setBackground(null);
-            img4.setBackground(null);
-            img1.setImageResource(R.drawable.cop_one);
-            img2.setImageResource(R.drawable.cop_two);
-            img3.setImageResource(R.drawable.cop_three);
-            img4.setImageResource(R.drawable.cop_four);
-        });
+        TableRow options = (TableRow) findViewById(R.id.options);
+        for (int i = 0; i < options.getChildCount(); i++) {
+            (options.getChildAt(i)).setOnClickListener(v -> {
+                v.setBackground(highlight);
+                if (oldView != null)
+                    oldView.setBackground(null);
+                oldView = v;
+                btn.setEnabled(true);
+            });
+        }
 
-        img2.setOnClickListener(v -> {
-            chosen = "b";
-            correcti = false;
-            btn.setEnabled(true);
-            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-            img2.setBackground(highlight);
-            img1.setBackground(null);
-            img3.setBackground(null);
-            img4.setBackground(null);
-            img1.setImageResource(R.drawable.cop_one);
-            img2.setImageResource(R.drawable.cop_two);
-            img3.setImageResource(R.drawable.cop_three);
-            img4.setImageResource(R.drawable.cop_four);
-        });
+        mAnswer = new Answer();
 
-        img3.setOnClickListener(v -> {
-            chosen = "a";
-            correcti = true;
-            btn.setEnabled(true);
-            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-            img3.setBackground(highlight);
-            img2.setBackground(null);
-            img1.setBackground(null);
-            img4.setBackground(null);
-            img1.setImageResource(R.drawable.cop_one);
-            img2.setImageResource(R.drawable.cop_two);
-            img3.setImageResource(R.drawable.cop_three);
-            img4.setImageResource(R.drawable.cop_four);
-        });
-
-        img4.setOnClickListener(v -> {
-            chosen = "b";
-            correcti = false;
-            btn.setEnabled(true);
-            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-            img4.setBackground(highlight);
-            img2.setBackground(null);
-            img3.setBackground(null);
-            img1.setBackground(null);
-            img1.setImageResource(R.drawable.cop_one);
-            img2.setImageResource(R.drawable.cop_two);
-            img3.setImageResource(R.drawable.cop_three);
-            img4.setImageResource(R.drawable.cop_four);
-        });
-
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            Answer mAnswer;
-
-            @Override
-            public void onClick(View v) {
-                if (chosen.equals("a")) {
-                    correct++;
-                    correcti = true;
-                    mAnswer = new Answer();
-                    mAnswer.endAnswer(index, correcti);
-                    mBlock.addAnswer(mAnswer);
-                } else if (chosen.equals("b")) {
-
-                    correcti = false;
-                    mAnswer = new Answer();
-                    mAnswer.endAnswer(index, correcti);
-                    mBlock.addAnswer(mAnswer);
-                } else if (chosen.equals("n")) {
-                    //pop up don't let person move on
-                    btnPress--;
+        btn.setOnClickListener(v -> {
+            if(oldView != null) {
+                THItem question = binding.getItem();
+                boolean correct1 = false;
+                if (options.indexOfChild(oldView) == question.getAnsOption()) {
+                    score++; //correct answer.
+                    correct1 = true;
                 }
-                chosen = "n";
-                img1.setBackground(null);
-                img2.setBackground(null);
-                img3.setBackground(null);
-                img4.setBackground(null);
+                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView), correct1);
+                mBlock.addAnswer(mAnswer);
+                if (oldView != null)
+                    oldView.setBackground(null);
+                oldView = null;
+                if (!mQueue.isEmpty()) {
+                    mAnswer = new Answer();
+                    binding.setItem(mQueue.remove());
+                } else {
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(ExampleImageAnswers.this);
+                    View myView;
+                    if (score == 0) {
+                        myView = getLayoutInflater().inflate(R.layout.end_test, null);
+                        Button exitBtn = (Button) myView.findViewById(R.id.bntNextExample);
+                        exitBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), SecAR_Activity.class), 1));
+                    } else {
+                        myView = getLayoutInflater().inflate(R.layout.begin_real_test, null);
+                        Button beginBtn = (Button) myView.findViewById(R.id.beginBtn);
+                        beginBtn.setOnClickListener(v2 -> startActivityForResult(new Intent(getApplicationContext(), TestImageChange.class), 1));
+                    }
 
-                btnPress++;
-                switch(btnPress) {
-                    case 1:
-                        img1.setImageResource(R.drawable.dog_one);
-                        img2.setImageResource(R.drawable.dog_two);
-                        img3.setImageResource(R.drawable.dog_three);
-                        img4.setImageResource(R.drawable.dog_four);
-                        img1.setOnClickListener(v122 -> {
-                            chosen = "a";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img1.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
+                    mBuilder.setView(myView);
+                    AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+                    dialog.setCanceledOnTouchOutside(false);
 
-                        img2.setOnClickListener(v1 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img2.setBackground(highlight);
-                            img1.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img3.setOnClickListener(v12 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img3.setBackground(highlight);
-                            img2.setBackground(null);
-                            img1.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img4.setOnClickListener(v13 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img4.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img1.setBackground(null);
-                        });
-                        break;
-
-                    case 2:
-                        img1.setImageResource(R.drawable.hat_one);
-                        img2.setImageResource(R.drawable.hat_two);
-                        img3.setImageResource(R.drawable.hat_three);
-                        img4.setImageResource(R.drawable.hat_four);
-                        img1.setOnClickListener(v14 -> {
-                            chosen = "a";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img1.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img2.setOnClickListener(v15 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img2.setBackground(highlight);
-                            img1.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img3.setOnClickListener(v16 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img3.setBackground(highlight);
-                            img2.setBackground(null);
-                            img1.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img4.setOnClickListener(v17 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img4.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img1.setBackground(null);
-                        });
-                        break;
-
-                    case 3:
-                        img1.setImageResource(R.drawable.table_one);
-                        img2.setImageResource(R.drawable.table_two);
-                        img3.setImageResource(R.drawable.table_three);
-                        img4.setImageResource(R.drawable.table_four);
-                        img1.setOnClickListener(v18 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img1.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img2.setOnClickListener(v19 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img2.setBackground(highlight);
-                            img1.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img3.setOnClickListener(v110 -> {
-                            chosen = "a";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img3.setBackground(highlight);
-                            img2.setBackground(null);
-                            img1.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img4.setOnClickListener(v111 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img4.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img1.setBackground(null);
-                        });
-                        break;
-
-                    case 4:
-                        img1.setImageResource(R.drawable.truck_one);
-                        img2.setImageResource(R.drawable.truck_two);
-                        img3.setImageResource(R.drawable.truck_three);
-                        img4.setImageResource(R.drawable.truck_four);
-                        img1.setOnClickListener(v112 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img1.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img2.setOnClickListener(v113 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img2.setBackground(highlight);
-                            img1.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img3.setOnClickListener(v114 -> {
-                            chosen = "a";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img3.setBackground(highlight);
-                            img2.setBackground(null);
-                            img1.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img4.setOnClickListener(v115 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img4.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img1.setBackground(null);
-                        });
-                        break;
-
-                    case 5:
-                        img1.setImageResource(R.drawable.window_one);
-                        img2.setImageResource(R.drawable.window_two);
-                        img3.setImageResource(R.drawable.window_three);
-                        img4.setImageResource(R.drawable.window_four);
-                        img1.setOnClickListener(v116 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img1.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img2.setOnClickListener(v117 -> {
-                            chosen = "a";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img2.setBackground(highlight);
-                            img1.setBackground(null);
-                            img3.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img3.setOnClickListener(v118 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img3.setBackground(highlight);
-                            img2.setBackground(null);
-                            img1.setBackground(null);
-                            img4.setBackground(null);
-                        });
-
-                        img4.setOnClickListener(v119 -> {
-                            chosen = "b";
-                            Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                            img4.setBackground(highlight);
-                            img2.setBackground(null);
-                            img3.setBackground(null);
-                            img1.setBackground(null);
-                        });
-                        break;
-
-                    default:
-                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(ExampleImageAnswers.this);
-                        View myView;
-                        if (correct == 0) {
-                            myView = getLayoutInflater().inflate(R.layout.end_test, null);
-                            Button exitBtn = (Button) myView.findViewById(R.id.bntNextExample);
-                            exitBtn.setOnClickListener(v120 -> startActivityForResult(new Intent(getApplicationContext(), SecAR_Activity.class), 1));
-                        } else {
-                            myView = getLayoutInflater().inflate(R.layout.begin_real_test, null);
-                            Button beginBtn = (Button) myView.findViewById(R.id.beginBtn);
-                            beginBtn.setOnClickListener(v121 -> startActivityForResult(new Intent(getApplicationContext(), TestImageChange.class), 1));
-                        }
-
-                        mBuilder.setView(myView);
-                        AlertDialog dialog = mBuilder.create();
-                        dialog.show();
-                        dialog.setCanceledOnTouchOutside(false);
-
-                        mBlock.endBlock(correct);
-                        mSection.addBlock(mBlock);
-                        mSection.endSection(); //end this section.
-                        Survey.getSurvey().addSection(mSection);
-                        break;
+                    mBlock.endBlock(score);
+                    mSection.addBlock(mBlock);
+                    mSection.endSection(); //end this section.
+                    Survey.getSurvey().addSection(mSection);
                 }
             }
-
         });
     }
 

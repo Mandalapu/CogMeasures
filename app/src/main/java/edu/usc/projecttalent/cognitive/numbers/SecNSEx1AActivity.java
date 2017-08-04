@@ -1,7 +1,6 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -31,12 +30,12 @@ public class SecNSEx1AActivity extends Activity {
         LinearLayout series = (LinearLayout) findViewById(R.id.series);
         final EditText answer= (EditText) findViewById(R.id.answer);
         series.removeView(answer);
-        series.addView(answer, example.ansPosition);
+        series.addView(answer, example.getAnsPosition());
 
 		Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
             Intent intent;
-            if(example.id == 1) {
+            if(example.getId() == 1) {
                 intent = new Intent(this, SecNS_Activity.class);
                 intent.putExtra("second", true);
             } else {

@@ -72,7 +72,7 @@ public class Set3Item1Activity extends Activity {
 
         final ActivitySet3Item1Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_set3_item1);
         NSQuestion item = mQueue.remove();
-        if(item.ansPositions == null)
+        if(item.getAnsPositions() == null)
             item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
         binding.setItem(item);
 
@@ -84,7 +84,7 @@ public class Set3Item1Activity extends Activity {
                 answer2 = (EditText) findViewById(R.id.answer2);
 
         series.removeView(answer);
-        series.addView(answer, binding.getItem().ansPosition); //set the edit box to correct position.
+        series.addView(answer, binding.getItem().getAnsPosition()); //set the edit box to correct position.
 
         //setting up number pad and undo.
         View.OnClickListener listener = v -> {
@@ -119,18 +119,18 @@ public class Set3Item1Activity extends Activity {
                 sendBroadcast(new Intent(QuestionTimer.NOANSWER));
             } else {
                 NSQuestion curQuestion = binding.getItem();
-                if (curQuestion.ansPositions == null) { //only one option.
+                if (curQuestion.getAnsPositions() == null) { //only one option.
                     int userAns = -99; //invalid. user did not select an answer;
                     try {
                         userAns = Integer.parseInt(answer.getText().toString());
                     } catch (Exception ignored) {}
                     answer.setText("");
-                    int ans = curQuestion.options[curQuestion.ansPosition];
+                    int ans = curQuestion.getOptions()[curQuestion.getAnsPosition()];
                     boolean correct = false;
                     if (userAns == ans) {
                         mScore++; //correct answer.
-                    } else if (curQuestion.ansOptions != null) {
-                        int[] answers = curQuestion.ansOptions;
+                    } else if (curQuestion.getAnsOptions() != null) {
+                        int[] answers = curQuestion.getAnsOptions();
                         for (int answer1 : answers) {
                             if (userAns == answer1) { //if there are multiple answers to the same question.
                                 mScore++;
@@ -164,14 +164,14 @@ public class Set3Item1Activity extends Activity {
                 if (!mQueue.isEmpty()) { //more questions in the same block.
                     mAnswer = new Answer();
                     NSQuestion item1 = mQueue.remove();
-                    item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.ansPositions == null? 1:2)); //to select the one item instruction.
+                    item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null? 1:2)); //to select the one item instruction.
                     binding.setItem(item1); //add new question.
                     QuestionTimer.startTimer(mContext);
                     mFtWarn = true;
                     curQuestion = binding.getItem();
-                    if (curQuestion.ansPositions == null) {
+                    if (curQuestion.getAnsPositions() == null) {
                         series.removeView(answer); //update position of answer box.
-                        series.addView(answer, binding.getItem().ansPosition);
+                        series.addView(answer, binding.getItem().getAnsPosition());
                     } else {
                         EditText answer21 = (EditText) series.findViewById(R.id.answer2);
                         series.removeView(answer21);
@@ -190,12 +190,12 @@ public class Set3Item1Activity extends Activity {
                         mQueue.addAll(mList);
                         mScore = 0; //reset the score for the new block.
                         NSQuestion item1 = mQueue.remove();
-                        item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.ansPositions == null? 1:2)); //to select the one item instruction.
+                        item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null? 1:2)); //to select the one item instruction.
                         binding.setItem(item1);
                         QuestionTimer.startTimer(mContext);
                         mFtWarn = true;
                         series.removeView(answer); //update position of answer box.
-                        series.addView(answer, binding.getItem().ansPosition);
+                        series.addView(answer, binding.getItem().getAnsPosition());
                     } else {
                         finishSection();
                     }
@@ -237,7 +237,6 @@ public class Set3Item1Activity extends Activity {
     private void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add number section to survey.
-        //startActivityForResult(new Intent(mContext, SecAR_Activity.class), 1);
         startActivityForResult(new Intent(mContext, MainActivity_Th.class), 1);
     }
 

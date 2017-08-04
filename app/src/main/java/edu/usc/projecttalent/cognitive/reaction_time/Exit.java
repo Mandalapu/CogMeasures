@@ -2,15 +2,10 @@ package edu.usc.projecttalent.cognitive.reaction_time;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
 
 import edu.usc.projecttalent.cognitive.R;
-import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;

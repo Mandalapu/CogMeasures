@@ -414,5 +414,9 @@
     <string name="userIdinstr">Please enter your user ID.\n\nThis is the same number you entered for the first part of the survey.</string>
     <string name="click_picture">Now click on the picture you have seen.</string>
     <string name="th_instr">After you have seen several pictures, you will see similar pictures like this ...</string>
+    <string name="instr_thurs">Now, click on the picture you have studied.</string>
+    <string name="thurs_example">Thurstone Example</string>
+    <string name="thanks">Thank you for completing the test.</string>
+    <string name="thurstone_title">Thurstone</string>
     <!--Context switch -->
 </resources>

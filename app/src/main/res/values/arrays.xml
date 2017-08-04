@@ -63,6 +63,238 @@
         <item>@array/th_window</item>
     </integer-array>
 
+    <array name="th_jacket">
+        <item>@drawable/jacket_one</item>
+        <item>@drawable/jacket_two</item>
+        <item>@drawable/jacket_three</item>
+        <item>@drawable/jacket_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_girl">
+        <item>@drawable/girl_one</item>
+        <item>@drawable/girl_two</item>
+        <item>@drawable/girl_three</item>
+        <item>@drawable/girl_four</item>
+        <item>3</item>
+    </array>
+    <array name="th_horse">
+        <item>@drawable/horse_one</item>
+        <item>@drawable/horse_two</item>
+        <item>@drawable/horse_three</item>
+        <item>@drawable/horse_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_pumpkin">
+        <item>@drawable/pumpkin_one</item>
+        <item>@drawable/pumpkin_two</item>
+        <item>@drawable/pumpkin_three</item>
+        <item>@drawable/pumpkin_four</item>
+        <item>3</item>
+    </array>
+    <array name="th_umbrella">
+        <item>@drawable/umbrella_one</item>
+        <item>@drawable/umbrella_two</item>
+        <item>@drawable/umbrella_three</item>
+        <item>@drawable/umbrella_four</item>
+        <item>3</item>
+    </array>
+    <array name="th_chicken">
+        <item>@drawable/chicken_one</item>
+        <item>@drawable/chicken_two</item>
+        <item>@drawable/chicken_three</item>
+        <item>@drawable/chicken_four</item>
+        <item>1</item>
+    </array>
+    <array name="th_duck">
+        <item>@drawable/duck_one</item>
+        <item>@drawable/duck_two</item>
+        <item>@drawable/duck_three</item>
+        <item>@drawable/duck_four</item>
+        <item>3</item>
+    </array>
+    <array name="th_elephant">
+        <item>@drawable/elephant_one</item>
+        <item>@drawable/elephant_two</item>
+        <item>@drawable/elephant_three</item>
+        <item>@drawable/elephant_four</item>
+        <item>0</item>
+    </array>
+
+    <integer-array name="th_set1">
+        <item>@array/th_jacket</item>
+        <item>@array/th_girl</item>
+        <item>@array/th_horse</item>
+        <item>@array/th_pumpkin</item>
+        <item>@array/th_umbrella</item>
+        <item>@array/th_chicken</item>
+        <item>@array/th_duck</item>
+        <item>@array/th_elephant</item>
+    </integer-array>
+
+    <array name="th_girl_door">
+        <item>@drawable/girl_door_one</item>
+        <item>@drawable/girl_door_two</item>
+        <item>@drawable/girl_door_three</item>
+        <item>@drawable/girl_door_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_cake">
+        <item>@drawable/cake_one</item>
+        <item>@drawable/cake_two</item>
+        <item>@drawable/cake_three</item>
+        <item>@drawable/cake_four</item>
+        <item>1</item>
+    </array>
+    <array name="th_fire_hat">
+        <item>@drawable/fire_hat_one</item>
+        <item>@drawable/fire_hat_two</item>
+        <item>@drawable/fire_hat_three</item>
+        <item>@drawable/fire_hat_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_baby_bird">
+        <item>@drawable/baby_bird_one</item>
+        <item>@drawable/baby_bird_two</item>
+        <item>@drawable/baby_bird_three</item>
+        <item>@drawable/baby_bird_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_boat">
+        <item>@drawable/boat_one</item>
+        <item>@drawable/boat_two</item>
+        <item>@drawable/boat_three</item>
+        <item>@drawable/boat_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_ship">
+        <item>@drawable/ship_one</item>
+        <item>@drawable/ship_two</item>
+        <item>@drawable/ship_three</item>
+        <item>@drawable/ship_four</item>
+        <item>3</item>
+    </array>
+    <array name="th_row_boat">
+        <item>@drawable/row_boat_one</item>
+        <item>@drawable/row_boat_two</item>
+        <item>@drawable/row_boat_three</item>
+        <item>@drawable/row_boat_four</item>
+        <item>1</item>
+    </array>
+    <array name="th_clown">
+        <item>@drawable/clown_one</item>
+        <item>@drawable/clown_two</item>
+        <item>@drawable/clown_three</item>
+        <item>@drawable/clown_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_nest">
+        <item>@drawable/nest_one</item>
+        <item>@drawable/nest_two</item>
+        <item>@drawable/nest_three</item>
+        <item>@drawable/nest_four</item>
+        <item>3</item>
+    </array>
+    <array name="th_party_hat">
+        <item>@drawable/party_hat_one</item>
+        <item>@drawable/party_hat_two</item>
+        <item>@drawable/party_hat_three</item>
+        <item>@drawable/party_hat_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_girl_window">
+        <item>@drawable/girl_window_one</item>
+        <item>@drawable/girl_window_two</item>
+        <item>@drawable/girl_window_three</item>
+        <item>@drawable/girl_window_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_key">
+        <item>@drawable/key_one</item>
+        <item>@drawable/key_two</item>
+        <item>@drawable/key_three</item>
+        <item>@drawable/key_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_butterfly">
+        <item>@drawable/butterfly_one</item>
+        <item>@drawable/butterfly_two</item>
+        <item>@drawable/butterfly_three</item>
+        <item>@drawable/butterfly_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_chick">
+        <item>@drawable/chick_one</item>
+        <item>@drawable/chick_two</item>
+        <item>@drawable/chick_three</item>
+        <item>@drawable/chick_four</item>
+        <item>1</item>
+    </array>
+    <array name="th_house">
+        <item>@drawable/house_one</item>
+        <item>@drawable/house_two</item>
+        <item>@drawable/house_three</item>
+        <item>@drawable/house_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_toys">
+        <item>@drawable/toys_one</item>
+        <item>@drawable/toys_two</item>
+        <item>@drawable/toys_three</item>
+        <item>@drawable/toys_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_toy_egg">
+        <item>@drawable/toy_egg_one</item>
+        <item>@drawable/toy_egg_two</item>
+        <item>@drawable/toy_egg_three</item>
+        <item>@drawable/toy_egg_four</item>
+        <item>3</item>
+    </array>
+    <array name="th_kennel">
+        <item>@drawable/kennel_one</item>
+        <item>@drawable/kennel_two</item>
+        <item>@drawable/kennel_three</item>
+        <item>@drawable/kennel_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_boots">
+        <item>@drawable/boots_one</item>
+        <item>@drawable/boots_two</item>
+        <item>@drawable/boots_three</item>
+        <item>@drawable/boots_four</item>
+        <item>1</item>
+    </array>
+    <array name="th_box">
+        <item>@drawable/box_one</item>
+        <item>@drawable/box_two</item>
+        <item>@drawable/box_three</item>
+        <item>@drawable/box_four</item>
+        <item>3</item>
+    </array>
+
+    <integer-array name="th_set2">
+        <item>@array/th_girl_door</item>
+        <item>@array/th_cake</item>
+        <item>@array/th_fire_hat</item>
+        <item>@array/th_baby_bird</item>
+        <item>@array/th_boat</item>
+        <item>@array/th_ship</item>
+        <item>@array/th_row_boat</item>
+        <item>@array/th_clown</item>
+        <item>@array/th_nest</item>
+        <item>@array/th_party_hat</item>
+        <item>@array/th_girl_window</item>
+        <item>@array/th_key</item>
+        <item>@array/th_butterfly</item>
+        <item>@array/th_chick</item>
+        <item>@array/th_house</item>
+        <item>@array/th_toys</item>
+        <item>@array/th_toy_egg</item>
+        <item>@array/th_kennel</item>
+        <item>@array/th_boots</item>
+        <item>@array/th_box</item>
+    </integer-array>
+
     <array name="ar_ex_1">
         <item>@drawable/ar_001_main</item>
         <item>@drawable/ar_001_1</item>

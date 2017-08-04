@@ -37,7 +37,7 @@ public class SecNS_Activity extends Activity {
         final EditText answer= (EditText) findViewById(R.id.answer);
 
         series.removeView(answer);
-        series.addView(answer, mExample.ansPosition);
+        series.addView(answer, mExample.getAnsPosition());
 
         View.OnClickListener listener = v -> answer.append(((Button)v).getText());
         for(int i=0; i<numPad.getChildCount(); i++) {

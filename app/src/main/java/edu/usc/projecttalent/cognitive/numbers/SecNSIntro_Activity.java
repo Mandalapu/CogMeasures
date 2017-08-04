@@ -15,7 +15,7 @@ public class SecNSIntro_Activity extends Activity {
 		setContentView(R.layout.activity_sec_nsintro_);
 		Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(SecNSIntro_Activity.this, Set3Item1Activity.class);
+            Intent intent = new Intent(this, Set3Item1Activity.class);
             startActivityForResult(intent, 1);
         });
 	}
