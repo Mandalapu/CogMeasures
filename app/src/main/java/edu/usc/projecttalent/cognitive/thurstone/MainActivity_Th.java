@@ -14,7 +14,6 @@ public class MainActivity_Th extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_thurstone);
         (findViewById(R.id.btnNext)).setOnClickListener(v -> startActivityForResult(new Intent (this, SecondActivity.class), 1));
-
     }
 
     @Override

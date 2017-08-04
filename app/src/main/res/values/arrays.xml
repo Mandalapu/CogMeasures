@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <array name="thurstone_ex">
+        <item>@drawable/zero</item>
+        <item>@drawable/cop</item>
+        <item>@drawable/dog</item>
+        <item>@drawable/hat</item>
+        <item>@drawable/table</item>
+        <item>@drawable/truck</item>
+        <item>@drawable/window</item>
+    </array>
+
+    <array name="th_cop">
+        <item>@drawable/cop_one</item>
+        <item>@drawable/cop_two</item>
+        <item>@drawable/cop_three</item>
+        <item>@drawable/cop_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_dog">
+        <item>@drawable/dog_one</item>
+        <item>@drawable/dog_two</item>
+        <item>@drawable/dog_three</item>
+        <item>@drawable/dog_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_hat">
+        <item>@drawable/hat_one</item>
+        <item>@drawable/hat_two</item>
+        <item>@drawable/hat_three</item>
+        <item>@drawable/hat_four</item>
+        <item>0</item>
+    </array>
+    <array name="th_table">
+        <item>@drawable/table_one</item>
+        <item>@drawable/table_two</item>
+        <item>@drawable/table_three</item>
+        <item>@drawable/table_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_truck">
+        <item>@drawable/truck_one</item>
+        <item>@drawable/truck_two</item>
+        <item>@drawable/truck_three</item>
+        <item>@drawable/truck_four</item>
+        <item>2</item>
+    </array>
+    <array name="th_window">
+        <item>@drawable/window_one</item>
+        <item>@drawable/window_two</item>
+        <item>@drawable/window_three</item>
+        <item>@drawable/window_four</item>
+        <item>1</item>
+    </array>
+
+    <integer-array name="th_practice">
+        <item>@array/th_cop</item>
+        <item>@array/th_dog</item>
+        <item>@array/th_hat</item>
+        <item>@array/th_table</item>
+        <item>@array/th_truck</item>
+        <item>@array/th_window</item>
+    </integer-array>
+
     <array name="ar_ex_1">
         <item>@drawable/ar_001_main</item>
         <item>@drawable/ar_001_1</item>

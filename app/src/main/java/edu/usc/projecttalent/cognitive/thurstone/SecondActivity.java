@@ -1,99 +1,87 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
 import edu.usc.projecttalent.cognitive.R;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.sax.StartElementListener;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ImageView;
 
 /**
- * Created by kayigwe on 6/7/17.
+ * @author Kay
+ * @version 1.0
  */
 
 public class SecondActivity extends Activity {
-
-    private TextView txtView;
-    private Button btn;
-    private ImageView imageView_one;
-    private ImageView imageView_two;
-    private ImageView imageView_three;
-    private ImageView imageView_four;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_second_page);
 
-        btn = (Button) findViewById(R.id.btnNext);
-        MyOnClickListener myOnClickListener = new MyOnClickListener();
-        btn.setOnClickListener(myOnClickListener);
-        imageView_one = (ImageView) findViewById(R.id.truck_one);
-        imageView_two = (ImageView) findViewById(R.id.truck_two);
-        imageView_three = (ImageView) findViewById(R.id.truck_three);
-        imageView_four = (ImageView) findViewById(R.id.truck_four);
+        ImageView imageView_one = (ImageView) findViewById(R.id.truck_one),
+                imageView_two = (ImageView) findViewById(R.id.truck_two),
+                imageView_three = (ImageView) findViewById(R.id.truck_three),
+                imageView_four = (ImageView) findViewById(R.id.truck_four);
 
-        txtView = (TextView) findViewById(R.id.textView2);
-    }
+        TextView txtView = (TextView) findViewById(R.id.textView2);
 
-
-    private class MyOnClickListener implements View.OnClickListener{
-        @Override
-        public void onClick(View v) {
-            txtView.setText("Now click on the picture you have seen.");
+        Button btn = (Button) findViewById(R.id.btnNext);
+        btn.setOnClickListener(v -> {
+            txtView.setText(R.string.click_picture);
             btn.setVisibility(View.INVISIBLE);
 
-            MyImageOnClickListenerWrong myImageOnClickListenerWrong = new MyImageOnClickListenerWrong();
-            MyImageOnClickListenerCorrect myImageOnClickListenerCorrect = new MyImageOnClickListenerCorrect();
+            IncorrectClick incorrect = new IncorrectClick();
+            CorrectClick correct = new CorrectClick();
 
-            imageView_one.setOnClickListener(myImageOnClickListenerWrong);
-            imageView_two.setOnClickListener(myImageOnClickListenerWrong);
-            imageView_three.setOnClickListener(myImageOnClickListenerCorrect);
-            imageView_four.setOnClickListener(myImageOnClickListenerWrong);
+            imageView_one.setOnClickListener(incorrect);
+            imageView_two.setOnClickListener(incorrect);
+            imageView_three.setOnClickListener(correct);
+            imageView_four.setOnClickListener(incorrect);
+        });
 
-        }
+    }
 
-        private class MyImageOnClickListenerWrong implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-               //image 1,2,4
-                AlertDialog.Builder mBuilder= new AlertDialog.Builder(SecondActivity.this);
-                View myView = getLayoutInflater().inflate(R.layout.popup_wrong_examples, null);
+    private class IncorrectClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            //image 1,2,4
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(SecondActivity.this);
+            View myView = getLayoutInflater().inflate(R.layout.popup_wrong_examples, null);
 
-                //The start example test button
-                Button nextBtn = (Button) myView.findViewById(R.id.bntNextExample);
-                nextBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1));
+            //The start example test button
+            Button nextBtn = (Button) myView.findViewById(R.id.bntNextExample);
+            nextBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1));
 
-                mBuilder.setView(myView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
-                dialog.setCanceledOnTouchOutside(false);
-            }
-        }
-
-        private class MyImageOnClickListenerCorrect implements View.OnClickListener{
-            @Override
-            public void onClick(View v) {
-                //image 3
-                AlertDialog.Builder mBuilder= new AlertDialog.Builder(SecondActivity.this);
-                View myView = getLayoutInflater().inflate(R.layout.popup_correctwrong_examples, null);
-
-                //The start example test button
-                Button nextBtn = (Button) myView.findViewById(R.id.bntNextExample);
-                nextBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1));
-
-                mBuilder.setView(myView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
-                dialog.setCanceledOnTouchOutside(false);
-            }
+            mBuilder.setView(myView);
+            AlertDialog dialog = mBuilder.create();
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(false);
         }
     }
+
+    private class CorrectClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            //image 3
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(SecondActivity.this);
+            View myView = getLayoutInflater().inflate(R.layout.popup_correctwrong_examples, null);
+
+            //The start example test button
+            Button nextBtn = (Button) myView.findViewById(R.id.bntNextExample);
+            nextBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1));
+
+            mBuilder.setView(myView);
+            AlertDialog dialog = mBuilder.create();
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(false);
+        }
+    }
+
     @Override
     public void onBackPressed() {}
 

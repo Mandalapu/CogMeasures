@@ -2,6 +2,7 @@ package edu.usc.projecttalent.cognitive.thurstone;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -11,36 +12,33 @@ import java.util.TimerTask;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
- * Created by kayigwe on 6/24/17.
+ * Example images switcher activity.
+ * @author Anindya Dutta
+ * @version 2.0
  */
 
 public class ExampleImageChange extends Activity {
 
-    private int[] imageArray = {R.drawable.zero, R.drawable.cop, R.drawable.dog, R.drawable.hat, R.drawable.table, R.drawable.truck, R.drawable.window};
-
-    // Declare globally
-    private int position = -1;
-    //This timer will call each of the seconds.
-    private Timer mTimer = new Timer();
+    private int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_change_example);
 
-        final ImageView imageChangeExample = (ImageView) findViewById(R.id.imgeChangeExample);
+        ImageView example = (ImageView) findViewById(R.id.imgeChangeExample);
+        TypedArray images = getResources().obtainTypedArray(R.array.thurstone_ex);
 
-        mTimer.schedule(new TimerTask() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                // As timer is not a Main/UI thread need to do all UI task on runOnUiThread
-                ExampleImageChange.this.runOnUiThread(() -> {
-                    position++;
-                    if (position >= imageArray.length) {
+                runOnUiThread(() -> {
+                    if (position >= images.length()) {
                         startActivityForResult(new Intent(getApplicationContext(), ExampleImageAnswers.class), 1);
-                        mTimer.cancel();
+                        timer.cancel();
                     } else
-                        imageChangeExample.setImageResource(imageArray[position]);
+                        example.setImageResource(images.getResourceId(position++, -1));
                 });
             }
         }, 0, 5000);

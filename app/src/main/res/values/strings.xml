@@ -412,5 +412,7 @@
     <string name="ar_instr_header">INSTRUCTIONS</string>
     <string name="reaction_time">Reaction Time</string>
     <string name="userIdinstr">Please enter your user ID.\n\nThis is the same number you entered for the first part of the survey.</string>
+    <string name="click_picture">Now click on the picture you have seen.</string>
+    <string name="th_instr">After you have seen several pictures, you will see similar pictures like this ...</string>
     <!--Context switch -->
 </resources>

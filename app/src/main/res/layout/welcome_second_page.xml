@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:background="#fff"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
 
     <TableRow
+        android:id="@+id/table_row"
         android:layout_width="match_parent"
         android:layout_height="271dp"
-        android:id="@+id/table_row"
-        android:layout_marginTop="87dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="87dp"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/truck_one"
-            android:src="@drawable/truck_one"
             android:layout_width="270dip"
             android:layout_height="230dip"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:src="@drawable/truck_one" />
 
         <ImageView
             android:id="@+id/truck_two"
             android:layout_width="270dip"
             android:layout_height="230dip"
             android:layout_margin="10dp"
-            android:src="@drawable/truck_two"
-            />
+            android:src="@drawable/truck_two" />
 
         <ImageView
             android:id="@+id/truck_three"
@@ -41,7 +39,7 @@
             android:layout_width="270dip"
             android:layout_height="230dip"
             android:layout_margin="10dp"
-            android:src="@drawable/truck_four"/>
+            android:src="@drawable/truck_four" />
 
     </TableRow>
 
@@ -49,24 +47,24 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="After you have seen several pictures, you will see similar pictures like this ..."
-        android:textSize="25dp"
-        android:textColor="#383232"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+        android:layout_marginTop="51dp"
+        android:text="@string/th_instr"
+        android:textColor="#383232"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/btnNext"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:background="@drawable/borders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next ..."
         android:layout_below="@+id/table_row"
-        android:layout_margin="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_margin="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/borders"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/next" />
 
 </RelativeLayout>

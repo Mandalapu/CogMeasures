@@ -10,6 +10,7 @@ import android.util.Log;
 
 /**
  * Timer set for each question. Warning show up on one minute. Quit on two minutes.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
