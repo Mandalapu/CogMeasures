@@ -119,18 +119,6 @@
         <item>@drawable/elephant_four</item>
         <item>0</item>
     </array>
-
-    <integer-array name="th_set1">
-        <item>@array/th_jacket</item>
-        <item>@array/th_girl</item>
-        <item>@array/th_horse</item>
-        <item>@array/th_pumpkin</item>
-        <item>@array/th_umbrella</item>
-        <item>@array/th_chicken</item>
-        <item>@array/th_duck</item>
-        <item>@array/th_elephant</item>
-    </integer-array>
-
     <array name="th_girl_door">
         <item>@drawable/girl_door_one</item>
         <item>@drawable/girl_door_two</item>
@@ -272,7 +260,15 @@
         <item>3</item>
     </array>
 
-    <integer-array name="th_set2">
+    <integer-array name="th_set">
+        <item>@array/th_jacket</item>
+        <item>@array/th_girl</item>
+        <item>@array/th_horse</item>
+        <item>@array/th_pumpkin</item>
+        <item>@array/th_umbrella</item>
+        <item>@array/th_chicken</item>
+        <item>@array/th_duck</item>
+        <item>@array/th_elephant</item>
         <item>@array/th_girl_door</item>
         <item>@array/th_cake</item>
         <item>@array/th_fire_hat</item>

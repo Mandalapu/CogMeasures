@@ -34,8 +34,6 @@ import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 public class TestImageAnswers extends Activity {
 
-    private Section mSection;
-    private Block mBlock;
     private Answer mAnswer;
     private View oldView;
     private int score;
@@ -44,13 +42,13 @@ public class TestImageAnswers extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mSection = new Section(getString(R.string.thurstone_title));
+        Section section = new Section(getString(R.string.thurstone_title));
         Drawable highlight = ContextCompat.getDrawable(this, R.drawable.highlight);
 
         Resources res = getResources();
 
         //add set 1.
-        TypedArray questions = res.obtainTypedArray(R.array.th_set1);
+        TypedArray questions = res.obtainTypedArray(R.array.th_set);
         Queue<THItem> mQueue = new LinkedList<>();
         for (int i = 0; i < questions.length(); i++) {
             mQueue.add(new THItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
@@ -72,7 +70,7 @@ public class TestImageAnswers extends Activity {
             });
         }
 
-        mBlock = new Block(1);
+        Block block = new Block(1);
         mAnswer = new Answer();
 
         btn.setOnClickListener(v -> {
@@ -83,8 +81,8 @@ public class TestImageAnswers extends Activity {
                     score++; //correct answer.
                     correct1 = true;
                 }
-                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView), correct1);
-                mBlock.addAnswer(mAnswer);
+                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct1); //to shift indices to 1-5.
+                block.addAnswer(mAnswer);
                 if (oldView != null)
                     oldView.setBackground(null);
                 oldView = null;
@@ -92,59 +90,33 @@ public class TestImageAnswers extends Activity {
                     mAnswer = new Answer();
                     binding.setItem(mQueue.remove());
                 } else {
-                    mBlock.endBlock(score);
-                    mSection.addBlock(mBlock);
+                    block.endBlock(score);
+                    section.addBlock(block);
+                    section.endSection(); //end this section.
+                    Survey.getSurvey().addSection(section);
 
-                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(TestImageAnswers.this);
-                    View myView;
-                    Button exitBtn;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    View view;
+                    Button button;
 
-                    if(mSection.getBlockSize() == 1) { //only block 1 is done
-                        if (score == 0) {
-                            myView = getLayoutInflater().inflate(R.layout.exit_test, null);
-                            exitBtn = (Button) myView.findViewById(R.id.btnExit);
-                            endSection(exitBtn, mBuilder, myView);
-                        } else {
-                            mBlock.endBlock(score);
-                            mSection.addBlock(mBlock);
+                    if (score == 0) {
+                        view = getLayoutInflater().inflate(R.layout.end_test, null);
+                        button = (Button)  view.findViewById(R.id.bntNextExample);
 
-                            TypedArray set2 = res.obtainTypedArray(R.array.th_set2);
-                            for (int i = 0; i < set2.length(); i++) {
-                                mQueue.add(new THItem(res.obtainTypedArray(set2.getResourceId(i, 0))));
-                            }
-                            mBlock = new Block(2);
-                            mAnswer = new Answer();
-                            binding.setItem(mQueue.remove());
-                            btn.setEnabled(false);
-                        }
-                    } else { //both blocks are done.
-                        if (score == 0) {
-                            myView = getLayoutInflater().inflate(R.layout.end_test, null);
-                            exitBtn = (Button) myView.findViewById(R.id.bntNextExample);
-
-                        } else {
-                            myView = getLayoutInflater().inflate(R.layout.exit_test, null);
-                            exitBtn = (Button) myView.findViewById(R.id.btnExit);
-                        }
-                        endSection(exitBtn, mBuilder, myView);
+                    } else {
+                        view = getLayoutInflater().inflate(R.layout.exit_test, null);
+                        button = (Button)  view.findViewById(R.id.btnExit);
                     }
+
+                    button.setOnClickListener(v1111 -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1));
+
+                    builder.setView(view);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    dialog.setCanceledOnTouchOutside(false);
                 }
             }
         });
-    }
-
-    private void endSection(Button button, AlertDialog.Builder builder, View v) {
-        button.setOnClickListener(v1111 -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1));
-
-        builder.setView(v);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
-
-        mBlock.endBlock(score);
-        mSection.addBlock(mBlock);
-        mSection.endSection(); //end this section.
-        Survey.getSurvey().addSection(mSection);
     }
 
     @Override

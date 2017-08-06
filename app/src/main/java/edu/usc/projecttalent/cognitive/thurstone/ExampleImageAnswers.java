@@ -73,12 +73,12 @@ public class ExampleImageAnswers extends Activity {
         btn.setOnClickListener(v -> {
             if(oldView != null) {
                 THItem question = binding.getItem();
-                boolean correct1 = false;
+                boolean correct = false;
                 if (options.indexOfChild(oldView) == question.getAnsOption()) {
                     score++; //correct answer.
-                    correct1 = true;
+                    correct = true;
                 }
-                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView), correct1);
+                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
                 mBlock.addAnswer(mAnswer);
                 if (oldView != null)
                     oldView.setBackground(null);
@@ -87,20 +87,20 @@ public class ExampleImageAnswers extends Activity {
                     mAnswer = new Answer();
                     binding.setItem(mQueue.remove());
                 } else {
-                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(ExampleImageAnswers.this);
-                    View myView;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    View view;
                     if (score == 0) {
-                        myView = getLayoutInflater().inflate(R.layout.end_test, null);
-                        Button exitBtn = (Button) myView.findViewById(R.id.bntNextExample);
-                        exitBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), SecAR_Activity.class), 1));
+                        view = getLayoutInflater().inflate(R.layout.end_test, null);
+                        Button exitBtn = (Button) view.findViewById(R.id.bntNextExample);
+                        exitBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1));
                     } else {
-                        myView = getLayoutInflater().inflate(R.layout.begin_real_test, null);
-                        Button beginBtn = (Button) myView.findViewById(R.id.beginBtn);
-                        beginBtn.setOnClickListener(v2 -> startActivityForResult(new Intent(getApplicationContext(), TestImageChange.class), 1));
+                        view = getLayoutInflater().inflate(R.layout.begin_real_test, null);
+                        Button beginBtn = (Button) view.findViewById(R.id.beginBtn);
+                        beginBtn.setOnClickListener(v2 -> startActivityForResult(new Intent(this, TestImageChange.class), 1));
                     }
 
-                    mBuilder.setView(myView);
-                    AlertDialog dialog = mBuilder.create();
+                    builder.setView(view);
+                    AlertDialog dialog = builder.create();
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
 

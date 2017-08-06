@@ -11,25 +11,19 @@ import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 /**
- * Created by kayigwe on 6/26/17.
+ * End section for Thurstone
+ * @author Kay Igwe
+ * @version 1.0
  */
 
 public class EndTest extends Activity {
-
-    Section mSection;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_test);
-        (findViewById(R.id.bntNextExample)).setOnClickListener(v -> finishSection());
-    }
-
-    private void finishSection() {
-        mSection.endSection();
-        Survey.getSurvey().addSection(mSection);
-        Intent intent = new Intent(this, SecAR_Activity.class);
-        startActivityForResult(intent, 1);
+        (findViewById(R.id.bntNextExample)).setOnClickListener(v ->
+                startActivityForResult(new Intent(this, SecAR_Activity.class), 1));
     }
 
     @Override

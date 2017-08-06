@@ -87,7 +87,7 @@ public class VO31_Activity extends AppCompatActivity {
                     mScore++;
                     correct = true;
                 }
-                mAnswer.endAnswer(index, correct);
+                mAnswer.endAnswer(index+1, correct); //to shift indices to 1-5.
                 mBlock.addAnswer(mAnswer);
                 if (!mQueue.isEmpty()) {
                     mAnswer = new Answer();

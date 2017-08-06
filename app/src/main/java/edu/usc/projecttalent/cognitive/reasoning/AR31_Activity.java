@@ -99,7 +99,7 @@ public class AR31_Activity extends Activity {
                     mScore++; //correct answer.
                     correct = true;
                 }
-                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView), correct);
+                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
                 mBlock.addAnswer(mAnswer);
                 if (oldView != null)
                     oldView.setBackground(null);
