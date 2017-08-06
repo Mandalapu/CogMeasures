@@ -1,13 +1,9 @@
 package edu.usc.projecttalent.cognitive.vocab;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityVocabBinding;
@@ -37,7 +34,7 @@ import edu.usc.projecttalent.cognitive.numbers.SecNS_Activity;
  * @version 2.0
  */
 
-public class VO31_Activity extends AppCompatActivity {
+public class VO31_Activity extends BaseActivity {
     private int mScore;
     private boolean mFtWarn; //first time warning for no selection.
 
@@ -61,6 +58,7 @@ public class VO31_Activity extends AppCompatActivity {
         registerReceiver(mReceiver, filter);
 
         mBlock = new Block(3);
+        mContext = this;
 
         Type question = new TypeToken<ArrayList<VocabItem>>() {
         }.getType();
@@ -70,7 +68,7 @@ public class VO31_Activity extends AppCompatActivity {
         ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
         mAnswer = new Answer();
         binding.setItem(mQueue.remove());
-        QuestionTimer.startTimer(this, 2);
+        QuestionTimer.startTimer(mContext, 2);
 
         RadioGroup options = (RadioGroup) findViewById(R.id.options);
 
@@ -94,7 +92,7 @@ public class VO31_Activity extends AppCompatActivity {
                 if (!mQueue.isEmpty()) {
                     mAnswer = new Answer();
                     binding.setItem(mQueue.remove());
-                    QuestionTimer.startTimer(this, 2);
+                    QuestionTimer.startTimer(mContext, 2);
                     mFtWarn = true;
                 } else {
                     mBlock.endBlock(mScore);
@@ -106,7 +104,7 @@ public class VO31_Activity extends AppCompatActivity {
                         mQueue.addAll(new Gson().fromJson(getString(block), question));
                         mScore = 0;
                         binding.setItem(mQueue.remove());
-                        QuestionTimer.startTimer(this, 2);
+                        QuestionTimer.startTimer(mContext, 2);
                         mFtWarn = true;
                     } else {
                         finishSection();
@@ -142,32 +140,10 @@ public class VO31_Activity extends AppCompatActivity {
         }
     }
 
-    private void finishSection() {
+    @Override
+    protected void finishSection() {
         mSection.endSection();
         Survey.getSurvey().addSection(mSection);
         startActivityForResult(new Intent(this, SecNS_Activity.class), 1);
-    }
-
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals(QuestionTimer.QUIT)) {
-                finishSection();
-            } else if (action.equals(QuestionTimer.RESUME)) {
-                QuestionTimer.startTimer(getApplicationContext(), 2);
-            }
-        }
-    };
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        setResult(Activity.RESULT_OK, data);
-        unregisterReceiver(mReceiver);
-        finish();
-    }
-
-    @Override
-    public void onBackPressed() {
     }
 }

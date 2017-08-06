@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.reasoning;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -14,10 +13,11 @@ import android.widget.LinearLayout;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySecArBinding;
 
-public class ARpractice2_Activity extends Activity {
+public class ARpractice2_Activity extends BaseActivity {
 
     View oldView;
 
@@ -55,16 +55,6 @@ public class ARpractice2_Activity extends Activity {
                     oldView = v;
                 }
             });
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
         }
     }
 }

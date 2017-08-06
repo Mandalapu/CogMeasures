@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySecNsex1ABinding;
 
@@ -18,7 +18,7 @@ import edu.usc.projecttalent.cognitive.databinding.ActivitySecNsex1ABinding;
  * @version 2.0
  */
 
-public class SecNSEx1AActivity extends Activity {
+public class SecNSEx1AActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +45,4 @@ public class SecNSEx1AActivity extends Activity {
             startActivityForResult(intent, 1);
         });
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
-    }
-
 }

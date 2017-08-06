@@ -1,9 +1,7 @@
 package edu.usc.projecttalent.cognitive;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
@@ -21,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @version 2.0
  */
 
-public class FinishActivity extends AppCompatActivity {
+public class FinishActivity extends BaseActivity {
 
     private static final String JSON = "json";
     private static final String BASE_URL = "http://projecttalent.usc.edu/pilot/";
@@ -59,19 +57,5 @@ public class FinishActivity extends AppCompatActivity {
             QuestionTimer.stopTimer(); //to prevent new on-ticks after activity closes.
             finish();
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
     }
 }

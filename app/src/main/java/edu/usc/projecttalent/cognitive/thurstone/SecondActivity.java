@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
@@ -16,7 +16,7 @@ import edu.usc.projecttalent.cognitive.R;
  * @version 1.0
  */
 
-public class SecondActivity extends Activity {
+public class SecondActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,20 +79,6 @@ public class SecondActivity extends Activity {
             AlertDialog dialog = builder.create();
             dialog.show();
             dialog.setCanceledOnTouchOutside(false);
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
         }
     }
 }

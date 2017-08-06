@@ -1,8 +1,5 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
@@ -21,6 +18,7 @@ import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySet3Item1Binding;
@@ -38,10 +36,9 @@ import edu.usc.projecttalent.cognitive.thurstone.MainActivity_Th;
  * @version 2.0
  */
 
-public class Set3Item1Activity extends Activity {
+public class Set3Item1Activity extends BaseActivity {
     int mScore;
     Section mSection;
-    Context mContext;
     Block mBlock;
     boolean mFtWarn;
 
@@ -227,33 +224,10 @@ public class Set3Item1Activity extends Activity {
         }
     }
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals(QuestionTimer.QUIT)) {
-                finishSection(); //go to end of section.
-            } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
-                QuestionTimer.startTimer(mContext);
-            }
-        }
-    };
-
-    private void finishSection() {
+    @Override
+    protected void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add number section to survey.
         startActivityForResult(new Intent(mContext, MainActivity_Th.class), 1);
     }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        setResult(Activity.RESULT_OK, data);
-        unregisterReceiver(mReceiver);
-        finish();
-    }
-
 }

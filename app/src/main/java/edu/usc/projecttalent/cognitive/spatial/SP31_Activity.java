@@ -1,8 +1,5 @@
 package edu.usc.projecttalent.cognitive.spatial;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
@@ -17,6 +14,7 @@ import android.widget.LinearLayout;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.FinishActivity;
 import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
@@ -34,11 +32,10 @@ import edu.usc.projecttalent.cognitive.reasoning.ARExample;
  * @author Anindya Dutta
  */
 
-public class SP31_Activity extends Activity {
+public class SP31_Activity extends BaseActivity {
 
     private int mScore;
     private Section mSection;
-    private Context mContext;
     private Block mBlock;
     private boolean mFtWarn;
     private Queue<ARExample> mQueue;
@@ -156,34 +153,11 @@ public class SP31_Activity extends Activity {
         }
     }
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals(QuestionTimer.QUIT)) {
-                finishSection(); //go to end of section.
-            } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
-                QuestionTimer.startTimer(mContext);
-            }
-        }
-    };
-
-    private void finishSection() {
+    @Override
+    protected void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add V2D section to survey.
         Intent intent = new Intent(mContext, FinishActivity.class);
         startActivityForResult(intent, 1);
     }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        setResult(Activity.RESULT_OK, data);
-        unregisterReceiver(mReceiver);
-        super.finish();
-    }
-
 }

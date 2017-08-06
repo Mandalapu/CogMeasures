@@ -1,12 +1,12 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
-public class SecNSIntro_Activity extends Activity {
+public class SecNSIntro_Activity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,15 +16,4 @@ public class SecNSIntro_Activity extends Activity {
             startActivityForResult(new Intent(this, Set3Item1Activity.class), 1);
         });
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
-    }
-
 }

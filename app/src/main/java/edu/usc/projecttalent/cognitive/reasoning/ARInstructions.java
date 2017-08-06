@@ -1,12 +1,11 @@
 package edu.usc.projecttalent.cognitive.reasoning;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
@@ -16,7 +15,7 @@ import edu.usc.projecttalent.cognitive.R;
  * @version 2.0
  */
 
-public class ARInstructions extends AppCompatActivity {
+public class ARInstructions extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +38,5 @@ public class ARInstructions extends AppCompatActivity {
                     .setCancelable(false).create();
             dialog.show();
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
     }
 }

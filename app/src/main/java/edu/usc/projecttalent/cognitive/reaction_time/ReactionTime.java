@@ -1,8 +1,5 @@
 package edu.usc.projecttalent.cognitive.reaction_time;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -13,6 +10,7 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.model.Answer;
@@ -27,7 +25,7 @@ import edu.usc.projecttalent.cognitive.model.Survey;
  * @version 2.0
  */
 
-public class ReactionTime extends Activity {
+public class ReactionTime extends BaseActivity {
     private int counter = 0;
     private Section mSection;
     private Block mBlock;
@@ -83,33 +81,11 @@ public class ReactionTime extends Activity {
         }, randomTime);
     }
 
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals(QuestionTimer.QUIT)) {
-                finishSection();
-            } else if (action.equals(QuestionTimer.RESUME)) {
-                QuestionTimer.startTimer(getApplicationContext());
-            }
-        }
-    };
-
-    private void finishSection() {
+    @Override
+    protected void finishSection() {
         mSection.addBlock(mBlock);
         mSection.endSection();
         Survey.getSurvey().addSection(mSection);
         startActivityForResult(new Intent(this, Exit.class), 1);
-    }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        setResult(Activity.RESULT_OK, data);
-        unregisterReceiver(mReceiver);
-        super.finish();
     }
 }

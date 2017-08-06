@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.spatial;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -11,6 +10,7 @@ import android.widget.Button;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySppracticeBinding;
 import edu.usc.projecttalent.cognitive.reasoning.ARExample;
@@ -22,7 +22,7 @@ import edu.usc.projecttalent.cognitive.reasoning.ARExample;
  * @version 2.0
  */
 
-public class SPSampleActivity extends Activity {
+public class SPSampleActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +47,5 @@ public class SPSampleActivity extends Activity {
                 startActivityForResult(new Intent(this, SP31_Activity.class), 1);
 
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
     }
 }

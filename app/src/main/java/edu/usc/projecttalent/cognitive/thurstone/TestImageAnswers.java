@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -17,6 +16,7 @@ import android.widget.TableRow;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ExampleAnswersBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
@@ -32,7 +32,7 @@ import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
  * @version 2.0
  */
 
-public class TestImageAnswers extends Activity {
+public class TestImageAnswers extends BaseActivity {
 
     private Answer mAnswer;
     private View oldView;
@@ -115,19 +115,5 @@ public class TestImageAnswers extends Activity {
                 }
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
     }
 }

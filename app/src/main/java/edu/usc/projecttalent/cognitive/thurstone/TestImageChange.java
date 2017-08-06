@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -8,13 +7,14 @@ import android.widget.ImageView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
  * Change the images in the test.
  */
 
-public class TestImageChange extends Activity {
+public class TestImageChange extends BaseActivity {
 
     int[] imageArray = {R.drawable.zero, R.drawable.jacket_one_dark, R.drawable.girl_four_dark, R.drawable.horse_one_dark, R.drawable.pumpkin_four_dark, R.drawable.umbrella_four_dark, R.drawable.chicken_two_dark,
             R.drawable.duck_four_dark, R.drawable.elephant_one, R.drawable.girl_door_one, R.drawable.cake_two, R.drawable.fire_hat_one, R.drawable.baby_bird_one,
@@ -48,20 +48,6 @@ public class TestImageChange extends Activity {
                 });
             }
         }, 0, 5000);
-    }
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
     }
 }
 

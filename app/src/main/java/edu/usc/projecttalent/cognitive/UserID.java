@@ -1,9 +1,7 @@
 package edu.usc.projecttalent.cognitive;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import edu.usc.projecttalent.cognitive.model.Survey;
@@ -15,7 +13,7 @@ import edu.usc.projecttalent.cognitive.model.Survey;
  * @version 2.0
  */
 
-public class UserID extends AppCompatActivity {
+public class UserID extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +25,5 @@ public class UserID extends AppCompatActivity {
                     .getText().toString()));
             startActivityForResult(new Intent(this, MainActivity.class), 1);
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
     }
 }

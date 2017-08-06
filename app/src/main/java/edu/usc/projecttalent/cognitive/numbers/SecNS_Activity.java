@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
+import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySecNsBinding;
 
@@ -21,7 +21,7 @@ import edu.usc.projecttalent.cognitive.databinding.ActivitySecNsBinding;
  * @version 2.0
  */
 
-public class SecNS_Activity extends Activity {
+public class SecNS_Activity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +57,5 @@ public class SecNS_Activity extends Activity {
             intent.putExtra("example", mExample);
             startActivityForResult(intent, 1);
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                setResult(Activity.RESULT_OK, data);
-                super.finish();
-            }
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
     }
 }
