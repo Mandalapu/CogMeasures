@@ -7,10 +7,6 @@ import android.util.DisplayMetrics;
 
 import edu.usc.projecttalent.cognitive.R;
 
-/**
- * Created by kayigwe on 6/22/17.
- */
-
 public class PopExample extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

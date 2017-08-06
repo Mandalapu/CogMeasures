@@ -68,15 +68,15 @@ public class SecondActivity extends Activity {
         @Override
         public void onClick(View v) {
             //image 3
-            AlertDialog.Builder mBuilder = new AlertDialog.Builder(SecondActivity.this);
-            View myView = getLayoutInflater().inflate(R.layout.popup_correctwrong_examples, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(SecondActivity.this);
+            View view = getLayoutInflater().inflate(R.layout.popup_correctwrong_examples, null);
 
             //The start example test button
-            Button nextBtn = (Button) myView.findViewById(R.id.bntNextExample);
+            Button nextBtn = (Button) view.findViewById(R.id.bntNextExample);
             nextBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(getApplicationContext(), ExampleImageChange.class), 1));
 
-            mBuilder.setView(myView);
-            AlertDialog dialog = mBuilder.create();
+            builder.setView(view);
+            AlertDialog dialog = builder.create();
             dialog.show();
             dialog.setCanceledOnTouchOutside(false);
         }
