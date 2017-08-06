@@ -13,11 +13,12 @@ public class MainActivity_Th extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_thurstone);
-        (findViewById(R.id.btnNext)).setOnClickListener(v -> startActivityForResult(new Intent (this, SecondActivity.class), 1));
+        (findViewById(R.id.btnNext)).setOnClickListener(v -> startActivityForResult(new Intent(this, SecondActivity.class), 1));
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -22,16 +22,13 @@ import edu.usc.projecttalent.cognitive.model.Survey;
 
 /**
  * Reaction time class.
+ *
  * @author Kay (initial), Anindya Dutta (optimization)
  * @version 2.0
  */
 
 public class ReactionTime extends Activity {
-    private ImageView imageView;
-    private Button btnSpace;
-    private int[] times_milli = new int[]{2000, 3000, 4000, 5000, 6000, 7000, 8000};
     private int counter = 0;
-
     private Section mSection;
     private Block mBlock;
     private Answer mAnswer;
@@ -45,6 +42,8 @@ public class ReactionTime extends Activity {
         mSection = new Section(getString(R.string.reaction_time));
         mBlock = new Block(1);
 
+        int[] times_milli = new int[]{2000, 3000, 4000, 5000, 6000, 7000, 8000};
+
         //prepare timer.
         IntentFilter filter = new IntentFilter();
         filter.addAction(QuestionTimer.WARNING);
@@ -52,11 +51,11 @@ public class ReactionTime extends Activity {
         filter.addAction(QuestionTimer.RESUME);
         registerReceiver(mReceiver, filter);
 
-        btnSpace = (Button) findViewById(R.id.buttonSpace);
+        final Button btnSpace = (Button) findViewById(R.id.buttonSpace);
         final int randomTime = (times_milli[new Random().nextInt(times_milli.length)]);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
-        imageView.setImageResource(R.drawable.cross);
+        final ImageView image = (ImageView) findViewById(R.id.imageView);
+        image.setImageResource(R.drawable.cross);
 
         final Handler handler = new Handler();
 
@@ -64,21 +63,19 @@ public class ReactionTime extends Activity {
             @Override
             public void run() {
                 handler.postDelayed(this, randomTime);
-                imageView.setImageResource(R.drawable.red_circle_large);
+                image.setImageResource(R.drawable.red_circle_large);
 
-                if (imageView.getDrawable().getConstantState() ==
+                if (image.getDrawable().getConstantState() ==
                         ContextCompat.getDrawable(getApplicationContext(), R.drawable.red_circle_large).getConstantState()) {
                     mAnswer = new Answer();
                     start = System.currentTimeMillis();
                 }
                 btnSpace.setOnClickListener(v -> {
-                    imageView.setImageResource(R.drawable.cross);
+                    image.setImageResource(R.drawable.cross);
                     mAnswer.endAnswer(System.currentTimeMillis() - start);
                     mBlock.addAnswer(mAnswer);
                     counter++;
                     if (counter >= 20) {
-                        mSection.addBlock(mBlock);
-                        mSection.endSection();
                         finishSection();
                     }
                 });
@@ -90,9 +87,7 @@ public class ReactionTime extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action.equals(QuestionTimer.QUIT)) {
-                mSection.addBlock(mBlock);
-                mSection.endSection();
+            if (action.equals(QuestionTimer.QUIT)) {
                 finishSection();
             } else if (action.equals(QuestionTimer.RESUME)) {
                 QuestionTimer.startTimer(getApplicationContext());
@@ -101,13 +96,15 @@ public class ReactionTime extends Activity {
     };
 
     private void finishSection() {
+        mSection.addBlock(mBlock);
+        mSection.endSection();
         Survey.getSurvey().addSection(mSection);
-        Intent intent = new Intent(this, Exit.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(new Intent(this, Exit.class), 1);
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

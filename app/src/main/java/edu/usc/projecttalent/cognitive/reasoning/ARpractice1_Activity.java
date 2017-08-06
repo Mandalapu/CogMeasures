@@ -22,23 +22,22 @@ public class ARpractice1_Activity extends Activity {
 
     View oldView;
 
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		Queue<ARExample> exampleList = new LinkedList<>();
-		Resources res = getResources();
-		TypedArray arr = res.obtainTypedArray(R.array.ar_ex_2);
-		exampleList.add(new ARExample(getString(R.string.ar_instr_header), arr, getString(R.string.pr_wrong), true));
+        Queue<ARExample> exampleList = new LinkedList<>();
+        Resources res = getResources();
+        TypedArray arr = res.obtainTypedArray(R.array.ar_ex_2);
+        exampleList.add(new ARExample(getString(R.string.ar_instr_header), arr, getString(R.string.pr_wrong), true));
 
         ActivitySecArBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sec_ar_);
         binding.setItem(exampleList.remove());
 
         Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
-            if(!exampleList.isEmpty()) {
+            if (!exampleList.isEmpty()) {
                 binding.setItem(exampleList.remove());
-            }
-            else {
+            } else {
                 AlertDialog dialog = new AlertDialog.Builder(this)
                         .setTitle(R.string.start_now)
                         .setMessage(R.string.start_task)
@@ -56,9 +55,9 @@ public class ARpractice1_Activity extends Activity {
         });
 
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
-        for(int i=0; i<options.getChildCount(); i++) {
+        for (int i = 0; i < options.getChildCount(); i++) {
             options.getChildAt(i).setOnClickListener(v -> {
-                if(!exampleList.isEmpty()) {
+                if (!exampleList.isEmpty()) {
                     v.setPadding(1, 1, 1, 1);
                     v.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
                     if (oldView != null)
@@ -67,15 +66,15 @@ public class ARpractice1_Activity extends Activity {
                 }
             });
         }
-	}
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 1) {
-			if (resultCode == RESULT_OK) {
-				setResult(Activity.RESULT_OK, data);
-				super.finish();
-			}
-		}
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                setResult(Activity.RESULT_OK, data);
+                super.finish();
+            }
+        }
+    }
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * Model for section for retrofit.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */

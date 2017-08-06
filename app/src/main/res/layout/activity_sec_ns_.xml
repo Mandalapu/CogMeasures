@@ -7,7 +7,8 @@
         <variable
             name="item"
             type="edu.usc.projecttalent.cognitive.numbers.NSExample" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
@@ -43,12 +44,12 @@
             <TextView
                 style="@style/numQues"
                 android:text="@{Integer.toString(item.options[2])}"
-                android:visibility="@{item.ansPosition == 2? View.GONE: View.VISIBLE}"/>
+                android:visibility="@{item.ansPosition == 2? View.GONE: View.VISIBLE}" />
 
             <TextView
                 style="@style/numQues"
                 android:text="@{Integer.toString(item.options[3])}"
-                android:visibility="@{item.ansPosition == 3? View.GONE: View.VISIBLE}"/>
+                android:visibility="@{item.ansPosition == 3? View.GONE: View.VISIBLE}" />
 
             <EditText
                 android:id="@+id/answer"

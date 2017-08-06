@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.QuestionTimer;
@@ -32,6 +33,7 @@ import edu.usc.projecttalent.cognitive.thurstone.MainActivity_Th;
 /**
  * Block-adaptive test for Number section.
  * Show block 3 first. Based on score, show one of blocks 1, 2, 4 or 5.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -47,9 +49,9 @@ public class Set3Item1Activity extends Activity {
     Queue<NSQuestion> mQueue;
     Answer mAnswer;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         mContext = this;
         mSection = new Section(getString(R.string.ns_section_title));  //make new section.
@@ -65,14 +67,15 @@ public class Set3Item1Activity extends Activity {
         mBlock = new Block(3); //first block is Block 3.
         mFtWarn = true; //for FTU.
 
-        final Type question = new TypeToken<ArrayList<NSQuestion>>(){}.getType();
+        final Type question = new TypeToken<ArrayList<NSQuestion>>() {
+        }.getType();
         mList = new Gson().fromJson(getString(R.string.ns_3), question);
         mQueue = new LinkedList<>();
         mQueue.addAll(mList);
 
         final ActivitySet3Item1Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_set3_item1);
         NSQuestion item = mQueue.remove();
-        if(item.getAnsPositions() == null)
+        if (item.getAnsPositions() == null)
             item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
         binding.setItem(item);
 
@@ -80,7 +83,7 @@ public class Set3Item1Activity extends Activity {
 
         final LinearLayout series = (LinearLayout) findViewById(R.id.series);
         LinearLayout numPad = (LinearLayout) findViewById(R.id.numpad);
-        final EditText answer= (EditText) findViewById(R.id.answer),
+        final EditText answer = (EditText) findViewById(R.id.answer),
                 answer2 = (EditText) findViewById(R.id.answer2);
 
         series.removeView(answer);
@@ -88,33 +91,28 @@ public class Set3Item1Activity extends Activity {
 
         //setting up number pad and undo.
         View.OnClickListener listener = v -> {
-            if(answer2.hasFocus())
-                answer2.append(((Button)v).getText());
+            if (answer2.hasFocus())
+                answer2.append(((Button) v).getText());
             else
-                answer.append(((Button)v).getText()); //extra code for Set 5 Q3.
+                answer.append(((Button) v).getText()); //extra code for Set 5 Q3.
         };
-        for(int i=0; i<numPad.getChildCount(); i++) {
-            ((Button)(numPad.getChildAt(i))).setText(Integer.toString(i)); //set the number from 0 to 9 dynamically.
+        for (int i = 0; i < numPad.getChildCount(); i++) {
+            ((Button) (numPad.getChildAt(i))).setText(String.format(Locale.getDefault(), "%d", i));
             (numPad.getChildAt(i)).setOnClickListener(listener);
         }
 
         (findViewById(R.id.undo)).setOnClickListener(v -> {
-            if(answer2.hasFocus()) {
-                int length = answer2.length();
-                if (length > 0)
-                    answer2.getText().delete(length - 1, length);
-            } else {
-                int length = answer.length();
-                if (length > 0)
-                    answer.getText().delete(length - 1, length);
-            }
+            EditText hasFocus = answer2.hasFocus() ? answer2 : answer;
+            int length = hasFocus.length();
+            if (length > 0)
+                hasFocus.getText().delete(length - 1, length);
         });
 
         QuestionTimer.startTimer(mContext); //start the timer for first question.
 
         Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
-            if(answer.getText().toString().equals("") && mFtWarn) {
+            if (answer.getText().toString().equals("") && mFtWarn) {
                 mFtWarn = false;
                 sendBroadcast(new Intent(QuestionTimer.NOANSWER));
             } else {
@@ -123,7 +121,8 @@ public class Set3Item1Activity extends Activity {
                     int userAns = -99; //invalid. user did not select an answer;
                     try {
                         userAns = Integer.parseInt(answer.getText().toString());
-                    } catch (Exception ignored) {}
+                    } catch (Exception ignored) {
+                    }
                     answer.setText("");
                     int ans = curQuestion.getOptions()[curQuestion.getAnsPosition()];
                     boolean correct = false;
@@ -150,7 +149,8 @@ public class Set3Item1Activity extends Activity {
                     try {
                         userAns1 = Integer.parseInt(answer.getText().toString());
                         userAns2 = Integer.parseInt(answer2.getText().toString());
-                    } catch (Exception ignored) {}
+                    } catch (Exception ignored) {
+                    }
                     boolean correct = false;
                     if ((userAns1 == 72 && userAns2 == 76) || (userAns1 == 78 && userAns2 == 82)) {
                         correct = true;
@@ -160,11 +160,10 @@ public class Set3Item1Activity extends Activity {
                     mBlock.addAnswer(mAnswer);
                 }
 
-
                 if (!mQueue.isEmpty()) { //more questions in the same block.
                     mAnswer = new Answer();
                     NSQuestion item1 = mQueue.remove();
-                    item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null? 1:2)); //to select the one item instruction.
+                    item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
                     binding.setItem(item1); //add new question.
                     QuestionTimer.startTimer(mContext);
                     mFtWarn = true;
@@ -177,8 +176,6 @@ public class Set3Item1Activity extends Activity {
                         series.removeView(answer21);
                         series.addView(answer21, 2);
                     }
-
-
                 } else { //a block has ended. end this block and prepare for new block.
                     mBlock.endBlock(mScore);
                     mSection.addBlock(mBlock);
@@ -190,7 +187,7 @@ public class Set3Item1Activity extends Activity {
                         mQueue.addAll(mList);
                         mScore = 0; //reset the score for the new block.
                         NSQuestion item1 = mQueue.remove();
-                        item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null? 1:2)); //to select the one item instruction.
+                        item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
                         binding.setItem(item1);
                         QuestionTimer.startTimer(mContext);
                         mFtWarn = true;
@@ -202,23 +199,31 @@ public class Set3Item1Activity extends Activity {
                 }
             }
         });
-	}
+    }
 
     private int getBlockId(int set) {
-        switch(set) {
-            case R.string.ns_1: return 1;
-            case R.string.ns_2: return 2;
-            case R.string.ns_4: return 4;
-            default: return 5;
+        switch (set) {
+            case R.string.ns_1:
+                return 1;
+            case R.string.ns_2:
+                return 2;
+            case R.string.ns_4:
+                return 4;
+            default:
+                return 5;
         }
     }
 
     private int nextSet() {
         switch (mScore) {
-            case 0: return R.string.ns_1;
-            case 1: return R.string.ns_2;
-            case 2: return R.string.ns_4;
-            default: return R.string.ns_5;
+            case 0:
+                return R.string.ns_1;
+            case 1:
+                return R.string.ns_2;
+            case 2:
+                return R.string.ns_4;
+            default:
+                return R.string.ns_5;
         }
     }
 
@@ -226,7 +231,7 @@ public class Set3Item1Activity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action.equals(QuestionTimer.QUIT)) {
+            if (action.equals(QuestionTimer.QUIT)) {
                 finishSection(); //go to end of section.
             } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
                 QuestionTimer.startTimer(mContext);
@@ -240,14 +245,15 @@ public class Set3Item1Activity extends Activity {
         startActivityForResult(new Intent(mContext, MainActivity_Th.class), 1);
     }
 
-	@Override
-	public void onBackPressed() {}
+    @Override
+    public void onBackPressed() {
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         setResult(Activity.RESULT_OK, data);
         unregisterReceiver(mReceiver);
         finish();
-	}
+    }
 
 }

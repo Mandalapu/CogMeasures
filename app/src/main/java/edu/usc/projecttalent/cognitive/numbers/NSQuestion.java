@@ -2,6 +2,7 @@ package edu.usc.projecttalent.cognitive.numbers;
 
 /**
  * Number section question JSON encapsulation.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */

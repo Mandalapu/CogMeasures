@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Last activity of the application. Wraps up the JSON data and sends it to the server.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -40,13 +41,15 @@ public class FinishActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             APIEndPoint service = retrofit.create(APIEndPoint.class);
-            Call<Void> call =  service.getData(result);
+            Call<Void> call = service.getData(result);
             call.enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {}
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {}
+                public void onFailure(Call<Void> call, Throwable t) {
+                }
             });
 
 
@@ -59,7 +62,8 @@ public class FinishActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

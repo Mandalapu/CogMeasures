@@ -21,7 +21,8 @@ public class PopExample extends Activity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

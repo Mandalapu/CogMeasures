@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:background="#fff" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textViewGreat"
@@ -11,9 +12,9 @@
         android:layout_gravity="center_horizontal"
         android:background="#C18686"
         android:padding="20dp"
-        android:text="Incorrect, the picture you actually saw was this ..."
+        android:text="@string/incorrect_ans"
         android:textColor="#fff"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -27,44 +28,43 @@
         android:id="@+id/textViewExplanation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Now you will practice."
-        android:textSize="20dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:text="@string/now_you_will_practice"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textViewExplanation2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="You will see each picture for 5 seconds. Make use of the time and study each picture for as long as you can."
-        android:textSize="20dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:text="@string/seconds_rule"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textViewExplanation3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tap the 'Begin' button when you are ready to start."
-        android:textSize="20dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:text="@string/begin_instr"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/bntNextExample"
         android:layout_width="100dp"
-        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/borders"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="25dp"
-        android:text="Next" />
+        android:text="@string/next" />
 
     <TextView
         android:id="@+id/textViewBottomeEmpty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#C18686"
-        android:padding="40dp"
-        android:text=" " />
+        android:padding="40dp" />
 
 </LinearLayout>

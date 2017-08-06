@@ -4,29 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_horizontal_margin"
-    tools:context="edu.usc.projecttalent.cognitive.UserID"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="edu.usc.projecttalent.cognitive.UserID">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="@string/userIdinstr"/>
+        android:text="@string/userIdinstr"
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/uid"
+        style="@style/numAns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/numAns"
-        android:inputType="number"/>
+        android:inputType="number" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="@string/clicknext"/>
+        android:text="@string/clicknext"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/next"
-        style="@style/next"/>
+        style="@style/next" />
 </LinearLayout>

@@ -1,15 +1,15 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
-import edu.usc.projecttalent.cognitive.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import edu.usc.projecttalent.cognitive.R;
 
 /**
  * @author Kay
@@ -83,7 +83,8 @@ public class SecondActivity extends Activity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

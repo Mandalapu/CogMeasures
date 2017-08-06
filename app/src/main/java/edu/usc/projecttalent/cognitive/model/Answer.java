@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Model for answer for retrofit.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */

@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#fff">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="In this test you will be presented with a fixation cross, followed by a red circle."
-        android:textSize="25dp"
         android:padding="20dp"
-        android:textColor="#000" />
+        android:text="@string/reaction_instr1"
+        android:textColor="#000"
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your task is to "
-        android:textSize="25dp"
         android:padding="20dp"
-        android:textColor="#000" />
+        android:text="@string/reaction_instr2"
+        android:textColor="#000"
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(1) Concentrate on the fixation cross "
-        android:textSize="25dp"
-        android:paddingLeft="20dp"
-        android:textColor="#000" />
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:text="@string/reaction_instr3"
+        android:textColor="#000"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(2) press the SPACEBAR as soon as possible once the red circle is presented. "
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:text="@string/reaction_instr4"
         android:textColor="#000"
-        android:paddingLeft="20dp"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
+
     <TextView
         android:id="@+id/textViewInstruc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(press SPACEBAR below to continue) "
-        android:textStyle="italic"
-        android:textColor="#828282"
-        android:paddingLeft="20dp"
         android:layout_marginTop="20dp"
-        android:textSize="25dp" />
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:text="@string/reaction_continue"
+        android:textColor="#828282"
+        android:textSize="25sp"
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/buttonSpace"
@@ -52,9 +58,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="230dp"
-        android:padding="30dp"
-        android:textSize="25dp"
         android:background="@drawable/borders"
-        android:text="SPACEBAR" />
+        android:padding="30dp"
+        android:text="@string/spacebar"
+        android:textSize="25sp" />
 
 </LinearLayout>

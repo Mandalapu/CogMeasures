@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Model for block for retrofit.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -13,7 +14,7 @@ public class Block {
     private ArrayList<Answer> answers;
     private int score;
 
-    public Block(int number){
+    public Block(int number) {
         this.number = number;
         answers = new ArrayList<>();
     }

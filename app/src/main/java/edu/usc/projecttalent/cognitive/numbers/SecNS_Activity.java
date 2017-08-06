@@ -16,6 +16,7 @@ import edu.usc.projecttalent.cognitive.databinding.ActivitySecNsBinding;
 
 /**
  * Number section introduction and instructions.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -23,8 +24,8 @@ import edu.usc.projecttalent.cognitive.databinding.ActivitySecNsBinding;
 public class SecNS_Activity extends Activity {
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         final boolean showSecond = getIntent().getBooleanExtra("second", false);
         NSExample mExample = new Gson().fromJson(getString(showSecond ? R.string.ns_example2 : R.string.ns_example1), NSExample.class);
@@ -34,21 +35,21 @@ public class SecNS_Activity extends Activity {
 
         LinearLayout series = (LinearLayout) findViewById(R.id.series);
         LinearLayout numPad = (LinearLayout) findViewById(R.id.numpad);
-        final EditText answer= (EditText) findViewById(R.id.answer);
+        final EditText answer = (EditText) findViewById(R.id.answer);
 
         series.removeView(answer);
         series.addView(answer, mExample.getAnsPosition());
 
-        View.OnClickListener listener = v -> answer.append(((Button)v).getText());
-        for(int i=0; i<numPad.getChildCount(); i++) {
-            ((Button)(numPad.getChildAt(i))).setText(Integer.toString(i));
+        View.OnClickListener listener = v -> answer.append(((Button) v).getText());
+        for (int i = 0; i < numPad.getChildCount(); i++) {
+            ((Button) (numPad.getChildAt(i))).setText(Integer.toString(i));
             (numPad.getChildAt(i)).setOnClickListener(listener);
         }
 
         (findViewById(R.id.undo)).setOnClickListener(v -> {
             int length = answer.length();
             if (length > 0)
-                answer.getText().delete(length-1, length);
+                answer.getText().delete(length - 1, length);
         });
 
         (findViewById(R.id.next)).setOnClickListener(v -> {
@@ -56,18 +57,19 @@ public class SecNS_Activity extends Activity {
             intent.putExtra("example", mExample);
             startActivityForResult(intent, 1);
         });
-	}
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 1) {
-			if (resultCode == RESULT_OK) {
-				setResult(Activity.RESULT_OK, data);
-				super.finish();
-			}
-		}
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                setResult(Activity.RESULT_OK, data);
+                super.finish();
+            }
+        }
+    }
 
-	@Override
-	public void onBackPressed() {}
+    @Override
+    public void onBackPressed() {
+    }
 }

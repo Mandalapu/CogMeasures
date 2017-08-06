@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 /**
  * JSON object encapsulation for Abstract reasoning examples.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -23,7 +24,7 @@ public class ARExample {
         this.options = options;
         this.details = details;
         this.answer = answer;
-        this.ansOption = answer? options.getInt(6, -1): -1;
+        this.ansOption = answer ? options.getInt(6, -1) : -1;
     }
 
     @SuppressWarnings("ResourceType")

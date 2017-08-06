@@ -10,11 +10,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="@string/vo_text"/>
+        android:text="@string/vo_text"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/next"
-        style="@style/next"/>
+        style="@style/next" />
 
 </LinearLayout>

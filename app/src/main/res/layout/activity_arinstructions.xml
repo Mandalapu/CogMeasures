@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.usc.projecttalent.cognitive.reasoning.ARInstructions"
     android:layout_margin="@dimen/activity_horizontal_margin"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="edu.usc.projecttalent.cognitive.reasoning.ARInstructions">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ar_instr1"
-        android:textSize="28sp"/>
+        android:textSize="28sp" />
 
     <Button
         android:id="@+id/next"
-        style="@style/next"/>
+        style="@style/next" />
 
 </LinearLayout>

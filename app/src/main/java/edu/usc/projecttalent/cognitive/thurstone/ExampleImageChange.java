@@ -13,6 +13,7 @@ import edu.usc.projecttalent.cognitive.R;
 
 /**
  * Example images switcher activity.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -45,7 +46,8 @@ public class ExampleImageChange extends Activity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

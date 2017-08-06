@@ -46,8 +46,6 @@ public class TestImageAnswers extends Activity {
         Drawable highlight = ContextCompat.getDrawable(this, R.drawable.highlight);
 
         Resources res = getResources();
-
-        //add set 1.
         TypedArray questions = res.obtainTypedArray(R.array.th_set);
         Queue<THItem> mQueue = new LinkedList<>();
         for (int i = 0; i < questions.length(); i++) {
@@ -74,7 +72,7 @@ public class TestImageAnswers extends Activity {
         mAnswer = new Answer();
 
         btn.setOnClickListener(v -> {
-            if(oldView != null) {
+            if (oldView != null) {
                 THItem question = binding.getItem();
                 boolean correct1 = false;
                 if (options.indexOfChild(oldView) == question.getAnsOption()) {
@@ -101,11 +99,11 @@ public class TestImageAnswers extends Activity {
 
                     if (score == 0) {
                         view = getLayoutInflater().inflate(R.layout.end_test, null);
-                        button = (Button)  view.findViewById(R.id.bntNextExample);
+                        button = (Button) view.findViewById(R.id.bntNextExample);
 
                     } else {
                         view = getLayoutInflater().inflate(R.layout.exit_test, null);
-                        button = (Button)  view.findViewById(R.id.btnExit);
+                        button = (Button) view.findViewById(R.id.btnExit);
                     }
 
                     button.setOnClickListener(v1111 -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1));
@@ -120,7 +118,8 @@ public class TestImageAnswers extends Activity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

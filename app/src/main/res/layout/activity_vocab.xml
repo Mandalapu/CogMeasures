@@ -4,6 +4,7 @@
     tools:context="edu.usc.projecttalent.cognitive.vocab.VO31_Activity">
 
     <data>
+
         <variable
             name="item"
             type="edu.usc.projecttalent.cognitive.vocab.VocabItem" />
@@ -29,16 +30,16 @@
             android:id="@+id/options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
 
             <RadioButton
                 style="@style/vocabOption"
-                android:text="@{item.options[0]}"/>
+                android:text="@{item.options[0]}" />
 
             <RadioButton
                 style="@style/vocabOption"
-                android:text="@{item.options[1]}"/>
+                android:text="@{item.options[1]}" />
 
             <RadioButton
                 style="@style/vocabOption"
@@ -46,7 +47,7 @@
 
             <RadioButton
                 style="@style/vocabOption"
-                android:text="@{item.options[3]}"/>
+                android:text="@{item.options[3]}" />
 
             <RadioButton
                 style="@style/vocabOption"

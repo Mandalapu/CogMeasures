@@ -21,9 +21,9 @@ public class ARpractice2_Activity extends Activity {
 
     View oldView;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         Queue<ARExample> exampleList = new LinkedList<>();
         Resources res = getResources();
@@ -36,18 +36,18 @@ public class ARpractice2_Activity extends Activity {
 
         Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
-            if(!exampleList.isEmpty()) {
+            if (!exampleList.isEmpty()) {
                 binding.setItem(exampleList.remove());
             } else {
                 Intent intent = new Intent(this, ARIntro_Activity.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, 1);
             }
         });
 
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
-        for(int i=0; i<options.getChildCount(); i++) {
+        for (int i = 0; i < options.getChildCount(); i++) {
             options.getChildAt(i).setOnClickListener(v -> {
-                if(!exampleList.isEmpty()) {
+                if (!exampleList.isEmpty()) {
                     v.setPadding(1, 1, 1, 1);
                     v.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
                     if (oldView != null)
@@ -56,7 +56,7 @@ public class ARpractice2_Activity extends Activity {
                 }
             });
         }
-	}
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

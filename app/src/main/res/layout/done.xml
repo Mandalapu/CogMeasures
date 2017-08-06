@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#fff">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thank you for completing the Reaction Time Test"
-        android:textSize="25dp"
-        android:padding="20dp"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:textColor="#000" />
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/rt_complete"
+        android:textColor="#000"
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You may now exit by tapping on the SPACEBAR"
-        android:textSize="25dp"
-        android:padding="20dp"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="#000" />
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/rt_exit"
+        android:textColor="#000"
+        android:textSize="25sp" />
 
 
     <Button
@@ -30,10 +32,10 @@
         android:layout_width="884dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="200dp"
         android:background="@drawable/borders"
         android:padding="30dp"
-        android:textSize="25dp"
-        android:layout_marginTop="200dp"
-        android:text="SPACEBAR" />
+        android:text="@string/spacebar"
+        android:textSize="25sp" />
 
 </LinearLayout>

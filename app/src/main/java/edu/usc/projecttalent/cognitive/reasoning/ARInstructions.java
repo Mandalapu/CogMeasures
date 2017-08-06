@@ -11,6 +11,7 @@ import edu.usc.projecttalent.cognitive.R;
 
 /**
  * Instructions for Abstract reasoning section.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */

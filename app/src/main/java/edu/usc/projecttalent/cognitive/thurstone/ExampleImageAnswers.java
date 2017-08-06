@@ -27,6 +27,7 @@ import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 /**
  * Thurstone example activity.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -71,7 +72,7 @@ public class ExampleImageAnswers extends Activity {
         mAnswer = new Answer();
 
         btn.setOnClickListener(v -> {
-            if(oldView != null) {
+            if (oldView != null) {
                 THItem question = binding.getItem();
                 boolean correct = false;
                 if (options.indexOfChild(oldView) == question.getAnsOption()) {
@@ -114,7 +115,8 @@ public class ExampleImageAnswers extends Activity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -418,5 +418,27 @@
     <string name="thurs_example">Thurstone Example</string>
     <string name="thanks">Thank you for completing the test.</string>
     <string name="thurstone_title">Thurstone</string>
+    <string name="real_test_instr1">Now that you have a feel for how the test will go, it is now time to begin the test.</string>
+    <string name="real_test_instr2">The procedure is the same as before. You will see each picture for 5 seconds.</string>
+    <string name="real_test_instr3">Please use the time and look at each picture for as long as you can.</string>
+    <string name="real_test_instr4">The procedure is the same as before, but there are more pictures.</string>
+    <string name="rt_complete">Thank you for completing the Reaction Time Test</string>
+    <string name="rt_exit">You may now exit by tapping on the SPACEBAR</string>
+    <string name="spacebar">SPACEBAR</string>
+    <string name="end_thanks">Thank you for completing the test.</string>
+    <string name="end_exit">You can now exit by tapping on the exit button below.</string>
+    <string name="exit">Exit</string>
+    <string name="exit_button_text">You may now exit by tapping on the exit button below.</string>
+    <string name="reaction_instr1">In this test you will be presented with a fixation cross, followed by a red circle.</string>
+    <string name="reaction_instr2">Your task is to</string>
+    <string name="reaction_instr3">(1) Concentrate on the fixation cross</string>
+    <string name="reaction_instr4">(2) press the SPACEBAR as soon as possible once the red circle is presented.</string>
+    <string name="reaction_continue">(press SPACEBAR below to continue)</string>
+    <string name="great_job">Great Job!!!!</string>
+    <string name="now_you_will_practice">Now you will practice.</string>
+    <string name="seconds_rule">You will see each picture for 5 seconds. Make use of the time and study each picture for as long as you can.</string>
+    <string name="begin_instr">Tap the \'Begin\' button when you are ready to start.</string>
+    <string name="incorrect_ans">Incorrect, the picture you actually saw was this ...</string>
+    <string name="now_click">Now click on the picture you have seen.</string>
     <!--Context switch -->
 </resources>

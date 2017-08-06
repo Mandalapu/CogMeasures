@@ -2,6 +2,7 @@ package edu.usc.projecttalent.cognitive.vocab;
 
 /**
  * JSON encapsulation for vocabulary question.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */

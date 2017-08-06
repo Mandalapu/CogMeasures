@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import edu.usc.projecttalent.cognitive.R;
-import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.SecAR_Activity;
 
 /**
  * End section for Thurstone
+ *
  * @author Kay Igwe
  * @version 1.0
  */
@@ -27,7 +26,8 @@ public class EndTest extends Activity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

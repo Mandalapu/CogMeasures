@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 /**
  * Model for thurstone question.
+ *
  * @author Anindya Dutta
  * @version 1.0
  */

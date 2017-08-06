@@ -17,6 +17,7 @@ import edu.usc.projecttalent.cognitive.reasoning.ARExample;
 
 /**
  * Spatial Visualization practice without scoring and with solutions.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -41,7 +42,7 @@ public class SPpractice_Activity extends Activity {
 
         Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
-            if(!mQueue.isEmpty())
+            if (!mQueue.isEmpty())
                 binding.setItem(mQueue.remove());
             else
                 startActivityForResult(new Intent(this, SPIntro_Activity.class), 1);

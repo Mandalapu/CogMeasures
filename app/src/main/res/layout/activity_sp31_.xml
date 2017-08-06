@@ -36,8 +36,8 @@
             <ImageView
                 style="@style/visfigure"
                 android:layout_marginEnd="80dp"
-                android:padding="2dp"
                 android:background="@color/green"
+                android:padding="2dp"
                 app:imageUrl="@{item.options.getResourceId(0,0)}" />
 
             <ImageView

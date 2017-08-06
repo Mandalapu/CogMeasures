@@ -7,7 +7,8 @@
         <variable
             name="item"
             type="edu.usc.projecttalent.cognitive.numbers.NSQuestion" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
@@ -35,12 +36,12 @@
             <TextView
                 style="@style/numQues"
                 android:text="@{Integer.toString(item.options[0])}"
-                android:visibility="@{item.ansPosition == 0? View.GONE : View.VISIBLE}"/>
+                android:visibility="@{item.ansPosition == 0? View.GONE : View.VISIBLE}" />
 
             <TextView
                 style="@style/numQues"
                 android:text="@{Integer.toString(item.options[1])}"
-                android:visibility="@{item.ansPosition == 1? View.GONE : View.VISIBLE}"/>
+                android:visibility="@{item.ansPosition == 1? View.GONE : View.VISIBLE}" />
 
             <TextView
                 style="@style/numQues"
@@ -55,21 +56,21 @@
             <TextView
                 style="@style/numQues"
                 android:text="@{Integer.toString(item.options[4])}"
-                android:visibility="@{item.options[4] == 0 || item.ansPosition == 4? View.GONE : View.VISIBLE}"/>
+                android:visibility="@{item.options[4] == 0 || item.ansPosition == 4? View.GONE : View.VISIBLE}" />
 
             <TextView
                 style="@style/numQues"
                 android:text="@{Integer.toString(item.options[5])}"
-                android:visibility="@{item.options[5] == 0 || item.ansPosition == 5? View.GONE : View.VISIBLE}"/>
+                android:visibility="@{item.options[5] == 0 || item.ansPosition == 5? View.GONE : View.VISIBLE}" />
 
             <EditText
                 android:id="@id/answer"
-                style="@style/numAns"/>
+                style="@style/numAns" />
 
             <EditText
                 android:id="@+id/answer2"
                 style="@style/numAns"
-                android:visibility="@{item.ansPositions == null? View.GONE: View.VISIBLE}"/>
+                android:visibility="@{item.ansPositions == null? View.GONE: View.VISIBLE}" />
 
             <Button
                 android:id="@+id/undo"

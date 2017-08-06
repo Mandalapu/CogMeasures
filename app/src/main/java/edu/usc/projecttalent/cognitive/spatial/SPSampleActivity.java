@@ -17,6 +17,7 @@ import edu.usc.projecttalent.cognitive.reasoning.ARExample;
 
 /**
  * Spatial Visualization sample and instructions on how to solve the questions.
+ *
  * @author Anindya Dutta
  * @version 2.0
  */
@@ -40,7 +41,7 @@ public class SPSampleActivity extends Activity {
 
         Button next = (Button) findViewById(R.id.next);
         next.setOnClickListener(v -> {
-            if(!mQueue.isEmpty())
+            if (!mQueue.isEmpty())
                 binding.setItem(mQueue.remove());
             else
                 startActivityForResult(new Intent(this, SP31_Activity.class), 1);

@@ -11,38 +11,35 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to the Thurstone Test"
         android:layout_alignParentTop="true"
-        android:textSize="25dp"
-        android:textColor="#383232"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:text="Welcome to the Thurstone Test"
+        android:textColor="#383232"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome"
-        android:textSize="25dp"
-        android:textColor="#383232"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="This is a picture memory test. You will see pictures like this ..." />
+        android:text="This is a picture memory test. You will see pictures like this ..."
+        android:textColor="#383232"
+        android:textSize="25dp" />
 
     <ImageView
         android:id="@+id/introImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/truck"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/intro"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/truck" />
 
     <Button
         android:id="@+id/btnNext"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:background="@drawable/borders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/introImage"
@@ -50,5 +47,8 @@
         android:layout_below="@+id/introImage"
         android:layout_marginEnd="77dp"
         android:layout_marginRight="77dp"
+        android:background="@drawable/borders"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:text="Next ..." />
 </android.widget.RelativeLayout>

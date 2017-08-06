@@ -31,7 +31,7 @@
             android:layout_width="450dp"
             android:layout_height="450dp"
             android:layout_gravity="center"
-            app:imageUrl="@{item.options.getResourceId(0,0)}"/>
+            app:imageUrl="@{item.options.getResourceId(0,0)}" />
 
         <LinearLayout
             android:id="@+id/options"
@@ -42,23 +42,23 @@
 
             <ImageView
                 style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(1,0)}"/>
+                app:imageUrl="@{item.options.getResourceId(1,0)}" />
 
             <ImageView
                 style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(2,0)}"/>
+                app:imageUrl="@{item.options.getResourceId(2,0)}" />
 
             <ImageView
                 style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(3,0)}"/>
+                app:imageUrl="@{item.options.getResourceId(3,0)}" />
 
             <ImageView
                 style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(4,0)}"/>
+                app:imageUrl="@{item.options.getResourceId(4,0)}" />
 
             <ImageView
                 style="@style/figure"
-                app:imageUrl="@{item.options.getResourceId(5,0)}"/>
+                app:imageUrl="@{item.options.getResourceId(5,0)}" />
         </LinearLayout>
 
         <Button

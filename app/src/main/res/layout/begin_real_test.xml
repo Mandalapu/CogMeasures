@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#fff"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="Now that you have a feel for how the test will go, it is now time to begin the test."
-        android:gravity="center"/>
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/real_test_instr1"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="The procedure is the same as before. You will see each picture for 5 seconds."
-        android:gravity="center"/>
+        android:gravity="center"
+        android:text="@string/real_test_instr2"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="Please use the time and look at each picture for as long as you can."
-        android:gravity="center"/>
+        android:gravity="center"
+        android:text="@string/real_test_instr3"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="The procedure is the same as before, but there are more pictures."
-        android:gravity="center"/>
+        android:gravity="center"
+        android:text="@string/real_test_instr4"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/beginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Begin"
-        android:layout_margin="50dp"
         android:layout_gravity="center"
-        android:background="@drawable/borders"/>
+        android:layout_margin="50dp"
+        android:background="@drawable/borders"
+        android:text="@string/begin" />
 </LinearLayout>
