@@ -34,7 +34,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         setResult(Activity.RESULT_OK, data);
-        unregisterReceiver(mReceiver);
+        try {
+            unregisterReceiver(mReceiver);
+        } catch (Exception e) {
+        }
         super.finish();
     }
 

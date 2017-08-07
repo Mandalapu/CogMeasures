@@ -8,6 +8,8 @@ import android.content.IntentFilter;
 import android.os.CountDownTimer;
 import android.util.Log;
 
+import static edu.usc.projecttalent.cognitive.BaseActivity.mContext;
+
 /**
  * Timer set for each question. Warning show up on one minute. Quit on two minutes.
  *
@@ -18,7 +20,6 @@ import android.util.Log;
 public class QuestionTimer extends CountDownTimer {
 
     private static QuestionTimer mTimer;
-    private Context mContext;
     private AlertDialog mWarningDialog;
     private boolean shown;
 
@@ -35,7 +36,6 @@ public class QuestionTimer extends CountDownTimer {
         shown = false;
         IntentFilter filter = new IntentFilter();
         filter.addAction(NOANSWER);
-        mContext = BaseActivity.mContext;
         mContext.registerReceiver(mReceiver, filter);
         createDialogs();
     }

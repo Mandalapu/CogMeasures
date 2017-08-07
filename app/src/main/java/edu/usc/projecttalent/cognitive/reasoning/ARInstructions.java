@@ -22,8 +22,7 @@ public class ARInstructions extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arinstructions);
 
-        Button next = (Button) findViewById(R.id.next);
-        next.setOnClickListener(v -> {
+        (findViewById(R.id.next)).setOnClickListener(v -> {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.start_now)
                     .setMessage(R.string.start_task)
