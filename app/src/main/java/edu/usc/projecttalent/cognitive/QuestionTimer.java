@@ -18,11 +18,11 @@ import android.util.Log;
 public class QuestionTimer extends CountDownTimer {
 
     private static QuestionTimer mTimer;
-    private static Context mContext;
-    private static AlertDialog mWarningDialog;
-    private static AlertDialog mQuitDialog;
-    private static AlertDialog mAnsDialog;
-    private static boolean shown;
+    private Context mContext;
+    private AlertDialog mWarningDialog;
+    private AlertDialog mQuitDialog;
+    private AlertDialog mAnsDialog;
+    private boolean shown;
 
     public static final String WARNING = "cognitive.timewarning";
     public static final String QUIT = "cognitive.quit";
@@ -31,13 +31,15 @@ public class QuestionTimer extends CountDownTimer {
 
     private static long time = 3;
 
-    private QuestionTimer(long millisInFuture, long countDownInterval, Context context) {
-        super(millisInFuture, countDownInterval);
-        mContext = context;
+    private QuestionTimer(long minutes) {
+        super(minutes * 60 * 1000, 1000);
+        time = minutes;
         shown = false;
         IntentFilter filter = new IntentFilter();
         filter.addAction(NOANSWER);
+        mContext = BaseActivity.mContext;
         mContext.registerReceiver(mReceiver, filter);
+        createDialogs();
     }
 
     @Override
@@ -61,25 +63,23 @@ public class QuestionTimer extends CountDownTimer {
         mQuitDialog.show();
     }
 
-    public static void startTimer(Context context) {
-        startTimer(context, 3);
+    public static QuestionTimer getTimer(long minutes) {
+        if(mTimer == null) {
+            mTimer = new QuestionTimer(minutes);
+        } else if(minutes != time) {
+            mTimer.cancel();
+            mTimer = new QuestionTimer(minutes);
+        }
+        return mTimer;
     }
 
-    public static void startTimer(Context context, long minutes) {
-        if (mTimer == null || time != minutes) {
-            time = minutes;
-            if (mTimer != null)
-                mTimer.cancel();
-            mTimer = new QuestionTimer(time * 60 * 1000, 1000, context); //time = 2 for vocab, 3 for others
-        }
-        mContext = context;
-        createDialogs();
+    public void startTimer() {
         mTimer.cancel();
         shown = false;
         mTimer.start();
     }
 
-    static void stopTimer() {
+    public void stopTimer() {
         if (mTimer != null) {
             mTimer.cancel();
             try {
@@ -90,7 +90,7 @@ public class QuestionTimer extends CountDownTimer {
         }
     }
 
-    private static void createDialogs() {
+    private void createDialogs() {
         mWarningDialog = new AlertDialog.Builder(mContext)
                 .setMessage(R.string.msg2)
                 .setNeutralButton(R.string.ok, null)
@@ -106,7 +106,7 @@ public class QuestionTimer extends CountDownTimer {
                 .create();
     }
 
-    private static BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(NOANSWER)) {

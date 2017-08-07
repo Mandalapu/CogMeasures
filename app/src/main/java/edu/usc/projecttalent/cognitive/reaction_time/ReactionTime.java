@@ -42,13 +42,6 @@ public class ReactionTime extends BaseActivity {
 
         int[] times_milli = new int[]{2000, 3000, 4000, 5000, 6000, 7000, 8000};
 
-        //prepare timer.
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(QuestionTimer.WARNING);
-        filter.addAction(QuestionTimer.QUIT);
-        filter.addAction(QuestionTimer.RESUME);
-        registerReceiver(mReceiver, filter);
-
         final Button btnSpace = (Button) findViewById(R.id.buttonSpace);
         final int randomTime = (times_milli[new Random().nextInt(times_milli.length)]);
 

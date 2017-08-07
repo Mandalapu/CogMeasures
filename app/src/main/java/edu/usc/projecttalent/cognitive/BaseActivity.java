@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected Context mContext;
+    protected static Context mContext;
+    protected QuestionTimer mTimer;
 
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -17,7 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (action.equals(QuestionTimer.QUIT)) {
                 finishSection(); //go to end of section.
             } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
-                QuestionTimer.startTimer(mContext);
+                mTimer.startTimer();
             }
         }
     };
@@ -34,5 +36,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK, data);
         unregisterReceiver(mReceiver);
         super.finish();
+    }
+
+    protected void prepareFilter() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(QuestionTimer.WARNING);
+        filter.addAction(QuestionTimer.QUIT);
+        filter.addAction(QuestionTimer.RESUME);
+        registerReceiver(mReceiver, filter);
     }
 }

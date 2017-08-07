@@ -49,13 +49,8 @@ public class AR31_Activity extends BaseActivity {
         mContext = this;
         mSection = new Section(getString(R.string.ar_section_title));  //make new section.
         mScore = 0; //reset score at the beginning of block.
-
-        //prepare timer.
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(QuestionTimer.WARNING);
-        filter.addAction(QuestionTimer.QUIT);
-        filter.addAction(QuestionTimer.RESUME);
-        registerReceiver(mReceiver, filter);
+        mTimer = QuestionTimer.getTimer(3);
+        prepareFilter();
 
         mBlock = new Block(3); //first block is Block 3.
         mFtWarn = true; //for FTU.
@@ -71,7 +66,7 @@ public class AR31_Activity extends BaseActivity {
         ActivityAr31Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar31_);
         binding.setItem(mQueue.remove());
         mAnswer = new Answer();
-        QuestionTimer.startTimer(mContext);
+        mTimer.startTimer();
 
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
@@ -89,42 +84,42 @@ public class AR31_Activity extends BaseActivity {
             if (oldView == null && mFtWarn) {
                 mFtWarn = false;
                 sendBroadcast(new Intent(QuestionTimer.NOANSWER));
+                return;
+            }
+            ARExample question = binding.getItem();
+            boolean correct = false;
+            if (options.indexOfChild(oldView) == question.getAnsOption()) {
+                mScore++; //correct answer.
+                correct = true;
+            }
+            mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
+            mBlock.addAnswer(mAnswer);
+            if (oldView != null)
+                oldView.setBackground(null);
+            oldView = null;
+            if (!mQueue.isEmpty()) {
+                mAnswer = new Answer();
+                binding.setItem(mQueue.remove());
+                mTimer.startTimer();
+                mFtWarn = true;
+                return;
+            }
+            mBlock.endBlock(mScore);
+            mSection.addBlock(mBlock);
+            if (mSection.getBlockSize() == 1) { //get next block.
+                int block = nextSet();
+                mBlock = new Block(getBlockId(block));
+                TypedArray questions1 = res.obtainTypedArray(block); //all questions of Set X.
+                mQueue = new LinkedList<>();
+                for (int i = 0; i < questions1.length(); i++) {
+                    mQueue.add(new ARExample(res.obtainTypedArray(questions1.getResourceId(i, 0)))); //each question. ar_x1 .. ar_x3.
+                }
+                mScore = 0;
+                binding.setItem(mQueue.remove());
+                mTimer.startTimer();
+                mFtWarn = true;
             } else {
-                ARExample question = binding.getItem();
-                boolean correct = false;
-                if (options.indexOfChild(oldView) == question.getAnsOption()) {
-                    mScore++; //correct answer.
-                    correct = true;
-                }
-                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
-                mBlock.addAnswer(mAnswer);
-                if (oldView != null)
-                    oldView.setBackground(null);
-                oldView = null;
-                if (!mQueue.isEmpty()) {
-                    mAnswer = new Answer();
-                    binding.setItem(mQueue.remove());
-                    QuestionTimer.startTimer(mContext);
-                    mFtWarn = true;
-                } else {
-                    mBlock.endBlock(mScore);
-                    mSection.addBlock(mBlock);
-                    if (mSection.getBlockSize() == 1) { //get next block.
-                        int block = nextSet();
-                        mBlock = new Block(getBlockId(block));
-                        TypedArray questions1 = res.obtainTypedArray(block); //all questions of Set X.
-                        mQueue = new LinkedList<>();
-                        for (int i = 0; i < questions1.length(); i++) {
-                            mQueue.add(new ARExample(res.obtainTypedArray(questions1.getResourceId(i, 0)))); //each question. ar_x1 .. ar_x3.
-                        }
-                        mScore = 0;
-                        binding.setItem(mQueue.remove());
-                        QuestionTimer.startTimer(mContext);
-                        mFtWarn = true;
-                    } else {
-                        finishSection();
-                    }
-                }
+                finishSection();
             }
         });
     }

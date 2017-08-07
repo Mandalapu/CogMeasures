@@ -54,7 +54,7 @@ public class FinishActivity extends BaseActivity {
             Intent intent = new Intent();
             intent.putExtra(JSON, result);
             setResult(RESULT_OK, intent);
-            QuestionTimer.stopTimer(); //to prevent new on-ticks after activity closes.
+            QuestionTimer.getTimer(3).stopTimer(); //to prevent new on-ticks after activity closes.
             finish();
         });
     }

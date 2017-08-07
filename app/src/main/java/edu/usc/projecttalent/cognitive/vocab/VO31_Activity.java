@@ -51,15 +51,11 @@ public class VO31_Activity extends BaseActivity {
         mScore = 0;
         mFtWarn = true;
 
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(QuestionTimer.WARNING);
-        filter.addAction(QuestionTimer.QUIT);
-        filter.addAction(QuestionTimer.RESUME);
-        registerReceiver(mReceiver, filter);
+        mContext = this;
+        mTimer = QuestionTimer.getTimer(2);
+        prepareFilter();
 
         mBlock = new Block(3);
-        mContext = this;
-
         Type question = new TypeToken<ArrayList<VocabItem>>() {
         }.getType();
         Queue<VocabItem> mQueue = new LinkedList<>();
@@ -68,7 +64,7 @@ public class VO31_Activity extends BaseActivity {
         ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
         mAnswer = new Answer();
         binding.setItem(mQueue.remove());
-        QuestionTimer.startTimer(mContext, 2);
+        mTimer.startTimer();
 
         RadioGroup options = (RadioGroup) findViewById(R.id.options);
 
@@ -77,39 +73,39 @@ public class VO31_Activity extends BaseActivity {
             if (options.getCheckedRadioButtonId() == -1 && mFtWarn) {
                 mFtWarn = false;
                 sendBroadcast(new Intent(QuestionTimer.NOANSWER));
-            } else {
-                int answer = binding.getItem().getAnswer();
-                RadioButton checked = (RadioButton) options.findViewById(options.getCheckedRadioButtonId());
-                int index = options.indexOfChild(checked);
-                options.clearCheck();
-                boolean correct = false;
-                if (answer == index) {
-                    mScore++;
-                    correct = true;
-                }
-                mAnswer.endAnswer(index + 1, correct); //to shift indices to 1-5.
-                mBlock.addAnswer(mAnswer);
-                if (!mQueue.isEmpty()) {
-                    mAnswer = new Answer();
-                    binding.setItem(mQueue.remove());
-                    QuestionTimer.startTimer(mContext, 2);
-                    mFtWarn = true;
-                } else {
-                    mBlock.endBlock(mScore);
-                    mSection.addBlock(mBlock);
+                return;
+            }
+            int answer = binding.getItem().getAnswer();
+            RadioButton checked = (RadioButton) options.findViewById(options.getCheckedRadioButtonId());
+            int index = options.indexOfChild(checked);
+            options.clearCheck();
+            boolean correct = false;
+            if (answer == index) {
+                mScore++;
+                correct = true;
+            }
+            mAnswer.endAnswer(index + 1, correct); //to shift indices to 1-5.
+            mBlock.addAnswer(mAnswer);
+            if (!mQueue.isEmpty()) {
+                mAnswer = new Answer();
+                binding.setItem(mQueue.remove());
+                mTimer.startTimer();
+                mFtWarn = true;
+                return;
+            }
+            mBlock.endBlock(mScore);
+            mSection.addBlock(mBlock);
 
-                    if (mSection.getBlockSize() == 1) {
-                        int block = nextSet();
-                        mBlock = new Block(getBlockId(block));
-                        mQueue.addAll(new Gson().fromJson(getString(block), question));
-                        mScore = 0;
-                        binding.setItem(mQueue.remove());
-                        QuestionTimer.startTimer(mContext, 2);
-                        mFtWarn = true;
-                    } else {
-                        finishSection();
-                    }
-                }
+            if (mSection.getBlockSize() == 1) {
+                int block = nextSet();
+                mBlock = new Block(getBlockId(block));
+                mQueue.addAll(new Gson().fromJson(getString(block), question));
+                mScore = 0;
+                binding.setItem(mQueue.remove());
+                mTimer.startTimer();
+                mFtWarn = true;
+            } else {
+                finishSection();
             }
         });
     }
