@@ -35,12 +35,12 @@ import edu.usc.projecttalent.cognitive.reaction_time.MainActivity_Reac;
 public class AR31_Activity extends BaseActivity {
 
     private int mScore;
-    private Section mSection;
-    private Block mBlock;
-    private boolean mFtWarn;
     private Queue<ARExample> mQueue;
-    private Answer mAnswer;
     private View oldView;
+    private static Section mSection;
+    private static Block mBlock;
+    private static boolean mFtWarn;
+    private static Answer mAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,19 +122,6 @@ public class AR31_Activity extends BaseActivity {
                 finishSection();
             }
         });
-    }
-
-    private int getBlockId(int block) {
-        switch (block) {
-            case R.array.ar_1:
-                return 1;
-            case R.array.ar_2:
-                return 2;
-            case R.array.ar_4:
-                return 4;
-            default:
-                return 5;
-        }
     }
 
     private int nextSet() {

@@ -38,9 +38,9 @@ public class VO31_Activity extends BaseActivity {
     private int mScore;
     private boolean mFtWarn; //first time warning for no selection.
 
-    private Section mSection;
-    private Answer mAnswer;
-    private Block mBlock;
+    private static Section mSection;
+    private static Answer mAnswer;
+    private static Block mBlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,19 +120,6 @@ public class VO31_Activity extends BaseActivity {
                 return R.string.vocab4;
             default:
                 return R.string.vocab5;
-        }
-    }
-
-    private int getBlockId(int set) {
-        switch (set) {
-            case R.string.vocab1:
-                return 1;
-            case R.string.vocab2:
-                return 2;
-            case R.string.vocab4:
-                return 4;
-            default:
-                return 5;
         }
     }
 

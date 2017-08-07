@@ -45,4 +45,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         filter.addAction(QuestionTimer.RESUME);
         registerReceiver(mReceiver, filter);
     }
+
+    protected int getBlockId(int set) {
+        switch (set) {
+            case R.string.ns_1:
+            case R.array.sp_1:
+            case R.array.ar_1:
+            case R.string.vocab1:
+                return 1;
+            case R.string.ns_2:
+            case R.array.sp_2:
+            case R.array.ar_2:
+            case R.string.vocab2:
+                return 2;
+            case R.string.ns_4:
+            case R.array.sp_4:
+            case R.array.ar_4:
+            case R.string.vocab4:
+                return 4;
+            default:
+                return 5;
+        }
+    }
 }

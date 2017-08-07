@@ -20,13 +20,11 @@ public class QuestionTimer extends CountDownTimer {
     private static QuestionTimer mTimer;
     private Context mContext;
     private AlertDialog mWarningDialog;
-    private AlertDialog mQuitDialog;
-    private AlertDialog mAnsDialog;
     private boolean shown;
 
-    public static final String WARNING = "cognitive.timewarning";
-    public static final String QUIT = "cognitive.quit";
-    public static final String RESUME = "cognitive.resume";
+    static final String WARNING = "cognitive.timewarning";
+    static final String QUIT = "cognitive.quit";
+    static final String RESUME = "cognitive.resume";
     public static final String NOANSWER = "cognitive.noanswer";
 
     private static long time = 3;
@@ -56,11 +54,16 @@ public class QuestionTimer extends CountDownTimer {
         try {
             mContext.unregisterReceiver(mReceiver);
         } catch (Exception e) {
-            Log.e("anindya", "Receiver is not registered.");
         }
         if (mWarningDialog.isShowing())
             mWarningDialog.dismiss();
-        mQuitDialog.show();
+
+        AlertDialog quitDialog = new AlertDialog.Builder(mContext)
+                .setMessage(R.string.quit_resume)
+                .setNegativeButton(R.string.quit, (dialog, which) -> mContext.sendBroadcast(new Intent(QUIT)))
+                .setPositiveButton(R.string.resume, (dialog, which) -> mContext.sendBroadcast(new Intent(RESUME)))
+                .setCancelable(false).create();
+        quitDialog.show();
     }
 
     public static QuestionTimer getTimer(long minutes) {
@@ -95,22 +98,19 @@ public class QuestionTimer extends CountDownTimer {
                 .setMessage(R.string.msg2)
                 .setNeutralButton(R.string.ok, null)
                 .create();
-        mQuitDialog = new AlertDialog.Builder(mContext)
-                .setMessage(R.string.quit_resume)
-                .setNegativeButton(R.string.quit, (dialog, which) -> mContext.sendBroadcast(new Intent(QUIT)))
-                .setPositiveButton(R.string.resume, (dialog, which) -> mContext.sendBroadcast(new Intent(RESUME)))
-                .setCancelable(false).create();
-        mAnsDialog = new AlertDialog.Builder(mContext)
-                .setMessage(R.string.msg3)
-                .setNeutralButton(R.string.ok, null)
-                .create();
+
+
     }
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(NOANSWER)) {
-                mAnsDialog.show();
+                AlertDialog ansDialog = new AlertDialog.Builder(mContext)
+                        .setMessage(R.string.msg3)
+                        .setNeutralButton(R.string.ok, null)
+                        .create();
+                ansDialog.show();
             }
         }
     };

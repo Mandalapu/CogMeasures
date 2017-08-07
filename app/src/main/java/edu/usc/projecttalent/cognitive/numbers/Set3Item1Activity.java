@@ -39,18 +39,18 @@ import edu.usc.projecttalent.cognitive.thurstone.MainActivity_Th;
 
 public class Set3Item1Activity extends BaseActivity {
     private int mScore;
-    private Section mSection;
-    private Block mBlock;
-    private boolean mFtWarn;
-
     private ArrayList<NSQuestion> mList;
     private Queue<NSQuestion> mQueue;
     private Answer mAnswer;
 
-    private EditText answer, answer2;
-    private ActivitySet3Item1Binding binding;
-    private LinearLayout series;
-    private Type question;
+    private static EditText answer, answer2;
+    private static ActivitySet3Item1Binding binding;
+    private static LinearLayout series;
+    private static Type question;
+    private static Section mSection;
+    private static Block mBlock;
+    private static boolean mFtWarn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,19 +218,6 @@ public class Set3Item1Activity extends BaseActivity {
             if (length > 0)
                 hasFocus.getText().delete(length - 1, length);
         });
-    }
-
-    private int getBlockId(int set) {
-        switch (set) {
-            case R.string.ns_1:
-                return 1;
-            case R.string.ns_2:
-                return 2;
-            case R.string.ns_4:
-                return 4;
-            default:
-                return 5;
-        }
     }
 
     private int nextSet() {

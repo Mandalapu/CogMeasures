@@ -35,12 +35,12 @@ import edu.usc.projecttalent.cognitive.reasoning.ARExample;
 public class SP31_Activity extends BaseActivity {
 
     private int mScore;
-    private Section mSection;
-    private Block mBlock;
     private boolean mFtWarn;
     private Queue<ARExample> mQueue;
-    private Answer mAnswer;
     private View oldView;
+    private static Section mSection;
+    private static Block mBlock;
+    private static Answer mAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,19 +121,6 @@ public class SP31_Activity extends BaseActivity {
                 finishSection();
             }
         });
-    }
-
-    private int getBlockId(int block) {
-        switch (block) {
-            case R.array.sp_1:
-                return 1;
-            case R.array.sp_2:
-                return 2;
-            case R.array.sp_4:
-                return 4;
-            default:
-                return 5;
-        }
     }
 
     private int nextSet() {
