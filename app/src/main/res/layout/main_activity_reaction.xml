@@ -13,45 +13,6 @@
         android:textColor="#000"
         android:textSize="25sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/reaction_instr2"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:text="@string/reaction_instr3"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:text="@string/reaction_instr4"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textViewInstruc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:text="@string/reaction_continue"
-        android:textColor="#828282"
-        android:textSize="25sp"
-        android:textStyle="italic" />
-
     <Button
         android:id="@+id/buttonSpace"
         android:layout_width="884dp"

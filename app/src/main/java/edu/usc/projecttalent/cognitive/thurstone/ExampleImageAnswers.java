@@ -89,26 +89,28 @@ public class ExampleImageAnswers extends BaseActivity {
                     binding.setItem(mQueue.remove());
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    View view;
-                    if (score == 0) {
-                        view = getLayoutInflater().inflate(R.layout.end_test, null);
-                        Button exitBtn = (Button) view.findViewById(R.id.bntNextExample);
-                        exitBtn.setOnClickListener(v1 -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1));
-                    } else {
-                        view = getLayoutInflater().inflate(R.layout.begin_real_test, null);
-                        Button beginBtn = (Button) view.findViewById(R.id.beginBtn);
-                        beginBtn.setOnClickListener(v2 -> startActivityForResult(new Intent(this, TestImageChange.class), 1));
-                    }
-
-                    builder.setView(view);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    dialog.setCanceledOnTouchOutside(false);
 
                     mBlock.endBlock(score);
                     mSection.addBlock(mBlock);
                     mSection.endSection(); //end this section.
                     Survey.getSurvey().addSection(mSection);
+
+                    if (score == 0) {
+                        AlertDialog dialog = builder.setMessage(R.string.pressnext)
+                                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1))
+                                .setCancelable(false)
+                                .create();
+                        dialog.show();
+                    } else {
+                        View view = getLayoutInflater().inflate(R.layout.begin_real_test, null);
+                        (view.findViewById(R.id.beginBtn)).setOnClickListener(v2 ->
+                                startActivityForResult(new Intent(this, TestImageChange.class), 1));
+                        builder.setView(view);
+                        AlertDialog dialog = builder.setView(view)
+                                .setCancelable(false)
+                                .create();
+                        dialog.show();
+                    }
                 }
             }
         });

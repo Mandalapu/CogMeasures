@@ -1,7 +1,7 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +21,6 @@ import java.util.Queue;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
-import edu.usc.projecttalent.cognitive.databinding.ActivityAr31Binding;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySet3Item1Binding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
@@ -184,7 +183,8 @@ public class Set3Item1Activity extends BaseActivity {
         int ans = question.getOptions()[question.getAnsPosition()];
         boolean correct = false;
         if (userAns == ans) {
-            mScore++; //correct answer.
+            mScore++;
+            correct = true;
         } else if (question.getAnsOptions() != null) {
             int[] answers = question.getAnsOptions();
             for (int answer1 : answers) {
@@ -237,6 +237,11 @@ public class Set3Item1Activity extends BaseActivity {
     protected void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add number section to survey.
-        startActivityForResult(new Intent(mContext, MainActivity_Th.class), 1);
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setMessage(R.string.pressnext)
+                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, MainActivity_Th.class), 1))
+                .setCancelable(false)
+                .create();
+        dialog.show();
     }
 }

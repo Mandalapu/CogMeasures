@@ -4,11 +4,10 @@
     <array name="thurstone_ex">
         <item>@drawable/zero</item>
         <item>@drawable/cop</item>
-        <item>@drawable/dog</item>
-        <item>@drawable/hat</item>
-        <item>@drawable/table</item>
-        <item>@drawable/truck</item>
         <item>@drawable/window</item>
+        <item>@drawable/table</item>
+        <item>@drawable/hat</item>
+        <item>@drawable/dog</item>
     </array>
 
     <array name="th_cop">
@@ -56,11 +55,10 @@
 
     <integer-array name="th_practice">
         <item>@array/th_cop</item>
-        <item>@array/th_dog</item>
-        <item>@array/th_hat</item>
-        <item>@array/th_table</item>
-        <item>@array/th_truck</item>
         <item>@array/th_window</item>
+        <item>@array/th_table</item>
+        <item>@array/th_hat</item>
+        <item>@array/th_dog</item>
     </integer-array>
 
     <array name="th_jacket">

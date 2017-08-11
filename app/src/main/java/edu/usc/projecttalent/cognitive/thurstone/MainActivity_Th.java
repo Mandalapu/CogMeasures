@@ -12,6 +12,6 @@ public class MainActivity_Th extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_thurstone);
-        (findViewById(R.id.btnNext)).setOnClickListener(v -> startActivityForResult(new Intent(this, SecondActivity.class), 1));
+        (findViewById(R.id.next)).setOnClickListener(v -> startActivityForResult(new Intent(this, SecondActivity.class), 1));
     }
 }

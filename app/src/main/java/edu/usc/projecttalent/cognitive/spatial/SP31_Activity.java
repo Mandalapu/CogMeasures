@@ -1,7 +1,7 @@
 package edu.usc.projecttalent.cognitive.spatial;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
@@ -140,7 +140,11 @@ public class SP31_Activity extends BaseActivity {
     protected void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add V2D section to survey.
-        Intent intent = new Intent(mContext, FinishActivity.class);
-        startActivityForResult(intent, 1);
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setMessage(R.string.pressnext)
+                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, FinishActivity.class), 1))
+                .setCancelable(false)
+                .create();
+        dialog.show();
     }
 }

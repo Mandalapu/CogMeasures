@@ -1,7 +1,7 @@
 package edu.usc.projecttalent.cognitive.reaction_time;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import java.util.Random;
 
 import edu.usc.projecttalent.cognitive.BaseActivity;
-import edu.usc.projecttalent.cognitive.QuestionTimer;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
 import edu.usc.projecttalent.cognitive.model.Survey;
+import edu.usc.projecttalent.cognitive.spatial.SPpractice_Activity;
 
 /**
  * Reaction time class.
@@ -79,6 +79,11 @@ public class ReactionTime extends BaseActivity {
         mSection.addBlock(mBlock);
         mSection.endSection();
         Survey.getSurvey().addSection(mSection);
-        startActivityForResult(new Intent(this, Exit.class), 1);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setMessage(R.string.pressnext)
+                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, SPpractice_Activity.class), 1))
+                .setCancelable(false)
+                .create();
+        dialog.show();
     }
 }

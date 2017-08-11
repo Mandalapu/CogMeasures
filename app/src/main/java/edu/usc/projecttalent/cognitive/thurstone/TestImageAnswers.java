@@ -93,25 +93,12 @@ public class TestImageAnswers extends BaseActivity {
                     section.endSection(); //end this section.
                     Survey.getSurvey().addSection(section);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    View view;
-                    Button button;
-
-                    if (score == 0) {
-                        view = getLayoutInflater().inflate(R.layout.end_test, null);
-                        button = (Button) view.findViewById(R.id.bntNextExample);
-
-                    } else {
-                        view = getLayoutInflater().inflate(R.layout.exit_test, null);
-                        button = (Button) view.findViewById(R.id.btnExit);
-                    }
-
-                    button.setOnClickListener(v1111 -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1));
-
-                    builder.setView(view);
-                    AlertDialog dialog = builder.create();
+                    AlertDialog dialog = new AlertDialog.Builder(this)
+                            .setMessage(R.string.pressnext)
+                            .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, SecAR_Activity.class), 1))
+                            .setCancelable(false)
+                            .create();
                     dialog.show();
-                    dialog.setCanceledOnTouchOutside(false);
                 }
             }
         });

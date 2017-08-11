@@ -1,7 +1,6 @@
 package edu.usc.projecttalent.cognitive.reasoning;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -21,8 +20,7 @@ public class SecAR_Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         final Queue<ARExample> exampleList = new LinkedList<>();
-        Resources res = getResources();
-        TypedArray arr = res.obtainTypedArray(R.array.ar_ex_1);
+        TypedArray arr = getResources().obtainTypedArray(R.array.ar_ex_1);
         exampleList.add(new ARExample(getString(R.string.ar_text), arr, getString(R.string.ar_text1), false));
         exampleList.add(new ARExample("", arr, getString(R.string.ar_text3), true));
 
@@ -36,7 +34,6 @@ public class SecAR_Activity extends BaseActivity {
                 Intent intent = new Intent(SecAR_Activity.this, ARInstructions.class);
                 startActivityForResult(intent, 1);
             }
-
         });
     }
 }

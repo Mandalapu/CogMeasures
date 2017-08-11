@@ -1,7 +1,7 @@
 package edu.usc.projecttalent.cognitive.vocab;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.widget.Button;
@@ -127,6 +127,11 @@ public class VO31_Activity extends BaseActivity {
     protected void finishSection() {
         mSection.endSection();
         Survey.getSurvey().addSection(mSection);
-        startActivityForResult(new Intent(this, SecNS_Activity.class), 1);
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setMessage(R.string.pressnext)
+                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, SecNS_Activity.class), 1))
+                .setCancelable(false)
+                .create();
+        dialog.show();
     }
 }

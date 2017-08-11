@@ -1,7 +1,6 @@
 package edu.usc.projecttalent.cognitive.reasoning;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -26,8 +25,7 @@ public class ARpractice2_Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         Queue<ARExample> exampleList = new LinkedList<>();
-        Resources res = getResources();
-        TypedArray arr = res.obtainTypedArray(R.array.ar_ex_3);
+        TypedArray arr = getResources().obtainTypedArray(R.array.ar_ex_3);
         exampleList.add(new ARExample(getString(R.string.practiceq2), arr, "", false));
         exampleList.add(new ARExample(getString(R.string.ar_instr_header), arr, getString(R.string.pr_explain), true));
 

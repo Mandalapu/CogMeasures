@@ -1,7 +1,7 @@
 package edu.usc.projecttalent.cognitive.reasoning;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
@@ -141,6 +141,11 @@ public class AR31_Activity extends BaseActivity {
     protected void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add AR section to survey.
-        startActivityForResult(new Intent(mContext, MainActivity_Reac.class), 1);
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setMessage(R.string.pressnext)
+                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, MainActivity_Reac.class), 1))
+                .setCancelable(false)
+                .create();
+        dialog.show();
     }
 }
