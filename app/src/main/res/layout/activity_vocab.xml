@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.usc.projecttalent.cognitive.vocab.VO31_Activity">
+    tools:context="edu.usc.projecttalent.cognitive.vocab.Question">
 
     <data>
 
         <variable
             name="item"
-            type="edu.usc.projecttalent.cognitive.vocab.VocabItem" />
+            type="edu.usc.projecttalent.cognitive.vocab.Item" />
     </data>
 
     <LinearLayout

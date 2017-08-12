@@ -443,9 +443,9 @@
     <string name="thurs_example">Thurstone Example</string>
     <string name="thanks">Thank you for completing the test.</string>
     <string name="thurstone_title">Thurstone</string>
-    <string name="real_test_instr1">Now that you have practiced, it is time to begin the task.</string>
-    <string name="real_test_instr2">The procedure is the same as before. You will see each picture for 5 seconds.</string>
-    <string name="real_test_instr3">Use the time to study each picture carefully.\n\nWhen you are ready, press \'Begin\'.</string>
-    <string name="real_test_instr4">The procedure is the same as before, but there are more pictures.</string>
+    <string name="real_test_instr">Now that you have practiced, it is time to begin the task.\n
+        The procedure is the same as before. You will see each picture for 5 seconds.\n
+        Use the time to study each picture carefully.\n\n
+        When you are ready, press \'Begin\'.</string>
     <!-- Thurstone -->
 </resources>

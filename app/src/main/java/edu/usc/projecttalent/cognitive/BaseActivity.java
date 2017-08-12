@@ -1,6 +1,7 @@
 package edu.usc.projecttalent.cognitive;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,16 +11,22 @@ import android.support.v7.app.AppCompatActivity;
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected static Context mContext;
-    protected QuestionTimer mTimer;
+    protected Timer mTimer;
 
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals(QuestionTimer.QUIT)) {
+            if (action.equals(Timer.QUIT)) {
                 finishSection(); //go to end of section.
-            } else if (action.equals(QuestionTimer.RESUME)) { //reset timer for the same question.
+            } else if (action.equals(Timer.RESUME)) { //reset timer for the same question.
                 mTimer.startTimer();
+            } else if(action.equals(Timer.NOANSWER)) {
+                AlertDialog ansDialog = new AlertDialog.Builder(mContext)
+                        .setMessage(R.string.msg3)
+                        .setNeutralButton(R.string.ok, null)
+                        .create();
+                ansDialog.show();
             }
         }
     };
@@ -34,18 +41,24 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         setResult(Activity.RESULT_OK, data);
+        super.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         try {
             unregisterReceiver(mReceiver);
         } catch (Exception e) {
         }
-        super.finish();
     }
 
     protected void prepareFilter() {
         IntentFilter filter = new IntentFilter();
-        filter.addAction(QuestionTimer.WARNING);
-        filter.addAction(QuestionTimer.QUIT);
-        filter.addAction(QuestionTimer.RESUME);
+        filter.addAction(Timer.WARNING);
+        filter.addAction(Timer.QUIT);
+        filter.addAction(Timer.RESUME);
+        filter.addAction(Timer.NOANSWER);
         registerReceiver(mReceiver, filter);
     }
 

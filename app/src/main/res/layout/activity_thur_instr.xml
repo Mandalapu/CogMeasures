@@ -3,28 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:layout_margin="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    tools:context="edu.usc.projecttalent.cognitive.MainActivity">
+    tools:context="edu.usc.projecttalent.cognitive.thurstone.Instruction">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/userIdinstr"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/uid"
-        style="@style/numAns"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-
-    <TextView
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/clicknext"
-        android:textSize="30sp" />
+        android:layout_marginTop="50dp"
+        android:text="@string/thurs_instr"
+        android:textColor="#383232"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/introImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/truck" />
 
     <Button
         android:id="@+id/next"
