@@ -571,12 +571,12 @@
         <item>2</item>
     </array>
     <array name="sp_12">
-        <item>@drawable/v2d_4_main</item>
-        <item>@drawable/v2d_4_a</item>
-        <item>@drawable/v2d_4_b</item>
-        <item>@drawable/v2d_4_c</item>
-        <item>@drawable/v2d_4_d</item>
-        <item>@drawable/v2d_4_e</item>
+        <item>@drawable/v2d_1_main</item>
+        <item>@drawable/v2d_1_a</item>
+        <item>@drawable/v2d_1_b</item>
+        <item>@drawable/v2d_1_c</item>
+        <item>@drawable/v2d_1_d</item>
+        <item>@drawable/v2d_1_e</item>
         <item>5</item>
     </array>
     <array name="sp_13">
