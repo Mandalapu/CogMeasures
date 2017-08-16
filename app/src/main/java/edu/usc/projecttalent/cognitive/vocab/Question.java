@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.vocab;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -16,14 +15,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import edu.usc.projecttalent.cognitive.BaseActivity;
-import edu.usc.projecttalent.cognitive.Timer;
+import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityVocabBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.numbers.Instruction;
 
 /**
@@ -34,19 +32,15 @@ import edu.usc.projecttalent.cognitive.numbers.Instruction;
  * @version 2.0
  */
 
-public class Question extends BaseActivity {
-    private int mScore;
+public class Question extends QuestionActivity {
     private boolean mFtWarn; //first time warning for no selection.
-
-    private static Section mSection;
-    private static Answer mAnswer;
-    private static Block mBlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocab);
 
+        mSkipClass = Instruction.class;
         mSection = new Section(getString(R.string.vocabulary));
         mScore = 0;
         mFtWarn = true;
@@ -121,17 +115,5 @@ public class Question extends BaseActivity {
             default:
                 return R.string.vocab5;
         }
-    }
-
-    @Override
-    protected void finishSection() {
-        mSection.endSection();
-        Survey.getSurvey().addSection(mSection);
-        AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setMessage(R.string.pressnext)
-                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, Instruction.class), 1))
-                .setCancelable(false)
-                .create();
-        dialog.show();
     }
 }

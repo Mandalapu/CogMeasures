@@ -16,7 +16,7 @@ import android.widget.TableRow;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import edu.usc.projecttalent.cognitive.BaseActivity;
+import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityThurAnswerBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
@@ -32,18 +32,16 @@ import edu.usc.projecttalent.cognitive.reasoning.Instruction;
  * @version 2.0
  */
 
-public class ExAnswer extends BaseActivity {
+public class ExAnswer extends QuestionActivity {
 
     private View oldView;
-    private int score;
-    private Answer mAnswer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Section mSection = new Section(getString(R.string.thurs_example));
-        Block mBlock = new Block(1);
+        mSection = new Section(getString(R.string.thurs_example));
+        mBlock = new Block(1);
         Drawable highlight = ContextCompat.getDrawable(this, R.drawable.highlight);
 
         Resources res = getResources();
@@ -76,7 +74,7 @@ public class ExAnswer extends BaseActivity {
                 Item question = binding.getItem();
                 boolean correct = false;
                 if (options.indexOfChild(oldView) == question.getAnsOption()) {
-                    score++; //correct answer.
+                    mScore++; //correct answer.
                     correct = true;
                 }
                 mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
@@ -90,12 +88,12 @@ public class ExAnswer extends BaseActivity {
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                    mBlock.endBlock(score);
+                    mBlock.endBlock(mScore);
                     mSection.addBlock(mBlock);
                     mSection.endSection(); //end this section.
                     Survey.getSurvey().addSection(mSection);
 
-                    if (score == 0) {
+                    if (mScore == 0) {
                         AlertDialog dialog = builder.setMessage(R.string.pressnext)
                                 .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, Instruction.class), 1))
                                 .setCancelable(false)

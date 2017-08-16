@@ -1,12 +1,8 @@
 package edu.usc.projecttalent.cognitive;
 
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.CountDownTimer;
-import android.util.Log;
 
 import static edu.usc.projecttalent.cognitive.BaseActivity.mContext;
 

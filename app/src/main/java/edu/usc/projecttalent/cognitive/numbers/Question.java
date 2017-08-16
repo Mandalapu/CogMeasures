@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -18,14 +17,13 @@ import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Queue;
 
-import edu.usc.projecttalent.cognitive.BaseActivity;
+import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityNsQuestionBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.thurstone.Instruction;
 
 /**
@@ -36,26 +34,22 @@ import edu.usc.projecttalent.cognitive.thurstone.Instruction;
  * @version 2.0
  */
 
-public class Question extends BaseActivity {
-    private int mScore;
+public class Question extends QuestionActivity {
     private ArrayList<Item> mList;
     private Queue<Item> mQueue;
-    private Answer mAnswer;
+    private boolean mFtWarn;
 
     private static EditText answer, answer2;
     private static ActivityNsQuestionBinding binding;
     private static LinearLayout series;
     private static Type question;
-    private static Section mSection;
-    private static Block mBlock;
-    private static boolean mFtWarn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mContext = this;
+        mSkipClass = Instruction.class;
         mSection = new Section(getString(R.string.ns_section_title));  //make new section.
         mScore = 0; //reset score at the beginning of block.
         mTimer = Timer.getTimer(3);
@@ -231,17 +225,5 @@ public class Question extends BaseActivity {
             default:
                 return R.string.ns_5;
         }
-    }
-
-    @Override
-    protected void finishSection() {
-        mSection.endSection(); //end this section.
-        Survey.getSurvey().addSection(mSection); //add number section to survey.
-        AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setMessage(R.string.pressnext)
-                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, Instruction.class), 1))
-                .setCancelable(false)
-                .create();
-        dialog.show();
     }
 }

@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.spatial;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -14,15 +13,14 @@ import android.widget.LinearLayout;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.EndTest;
+import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpQuestionBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.Item;
 
 /**
@@ -32,15 +30,11 @@ import edu.usc.projecttalent.cognitive.reasoning.Item;
  * @author Anindya Dutta
  */
 
-public class Question extends BaseActivity {
+public class Question extends QuestionActivity {
 
-    private int mScore;
     private boolean mFtWarn;
     private Queue<Item> mQueue;
     private View oldView;
-    private static Section mSection;
-    private static Block mBlock;
-    private static Answer mAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +42,7 @@ public class Question extends BaseActivity {
         mContext = this;
         mSection = new Section(getString(R.string.sp_section_title));  //make new section.
         mScore = 0; //reset score at the beginning of block.
+        mSkipClass = EndTest.class;
 
         mTimer = Timer.getTimer(3);
         prepareFilter();
@@ -134,17 +129,5 @@ public class Question extends BaseActivity {
             default:
                 return R.array.sp_5;
         }
-    }
-
-    @Override
-    protected void finishSection() {
-        mSection.endSection(); //end this section.
-        Survey.getSurvey().addSection(mSection); //add V2D section to survey.
-        AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setMessage(R.string.pressnext)
-                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, EndTest.class), 1))
-                .setCancelable(false)
-                .create();
-        dialog.show();
     }
 }

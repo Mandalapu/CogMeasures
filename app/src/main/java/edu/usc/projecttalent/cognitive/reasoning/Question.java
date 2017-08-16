@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.reasoning;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -14,14 +13,13 @@ import android.widget.LinearLayout;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import edu.usc.projecttalent.cognitive.BaseActivity;
+import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityArQuestionBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reaction_time.Instruction;
 
 /**
@@ -32,21 +30,18 @@ import edu.usc.projecttalent.cognitive.reaction_time.Instruction;
  * @version 2.0
  */
 
-public class Question extends BaseActivity {
+public class Question extends QuestionActivity {
 
-    private int mScore;
     private Queue<Item> mQueue;
     private View oldView;
-    private static Section mSection;
-    private static Block mBlock;
-    private static boolean mFtWarn;
-    private static Answer mAnswer;
+    private boolean mFtWarn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mContext = this;
+        mSkipClass = Instruction.class;
         mSection = new Section(getString(R.string.ar_section_title));  //make new section.
         mScore = 0; //reset score at the beginning of block.
         mTimer = Timer.getTimer(3);
@@ -135,17 +130,5 @@ public class Question extends BaseActivity {
             default:
                 return R.array.ar_5;
         }
-    }
-
-    @Override
-    protected void finishSection() {
-        mSection.endSection(); //end this section.
-        Survey.getSurvey().addSection(mSection); //add AR section to survey.
-        AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setMessage(R.string.pressnext)
-                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, Instruction.class), 1))
-                .setCancelable(false)
-                .create();
-        dialog.show();
     }
 }

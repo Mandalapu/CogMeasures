@@ -1,7 +1,5 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
@@ -16,13 +14,12 @@ import android.widget.TableRow;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import edu.usc.projecttalent.cognitive.BaseActivity;
+import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityThurAnswerBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.Instruction;
 
 /**
@@ -32,17 +29,16 @@ import edu.usc.projecttalent.cognitive.reasoning.Instruction;
  * @version 2.0
  */
 
-public class TestAnswer extends BaseActivity {
+public class TestAnswer extends QuestionActivity {
 
-    private Answer mAnswer;
     private View oldView;
-    private int score;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Section section = new Section(getString(R.string.thurstone_title));
+        mSection = new Section(getString(R.string.thurstone_title));
+        mSkipClass = Instruction.class;
         Drawable highlight = ContextCompat.getDrawable(this, R.drawable.highlight);
 
         Resources res = getResources();
@@ -68,7 +64,7 @@ public class TestAnswer extends BaseActivity {
             });
         }
 
-        Block block = new Block(1);
+        mBlock = new Block(1);
         mAnswer = new Answer();
 
         btn.setOnClickListener(v -> {
@@ -76,11 +72,11 @@ public class TestAnswer extends BaseActivity {
                 Item question = binding.getItem();
                 boolean correct1 = false;
                 if (options.indexOfChild(oldView) == question.getAnsOption()) {
-                    score++; //correct answer.
+                    mScore++; //correct answer.
                     correct1 = true;
                 }
                 mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct1); //to shift indices to 1-5.
-                block.addAnswer(mAnswer);
+                mBlock.addAnswer(mAnswer);
                 if (oldView != null)
                     oldView.setBackground(null);
                 oldView = null;
@@ -88,17 +84,9 @@ public class TestAnswer extends BaseActivity {
                     mAnswer = new Answer();
                     binding.setItem(mQueue.remove());
                 } else {
-                    block.endBlock(score);
-                    section.addBlock(block);
-                    section.endSection(); //end this section.
-                    Survey.getSurvey().addSection(section);
-
-                    AlertDialog dialog = new AlertDialog.Builder(this)
-                            .setMessage(R.string.pressnext)
-                            .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, Instruction.class), 1))
-                            .setCancelable(false)
-                            .create();
-                    dialog.show();
+                    mBlock.endBlock(mScore);
+                    mSection.addBlock(mBlock);
+                    finishSection();
                 }
             }
         });
