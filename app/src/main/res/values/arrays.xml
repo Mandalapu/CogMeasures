@@ -3,53 +3,53 @@
 
     <array name="thurstone_ex">
         <item>@drawable/zero</item>
-        <item>@drawable/cop</item>
-        <item>@drawable/window</item>
-        <item>@drawable/table</item>
-        <item>@drawable/hat</item>
-        <item>@drawable/dog</item>
+        <item>@drawable/tpm_s01b3</item>
+        <item>@drawable/tpm_s02b2</item>
+        <item>@drawable/tpm_s03b3</item>
+        <item>@drawable/tpm_s04b1</item>
+        <item>@drawable/tpm_s05b1</item>
     </array>
 
     <array name="th_cop">
-        <item>@drawable/cop_one</item>
-        <item>@drawable/cop_two</item>
-        <item>@drawable/cop_three</item>
-        <item>@drawable/cop_four</item>
+        <item>@drawable/tpm_s01b1</item>
+        <item>@drawable/tpm_s01b2</item>
+        <item>@drawable/tpm_s01b3</item>
+        <item>@drawable/tpm_s01b4</item>
         <item>2</item>
     </array>
     <array name="th_dog">
-        <item>@drawable/dog_one</item>
-        <item>@drawable/dog_two</item>
-        <item>@drawable/dog_three</item>
-        <item>@drawable/dog_four</item>
+        <item>@drawable/tpm_s05b1</item>
+        <item>@drawable/tpm_s05b2</item>
+        <item>@drawable/tpm_s05b3</item>
+        <item>@drawable/tpm_s05b4</item>
         <item>0</item>
     </array>
     <array name="th_hat">
-        <item>@drawable/hat_one</item>
-        <item>@drawable/hat_two</item>
-        <item>@drawable/hat_three</item>
-        <item>@drawable/hat_four</item>
+        <item>@drawable/tpm_s04b1</item>
+        <item>@drawable/tpm_s04b2</item>
+        <item>@drawable/tpm_s04b3</item>
+        <item>@drawable/tpm_s04b4</item>
         <item>0</item>
     </array>
     <array name="th_table">
-        <item>@drawable/table_one</item>
-        <item>@drawable/table_two</item>
-        <item>@drawable/table_three</item>
-        <item>@drawable/table_four</item>
+        <item>@drawable/tpm_s03b1</item>
+        <item>@drawable/tpm_s03b2</item>
+        <item>@drawable/tpm_s03b3</item>
+        <item>@drawable/tpm_s03b4</item>
         <item>2</item>
     </array>
     <array name="th_truck">
-        <item>@drawable/truck_one</item>
-        <item>@drawable/truck_two</item>
-        <item>@drawable/truck_three</item>
-        <item>@drawable/truck_four</item>
+        <item>@drawable/tpm_ssb1</item>
+        <item>@drawable/tpm_ssb2</item>
+        <item>@drawable/tpm_ssb3</item>
+        <item>@drawable/tpm_ssb4</item>
         <item>2</item>
     </array>
     <array name="th_window">
-        <item>@drawable/window_one</item>
-        <item>@drawable/window_two</item>
-        <item>@drawable/window_three</item>
-        <item>@drawable/window_four</item>
+        <item>@drawable/tpm_s02b1</item>
+        <item>@drawable/tpm_s02b2</item>
+        <item>@drawable/tpm_s02b3</item>
+        <item>@drawable/tpm_s02b4</item>
         <item>1</item>
     </array>
 
@@ -61,200 +61,231 @@
         <item>@array/th_dog</item>
     </integer-array>
 
+    <array name="th_questions">
+        <item>@drawable/tpm_01b1</item>
+        <item>@drawable/tpm_02b4</item>
+        <item>@drawable/tpm_03b1</item>
+        <item>@drawable/tpm_04b4</item>
+        <item>@drawable/tpm_05b4</item>
+        <item>@drawable/tpm_06b2</item>
+        <item>@drawable/tpm_07b4</item>
+        <item>@drawable/tpm_08b1</item>
+        <item>@drawable/tpm_09b1</item>
+        <item>@drawable/tpm_10b2</item>
+        <item>@drawable/tpm_11b1</item>
+        <item>@drawable/tpm_12b1</item>
+        <item>@drawable/tpm_13b3</item>
+        <item>@drawable/tpm_14b4</item>
+        <item>@drawable/tpm_15b2</item>
+        <item>@drawable/tpm_16b3</item>
+        <item>@drawable/tpm_17b4</item>
+        <item>@drawable/tpm_18b3</item>
+        <item>@drawable/tpm_19b1</item>
+        <item>@drawable/tpm_20b3</item>
+        <item>@drawable/tpm_21b3</item>
+        <item>@drawable/tpm_22b2</item>
+        <item>@drawable/tpm_23b1</item>
+        <item>@drawable/tpm_24b3</item>
+        <item>@drawable/tpm_25b4</item>
+        <item>@drawable/tpm_26b3</item>
+        <item>@drawable/tpm_27b2</item>
+        <item>@drawable/tpm_28b4</item>
+    </array>
+
     <array name="th_jacket">
-        <item>@drawable/jacket_one</item>
-        <item>@drawable/jacket_two</item>
-        <item>@drawable/jacket_three</item>
-        <item>@drawable/jacket_four</item>
+        <item>@drawable/tpm_01b1</item>
+        <item>@drawable/tpm_01b2</item>
+        <item>@drawable/tpm_01b3</item>
+        <item>@drawable/tpm_01b4</item>
         <item>0</item>
     </array>
     <array name="th_girl">
-        <item>@drawable/girl_one</item>
-        <item>@drawable/girl_two</item>
-        <item>@drawable/girl_three</item>
-        <item>@drawable/girl_four</item>
+        <item>@drawable/tpm_02b1</item>
+        <item>@drawable/tpm_02b2</item>
+        <item>@drawable/tpm_02b3</item>
+        <item>@drawable/tpm_02b4</item>
         <item>3</item>
     </array>
     <array name="th_horse">
-        <item>@drawable/horse_one</item>
-        <item>@drawable/horse_two</item>
-        <item>@drawable/horse_three</item>
-        <item>@drawable/horse_four</item>
+        <item>@drawable/tpm_03b1</item>
+        <item>@drawable/tpm_03b2</item>
+        <item>@drawable/tpm_03b3</item>
+        <item>@drawable/tpm_03b4</item>
         <item>0</item>
     </array>
     <array name="th_pumpkin">
-        <item>@drawable/pumpkin_one</item>
-        <item>@drawable/pumpkin_two</item>
-        <item>@drawable/pumpkin_three</item>
-        <item>@drawable/pumpkin_four</item>
+        <item>@drawable/tpm_04b1</item>
+        <item>@drawable/tpm_04b2</item>
+        <item>@drawable/tpm_04b3</item>
+        <item>@drawable/tpm_04b4</item>
         <item>3</item>
     </array>
     <array name="th_umbrella">
-        <item>@drawable/umbrella_one</item>
-        <item>@drawable/umbrella_two</item>
-        <item>@drawable/umbrella_three</item>
-        <item>@drawable/umbrella_four</item>
+        <item>@drawable/tpm_05b1</item>
+        <item>@drawable/tpm_05b2</item>
+        <item>@drawable/tpm_05b3</item>
+        <item>@drawable/tpm_05b4</item>
         <item>3</item>
     </array>
     <array name="th_chicken">
-        <item>@drawable/chicken_one</item>
-        <item>@drawable/chicken_two</item>
-        <item>@drawable/chicken_three</item>
-        <item>@drawable/chicken_four</item>
+        <item>@drawable/tpm_06b1</item>
+        <item>@drawable/tpm_06b2</item>
+        <item>@drawable/tpm_06b3</item>
+        <item>@drawable/tpm_06b4</item>
         <item>1</item>
     </array>
     <array name="th_duck">
-        <item>@drawable/duck_one</item>
-        <item>@drawable/duck_two</item>
-        <item>@drawable/duck_three</item>
-        <item>@drawable/duck_four</item>
+        <item>@drawable/tpm_07b1</item>
+        <item>@drawable/tpm_07b2</item>
+        <item>@drawable/tpm_07b3</item>
+        <item>@drawable/tpm_07b4</item>
         <item>3</item>
     </array>
     <array name="th_elephant">
-        <item>@drawable/elephant_one</item>
-        <item>@drawable/elephant_two</item>
-        <item>@drawable/elephant_three</item>
-        <item>@drawable/elephant_four</item>
+        <item>@drawable/tpm_08b1</item>
+        <item>@drawable/tpm_08b2</item>
+        <item>@drawable/tpm_08b3</item>
+        <item>@drawable/tpm_08b4</item>
         <item>0</item>
     </array>
     <array name="th_girl_door">
-        <item>@drawable/girl_door_one</item>
-        <item>@drawable/girl_door_two</item>
-        <item>@drawable/girl_door_three</item>
-        <item>@drawable/girl_door_four</item>
+        <item>@drawable/tpm_09b1</item>
+        <item>@drawable/tpm_09b2</item>
+        <item>@drawable/tpm_09b3</item>
+        <item>@drawable/tpm_09b4</item>
         <item>0</item>
     </array>
     <array name="th_cake">
-        <item>@drawable/cake_one</item>
-        <item>@drawable/cake_two</item>
-        <item>@drawable/cake_three</item>
-        <item>@drawable/cake_four</item>
+        <item>@drawable/tpm_10b1</item>
+        <item>@drawable/tpm_10b2</item>
+        <item>@drawable/tpm_10b3</item>
+        <item>@drawable/tpm_10b4</item>
         <item>1</item>
     </array>
     <array name="th_fire_hat">
-        <item>@drawable/fire_hat_one</item>
-        <item>@drawable/fire_hat_two</item>
-        <item>@drawable/fire_hat_three</item>
-        <item>@drawable/fire_hat_four</item>
+        <item>@drawable/tpm_11b1</item>
+        <item>@drawable/tpm_11b2</item>
+        <item>@drawable/tpm_11b3</item>
+        <item>@drawable/tpm_11b4</item>
         <item>0</item>
     </array>
     <array name="th_baby_bird">
-        <item>@drawable/baby_bird_one</item>
-        <item>@drawable/baby_bird_two</item>
-        <item>@drawable/baby_bird_three</item>
-        <item>@drawable/baby_bird_four</item>
+        <item>@drawable/tpm_12b1</item>
+        <item>@drawable/tpm_12b2</item>
+        <item>@drawable/tpm_12b3</item>
+        <item>@drawable/tpm_12b4</item>
         <item>0</item>
     </array>
     <array name="th_boat">
-        <item>@drawable/boat_one</item>
-        <item>@drawable/boat_two</item>
-        <item>@drawable/boat_three</item>
-        <item>@drawable/boat_four</item>
+        <item>@drawable/tpm_13b1</item>
+        <item>@drawable/tpm_13b2</item>
+        <item>@drawable/tpm_13b3</item>
+        <item>@drawable/tpm_13b4</item>
         <item>2</item>
     </array>
     <array name="th_ship">
-        <item>@drawable/ship_one</item>
-        <item>@drawable/ship_two</item>
-        <item>@drawable/ship_three</item>
-        <item>@drawable/ship_four</item>
+        <item>@drawable/tpm_14b1</item>
+        <item>@drawable/tpm_14b2</item>
+        <item>@drawable/tpm_14b3</item>
+        <item>@drawable/tpm_14b4</item>
         <item>3</item>
     </array>
     <array name="th_row_boat">
-        <item>@drawable/row_boat_one</item>
-        <item>@drawable/row_boat_two</item>
-        <item>@drawable/row_boat_three</item>
-        <item>@drawable/row_boat_four</item>
+        <item>@drawable/tpm_15b1</item>
+        <item>@drawable/tpm_15b2</item>
+        <item>@drawable/tpm_15b3</item>
+        <item>@drawable/tpm_15b4</item>
         <item>1</item>
     </array>
     <array name="th_clown">
-        <item>@drawable/clown_one</item>
-        <item>@drawable/clown_two</item>
-        <item>@drawable/clown_three</item>
-        <item>@drawable/clown_four</item>
+        <item>@drawable/tpm_16b1</item>
+        <item>@drawable/tpm_16b2</item>
+        <item>@drawable/tpm_16b3</item>
+        <item>@drawable/tpm_16b4</item>
         <item>2</item>
     </array>
     <array name="th_nest">
-        <item>@drawable/nest_one</item>
-        <item>@drawable/nest_two</item>
-        <item>@drawable/nest_three</item>
-        <item>@drawable/nest_four</item>
+        <item>@drawable/tpm_17b1</item>
+        <item>@drawable/tpm_17b2</item>
+        <item>@drawable/tpm_17b3</item>
+        <item>@drawable/tpm_17b4</item>
         <item>3</item>
     </array>
     <array name="th_party_hat">
-        <item>@drawable/party_hat_one</item>
-        <item>@drawable/party_hat_two</item>
-        <item>@drawable/party_hat_three</item>
-        <item>@drawable/party_hat_four</item>
+        <item>@drawable/tpm_18b1</item>
+        <item>@drawable/tpm_18b2</item>
+        <item>@drawable/tpm_18b3</item>
+        <item>@drawable/tpm_18b4</item>
         <item>2</item>
     </array>
     <array name="th_girl_window">
-        <item>@drawable/girl_window_one</item>
-        <item>@drawable/girl_window_two</item>
-        <item>@drawable/girl_window_three</item>
-        <item>@drawable/girl_window_four</item>
+        <item>@drawable/tpm_19b1</item>
+        <item>@drawable/tpm_19b2</item>
+        <item>@drawable/tpm_19b3</item>
+        <item>@drawable/tpm_19b4</item>
         <item>0</item>
     </array>
     <array name="th_key">
-        <item>@drawable/key_one</item>
-        <item>@drawable/key_two</item>
-        <item>@drawable/key_three</item>
-        <item>@drawable/key_four</item>
+        <item>@drawable/tpm_20b1</item>
+        <item>@drawable/tpm_20b2</item>
+        <item>@drawable/tpm_20b3</item>
+        <item>@drawable/tpm_20b4</item>
         <item>2</item>
     </array>
     <array name="th_butterfly">
-        <item>@drawable/butterfly_one</item>
-        <item>@drawable/butterfly_two</item>
-        <item>@drawable/butterfly_three</item>
-        <item>@drawable/butterfly_four</item>
+        <item>@drawable/tpm_21b1</item>
+        <item>@drawable/tpm_21b2</item>
+        <item>@drawable/tpm_21b3</item>
+        <item>@drawable/tpm_21b4</item>
         <item>2</item>
     </array>
     <array name="th_chick">
-        <item>@drawable/chick_one</item>
-        <item>@drawable/chick_two</item>
-        <item>@drawable/chick_three</item>
-        <item>@drawable/chick_four</item>
+        <item>@drawable/tpm_22b1</item>
+        <item>@drawable/tpm_22b2</item>
+        <item>@drawable/tpm_22b3</item>
+        <item>@drawable/tpm_22b4</item>
         <item>1</item>
     </array>
     <array name="th_house">
-        <item>@drawable/house_one</item>
-        <item>@drawable/house_two</item>
-        <item>@drawable/house_three</item>
-        <item>@drawable/house_four</item>
+        <item>@drawable/tpm_23b1</item>
+        <item>@drawable/tpm_23b2</item>
+        <item>@drawable/tpm_23b3</item>
+        <item>@drawable/tpm_23b4</item>
         <item>0</item>
     </array>
     <array name="th_toys">
-        <item>@drawable/toys_one</item>
-        <item>@drawable/toys_two</item>
-        <item>@drawable/toys_three</item>
-        <item>@drawable/toys_four</item>
+        <item>@drawable/tpm_24b1</item>
+        <item>@drawable/tpm_24b2</item>
+        <item>@drawable/tpm_24b3</item>
+        <item>@drawable/tpm_24b4</item>
         <item>2</item>
     </array>
     <array name="th_toy_egg">
-        <item>@drawable/toy_egg_one</item>
-        <item>@drawable/toy_egg_two</item>
-        <item>@drawable/toy_egg_three</item>
-        <item>@drawable/toy_egg_four</item>
+        <item>@drawable/tpm_25b1</item>
+        <item>@drawable/tpm_25b2</item>
+        <item>@drawable/tpm_25b3</item>
+        <item>@drawable/tpm_25b4</item>
         <item>3</item>
     </array>
     <array name="th_kennel">
-        <item>@drawable/kennel_one</item>
-        <item>@drawable/kennel_two</item>
-        <item>@drawable/kennel_three</item>
-        <item>@drawable/kennel_four</item>
+        <item>@drawable/tpm_26b1</item>
+        <item>@drawable/tpm_26b2</item>
+        <item>@drawable/tpm_26b3</item>
+        <item>@drawable/tpm_26b4</item>
         <item>2</item>
     </array>
     <array name="th_boots">
-        <item>@drawable/boots_one</item>
-        <item>@drawable/boots_two</item>
-        <item>@drawable/boots_three</item>
-        <item>@drawable/boots_four</item>
+        <item>@drawable/tpm_27b1</item>
+        <item>@drawable/tpm_27b2</item>
+        <item>@drawable/tpm_27b3</item>
+        <item>@drawable/tpm_27b4</item>
         <item>1</item>
     </array>
     <array name="th_box">
-        <item>@drawable/box_one</item>
-        <item>@drawable/box_two</item>
-        <item>@drawable/box_three</item>
-        <item>@drawable/box_four</item>
+        <item>@drawable/tpm_28b1</item>
+        <item>@drawable/tpm_28b2</item>
+        <item>@drawable/tpm_28b3</item>
+        <item>@drawable/tpm_28b4</item>
         <item>3</item>
     </array>
 
@@ -480,162 +511,162 @@
 
     <array name="sp_ex_1">
         <item>null</item>
-        <item>@drawable/sp_instr_l_1</item>
-        <item>@drawable/sp_instr_l_2</item>
-        <item>@drawable/sp_instr_l_3</item>
-        <item>@drawable/sp_instr_l_4</item>
-        <item>@drawable/sp_instr_l_5</item>
+        <item>@drawable/v2d_instructions_l_1</item>
+        <item>@drawable/v2d_instructions_l_2</item>
+        <item>@drawable/v2d_instructions_l_3</item>
+        <item>@drawable/v2d_instructions_l_4</item>
+        <item>@drawable/v2d_instructions_l_5</item>
     </array>
     <array name="sp_ex_2">
         <item>null</item>
-        <item>@drawable/sp_instr_p_1</item>
-        <item>@drawable/sp_instr_p_2</item>
-        <item>@drawable/sp_instr_p_3</item>
-        <item>@drawable/sp_instr_p_4</item>
-        <item>@drawable/sp_instr_p_5</item>
+        <item>@drawable/v2d_instructions_p_1</item>
+        <item>@drawable/v2d_instructions_p_2</item>
+        <item>@drawable/v2d_instructions_p_3</item>
+        <item>@drawable/v2d_instructions_p_4</item>
+        <item>@drawable/v2d_instructions_p_5</item>
     </array>
     <array name="sp_ex_3">
-        <item>@drawable/sp_s1_main</item>
-        <item>@drawable/sp_s1_1</item>
-        <item>@drawable/sp_s1_2</item>
-        <item>@drawable/sp_s1_3</item>
-        <item>@drawable/sp_s1_4</item>
-        <item>@drawable/sp_s1_5</item>
+        <item>@drawable/v2d_s1_main</item>
+        <item>@drawable/v2d_s1_1</item>
+        <item>@drawable/v2d_s1_2</item>
+        <item>@drawable/v2d_s1_3</item>
+        <item>@drawable/v2d_s1_4</item>
+        <item>@drawable/v2d_s1_5</item>
         <item>3</item>
     </array>
     <array name="sp_31">
-        <item>@drawable/sp_3_main</item>
-        <item>@drawable/sp_3_1</item>
-        <item>@drawable/sp_3_2</item>
-        <item>@drawable/sp_3_3</item>
-        <item>@drawable/sp_3_4</item>
-        <item>@drawable/sp_3_5</item>
+        <item>@drawable/v2d_3_main</item>
+        <item>@drawable/v2d_3_a</item>
+        <item>@drawable/v2d_3_b</item>
+        <item>@drawable/v2d_3_c</item>
+        <item>@drawable/v2d_3_d</item>
+        <item>@drawable/v2d_3_e</item>
         <item>1</item>
     </array>
     <array name="sp_32">
-        <item>@drawable/sp_11_main</item>
-        <item>@drawable/sp_11_1</item>
-        <item>@drawable/sp_11_2</item>
-        <item>@drawable/sp_11_3</item>
-        <item>@drawable/sp_11_4</item>
-        <item>@drawable/sp_11_5</item>
+        <item>@drawable/v2d_11_main</item>
+        <item>@drawable/v2d_11_a</item>
+        <item>@drawable/v2d_11_b</item>
+        <item>@drawable/v2d_11_c</item>
+        <item>@drawable/v2d_11_d</item>
+        <item>@drawable/v2d_11_e</item>
         <item>1</item>
     </array>
     <array name="sp_33">
-        <item>@drawable/sp_15_main</item>
-        <item>@drawable/sp_15_1</item>
-        <item>@drawable/sp_15_2</item>
-        <item>@drawable/sp_15_3</item>
-        <item>@drawable/sp_15_4</item>
-        <item>@drawable/sp_15_5</item>
+        <item>@drawable/v2d_15_main</item>
+        <item>@drawable/v2d_15_a</item>
+        <item>@drawable/v2d_15_b</item>
+        <item>@drawable/v2d_15_c</item>
+        <item>@drawable/v2d_15_d</item>
+        <item>@drawable/v2d_15_e</item>
         <item>4</item>
     </array>
     <array name="sp_11">
-        <item>@drawable/sp_2_main</item>
-        <item>@drawable/sp_2_1</item>
-        <item>@drawable/sp_2_2</item>
-        <item>@drawable/sp_2_3</item>
-        <item>@drawable/sp_2_4</item>
-        <item>@drawable/sp_2_5</item>
+        <item>@drawable/v2d_2_main</item>
+        <item>@drawable/v2d_2_a</item>
+        <item>@drawable/v2d_2_b</item>
+        <item>@drawable/v2d_2_c</item>
+        <item>@drawable/v2d_2_d</item>
+        <item>@drawable/v2d_2_e</item>
         <item>2</item>
     </array>
     <array name="sp_12">
-        <item>@drawable/sp_4_main</item>
-        <item>@drawable/sp_4_1</item>
-        <item>@drawable/sp_4_2</item>
-        <item>@drawable/sp_4_3</item>
-        <item>@drawable/sp_4_4</item>
-        <item>@drawable/sp_4_5</item>
+        <item>@drawable/v2d_4_main</item>
+        <item>@drawable/v2d_4_a</item>
+        <item>@drawable/v2d_4_b</item>
+        <item>@drawable/v2d_4_c</item>
+        <item>@drawable/v2d_4_d</item>
+        <item>@drawable/v2d_4_e</item>
         <item>5</item>
     </array>
     <array name="sp_13">
-        <item>@drawable/sp_7_main</item>
-        <item>@drawable/sp_7_1</item>
-        <item>@drawable/sp_7_2</item>
-        <item>@drawable/sp_7_3</item>
-        <item>@drawable/sp_7_4</item>
-        <item>@drawable/sp_7_5</item>
+        <item>@drawable/v2d_7_main</item>
+        <item>@drawable/v2d_7_a</item>
+        <item>@drawable/v2d_7_b</item>
+        <item>@drawable/v2d_7_c</item>
+        <item>@drawable/v2d_7_d</item>
+        <item>@drawable/v2d_7_e</item>
         <item>2</item>
     </array>
     <array name="sp_21">
-        <item>@drawable/sp_9_main</item>
-        <item>@drawable/sp_9_1</item>
-        <item>@drawable/sp_9_2</item>
-        <item>@drawable/sp_9_3</item>
-        <item>@drawable/sp_9_4</item>
-        <item>@drawable/sp_9_5</item>
+        <item>@drawable/v2d_9_main</item>
+        <item>@drawable/v2d_9_a</item>
+        <item>@drawable/v2d_9_b</item>
+        <item>@drawable/v2d_9_c</item>
+        <item>@drawable/v2d_9_d</item>
+        <item>@drawable/v2d_9_e</item>
         <item>3</item>
     </array>
     <array name="sp_22">
-        <item>@drawable/sp_18_main</item>
-        <item>@drawable/sp_18_1</item>
-        <item>@drawable/sp_18_2</item>
-        <item>@drawable/sp_18_3</item>
-        <item>@drawable/sp_18_4</item>
-        <item>@drawable/sp_18_5</item>
+        <item>@drawable/v2d_18_main</item>
+        <item>@drawable/v2d_18_a</item>
+        <item>@drawable/v2d_18_b</item>
+        <item>@drawable/v2d_18_c</item>
+        <item>@drawable/v2d_18_d</item>
+        <item>@drawable/v2d_18_e</item>
         <item>1</item>
     </array>
     <array name="sp_23">
-        <item>@drawable/sp_13_main</item>
-        <item>@drawable/sp_13_1</item>
-        <item>@drawable/sp_13_2</item>
-        <item>@drawable/sp_13_3</item>
-        <item>@drawable/sp_13_4</item>
-        <item>@drawable/sp_13_5</item>
+        <item>@drawable/v2d_13_main</item>
+        <item>@drawable/v2d_13_a</item>
+        <item>@drawable/v2d_13_b</item>
+        <item>@drawable/v2d_13_c</item>
+        <item>@drawable/v2d_13_d</item>
+        <item>@drawable/v2d_13_e</item>
         <item>1</item>
     </array>
     <array name="sp_41">
-        <item>@drawable/sp_14_main</item>
-        <item>@drawable/sp_14_1</item>
-        <item>@drawable/sp_14_2</item>
-        <item>@drawable/sp_14_3</item>
-        <item>@drawable/sp_14_4</item>
-        <item>@drawable/sp_14_5</item>
+        <item>@drawable/v2d_14_main</item>
+        <item>@drawable/v2d_14_a</item>
+        <item>@drawable/v2d_14_b</item>
+        <item>@drawable/v2d_14_c</item>
+        <item>@drawable/v2d_14_d</item>
+        <item>@drawable/v2d_14_e</item>
         <item>5</item>
     </array>
     <array name="sp_42">
-        <item>@drawable/sp_19_main</item>
-        <item>@drawable/sp_19_1</item>
-        <item>@drawable/sp_19_2</item>
-        <item>@drawable/sp_19_3</item>
-        <item>@drawable/sp_19_4</item>
-        <item>@drawable/sp_19_5</item>
+        <item>@drawable/v2d_19_main</item>
+        <item>@drawable/v2d_19_a</item>
+        <item>@drawable/v2d_19_b</item>
+        <item>@drawable/v2d_19_c</item>
+        <item>@drawable/v2d_19_d</item>
+        <item>@drawable/v2d_19_e</item>
         <item>2</item>
     </array>
     <array name="sp_43">
-        <item>@drawable/sp_16_main</item>
-        <item>@drawable/sp_16_1</item>
-        <item>@drawable/sp_16_2</item>
-        <item>@drawable/sp_16_3</item>
-        <item>@drawable/sp_16_4</item>
-        <item>@drawable/sp_16_5</item>
+        <item>@drawable/v2d_16_main</item>
+        <item>@drawable/v2d_16_a</item>
+        <item>@drawable/v2d_16_b</item>
+        <item>@drawable/v2d_16_c</item>
+        <item>@drawable/v2d_16_d</item>
+        <item>@drawable/v2d_16_e</item>
         <item>3</item>
     </array>
     <array name="sp_51">
-        <item>@drawable/sp_17_main</item>
-        <item>@drawable/sp_17_1</item>
-        <item>@drawable/sp_17_2</item>
-        <item>@drawable/sp_17_3</item>
-        <item>@drawable/sp_17_4</item>
-        <item>@drawable/sp_17_5</item>
+        <item>@drawable/v2d_17_main</item>
+        <item>@drawable/v2d_17_a</item>
+        <item>@drawable/v2d_17_b</item>
+        <item>@drawable/v2d_17_c</item>
+        <item>@drawable/v2d_17_d</item>
+        <item>@drawable/v2d_17_e</item>
         <item>5</item>
     </array>
     <array name="sp_52">
-        <item>@drawable/sp_20_main</item>
-        <item>@drawable/sp_20_1</item>
-        <item>@drawable/sp_20_2</item>
-        <item>@drawable/sp_20_3</item>
-        <item>@drawable/sp_20_4</item>
-        <item>@drawable/sp_20_5</item>
+        <item>@drawable/v2d_20_main</item>
+        <item>@drawable/v2d_20_a</item>
+        <item>@drawable/v2d_20_b</item>
+        <item>@drawable/v2d_20_c</item>
+        <item>@drawable/v2d_20_d</item>
+        <item>@drawable/v2d_20_e</item>
         <item>5</item>
     </array>
     <array name="sp_53">
-        <item>@drawable/sp_24_main</item>
-        <item>@drawable/sp_24_1</item>
-        <item>@drawable/sp_24_2</item>
-        <item>@drawable/sp_24_3</item>
-        <item>@drawable/sp_24_4</item>
-        <item>@drawable/sp_24_5</item>
+        <item>@drawable/v2d_24_main</item>
+        <item>@drawable/v2d_24_a</item>
+        <item>@drawable/v2d_24_b</item>
+        <item>@drawable/v2d_24_c</item>
+        <item>@drawable/v2d_24_d</item>
+        <item>@drawable/v2d_24_e</item>
         <item>2</item>
     </array>
 

@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:src="@drawable/truck" />
+        android:src="@drawable/tpm_ssb3" />
 
     <Button
         android:id="@+id/next"

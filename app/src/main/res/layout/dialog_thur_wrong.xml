@@ -20,7 +20,7 @@
         android:layout_width="300dip"
         android:layout_height="300dip"
         android:layout_gravity="center"
-        android:src="@drawable/truck_three" />
+        android:src="@drawable/tpm_ssb3" />
 
     <TextView
         android:layout_width="match_parent"
