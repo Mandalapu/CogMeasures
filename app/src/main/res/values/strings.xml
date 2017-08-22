@@ -405,7 +405,7 @@
     <string name="reaction_time">Reaction Time</string>
     <!--Context switch -->
 
-    <string name="userIdinstr">Please enter your user ID.\n\nThis is the same number you entered for the first part of the survey.</string>
+    <string name="userIdinstr">Please enter your user ID. This is the same number you entered for the first part of the survey.</string>
 
     <!--Reaction time -->
     <string name="rt_complete">Thank you for completing the Reaction Time Test</string>
@@ -421,7 +421,7 @@
         (1) hold your finger over the SPACEBAR button.\n
         (2) focus on the cross\n
         (3) each time you see the red circle press the SPACEBAR as quickly as you can\n\n
-        When you are ready to begin, press the SPACEBAR button.</string>
+        Press the SPACEBAR button now.</string>
     <!-- Reaction time -->
 
     <!-- Thurstone -->
@@ -435,10 +435,10 @@
     <string name="thurs_instr">The next task measures your memory. You will see a series of pictures for 5 seconds each. You will then see the original picture along with
         several similar pictures. Your task is to pick which of the pictures is the one you saw previously.\n\n
         For example, you will see a picture like this &#8230;</string>
-    <string name="instr_thurs_q">Tap the picture you studied, then press \'Next\'.</string>
+    <string name="instr_thurs_q">Press on the picture you have studied, then press \'Next\'.</string>
     <string name="click_picture">Now click on the picture you have seen.</string>
-    <string name="th_instr">Then later you will see the first picture along with several similar pictures, like these. Please tap the picture which is the same as the
-        one you saw previously. </string>
+    <string name="th_instr">Then later you will see the first picture along with several similar pictures, like these. Your task is to press the picture which is the same
+        as the one you saw previously. In this example, you would press the third picture. </string>
     <string name="instr_thurs">Now, click on the picture you have studied.</string>
     <string name="thurs_example">Thurstone Example</string>
     <string name="thanks">Thank you for completing the test.</string>
@@ -447,5 +447,6 @@
         The procedure is the same as before. You will see each picture for 5 seconds.\n
         Use the time to study each picture carefully.\n\n
         When you are ready, press \'Begin\'.</string>
+    <string name="thur_ex_instr">Here are some pictures to study.</string>
     <!-- Thurstone -->
 </resources>

@@ -24,9 +24,4 @@ public class Answer {
         this.correct = correct;
         this.end = new Date();
     }
-
-    public void endAnswer(long user_ans) {
-        this.user_ans = user_ans;
-        this.end = new Date();
-    }
 }

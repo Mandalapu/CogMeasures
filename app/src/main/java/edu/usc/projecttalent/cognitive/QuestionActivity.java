@@ -26,7 +26,7 @@ public abstract class QuestionActivity extends BaseActivity {
     protected void finishSection() {
         mSection.endSection(); //end this section.
         Survey.getSurvey().addSection(mSection); //add AR section to survey.
-        AlertDialog dialog = new AlertDialog.Builder(mContext)
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setMessage(R.string.pressnext)
                 .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, mSkipClass), 1))
                 .setCancelable(false)

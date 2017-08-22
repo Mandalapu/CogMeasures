@@ -3,6 +3,7 @@ package edu.usc.projecttalent.cognitive.numbers;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,10 +41,21 @@ public class Instruction extends BaseActivity {
         series.removeView(answer);
         series.addView(answer, mExample.getAnsPosition());
 
-        View.OnClickListener listener = v -> answer.append(((Button) v).getText());
+        View.OnTouchListener listener = (v, event) -> {
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                answer.append(((Button) v).getText());
+                v.setBackgroundResource(R.drawable.circle_dark);
+                ((Button) v).setTextColor(getResources().getColor(android.R.color.white));
+            } else {
+                v.setBackgroundResource(R.drawable.circle);
+                ((Button) v).setTextColor(getResources().getColor(android.R.color.black));
+            }
+            return true;
+        };
+
         for (int i = 0; i < numPad.getChildCount(); i++) {
             ((Button) (numPad.getChildAt(i))).setText(Integer.toString(i));
-            (numPad.getChildAt(i)).setOnClickListener(listener);
+            (numPad.getChildAt(i)).setOnTouchListener(listener);
         }
 
         (findViewById(R.id.undo)).setOnClickListener(v -> {

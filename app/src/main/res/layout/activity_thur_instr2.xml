@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:orientation="vertical">
 
-    <TableRow
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
+        android:text="@string/th_instr"
+        android:textSize="25sp" />
+
+    <LinearLayout
         android:id="@+id/table_row"
         android:layout_width="match_parent"
-        android:layout_height="271dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="87dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/truck_one"
-            android:layout_width="270dip"
-            android:layout_height="230dip"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:src="@drawable/tpm_ssb1" />
 
         <ImageView
             android:id="@+id/truck_two"
-            android:layout_width="270dip"
-            android:layout_height="230dip"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:src="@drawable/tpm_ssb2" />
 
         <ImageView
             android:id="@+id/truck_three"
-            android:layout_width="270dip"
-            android:layout_height="230dip"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg"
+            android:padding="5dp"
             android:src="@drawable/tpm_ssb3" />
 
         <ImageView
             android:id="@+id/truck_four"
-            android:layout_width="270dip"
-            android:layout_height="230dip"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:src="@drawable/tpm_ssb4" />
-    </TableRow>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
-        android:text="@string/th_instr"
-        android:textColor="#383232"
-        android:textSize="25sp" />
-
-</RelativeLayout>
+</LinearLayout>

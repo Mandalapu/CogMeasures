@@ -3,6 +3,7 @@ package edu.usc.projecttalent.cognitive.numbers;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -195,15 +196,26 @@ public class Question extends QuestionActivity {
 
     private void setNumPad() {
         LinearLayout numPad = (LinearLayout) findViewById(R.id.numpad);
-        View.OnClickListener listener = v -> {
-            if (answer2.hasFocus())
-                answer2.append(((Button) v).getText());
-            else
-                answer.append(((Button) v).getText()); //extra code for Set 5 Q3.
+
+        View.OnTouchListener listener = (v, event) -> {
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (answer2.hasFocus())
+                    answer2.append(((Button) v).getText());
+                else
+                    answer.append(((Button) v).getText());
+                v.setBackgroundResource(R.drawable.circle_dark);
+                ((Button) v).setTextColor(getResources().getColor(android.R.color.white));
+            } else {
+                v.setBackgroundResource(R.drawable.circle);
+                ((Button) v).setTextColor(getResources().getColor(android.R.color.black));
+            }
+            return true;
         };
+
+
         for (int i = 0; i < numPad.getChildCount(); i++) {
             ((Button) (numPad.getChildAt(i))).setText(String.format(Locale.getDefault(), "%d", i));
-            (numPad.getChildAt(i)).setOnClickListener(listener);
+            (numPad.getChildAt(i)).setOnTouchListener(listener);
         }
 
         (findViewById(R.id.undo)).setOnClickListener(v -> {

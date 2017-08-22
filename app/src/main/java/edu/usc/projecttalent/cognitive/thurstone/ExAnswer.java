@@ -42,7 +42,7 @@ public class ExAnswer extends QuestionActivity {
 
         mSection = new Section(getString(R.string.thurs_example));
         mBlock = new Block(1);
-        Drawable highlight = ContextCompat.getDrawable(this, R.drawable.highlight);
+        Drawable highlight = ContextCompat.getDrawable(this, R.drawable.btn_bg);
 
         Resources res = getResources();
         TypedArray questions = res.obtainTypedArray(R.array.th_practice);

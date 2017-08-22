@@ -39,7 +39,7 @@ public class TestAnswer extends QuestionActivity {
 
         mSection = new Section(getString(R.string.thurstone_title));
         mSkipClass = Instruction.class;
-        Drawable highlight = ContextCompat.getDrawable(this, R.drawable.highlight);
+        Drawable highlight = ContextCompat.getDrawable(this, R.drawable.btn_bg);
 
         Resources res = getResources();
         TypedArray questions = res.obtainTypedArray(R.array.th_set);

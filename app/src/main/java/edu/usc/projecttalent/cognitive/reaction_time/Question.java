@@ -2,7 +2,7 @@ package edu.usc.projecttalent.cognitive.reaction_time;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -25,6 +25,8 @@ import edu.usc.projecttalent.cognitive.spatial.Practice;
 public class Question extends QuestionActivity {
     private int counter = 0;
     private long start;
+    private static final int NO_OF_TRIALS = 20;
+    private boolean isRed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,38 +37,54 @@ public class Question extends QuestionActivity {
         mSection = new Section(getString(R.string.reaction_time));
         mBlock = new Block(1);
 
-        int[] times_milli = new int[]{2000, 3000, 4000, 5000, 6000, 7000, 8000};
-
-        final Button btnSpace = (Button) findViewById(R.id.buttonSpace);
-        final int randomTime = (times_milli[new Random().nextInt(times_milli.length)]);
+        Button space = (Button) findViewById(R.id.buttonSpace);
+        Random r = new Random();
+        int low = 2, high = 8; //between 2 and 8 seconds.
 
         final ImageView image = (ImageView) findViewById(R.id.imageView);
         image.setImageResource(R.drawable.cross);
 
         final Handler handler = new Handler();
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                handler.postDelayed(this, randomTime);
-                image.setImageResource(R.drawable.red_circle_large);
+        Runnable runnable = () -> {
+            image.setImageResource(R.drawable.red_circle_large);
+            isRed = true;
+            mAnswer = new Answer();
+            start = System.currentTimeMillis();
+        };
 
-                if (image.getDrawable().getConstantState() ==
-                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.red_circle_large).getConstantState()) {
-                    mAnswer = new Answer();
-                    start = System.currentTimeMillis();
-                }
-                btnSpace.setOnClickListener(v -> {
-                    image.setImageResource(R.drawable.cross);
-                    mAnswer.endAnswer(System.currentTimeMillis() - start);
-                    mBlock.addAnswer(mAnswer);
+        handler.postDelayed(runnable, 1000 * (r.nextInt(high - low) + low));
+
+        space.setOnTouchListener((v, event) -> {
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                setColor(space, android.R.color.black, android.R.color.white);
+
+                if (isRed) {
+                    mAnswer.endAnswer(System.currentTimeMillis() - start, true);
                     counter++;
-                    if (counter >= 20) {
-                        mSection.addBlock(mBlock);
-                        finishSection();
-                    }
-                });
+                    image.setImageResource(R.drawable.cross);
+                    isRed = false;
+                } else {
+                    mAnswer = new Answer();
+                    mAnswer.endAnswer(0, false);
+                }
+                mBlock.addAnswer(mAnswer);
+                if (counter == NO_OF_TRIALS) {
+                    mSection.addBlock(mBlock);
+                    finishSection();
+                } else {
+                    handler.postDelayed(runnable, 1000 * (r.nextInt(high - low) + low));
+                }
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                setColor(space, android.R.color.white, android.R.color.black);
             }
-        }, randomTime);
+            return true;
+        });
+
+    }
+
+    private void setColor(Button v, int background, int text) {
+        v.setBackgroundColor(getResources().getColor(background));
+        v.setTextColor(getResources().getColor(text));
     }
 }

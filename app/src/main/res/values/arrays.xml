@@ -2,7 +2,6 @@
 <resources>
 
     <array name="thurstone_ex">
-        <item>@drawable/zero</item>
         <item>@drawable/tpm_s01b3</item>
         <item>@drawable/tpm_s02b2</item>
         <item>@drawable/tpm_s03b3</item>
