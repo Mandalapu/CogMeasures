@@ -24,8 +24,8 @@ import edu.usc.projecttalent.cognitive.reasoning.Item;
 public abstract class ARBase extends QuestionActivity {
 
     protected Queue<Item> mQueue;
-    protected View oldView;
-    protected boolean mFtWarn;
+    protected static View oldView;
+    protected static boolean mFtWarn;
     protected ViewDataBinding mBinding;
 
     protected View.OnClickListener nextListener = v ->  {
