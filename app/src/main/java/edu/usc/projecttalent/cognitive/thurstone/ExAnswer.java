@@ -59,11 +59,13 @@ public class ExAnswer extends QuestionActivity {
         TableRow options = (TableRow) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
-                v.setBackground(highlight);
-                if (oldView != null)
-                    oldView.setBackground(null);
-                oldView = v;
-                btn.setEnabled(true);
+                if(v != oldView) {
+                    v.setBackground(highlight);
+                    if (oldView != null)
+                        oldView.setBackground(null);
+                    oldView = v;
+                    btn.setEnabled(true);
+                }
             });
         }
 

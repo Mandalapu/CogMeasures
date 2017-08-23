@@ -51,16 +51,16 @@ public class TestAnswer extends QuestionActivity {
         ActivityThurAnswerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
         binding.setItem(mQueue.remove());
         Button btn = (Button) findViewById(R.id.next);
-        btn.setEnabled(false);
 
         TableRow options = (TableRow) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
-                v.setBackground(highlight);
-                if (oldView != null)
-                    oldView.setBackground(null);
-                oldView = v;
-                btn.setEnabled(true);
+                if(v != oldView) {
+                    v.setBackground(highlight);
+                    if (oldView != null)
+                        oldView.setBackground(null);
+                    oldView = v;
+                }
             });
         }
 

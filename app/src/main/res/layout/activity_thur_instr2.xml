@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center">
 
         <ImageView
@@ -49,5 +50,9 @@
             android:layout_weight="1"
             android:src="@drawable/tpm_ssb4" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/next"
+        style="@style/next" />
 
 </LinearLayout>

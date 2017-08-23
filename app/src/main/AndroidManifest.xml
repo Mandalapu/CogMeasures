@@ -34,11 +34,13 @@
         <activity android:name=".thurstone.ExRunner" />
         <activity android:name=".thurstone.Instruction" />
         <activity android:name=".thurstone.MoreInstr" />
+        <activity android:name=".thurstone.Practice"></activity>
         <activity android:name=".thurstone.TestAnswer" />
         <activity android:name=".thurstone.TestRunner" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

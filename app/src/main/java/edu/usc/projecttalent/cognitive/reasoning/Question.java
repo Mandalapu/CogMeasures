@@ -66,11 +66,13 @@ public class Question extends QuestionActivity {
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
-                v.setPadding(2, 2, 2, 2);
-                v.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
-                if (oldView != null)
-                    oldView.setBackground(null);
-                oldView = v;
+                if(v != oldView) {
+                    v.setPadding(2, 2, 2, 2);
+                    v.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
+                    if (oldView != null)
+                        oldView.setBackground(null);
+                    oldView = v;
+                }
             });
         }
 

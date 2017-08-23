@@ -218,7 +218,7 @@
           \"id\": 1,
           \"question\": \"INSTRUCTIONS\n\n In this task, on each screen you will see several numbers that make up a series. There will be one or more empty boxes
         somewhere in the series. Sometimes an empty box will be at the end of the series, sometimes in the middle, and sometimes at the
-        beginning. Please tap the number buttons to enter the number that goes into each empty box. The answer will be a number between 0 and 99.\n\n
+        beginning. Please press the number buttons to enter the number that goes into each empty box. The answer will be a number between 0 and 99.\n\n
         Here is an example. Enter the number that goes in the empty box. Then press \'Next\' to continue.\",
          \"options\": [1, 2, 3, 4],
          \"ansPosition\": 2,
@@ -357,8 +357,8 @@
     <string name="ar_intro">INSTRUCTIONS\n\n
 		&#8226; You will now be asked six more questions like the ones you just did. \n
 		&#8226; For each question, decide what rules the pattern follows. Choose the answer that belongs in \"?\" by pressing the answer.\n
-		&#8226; Many of the patterns are based on rules that are different from the ones in the sample items.\n
-		If you are ready to begin, please press \"Next\".
+		&#8226; Many of the patterns are based on rules that are different from the ones in the sample items.\n\n
+		If you are ready to begin, please press \"Next\" to continue.
 	</string>
     <string name="start_now">Start Now</string>
     <string name="ar_instr_header">INSTRUCTIONS</string>
@@ -425,11 +425,8 @@
     <!-- Reaction time -->
 
     <!-- Thurstone -->
-    <string name="great_job">That is correct.</string>
-    <string name="now_you_will_practice">Now you will practice.</string>
-    <string name="seconds_rule">You will see each picture for 5 seconds. Make use of the time and study each picture carefully, for the full 5 seconds.</string>
-    <string name="begin_instr">Press \'Next\' when you are ready to begin.</string>
-    <string name="incorrect_ans">Incorrect, the picture you actually saw was this &#8230;</string>
+    <string name="thur_practice">You will see each picture for 5 seconds. Make use of the time and study each picture carefully, for the full 5 seconds.\n\n
+        Please press \'Next\' when you are ready to begin.</string>
     <string name="now_click">Now click on the picture you have seen.</string>
     <string name="pressnext">Please press \'Next\' to go to the next task.</string>
     <string name="thurs_instr">The next task measures your memory. You will see a series of pictures for 5 seconds each. You will then see the original picture along with
