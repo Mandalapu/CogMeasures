@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @version 2.0
  */
 
-public class Example implements Serializable {
+public class NSExample implements Serializable {
     private int id;
     private String question;
     private int[] options;

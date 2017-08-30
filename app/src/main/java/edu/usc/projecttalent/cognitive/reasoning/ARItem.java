@@ -11,7 +11,7 @@ import android.widget.ImageView;
  * @version 2.0
  */
 
-public class Item {
+public class ARItem {
     private String instructions;
     private TypedArray options;
     private String details;
@@ -19,7 +19,7 @@ public class Item {
     private int ansOption;
 
     @SuppressWarnings("ResourceType")
-    public Item(String instructions, TypedArray options, String details, boolean answer) {
+    public ARItem(String instructions, TypedArray options, String details, boolean answer) {
         this.instructions = instructions;
         this.options = options;
         this.details = details;
@@ -28,7 +28,7 @@ public class Item {
     }
 
     @SuppressWarnings("ResourceType")
-    public Item(TypedArray options) {
+    public ARItem(TypedArray options) {
         this.options = options;
         this.ansOption = options.getInt(6, -1);
     }

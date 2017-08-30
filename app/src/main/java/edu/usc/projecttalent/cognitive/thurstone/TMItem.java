@@ -11,12 +11,12 @@ import android.widget.ImageView;
  * @version 1.0
  */
 
-public class Item {
+public class TMItem {
     private TypedArray options;
     private int ansOption;
 
     @SuppressWarnings("ResourceType")
-    public Item(TypedArray options) {
+    public TMItem(TypedArray options) {
         this.options = options;
         this.ansOption = options.getInt(4, -1);
     }

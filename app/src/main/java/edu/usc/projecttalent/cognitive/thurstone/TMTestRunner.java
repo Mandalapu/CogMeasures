@@ -15,7 +15,7 @@ import edu.usc.projecttalent.cognitive.R;
  * Change the images in the test.
  */
 
-public class TestRunner extends BaseActivity {
+public class TMTestRunner extends BaseActivity {
 
     private int position = -1;
     Timer mTimer = new Timer();
@@ -32,10 +32,10 @@ public class TestRunner extends BaseActivity {
             @Override
             public void run() {
                 // As timer is not a Main/UI thread need to do all UI task on runOnUiThread
-                TestRunner.this.runOnUiThread(() -> {
+                TMTestRunner.this.runOnUiThread(() -> {
                     position++;
                     if (position >= image.length()) {
-                        startActivityForResult(new Intent(getApplicationContext(), TestAnswer.class), 1);
+                        startActivityForResult(new Intent(getApplicationContext(), TMTestAnswer.class), 1);
                         mTimer.cancel();
                     } else
                         imageChangeReal.setImageResource(image.getResourceId(position, 0));

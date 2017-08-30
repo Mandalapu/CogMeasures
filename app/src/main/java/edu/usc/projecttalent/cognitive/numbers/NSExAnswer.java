@@ -18,13 +18,13 @@ import edu.usc.projecttalent.cognitive.databinding.ActivityNsExansBinding;
  * @version 2.0
  */
 
-public class ExAnswer extends BaseActivity {
+public class NSExAnswer extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Example example = (Example) getIntent().getExtras().get("example");
+        NSExample example = (NSExample) getIntent().getExtras().get("example");
         ActivityNsExansBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_exans);
         binding.setItem(example);
 
@@ -37,10 +37,10 @@ public class ExAnswer extends BaseActivity {
         button.setOnClickListener(v -> {
             Intent intent;
             if (example.getId() == 1) {
-                intent = new Intent(this, Instruction.class);
+                intent = new Intent(this, NSInstruction.class);
                 intent.putExtra("second", true);
             } else {
-                intent = new Intent(this, Introduction.class);
+                intent = new Intent(this, NSIntroduction.class);
             }
             startActivityForResult(intent, 1);
         });

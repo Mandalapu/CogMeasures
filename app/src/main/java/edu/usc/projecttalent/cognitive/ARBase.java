@@ -14,7 +14,7 @@ import edu.usc.projecttalent.cognitive.databinding.ActivityArQuestionBinding;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpQuestionBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
-import edu.usc.projecttalent.cognitive.reasoning.Item;
+import edu.usc.projecttalent.cognitive.reasoning.ARItem;
 
 /**
  * Common code for Abstract reasoning and Spatial visualization.
@@ -23,7 +23,7 @@ import edu.usc.projecttalent.cognitive.reasoning.Item;
 
 public abstract class ARBase extends QuestionActivity {
 
-    protected Queue<Item> mQueue;
+    protected Queue<ARItem> mQueue;
     protected static View oldView;
     protected static boolean mFtWarn;
     protected ViewDataBinding mBinding;
@@ -53,7 +53,7 @@ public abstract class ARBase extends QuestionActivity {
             TypedArray questions1 = getResources().obtainTypedArray(block); //all questions of Set X.
             mQueue = new LinkedList<>();
             for (int i = 0; i < questions1.length(); i++) {
-                mQueue.add(new Item(getResources().obtainTypedArray(questions1.getResourceId(i, 0)))); //each question. ar_x1 .. ar_x3.
+                mQueue.add(new ARItem(getResources().obtainTypedArray(questions1.getResourceId(i, 0)))); //each question. ar_x1 .. ar_x3.
             }
             mScore = 0;
             mBinding.setVariable(BR.item, mQueue.remove());
@@ -68,7 +68,7 @@ public abstract class ARBase extends QuestionActivity {
 
     protected void checkSolution() {
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
-        Item question = (mBinding instanceof ActivityArQuestionBinding) ? ((ActivityArQuestionBinding) mBinding).getItem():
+        ARItem question = (mBinding instanceof ActivityArQuestionBinding) ? ((ActivityArQuestionBinding) mBinding).getItem():
                 ((ActivitySpQuestionBinding)mBinding).getItem();
         boolean correct = false;
         if (options.indexOfChild(oldView) == question.getAnsOption()) {

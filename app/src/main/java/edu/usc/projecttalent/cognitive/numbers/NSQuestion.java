@@ -25,7 +25,7 @@ import edu.usc.projecttalent.cognitive.databinding.ActivityNsQuestionBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.thurstone.Instruction;
+import edu.usc.projecttalent.cognitive.thurstone.TMInstruction;
 
 /**
  * Block-adaptive test for Number section.
@@ -35,9 +35,9 @@ import edu.usc.projecttalent.cognitive.thurstone.Instruction;
  * @version 2.0
  */
 
-public class Question extends QuestionActivity {
-    private ArrayList<Item> mList;
-    private Queue<Item> mQueue;
+public class NSQuestion extends QuestionActivity {
+    private ArrayList<NSItem> mList;
+    private Queue<NSItem> mQueue;
     private boolean mFtWarn;
 
     private static EditText answer, answer2;
@@ -50,7 +50,7 @@ public class Question extends QuestionActivity {
         super.onCreate(savedInstanceState);
 
         mContext = this;
-        mSkipClass = Instruction.class;
+        mSkipClass = TMInstruction.class;
         mSection = new Section(getString(R.string.ns_section_title));  //make new section.
         mScore = 0; //reset score at the beginning of block.
         mTimer = Timer.getTimer(3);
@@ -59,7 +59,7 @@ public class Question extends QuestionActivity {
         mBlock = new Block(3); //first block is Block 3.
         mFtWarn = true; //for FTU.
 
-        question = new TypeToken<ArrayList<Item>>() {
+        question = new TypeToken<ArrayList<NSItem>>() {
         }.getType();
         mList = new Gson().fromJson(getString(R.string.ns_3), question);
         mQueue = new LinkedList<>();
@@ -67,7 +67,7 @@ public class Question extends QuestionActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_question);
         mAnswer = new Answer();
-        Item item = mQueue.remove();
+        NSItem item = mQueue.remove();
         if (item.getAnsPositions() == null)
             item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
         binding.setItem(item);
@@ -93,7 +93,7 @@ public class Question extends QuestionActivity {
                 return;
             }
 
-            Item curQuestion = binding.getItem();
+            NSItem curQuestion = binding.getItem();
             if (curQuestion.getAnsPositions() == null) { //only one option.
                 oneOption(curQuestion);
             } else {
@@ -118,13 +118,13 @@ public class Question extends QuestionActivity {
 
     private void showNextQuestion() {
         mAnswer = new Answer();
-        Item item = mQueue.remove();
+        NSItem item = mQueue.remove();
         item.setInstr(getResources().getQuantityString(R.plurals.ns_instr,
                 item.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
         binding.setItem(item); //add new question.
         mTimer.startTimer();
         mFtWarn = true;
-        Item curQuestion = binding.getItem();
+        NSItem curQuestion = binding.getItem();
         if (curQuestion.getAnsPositions() == null) {
             series.removeView(answer); //update position of answer box.
             series.addView(answer, binding.getItem().getAnsPosition());
@@ -141,7 +141,7 @@ public class Question extends QuestionActivity {
         mList = new Gson().fromJson(getString(block), question); //get new questions.
         mQueue.addAll(mList);
         mScore = 0; //reset the score for the new block.
-        Item item1 = mQueue.remove();
+        NSItem item1 = mQueue.remove();
         item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
         binding.setItem(item1);
         mTimer.startTimer();
@@ -168,7 +168,7 @@ public class Question extends QuestionActivity {
         mBlock.addAnswer(mAnswer);
     }
 
-    private void oneOption(Item question) {
+    private void oneOption(NSItem question) {
         int userAns = -99; //invalid. user did not select an answer;
         try {
             userAns = Integer.parseInt(answer.getText().toString());

@@ -12,13 +12,13 @@ import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
- * Item images switcher activity.
+ * NSItem images switcher activity.
  *
  * @author Anindya Dutta
  * @version 2.0
  */
 
-public class ExRunner extends BaseActivity {
+public class TMTExRunner extends BaseActivity {
 
     private int position = 0;
 
@@ -36,7 +36,7 @@ public class ExRunner extends BaseActivity {
             public void run() {
                 runOnUiThread(() -> {
                     if (position >= images.length()) {
-                        startActivityForResult(new Intent(getApplicationContext(), ExAnswer.class), 1);
+                        startActivityForResult(new Intent(getApplicationContext(), TMExAnswer.class), 1);
                         timer.cancel();
                     } else
                         example.setImageResource(images.getResourceId(position++, -1));

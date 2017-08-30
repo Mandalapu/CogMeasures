@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    tools:context="edu.usc.projecttalent.cognitive.reasoning.Instruction2">
+    tools:context="edu.usc.projecttalent.cognitive.reasoning.ARInstruction2">
 
     <TextView
         android:layout_width="match_parent"

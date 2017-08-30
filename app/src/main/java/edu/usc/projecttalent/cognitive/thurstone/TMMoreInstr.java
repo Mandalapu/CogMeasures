@@ -11,12 +11,12 @@ import edu.usc.projecttalent.cognitive.R;
  * @version 1.0
  */
 
-public class MoreInstr extends BaseActivity {
+public class TMMoreInstr extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thur_instr2);
-        findViewById(R.id.next).setOnClickListener(v -> startActivityForResult(new Intent(this, Practice.class), 1));
+        findViewById(R.id.next).setOnClickListener(v -> startActivityForResult(new Intent(this, TMPractice.class), 1));
     }
 }

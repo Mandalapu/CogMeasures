@@ -6,7 +6,7 @@ import android.os.Bundle;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
-public class Instruction extends BaseActivity {
+public class VSInstruction extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +14,6 @@ public class Instruction extends BaseActivity {
         setContentView(R.layout.activity_vocab_intro);
 
         (findViewById(R.id.next)).setOnClickListener(v ->
-                startActivityForResult(new Intent(this, Question.class), 1));
+                startActivityForResult(new Intent(this, VSQuestion.class), 1));
     }
 }

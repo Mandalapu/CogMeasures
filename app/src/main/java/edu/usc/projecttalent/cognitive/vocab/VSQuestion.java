@@ -22,7 +22,7 @@ import edu.usc.projecttalent.cognitive.databinding.ActivityVocabBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.numbers.Instruction;
+import edu.usc.projecttalent.cognitive.numbers.NSInstruction;
 
 /**
  * Block-adaptive test for Vocabulary.
@@ -32,7 +32,7 @@ import edu.usc.projecttalent.cognitive.numbers.Instruction;
  * @version 2.0
  */
 
-public class Question extends QuestionActivity {
+public class VSQuestion extends QuestionActivity {
     private boolean mFtWarn; //first time warning for no selection.
 
     @Override
@@ -40,7 +40,7 @@ public class Question extends QuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocab);
 
-        mSkipClass = Instruction.class;
+        mSkipClass = NSInstruction.class;
         mSection = new Section(getString(R.string.vocabulary));
         mScore = 0;
         mFtWarn = true;
@@ -50,9 +50,9 @@ public class Question extends QuestionActivity {
         prepareFilter();
 
         mBlock = new Block(3);
-        Type question = new TypeToken<ArrayList<Item>>() {
+        Type question = new TypeToken<ArrayList<VSItem>>() {
         }.getType();
-        Queue<Item> mQueue = new LinkedList<>();
+        Queue<VSItem> mQueue = new LinkedList<>();
         mQueue.addAll(new Gson().fromJson(getString(R.string.vocab3), question));
 
         ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);

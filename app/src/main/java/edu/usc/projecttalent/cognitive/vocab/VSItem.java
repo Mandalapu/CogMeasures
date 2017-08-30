@@ -7,7 +7,7 @@ package edu.usc.projecttalent.cognitive.vocab;
  * @version 2.0
  */
 
-public class Item {
+public class VSItem {
     private String question;
     private String[] options;
     private int answer;

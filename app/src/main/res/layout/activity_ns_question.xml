@@ -1,12 +1,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".numbers.Question">
+    tools:context=".numbers.NSQuestion">
 
     <data>
 
         <variable
             name="item"
-            type="edu.usc.projecttalent.cognitive.numbers.Item" />
+            type="edu.usc.projecttalent.cognitive.numbers.NSItem" />
 
         <import type="android.view.View" />
     </data>

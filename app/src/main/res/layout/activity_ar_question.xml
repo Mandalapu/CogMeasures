@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.usc.projecttalent.cognitive.reasoning.Question">
+    tools:context="edu.usc.projecttalent.cognitive.reasoning.ARQuestion">
 
     <data>
 
         <variable
             name="item"
-            type="edu.usc.projecttalent.cognitive.reasoning.Item" />
+            type="edu.usc.projecttalent.cognitive.reasoning.ARItem" />
     </data>
 
     <LinearLayout

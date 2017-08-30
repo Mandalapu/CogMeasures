@@ -13,16 +13,16 @@ import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityArMainBinding;
 
-public class Instruction extends BaseActivity {
+public class ARInstruction extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Queue<Item> itemList = new LinkedList<>();
+        final Queue<ARItem> itemList = new LinkedList<>();
         TypedArray arr = getResources().obtainTypedArray(R.array.ar_ex_1);
-        itemList.add(new Item(getString(R.string.ar_text), arr, getString(R.string.ar_text1), false));
-        itemList.add(new Item("", arr, getString(R.string.ar_text3), true));
+        itemList.add(new ARItem(getString(R.string.ar_text), arr, getString(R.string.ar_text1), false));
+        itemList.add(new ARItem("", arr, getString(R.string.ar_text3), true));
 
         final ActivityArMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar_main);
         binding.setItem(itemList.remove());
@@ -31,7 +31,7 @@ public class Instruction extends BaseActivity {
             if (!itemList.isEmpty())
                 binding.setItem(itemList.remove());
             else {
-                Intent intent = new Intent(Instruction.this, Instruction2.class);
+                Intent intent = new Intent(ARInstruction.this, ARInstruction2.class);
                 startActivityForResult(intent, 1);
             }
         });

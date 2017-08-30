@@ -13,7 +13,7 @@ import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.spatial.Practice;
+import edu.usc.projecttalent.cognitive.spatial.SVPractice;
 
 /**
  * Reaction time class.
@@ -22,7 +22,7 @@ import edu.usc.projecttalent.cognitive.spatial.Practice;
  * @version 2.0
  */
 
-public class Question extends QuestionActivity {
+public class RTQuestion extends QuestionActivity {
     private int counter = 0;
     private long start;
     private static final int NO_OF_TRIALS = 20;
@@ -33,7 +33,7 @@ public class Question extends QuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reac_question);
 
-        mSkipClass = Practice.class;
+        mSkipClass = SVPractice.class;
         mSection = new Section(getString(R.string.reaction_time));
         mBlock = new Block(1);
 

@@ -14,7 +14,7 @@ import edu.usc.projecttalent.cognitive.R;
  * @version 2.0
  */
 
-public class Instruction extends BaseActivity {
+public class SVInstruction extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class Instruction extends BaseActivity {
         setContentView(R.layout.activity_sp_intro);
         Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(Instruction.this, Sample.class);
+            Intent intent = new Intent(SVInstruction.this, SVSample.class);
             startActivityForResult(intent, 1);
         });
     }

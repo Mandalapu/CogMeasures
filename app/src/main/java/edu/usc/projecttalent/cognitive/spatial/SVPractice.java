@@ -13,39 +13,38 @@ import java.util.Queue;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpPracticeBinding;
-import edu.usc.projecttalent.cognitive.reasoning.Item;
+import edu.usc.projecttalent.cognitive.reasoning.ARItem;
 
 /**
- * Spatial Visualization sample and instructions on how to solve the questions.
+ * Spatial Visualization practice without scoring and with solutions.
  *
  * @author Anindya Dutta
  * @version 2.0
  */
 
-public class Sample extends BaseActivity {
+public class SVPractice extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sp_practice);
+        Resources res = getResources();
 
-        Resources r = getResources();
-        Queue<Item> mQueue = new LinkedList<>();
-        TypedArray arr = r.obtainTypedArray(R.array.sp_ex_3);
+        Queue<ARItem> mQueue = new LinkedList<>();
+        TypedArray options = res.obtainTypedArray(R.array.sp_ex_1);
+        mQueue.add(new ARItem(getString(R.string.sp_1_instr), options, getString(R.string.sp_1_sol), false));
 
-        mQueue.add(new Item(getString(R.string.sp_3_instr), arr, getString(R.string.sp_next), false));
-        mQueue.add(new Item(getString(R.string.sp_3_sol), arr, getString(R.string.sp_begin), true));
+        options = res.obtainTypedArray(R.array.sp_ex_2);
+        mQueue.add(new ARItem(getString(R.string.sp_2_instr), options, getString(R.string.sp_next), false));
 
         ActivitySpPracticeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sp_practice);
         binding.setItem(mQueue.remove());
 
-        Button next = (Button) findViewById(R.id.next);
-        next.setOnClickListener(v -> {
+        Button button = (Button) findViewById(R.id.next);
+        button.setOnClickListener(v -> {
             if (!mQueue.isEmpty())
                 binding.setItem(mQueue.remove());
             else
-                startActivityForResult(new Intent(this, Question.class), 1);
-
+                startActivityForResult(new Intent(this, SVInstruction.class), 1);
         });
     }
 }

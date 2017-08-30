@@ -22,14 +22,14 @@ import edu.usc.projecttalent.cognitive.databinding.ActivityNsMainBinding;
  * @version 2.0
  */
 
-public class Instruction extends BaseActivity {
+public class NSInstruction extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         final boolean showSecond = getIntent().getBooleanExtra("second", false);
-        Example mExample = new Gson().fromJson(getString(showSecond ? R.string.ns_example2 : R.string.ns_example1), Example.class);
+        NSExample mExample = new Gson().fromJson(getString(showSecond ? R.string.ns_example2 : R.string.ns_example1), NSExample.class);
 
         ActivityNsMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_main);
         binding.setItem(mExample);
@@ -65,7 +65,7 @@ public class Instruction extends BaseActivity {
         });
 
         (findViewById(R.id.next)).setOnClickListener(v -> {
-            Intent intent = new Intent(this, ExAnswer.class);
+            Intent intent = new Intent(this, NSExAnswer.class);
             intent.putExtra("example", mExample);
             startActivityForResult(intent, 1);
         });

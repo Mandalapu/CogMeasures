@@ -7,7 +7,7 @@ package edu.usc.projecttalent.cognitive.numbers;
  * @version 2.0
  */
 
-public class Item {
+public class NSItem {
     private int[] options;
     private int ansPosition;
     private int[] ansOptions;

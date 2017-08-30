@@ -8,13 +8,13 @@ import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
- * Instruction for Abstract reasoning section.
+ * NSInstruction for Abstract reasoning section.
  *
  * @author Anindya Dutta
  * @version 2.0
  */
 
-public class Instruction2 extends BaseActivity {
+public class ARInstruction2 extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +26,11 @@ public class Instruction2 extends BaseActivity {
                     .setTitle(R.string.start_now)
                     .setMessage(R.string.start_task)
                     .setNegativeButton(R.string.example, (dialog1, which) -> {
-                        Intent intent = new Intent(this, Practice1.class);
+                        Intent intent = new Intent(this, ARPractice1.class);
                         startActivityForResult(intent, 1);
                     })
                     .setPositiveButton(R.string.start_task_confirm, (dialog2, which) -> {
-                        Intent intent = new Intent(this, Introduction.class);
+                        Intent intent = new Intent(this, ARIntroduction.class);
                         startActivityForResult(intent, 1);
                     })
                     .setCancelable(false).create();
