@@ -1,10 +1,12 @@
 package edu.usc.projecttalent.cognitive;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.databinding.ViewDataBinding;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -15,7 +17,10 @@ import edu.usc.projecttalent.cognitive.databinding.ActivityArQuestionBinding;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpQuestionBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
+import edu.usc.projecttalent.cognitive.reasoning.ARIntroduction;
 import edu.usc.projecttalent.cognitive.reasoning.ARItem;
+import edu.usc.projecttalent.cognitive.reasoning.ARPractice1;
+import edu.usc.projecttalent.cognitive.reasoning.ARPractice2;
 
 /**
  * Common code for Abstract reasoning and Spatial visualization.
@@ -25,7 +30,7 @@ import edu.usc.projecttalent.cognitive.reasoning.ARItem;
 public abstract class ARBase extends QuestionActivity {
 
     protected Queue<ARItem> mQueue;
-    protected static View oldView;
+    private View oldView;
     protected ViewDataBinding mBinding;
     protected Button next;
 
@@ -66,7 +71,9 @@ public abstract class ARBase extends QuestionActivity {
         }
     };
 
-    protected abstract int nextSet();
+    protected int nextSet() {
+        return 0;
+    }
 
     protected void checkSolution() {
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
@@ -81,7 +88,7 @@ public abstract class ARBase extends QuestionActivity {
         mBlock.addAnswer(mAnswer);
     }
 
-    protected void setupOptionsListener() {
+    protected void setupOptionsListener(boolean example) {
         View.OnClickListener optionListener = v -> {
             if (v != oldView) {
                 v.setPadding(2, 2, 2, 2);
@@ -94,7 +101,25 @@ public abstract class ARBase extends QuestionActivity {
 
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
-            (options.getChildAt(i)).setOnClickListener(optionListener);
+            View v = options.getChildAt(i);
+            v = example ? ((ViewGroup)v).getChildAt(0) : v;
+            v.setOnClickListener(optionListener);
         }
+    }
+
+    protected void startTask(int item) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.start_now)
+                .setMessage(R.string.start_task)
+                .setNegativeButton(R.string.example, (dialog1, which) -> {
+                    Intent intent = new Intent(this, item == 1 ? ARPractice1.class : ARPractice2.class);
+                    startActivityForResult(intent, 1);
+                })
+                .setPositiveButton(R.string.start_task_confirm, (dialog2, which) -> {
+                    Intent intent = new Intent(this, ARIntroduction.class);
+                    startActivityForResult(intent, 1);
+                })
+                .setCancelable(false).create();
+        dialog.show();
     }
 }

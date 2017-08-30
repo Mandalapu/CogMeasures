@@ -4,21 +4,16 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-import edu.usc.projecttalent.cognitive.BaseActivity;
+import edu.usc.projecttalent.cognitive.ARBase;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityArMainBinding;
 
-public class ARPractice2 extends BaseActivity {
-
-    View oldView;
+public class ARPractice2 extends ARBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +32,10 @@ public class ARPractice2 extends BaseActivity {
             if (!itemList.isEmpty()) {
                 binding.setItem(itemList.remove());
             } else {
-                Intent intent = new Intent(this, ARIntroduction.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(new Intent(this, ARIntroduction.class), 1);
             }
         });
 
-        LinearLayout options = (LinearLayout) findViewById(R.id.options);
-        for (int i = 0; i < options.getChildCount(); i++) {
-            options.getChildAt(i).setOnClickListener(v -> {
-                if (!itemList.isEmpty()) {
-                    v.setPadding(1, 1, 1, 1);
-                    v.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
-                    if (oldView != null)
-                        oldView.setBackground(null);
-                    oldView = v;
-                }
-            });
-        }
+        setupOptionsListener(true);
     }
 }

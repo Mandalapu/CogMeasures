@@ -53,7 +53,7 @@ public class SVQuestion extends ARBase {
         mAnswer = new Answer();
         mTimer.startTimer();
 
-        setupOptionsListener();
+        setupOptionsListener(false);
         next = (Button) findViewById(R.id.next);
         next.setOnClickListener(nextListener);
         next.setEnabled(false);

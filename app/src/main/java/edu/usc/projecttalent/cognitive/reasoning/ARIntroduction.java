@@ -19,8 +19,6 @@ public class ARIntroduction extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar_intro);
-        (findViewById(R.id.next)).setOnClickListener(v -> {
-            startActivityForResult(new Intent(this, ARQuestion.class), 1);
-        });
+        (findViewById(R.id.next)).setOnClickListener(v -> startActivityForResult(new Intent(this, ARQuestion.class), 1));
     }
 }
