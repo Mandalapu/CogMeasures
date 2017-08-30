@@ -1,4 +1,4 @@
-package edu.usc.projecttalent.cognitive.reaction_time;
+package edu.usc.projecttalent.cognitive.reaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,6 @@ public class RTInstruction extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reac_instr);
         (findViewById(R.id.buttonSpace)).setOnClickListener(v ->
-                startActivityForResult(new Intent(this, RTQuestion.class), 1));
+                startActivityForResult(new Intent(this, RTPractice.class), 1));
     }
 }

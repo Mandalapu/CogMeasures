@@ -18,11 +18,13 @@ public class Timer extends CountDownTimer {
     private static Timer mTimer;
     private AlertDialog mWarningDialog;
     private boolean shown;
+    private boolean activated;
 
     static final String WARNING = "cognitive.timewarning";
     static final String QUIT = "cognitive.quit";
     static final String RESUME = "cognitive.resume";
     public static final String NOANSWER = "cognitive.noanswer";
+    public static final String ACTIVENEXT = "cognitive.activenext";
 
     private static long time = 3;
 
@@ -30,11 +32,16 @@ public class Timer extends CountDownTimer {
         super(minutes * 60 * 1000, 1000);
         time = minutes;
         shown = false;
+        activated = false;
         createDialogs();
     }
 
     @Override
     public void onTick(long millisUntilFinished) {
+        if(millisUntilFinished <= (time * 60 - 5) * 1000 && !activated) {
+            mContext.sendBroadcast(new Intent(ACTIVENEXT));
+            activated = true;
+        }
         if (millisUntilFinished <= 60 * 1000 && !shown) {
             mWarningDialog.show();
             shown = true;
@@ -68,6 +75,7 @@ public class Timer extends CountDownTimer {
     public void startTimer() {
         mTimer.cancel();
         shown = false;
+        activated = false;
         mTimer.start();
     }
 

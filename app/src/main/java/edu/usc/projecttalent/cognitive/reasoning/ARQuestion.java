@@ -15,7 +15,7 @@ import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.reaction_time.RTInstruction;
+import edu.usc.projecttalent.cognitive.reaction.RTInstruction;
 
 /**
  * Block-adaptive test for Abstract Reasoning.
@@ -55,8 +55,9 @@ public class ARQuestion extends ARBase {
         mTimer.startTimer();
 
         setupOptionsListener();
-        Button next = (Button) findViewById(R.id.next);
+        next = (Button) findViewById(R.id.next);
         next.setOnClickListener(nextListener);
+        next.setEnabled(false);
     }
 
     @Override

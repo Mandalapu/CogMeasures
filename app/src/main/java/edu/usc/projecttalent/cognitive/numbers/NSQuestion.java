@@ -38,7 +38,6 @@ import edu.usc.projecttalent.cognitive.thurstone.TMInstruction;
 public class NSQuestion extends QuestionActivity {
     private ArrayList<NSItem> mList;
     private Queue<NSItem> mQueue;
-    private boolean mFtWarn;
 
     private static EditText answer, answer2;
     private static ActivityNsQuestionBinding binding;
@@ -82,6 +81,7 @@ public class NSQuestion extends QuestionActivity {
 
         mTimer.startTimer(); //start the timer for first question.
         (findViewById(R.id.next)).setOnClickListener(nextListener);
+        (findViewById(R.id.next)).setEnabled(false);
     }
 
     private View.OnClickListener nextListener = new View.OnClickListener() {
@@ -122,6 +122,7 @@ public class NSQuestion extends QuestionActivity {
         item.setInstr(getResources().getQuantityString(R.plurals.ns_instr,
                 item.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
         binding.setItem(item); //add new question.
+        (findViewById(R.id.next)).setEnabled(false);
         mTimer.startTimer();
         mFtWarn = true;
         NSItem curQuestion = binding.getItem();
@@ -141,9 +142,10 @@ public class NSQuestion extends QuestionActivity {
         mList = new Gson().fromJson(getString(block), question); //get new questions.
         mQueue.addAll(mList);
         mScore = 0; //reset the score for the new block.
-        NSItem item1 = mQueue.remove();
-        item1.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item1.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
-        binding.setItem(item1);
+        NSItem item = mQueue.remove();
+        item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
+        binding.setItem(item);
+        (findViewById(R.id.next)).setEnabled(false);
         mTimer.startTimer();
         mFtWarn = true;
         series.removeView(answer); //update position of answer box.

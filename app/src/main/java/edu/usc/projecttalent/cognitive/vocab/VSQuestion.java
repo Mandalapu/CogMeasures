@@ -33,7 +33,6 @@ import edu.usc.projecttalent.cognitive.numbers.NSInstruction;
  */
 
 public class VSQuestion extends QuestionActivity {
-    private boolean mFtWarn; //first time warning for no selection.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,9 +10,6 @@
         android:layout_width="250dip"
         android:layout_height="250dip"
         android:layout_gravity="center"
-        android:layout_marginTop="180dp"
-        android:contentDescription=" "
-        android:padding="0px"
-        android:src="@drawable/zero" />
+        android:layout_marginTop="180dp" />
 
 </LinearLayout>

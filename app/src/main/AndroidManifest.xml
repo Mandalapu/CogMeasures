@@ -28,15 +28,17 @@
         <activity android:name=".spatial.SVSample" />
         <activity android:name=".spatial.SVInstruction" />
         <activity android:name=".spatial.SVQuestion" />
-        <activity android:name=".reaction_time.RTInstruction" />
-        <activity android:name=".reaction_time.RTQuestion" />
+        <activity android:name=".reaction.RTInstruction" />
+        <activity android:name=".reaction.RTQuestion" />
         <activity android:name=".thurstone.TMExAnswer" />
         <activity android:name=".thurstone.TMTExRunner" />
         <activity android:name=".thurstone.TMInstruction" />
         <activity android:name=".thurstone.TMMoreInstr" />
-        <activity android:name=".thurstone.TMPractice"></activity>
+        <activity android:name=".thurstone.TMPractice" />
         <activity android:name=".thurstone.TMTestAnswer" />
         <activity android:name=".thurstone.TMTestRunner" />
+        <activity android:name=".reaction.RTPractice" />
+        <activity android:name=".reaction.RTStart"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

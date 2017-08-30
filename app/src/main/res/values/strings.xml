@@ -403,6 +403,7 @@
     <string name="switch_sv">Switch to spatial visualization.</string>
     <string name="sp_section_title">Spatial Visualization</string>
     <string name="reaction_time">Reaction Time</string>
+    <string name="reaction_practice">Reaction Practice</string>
     <!--Context switch -->
 
     <string name="userIdinstr">Please enter your user ID. This is the same number you entered for the first part of the survey.</string>
@@ -415,6 +416,8 @@
     <string name="end_exit">You can now exit by tapping on the exit button below.</string>
     <string name="exit">Exit</string>
     <string name="exit_button_text">You may now exit by tapping on the exit button below.</string>
+    <string name="rt_practice">Now you will practice.\n\nFocus on the cross, and press the SPACEBAR button each time you see the red circle.\n\n
+        Please press the SPACEBAR button when you are ready to begin</string>
     <string name="reaction_instr1">This task measures your speed. You will be shown a black cross for a few seconds, followed by a red circle. Then the cross will
         appear again, followed by the circle, and so on.\n\n
         Your task is to:\n
@@ -445,5 +448,8 @@
         Use the time to study each picture carefully.\n\n
         When you are ready, press \'Begin\'.</string>
     <string name="thur_ex_instr">Here are some pictures to study.</string>
+    <string name="rt_start">Now that you have practiced, it is time to begin the task.\n\n
+        The procedures is the same as before, but there are more items. You will see a cross, followed by a red circle. Each time you see the red circle,
+        press the SPACEBAR as quickly as you can.\n\n When you are ready, press the SPACEBAR button.</string>
     <!-- Thurstone -->
 </resources>

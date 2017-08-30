@@ -54,8 +54,9 @@ public class SVQuestion extends ARBase {
         mTimer.startTimer();
 
         setupOptionsListener();
-        Button next = (Button) findViewById(R.id.next);
+        next = (Button) findViewById(R.id.next);
         next.setOnClickListener(nextListener);
+        next.setEnabled(false);
     }
 
     @Override

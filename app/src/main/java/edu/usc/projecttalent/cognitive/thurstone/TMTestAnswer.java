@@ -1,5 +1,6 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
@@ -16,6 +17,7 @@ import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityThurAnswerBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
@@ -39,6 +41,9 @@ public class TMTestAnswer extends QuestionActivity {
 
         mSection = new Section(getString(R.string.thurstone_title));
         mSkipClass = ARInstruction.class;
+        mContext = this;
+        mTimer = Timer.getTimer(3);
+        prepareFilter();
         Drawable highlight = ContextCompat.getDrawable(this, R.drawable.btn_bg);
 
         Resources res = getResources();
@@ -51,6 +56,7 @@ public class TMTestAnswer extends QuestionActivity {
         ActivityThurAnswerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
         binding.setItem(mQueue.remove());
         Button btn = (Button) findViewById(R.id.next);
+        mTimer.startTimer();
 
         TableRow options = (TableRow) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
@@ -68,26 +74,31 @@ public class TMTestAnswer extends QuestionActivity {
         mAnswer = new Answer();
 
         btn.setOnClickListener(v -> {
-            if (oldView != null) {
-                TMItem question = binding.getItem();
-                boolean correct1 = false;
-                if (options.indexOfChild(oldView) == question.getAnsOption()) {
-                    mScore++; //correct answer.
-                    correct1 = true;
-                }
-                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct1); //to shift indices to 1-5.
-                mBlock.addAnswer(mAnswer);
-                if (oldView != null)
-                    oldView.setBackground(null);
-                oldView = null;
-                if (!mQueue.isEmpty()) {
-                    mAnswer = new Answer();
-                    binding.setItem(mQueue.remove());
-                } else {
-                    mBlock.endBlock(mScore);
-                    mSection.addBlock(mBlock);
-                    finishSection();
-                }
+            if(oldView == null && mFtWarn) {
+                mFtWarn = false;
+                sendBroadcast(new Intent(Timer.NOANSWER));
+                return;
+            }
+            TMItem question = binding.getItem();
+            boolean correct1 = false;
+            if (options.indexOfChild(oldView) == question.getAnsOption()) {
+                mScore++; //correct answer.
+                correct1 = true;
+            }
+            mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct1); //to shift indices to 1-5.
+            mBlock.addAnswer(mAnswer);
+            if (oldView != null)
+                oldView.setBackground(null);
+            oldView = null;
+            if (!mQueue.isEmpty()) {
+                mAnswer = new Answer();
+                binding.setItem(mQueue.remove());
+                mFtWarn = true;
+                mTimer.startTimer();
+            } else {
+                mBlock.endBlock(mScore);
+                mSection.addBlock(mBlock);
+                finishSection();
             }
         });
     }

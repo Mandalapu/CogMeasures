@@ -18,6 +18,7 @@ import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityThurAnswerBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
@@ -42,6 +43,10 @@ public class TMExAnswer extends QuestionActivity {
 
         mSection = new Section(getString(R.string.thurs_example));
         mBlock = new Block(1);
+        mFtWarn = true;
+        mContext = this;
+        mTimer = Timer.getTimer(3);
+        prepareFilter();
         Drawable highlight = ContextCompat.getDrawable(this, R.drawable.btn_bg);
 
         Resources res = getResources();
@@ -53,13 +58,13 @@ public class TMExAnswer extends QuestionActivity {
 
         ActivityThurAnswerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
         binding.setItem(mQueue.remove());
+        mTimer.startTimer();
         Button btn = (Button) findViewById(R.id.next);
-        btn.setEnabled(false);
 
         TableRow options = (TableRow) findViewById(R.id.options);
         for (int i = 0; i < options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
-                if(v != oldView) {
+                if (v != oldView) {
                     v.setBackground(highlight);
                     if (oldView != null)
                         oldView.setBackground(null);
@@ -71,45 +76,59 @@ public class TMExAnswer extends QuestionActivity {
 
         mAnswer = new Answer();
 
-        btn.setOnClickListener(v -> {
-            if (oldView != null) {
-                TMItem question = binding.getItem();
-                boolean correct = false;
-                if (options.indexOfChild(oldView) == question.getAnsOption()) {
-                    mScore++; //correct answer.
-                    correct = true;
-                }
-                mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
-                mBlock.addAnswer(mAnswer);
-                if (oldView != null)
-                    oldView.setBackground(null);
-                oldView = null;
-                if (!mQueue.isEmpty()) {
-                    mAnswer = new Answer();
-                    binding.setItem(mQueue.remove());
+        View.OnClickListener listener = v -> {
+            if(oldView == null && mFtWarn) {
+                mFtWarn = false;
+                sendBroadcast(new Intent(Timer.NOANSWER));
+                return;
+            }
+            TMItem question = binding.getItem();
+            boolean correct = false;
+            if (options.indexOfChild(oldView) == question.getAnsOption()) {
+                mScore++; //correct answer.
+                correct = true;
+            }
+            mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
+            mBlock.addAnswer(mAnswer);
+            if (oldView != null)
+                oldView.setBackground(null);
+            oldView = null;
+            if (!mQueue.isEmpty()) {
+                mAnswer = new Answer();
+                binding.setItem(mQueue.remove());
+                mTimer.startTimer();
+                mFtWarn = true;
+            } else {
+                mBlock.endBlock(mScore);
+                mSection.addBlock(mBlock);
+                mSection.endSection(); //end this section.
+                Survey.getSurvey().addSection(mSection);
+                if (mScore == 0) {
+                    endSection();
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-                    mBlock.endBlock(mScore);
-                    mSection.addBlock(mBlock);
-                    mSection.endSection(); //end this section.
-                    Survey.getSurvey().addSection(mSection);
-
-                    if (mScore == 0) {
-                        AlertDialog dialog = builder.setMessage(R.string.pressnext)
-                                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, ARInstruction.class), 1))
-                                .setCancelable(false)
-                                .create();
-                        dialog.show();
-                    } else {
-                        AlertDialog dialog = builder.setMessage(R.string.real_test_instr)
-                                .setNeutralButton(R.string.begin, (d, which) -> startActivityForResult(new Intent(this, TMTestRunner.class), 1))
-                                .setCancelable(false)
-                                .create();
-                        dialog.show();
-                    }
+                    startTest();
                 }
             }
-        });
+        };
+
+        btn.setOnClickListener(listener);
+    }
+
+    private void startTest() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog dialog = builder.setMessage(R.string.real_test_instr)
+                .setNeutralButton(R.string.begin, (d, which) -> startActivityForResult(new Intent(this, TMTestRunner.class), 1))
+                .setCancelable(false)
+                .create();
+        dialog.show();
+    }
+
+    private void endSection() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog dialog = builder.setMessage(R.string.pressnext)
+                .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, ARInstruction.class), 1))
+                .setCancelable(false)
+                .create();
+        dialog.show();
     }
 }

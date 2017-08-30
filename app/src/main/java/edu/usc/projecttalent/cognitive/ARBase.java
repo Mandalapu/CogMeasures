@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.databinding.ViewDataBinding;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.LinkedList;
@@ -25,8 +26,8 @@ public abstract class ARBase extends QuestionActivity {
 
     protected Queue<ARItem> mQueue;
     protected static View oldView;
-    protected static boolean mFtWarn;
     protected ViewDataBinding mBinding;
+    protected Button next;
 
     protected View.OnClickListener nextListener = v ->  {
         if (oldView == null && mFtWarn) {
@@ -43,6 +44,7 @@ public abstract class ARBase extends QuestionActivity {
             mBinding.setVariable(BR.item, mQueue.remove());
             mTimer.startTimer();
             mFtWarn = true;
+            next.setEnabled(false);
             return;
         }
         mBlock.endBlock(mScore);

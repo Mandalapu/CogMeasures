@@ -12,6 +12,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected static Context mContext;
     protected Timer mTimer;
+    protected boolean mFtWarn;
 
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -22,14 +23,21 @@ public abstract class BaseActivity extends AppCompatActivity {
             } else if (action.equals(Timer.RESUME)) { //reset timer for the same question.
                 mTimer.startTimer();
             } else if(action.equals(Timer.NOANSWER)) {
-                AlertDialog ansDialog = new AlertDialog.Builder(mContext)
-                        .setMessage(R.string.msg3)
-                        .setNeutralButton(R.string.ok, null)
-                        .create();
-                ansDialog.show();
+                showNoAnswerDialog();
+            } else if(action.equals(Timer.ACTIVENEXT)) {
+                (findViewById(R.id.next)).setEnabled(true);
             }
         }
     };
+
+    private void showNoAnswerDialog() {
+        AlertDialog ansDialog = new AlertDialog.Builder(this)
+                .setMessage(R.string.msg3)
+                .setNeutralButton(R.string.ok, null)
+                .create();
+        ansDialog.show();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -59,6 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         filter.addAction(Timer.QUIT);
         filter.addAction(Timer.RESUME);
         filter.addAction(Timer.NOANSWER);
+        filter.addAction(Timer.ACTIVENEXT);
         registerReceiver(mReceiver, filter);
     }
 
