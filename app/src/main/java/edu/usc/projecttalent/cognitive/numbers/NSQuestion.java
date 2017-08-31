@@ -38,13 +38,9 @@ import edu.usc.projecttalent.cognitive.thurstone.TMInstruction;
  * @version 2.0
  */
 
-public class NSQuestion extends QuestionActivity {
-    private ArrayList<NSItem> mList;
+public class NSQuestion extends NSBase {
     private ActivityNsQuestionBinding binding;
-
-    private static EditText answer, answer2;
-    private static LinearLayout series;
-    private static Type question;
+    private LinearLayout series;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +56,13 @@ public class NSQuestion extends QuestionActivity {
         mBlock = new Block(3); //first block is Block 3.
         mFtWarn = true; //for FTU.
 
-        question = new TypeToken<ArrayList<NSItem>>() {}.getType();
-        mList = new Gson().fromJson(getString(R.string.ns_3), question);
         mQueue = new LinkedList<>();
-        mQueue.addAll(mList);
+        mQueue.addAll(new Gson().fromJson(getString(R.string.ns_3), new TypeToken<ArrayList<NSItem>>() {}.getType()));
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_question);
         mAnswer = new Answer();
         NSItem item = (NSItem) mQueue.remove();
-        if (item.getAnsPositions() == null)
-            item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
+        item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
         binding.setVariable(BR.item, item);
 
         series = (LinearLayout) findViewById(R.id.series);
@@ -109,10 +102,10 @@ public class NSQuestion extends QuestionActivity {
             mSection.addBlock(mBlock);
 
             if (mSection.getBlockSize() == 1) { //only block 3 has been shown yet. show next block.
-                showNextSet(question);
-            } else {
-                finishSection();
+                showNextSet();
+                return;
             }
+            finishSection();
         }
     };
 
@@ -138,11 +131,10 @@ public class NSQuestion extends QuestionActivity {
         }
     }
 
-    private void showNextSet(Type question) {
+    private void showNextSet() {
         int block = nextSet();
         mBlock = new Block(getBlockId(block));
-        mList = new Gson().fromJson(getString(block), question);
-        mQueue.addAll(mList);
+        mQueue.addAll(new Gson().fromJson(getString(block), new TypeToken<ArrayList<NSItem>>() {}.getType()));
         mScore = 0;
 
         showNextQuestion();
@@ -155,8 +147,7 @@ public class NSQuestion extends QuestionActivity {
         try {
             userAns1 = Integer.parseInt(answer.getText().toString());
             userAns2 = Integer.parseInt(answer2.getText().toString());
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
         boolean correct = false;
         if ((userAns1 == 72 && userAns2 == 76) || (userAns1 == 78 && userAns2 == 82)) {
             correct = true;
@@ -182,45 +173,13 @@ public class NSQuestion extends QuestionActivity {
             int[] answers = question.getAnsOptions();
             Arrays.sort(answers);
             int pos = Arrays.binarySearch(answers, userAns);
-            if (pos!=-1 && userAns == answers[pos]) {
+            if (pos != -1) {
                 mScore++;
                 correct = true;
             }
         }
         mAnswer.endAnswer(userAns, correct); //end answer.
         mBlock.addAnswer(mAnswer); //add answer to block.
-    }
-
-    private void setNumPad() {
-        LinearLayout numPad = (LinearLayout) findViewById(R.id.numpad);
-
-        View.OnTouchListener listener = (v, event) -> {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (answer2.hasFocus())
-                    answer2.append(((Button) v).getText());
-                else
-                    answer.append(((Button) v).getText());
-                v.setBackgroundResource(R.drawable.circle_dark);
-                ((Button) v).setTextColor(getResources().getColor(android.R.color.white));
-            } else {
-                v.setBackgroundResource(R.drawable.circle);
-                ((Button) v).setTextColor(getResources().getColor(android.R.color.black));
-            }
-            return true;
-        };
-
-
-        for (int i = 0; i < numPad.getChildCount(); i++) {
-            ((Button) (numPad.getChildAt(i))).setText(String.format(Locale.getDefault(), "%d", i));
-            (numPad.getChildAt(i)).setOnTouchListener(listener);
-        }
-
-        (findViewById(R.id.undo)).setOnClickListener(v -> {
-            EditText hasFocus = answer2.hasFocus() ? answer2 : answer;
-            int length = hasFocus.length();
-            if (length > 0)
-                hasFocus.getText().delete(length - 1, length);
-        });
     }
 
     private int nextSet() {

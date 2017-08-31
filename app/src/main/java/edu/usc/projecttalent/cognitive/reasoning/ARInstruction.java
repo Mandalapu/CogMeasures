@@ -31,8 +31,7 @@ public class ARInstruction extends BaseActivity {
             if (!itemList.isEmpty())
                 binding.setItem(itemList.remove());
             else {
-                Intent intent = new Intent(ARInstruction.this, ARInstruction2.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(new Intent(this, ARInstruction2.class), 1);
             }
         });
     }

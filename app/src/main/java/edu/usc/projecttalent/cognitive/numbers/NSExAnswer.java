@@ -29,7 +29,7 @@ public class NSExAnswer extends BaseActivity {
         binding.setItem(example);
 
         LinearLayout series = (LinearLayout) findViewById(R.id.series);
-        final EditText answer = (EditText) findViewById(R.id.answer);
+        EditText answer = (EditText) findViewById(R.id.answer);
         series.removeView(answer);
         series.addView(answer, example.getAnsPosition());
 
