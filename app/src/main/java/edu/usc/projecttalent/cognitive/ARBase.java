@@ -29,9 +29,9 @@ import edu.usc.projecttalent.cognitive.reasoning.ARPractice2;
 
 public abstract class ARBase extends QuestionActivity {
 
-    private View oldView;
+    private static View oldView;
     protected static ViewDataBinding mBinding;
-    protected Button next;
+    protected static Button next;
 
     protected View.OnClickListener nextListener = v ->  {
         if (oldView == null && mFtWarn) {

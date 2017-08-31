@@ -17,9 +17,9 @@ public abstract class QuestionActivity extends BaseActivity {
     protected Section mSection;
     protected Block mBlock;
     protected Answer mAnswer;
-    protected Class mSkipClass;
-    protected int mScore;
-    protected Queue<Item> mQueue;
+    protected static Class mSkipClass;
+    protected static int mScore;
+    protected static Queue<Item> mQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
