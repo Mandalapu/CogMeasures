@@ -16,6 +16,8 @@ import android.widget.TableRow;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BR;
+import edu.usc.projecttalent.cognitive.Item;
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
@@ -51,13 +53,13 @@ public class TMExAnswer extends QuestionActivity {
 
         Resources res = getResources();
         TypedArray questions = res.obtainTypedArray(R.array.th_practice);
-        Queue<TMItem> mQueue = new LinkedList<>();
+        mQueue = new LinkedList<>();
         for (int i = 0; i < questions.length(); i++) {
             mQueue.add(new TMItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
         }
 
         ActivityThurAnswerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
-        binding.setItem(mQueue.remove());
+        binding.setVariable(BR.item, mQueue.remove());
         mTimer.startTimer();
         Button btn = (Button) findViewById(R.id.next);
 
@@ -84,7 +86,7 @@ public class TMExAnswer extends QuestionActivity {
             }
             TMItem question = binding.getItem();
             boolean correct = false;
-            if (options.indexOfChild(oldView) == question.getAnsOption()) {
+            if (options.indexOfChild(oldView) == question.getAnsPosition()) {
                 mScore++; //correct answer.
                 correct = true;
             }
@@ -95,7 +97,7 @@ public class TMExAnswer extends QuestionActivity {
             oldView = null;
             if (!mQueue.isEmpty()) {
                 mAnswer = new Answer();
-                binding.setItem(mQueue.remove());
+                binding.setVariable(BR.item, mQueue.remove());
                 mTimer.startTimer();
                 mFtWarn = true;
             } else {

@@ -39,24 +39,19 @@ public class SVQuestion extends ARBase {
         prepareFilter();
 
         mBlock = new Block(3); //first block is Block 3.
-        mFtWarn = true; //for FTU.
 
         Resources res = getResources();
-        TypedArray questions = res.obtainTypedArray(R.array.sp_3); //all questions of Set 3.
-        //get questions for set 3.
+        TypedArray questions = res.obtainTypedArray(R.array.sp_3);
         mQueue = new LinkedList<>();
         for (int i = 0; i < questions.length(); i++) {
-            mQueue.add(new ARItem(res.obtainTypedArray(questions.getResourceId(i, 0)))); //each question. sp_31 .. sp_33.
+            mQueue.add(new ARItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
         }
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_sp_question);
-        mBinding.setVariable(BR.item, mQueue.remove());
-        mAnswer = new Answer();
-        mTimer.startTimer();
-
         setupOptionsListener(false);
         next = (Button) findViewById(R.id.next);
         next.setOnClickListener(nextListener);
-        next.setEnabled(false);
+
+        showNextQuestion();
     }
 
     @Override

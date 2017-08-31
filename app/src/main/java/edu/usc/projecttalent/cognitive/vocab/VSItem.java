@@ -1,5 +1,7 @@
 package edu.usc.projecttalent.cognitive.vocab;
 
+import edu.usc.projecttalent.cognitive.Item;
+
 /**
  * JSON encapsulation for vocabulary question.
  *
@@ -7,10 +9,9 @@ package edu.usc.projecttalent.cognitive.vocab;
  * @version 2.0
  */
 
-public class VSItem {
+public class VSItem extends Item {
     private String question;
     private String[] options;
-    private int answer;
 
     public String getQuestion() {
         return question;
@@ -26,13 +27,5 @@ public class VSItem {
 
     public void setOptions(String[] options) {
         this.options = options;
-    }
-
-    public int getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(int answer) {
-        this.answer = answer;
     }
 }

@@ -4,6 +4,8 @@ import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
+import edu.usc.projecttalent.cognitive.Item;
+
 /**
  * JSON object encapsulation for Abstract reasoning examples.
  *
@@ -11,12 +13,11 @@ import android.widget.ImageView;
  * @version 2.0
  */
 
-public class ARItem {
+public class ARItem extends Item {
     private String instructions;
     private TypedArray options;
     private String details;
     private boolean answer;
-    private int ansOption;
 
     @SuppressWarnings("ResourceType")
     public ARItem(String instructions, TypedArray options, String details, boolean answer) {
@@ -24,13 +25,13 @@ public class ARItem {
         this.options = options;
         this.details = details;
         this.answer = answer;
-        this.ansOption = answer ? options.getInt(6, -1) : -1;
+        this.ansPosition = answer ? options.getInt(6, -1) : -1;
     }
 
     @SuppressWarnings("ResourceType")
     public ARItem(TypedArray options) {
         this.options = options;
-        this.ansOption = options.getInt(6, -1);
+        this.ansPosition = options.getInt(6, -1);
     }
 
     @BindingAdapter({"bind:imageUrl"})
@@ -69,13 +70,5 @@ public class ARItem {
 
     public void setAnswer(boolean answer) {
         this.answer = answer;
-    }
-
-    public int getAnsOption() {
-        return ansOption;
-    }
-
-    public void setAnsOption(int ansOption) {
-        this.ansOption = ansOption;
     }
 }

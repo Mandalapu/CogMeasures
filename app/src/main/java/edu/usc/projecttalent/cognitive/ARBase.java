@@ -29,10 +29,9 @@ import edu.usc.projecttalent.cognitive.reasoning.ARPractice2;
 
 public abstract class ARBase extends QuestionActivity {
 
-    protected Queue<ARItem> mQueue;
-    private static View oldView;
+    private View oldView;
     protected static ViewDataBinding mBinding;
-    protected static Button next;
+    protected Button next;
 
     protected View.OnClickListener nextListener = v ->  {
         if (oldView == null && mFtWarn) {
@@ -45,31 +44,34 @@ public abstract class ARBase extends QuestionActivity {
             oldView.setBackground(null);
         oldView = null;
         if (!mQueue.isEmpty()) {
-            mAnswer = new Answer();
-            mBinding.setVariable(BR.item, mQueue.remove());
-            mTimer.startTimer();
-            mFtWarn = true;
-            next.setEnabled(false);
+            showNextQuestion();
             return;
         }
         mBlock.endBlock(mScore);
         mSection.addBlock(mBlock);
+
         if (mSection.getBlockSize() == 1) { //get next block.
             int block = nextSet();
             mBlock = new Block(getBlockId(block));
-            TypedArray questions1 = getResources().obtainTypedArray(block); //all questions of Set X.
+            TypedArray questions = getResources().obtainTypedArray(block); //all questions of Set X.
             mQueue = new LinkedList<>();
-            for (int i = 0; i < questions1.length(); i++) {
-                mQueue.add(new ARItem(getResources().obtainTypedArray(questions1.getResourceId(i, 0)))); //each question. ar_x1 .. ar_x3.
+            for (int i = 0; i < questions.length(); i++) {
+                mQueue.add(new ARItem(getResources().obtainTypedArray(questions.getResourceId(i, 0)))); //each question. ar_x1 .. ar_x3.
             }
             mScore = 0;
-            mBinding.setVariable(BR.item, mQueue.remove());
-            mTimer.startTimer();
-            mFtWarn = true;
+            showNextQuestion();
         } else {
             finishSection();
         }
     };
+
+    protected void showNextQuestion() {
+        mAnswer = new Answer();
+        mBinding.setVariable(BR.item, mQueue.remove());
+        mTimer.startTimer();
+        mFtWarn = true;
+        next.setEnabled(false);
+    }
 
     protected int nextSet() {
         return 0;
@@ -80,7 +82,7 @@ public abstract class ARBase extends QuestionActivity {
         ARItem question = (mBinding instanceof ActivityArQuestionBinding) ? ((ActivityArQuestionBinding) mBinding).getItem():
                 ((ActivitySpQuestionBinding)mBinding).getItem();
         boolean correct = false;
-        if (options.indexOfChild(oldView) == question.getAnsOption()) {
+        if (options.indexOfChild(oldView) == question.getAnsPosition()) {
             mScore++; //correct answer.
             correct = true;
         }

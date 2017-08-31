@@ -43,32 +43,32 @@
 
             <ImageView
                 style="@style/figure"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 0? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 0? 2: 0}"
+                android:background="@{item.answer &amp;&amp; item.ansPosition == 0? @drawable/black:null}"
+                android:padding="@{item.answer &amp;&amp; item.ansPosition == 0? 2: 0}"
                 app:imageUrl="@{item.options.getResourceId(1,0)}" />
 
             <ImageView
                 style="@style/figure"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 1? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 1? 2: 0}"
+                android:background="@{item.answer &amp;&amp; item.ansPosition == 1? @drawable/black:null}"
+                android:padding="@{item.answer &amp;&amp; item.ansPosition == 1? 2: 0}"
                 app:imageUrl="@{item.options.getResourceId(2,0)}" />
 
             <ImageView
                 style="@style/figure"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 2? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 2? 2: 0}"
+                android:background="@{item.answer &amp;&amp; item.ansPosition == 2? @drawable/black:null}"
+                android:padding="@{item.answer &amp;&amp; item.ansPosition == 2? 2: 0}"
                 app:imageUrl="@{item.options.getResourceId(3,0)}" />
 
             <ImageView
                 style="@style/figure"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 3? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 3? 2: 0}"
+                android:background="@{item.answer &amp;&amp; item.ansPosition == 3? @drawable/black:null}"
+                android:padding="@{item.answer &amp;&amp; item.ansPosition == 3? 2: 0}"
                 app:imageUrl="@{item.options.getResourceId(4,0)}" />
 
             <ImageView
                 style="@style/figure"
-                android:background="@{item.answer &amp;&amp; item.ansOption == 4? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansOption == 4? 2: 0}"
+                android:background="@{item.answer &amp;&amp; item.ansPosition == 4? @drawable/black:null}"
+                android:padding="@{item.answer &amp;&amp; item.ansPosition == 4? 2: 0}"
                 app:imageUrl="@{item.options.getResourceId(5,0)}" />
 
         </LinearLayout>

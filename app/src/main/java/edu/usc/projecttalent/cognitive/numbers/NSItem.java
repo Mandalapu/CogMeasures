@@ -1,5 +1,7 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
+import edu.usc.projecttalent.cognitive.Item;
+
 /**
  * Number section question JSON encapsulation.
  *
@@ -7,9 +9,8 @@ package edu.usc.projecttalent.cognitive.numbers;
  * @version 2.0
  */
 
-public class NSItem {
+public class NSItem extends Item {
     private int[] options;
-    private int ansPosition;
     private int[] ansOptions;
     private int[] ansPositions;
     private String instr;
@@ -20,14 +21,6 @@ public class NSItem {
 
     public void setOptions(int[] options) {
         this.options = options;
-    }
-
-    public int getAnsPosition() {
-        return ansPosition;
-    }
-
-    public void setAnsPosition(int ansPosition) {
-        this.ansPosition = ansPosition;
     }
 
     public int[] getAnsOptions() {

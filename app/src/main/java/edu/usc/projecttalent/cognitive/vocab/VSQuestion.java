@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BR;
+import edu.usc.projecttalent.cognitive.Item;
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
@@ -34,6 +36,8 @@ import edu.usc.projecttalent.cognitive.numbers.NSInstruction;
 
 public class VSQuestion extends QuestionActivity {
 
+    ActivityVocabBinding mBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,24 +46,19 @@ public class VSQuestion extends QuestionActivity {
         mSkipClass = NSInstruction.class;
         mSection = new Section(getString(R.string.vocabulary));
         mScore = 0;
-        mFtWarn = true;
 
         mContext = this;
         mTimer = Timer.getTimer(2);
         prepareFilter();
 
         mBlock = new Block(3);
-        Type question = new TypeToken<ArrayList<VSItem>>() {
-        }.getType();
-        Queue<VSItem> mQueue = new LinkedList<>();
+        Type question = new TypeToken<ArrayList<VSItem>>() {}.getType();
+        mQueue = new LinkedList<>();
         mQueue.addAll(new Gson().fromJson(getString(R.string.vocab3), question));
 
-        ActivityVocabBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
-        mAnswer = new Answer();
-        binding.setItem(mQueue.remove());
-        mTimer.startTimer();
-
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
         RadioGroup options = (RadioGroup) findViewById(R.id.options);
+        showNextQuestion();
 
         Button button = (Button) findViewById(R.id.next);
         button.setOnClickListener(v -> {
@@ -68,22 +67,20 @@ public class VSQuestion extends QuestionActivity {
                 sendBroadcast(new Intent(Timer.NOANSWER));
                 return;
             }
-            int answer = binding.getItem().getAnswer();
+
+            int answer = mBinding.getItem().getAnsPosition();
             RadioButton checked = (RadioButton) options.findViewById(options.getCheckedRadioButtonId());
             int index = options.indexOfChild(checked);
             options.clearCheck();
-            boolean correct = false;
+
             if (answer == index) {
                 mScore++;
-                correct = true;
             }
-            mAnswer.endAnswer(index + 1, correct); //to shift indices to 1-5.
+            mAnswer.endAnswer(index + 1, answer == index); //to shift indices to 1-5.
             mBlock.addAnswer(mAnswer);
+
             if (!mQueue.isEmpty()) {
-                mAnswer = new Answer();
-                binding.setItem(mQueue.remove());
-                mTimer.startTimer();
-                mFtWarn = true;
+                showNextQuestion();
                 return;
             }
             mBlock.endBlock(mScore);
@@ -94,13 +91,18 @@ public class VSQuestion extends QuestionActivity {
                 mBlock = new Block(getBlockId(block));
                 mQueue.addAll(new Gson().fromJson(getString(block), question));
                 mScore = 0;
-                binding.setItem(mQueue.remove());
-                mTimer.startTimer();
-                mFtWarn = true;
-            } else {
-                finishSection();
+                showNextQuestion();
+                return;
             }
+            finishSection();
         });
+    }
+
+    private void showNextQuestion() {
+        mAnswer = new Answer();
+        mBinding.setVariable(BR.item, mQueue.remove());
+        mTimer.startTimer();
+        mFtWarn = true;
     }
 
     private int nextSet() {

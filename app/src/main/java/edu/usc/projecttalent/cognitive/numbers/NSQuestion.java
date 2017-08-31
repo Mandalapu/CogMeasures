@@ -14,10 +14,13 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.BR;
+import edu.usc.projecttalent.cognitive.Item;
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
@@ -37,10 +40,9 @@ import edu.usc.projecttalent.cognitive.thurstone.TMInstruction;
 
 public class NSQuestion extends QuestionActivity {
     private ArrayList<NSItem> mList;
-    private Queue<NSItem> mQueue;
+    private ActivityNsQuestionBinding binding;
 
     private static EditText answer, answer2;
-    private static ActivityNsQuestionBinding binding;
     private static LinearLayout series;
     private static Type question;
 
@@ -58,18 +60,17 @@ public class NSQuestion extends QuestionActivity {
         mBlock = new Block(3); //first block is Block 3.
         mFtWarn = true; //for FTU.
 
-        question = new TypeToken<ArrayList<NSItem>>() {
-        }.getType();
+        question = new TypeToken<ArrayList<NSItem>>() {}.getType();
         mList = new Gson().fromJson(getString(R.string.ns_3), question);
         mQueue = new LinkedList<>();
         mQueue.addAll(mList);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_question);
         mAnswer = new Answer();
-        NSItem item = mQueue.remove();
+        NSItem item = (NSItem) mQueue.remove();
         if (item.getAnsPositions() == null)
             item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
-        binding.setItem(item);
+        binding.setVariable(BR.item, item);
 
         series = (LinearLayout) findViewById(R.id.series);
         answer = (EditText) findViewById(R.id.answer);
@@ -104,7 +105,6 @@ public class NSQuestion extends QuestionActivity {
                 showNextQuestion();
                 return;
             }
-
             mBlock.endBlock(mScore);
             mSection.addBlock(mBlock);
 
@@ -117,14 +117,16 @@ public class NSQuestion extends QuestionActivity {
     };
 
     private void showNextQuestion() {
-        mAnswer = new Answer();
-        NSItem item = mQueue.remove();
+        NSItem item = (NSItem) mQueue.remove();
         item.setInstr(getResources().getQuantityString(R.plurals.ns_instr,
                 item.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
-        binding.setItem(item); //add new question.
+
+        mAnswer = new Answer();
+        binding.setVariable(BR.item, item); //add new question.
         (findViewById(R.id.next)).setEnabled(false);
         mTimer.startTimer();
         mFtWarn = true;
+
         NSItem curQuestion = binding.getItem();
         if (curQuestion.getAnsPositions() == null) {
             series.removeView(answer); //update position of answer box.
@@ -139,17 +141,11 @@ public class NSQuestion extends QuestionActivity {
     private void showNextSet(Type question) {
         int block = nextSet();
         mBlock = new Block(getBlockId(block));
-        mList = new Gson().fromJson(getString(block), question); //get new questions.
+        mList = new Gson().fromJson(getString(block), question);
         mQueue.addAll(mList);
-        mScore = 0; //reset the score for the new block.
-        NSItem item = mQueue.remove();
-        item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, item.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
-        binding.setItem(item);
-        (findViewById(R.id.next)).setEnabled(false);
-        mTimer.startTimer();
-        mFtWarn = true;
-        series.removeView(answer); //update position of answer box.
-        series.addView(answer, binding.getItem().getAnsPosition());
+        mScore = 0;
+
+        showNextQuestion();
     }
 
     private void multiOption() {
@@ -184,12 +180,11 @@ public class NSQuestion extends QuestionActivity {
             correct = true;
         } else if (question.getAnsOptions() != null) {
             int[] answers = question.getAnsOptions();
-            for (int answer1 : answers) {
-                if (userAns == answer1) { //if there are multiple answers to the same question.
-                    mScore++;
-                    correct = true;
-                    break;
-                }
+            Arrays.sort(answers);
+            int pos = Arrays.binarySearch(answers, userAns);
+            if (pos!=-1 && userAns == answers[pos]) {
+                mScore++;
+                correct = true;
             }
         }
         mAnswer.endAnswer(userAns, correct); //end answer.

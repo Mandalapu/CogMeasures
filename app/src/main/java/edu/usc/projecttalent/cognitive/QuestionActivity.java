@@ -2,7 +2,10 @@ package edu.usc.projecttalent.cognitive;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+
+import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
@@ -16,6 +19,7 @@ public abstract class QuestionActivity extends BaseActivity {
     protected Answer mAnswer;
     protected Class mSkipClass;
     protected int mScore;
+    protected Queue<Item> mQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,6 +4,8 @@ import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
+import edu.usc.projecttalent.cognitive.Item;
+
 /**
  * Model for thurstone question.
  *
@@ -11,14 +13,13 @@ import android.widget.ImageView;
  * @version 1.0
  */
 
-public class TMItem {
+public class TMItem extends Item {
     private TypedArray options;
-    private int ansOption;
 
     @SuppressWarnings("ResourceType")
     public TMItem(TypedArray options) {
         this.options = options;
-        this.ansOption = options.getInt(4, -1);
+        this.ansPosition = options.getInt(4, -1);
     }
 
     public TypedArray getOptions() {
@@ -27,14 +28,6 @@ public class TMItem {
 
     public void setOptions(TypedArray options) {
         this.options = options;
-    }
-
-    public int getAnsOption() {
-        return ansOption;
-    }
-
-    public void setAnsOption(int ansOption) {
-        this.ansOption = ansOption;
     }
 
     @BindingAdapter({"bind:imageUrl"})

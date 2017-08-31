@@ -33,8 +33,7 @@ public class NSExAnswer extends BaseActivity {
         series.removeView(answer);
         series.addView(answer, example.getAnsPosition());
 
-        Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(v -> {
+        (findViewById(R.id.next)).setOnClickListener(v -> {
             Intent intent;
             if (example.getId() == 1) {
                 intent = new Intent(this, NSInstruction.class);
