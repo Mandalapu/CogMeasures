@@ -92,4 +92,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return 5;
         }
     }
+
+    protected void setNext(Class nextClass) {
+        (findViewById(R.id.next)).setOnClickListener(v -> startActivityForResult(new Intent(this, nextClass), 1));
+    }
 }

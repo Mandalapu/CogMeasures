@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import edu.usc.projecttalent.cognitive.BaseActivity;
@@ -17,6 +16,6 @@ public class TMMoreInstr extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thur_instr2);
-        findViewById(R.id.next).setOnClickListener(v -> startActivityForResult(new Intent(this, TMPractice.class), 1));
+        setNext(TMPractice.class);
     }
 }

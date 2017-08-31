@@ -18,6 +18,7 @@ public class CMIntro extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cmintro);
+        setNext(VSInstruction.class);
         (findViewById(R.id.next)).setOnClickListener(v -> startActivityForResult(new Intent(this, VSInstruction.class), 1));
     }
 }

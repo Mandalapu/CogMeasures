@@ -1,8 +1,6 @@
 package edu.usc.projecttalent.cognitive.spatial;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
@@ -20,10 +18,6 @@ public class SVInstruction extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sp_intro);
-        Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(SVInstruction.this, SVSample.class);
-            startActivityForResult(intent, 1);
-        });
+        setNext(SVSample.class);
     }
 }
