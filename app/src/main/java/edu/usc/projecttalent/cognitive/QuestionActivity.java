@@ -2,7 +2,6 @@ package edu.usc.projecttalent.cognitive;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
 import java.util.Queue;
@@ -17,8 +16,9 @@ public abstract class QuestionActivity extends BaseActivity {
     protected Section mSection;
     protected Block mBlock;
     protected Answer mAnswer;
+    protected int mScore;
+
     protected static Class mSkipClass;
-    protected static int mScore;
     protected static Queue<Item> mQueue;
 
     @Override

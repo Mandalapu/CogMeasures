@@ -33,7 +33,7 @@
                         \"Nitrogen\",
                         \"Nothing\"
                         ],
-                \"answer\": 4
+                \"ansPosition\": 4
             },
             {
                 \"question\": \"To surrender means to\",
@@ -43,7 +43,7 @@
                         \"Surround\",
                         \"Yield\"
                        ],
-                \"answer\": 4
+                \"ansPosition\": 4
             },
             {
                 \"question\": \"Obstruction means\",
@@ -53,7 +53,7 @@
                         \"Obstreperousness\",
                         \"Obtuseness\"
                        ],
-                \"answer\": 1
+                \"ansPosition\": 1
             }
           ]
     </string>
@@ -67,7 +67,7 @@
                         \"Drawing\",
                         \"Grammatical error\"
                         ],
-                \"answer\": 3
+                \"ansPosition\": 3
             },
             {
                 \"question\": \"To discard is to\",
@@ -77,7 +77,7 @@
                         \"Take away\",
                         \"Throw away\"
                        ],
-                \"answer\": 4
+                \"ansPosition\": 4
             },
             {
                 \"question\": \"Blunt means\",
@@ -87,7 +87,7 @@
                         \"Sharp\",
                         \"Dull\"
                        ],
-                \"answer\": 4
+                \"ansPosition\": 4
             }
           ]
     </string>
@@ -101,7 +101,7 @@
                         \"Gauge\",
                         \"Solder\"
                         ],
-                \"answer\": 4
+                \"ansPosition\": 4
             },
             {
                 \"question\": \"A purpose of lubrication is to\",
@@ -111,7 +111,7 @@
                         \"Prevent warping\",
                         \"Remove dirt\"
                        ],
-                \"answer\": 2
+                \"ansPosition\": 2
             },
             {
                 \"question\": \"Restricted means\",
@@ -121,7 +121,7 @@
                         \"Refrained\",
                         \"Tense\"
                        ],
-                \"answer\": 2
+                \"ansPosition\": 2
             }
           ]
     </string>
@@ -135,7 +135,7 @@
                         \"Lose\",
                         \"Create\"
                         ],
-                \"answer\": 2
+                \"ansPosition\": 2
             },
             {
                 \"question\": \"A municipal court is a\",
@@ -145,7 +145,7 @@
                         \"United Nations court\",
                         \"Military court\"
                        ],
-                \"answer\": 0
+                \"ansPosition\": 0
             },
             {
                 \"question\": \"Which of these is carnivorous?\",
@@ -155,7 +155,7 @@
                         \"Tiger\",
                         \"Elephant\"
                        ],
-                \"answer\": 3
+                \"ansPosition\": 3
             }
           ]
     </string>
@@ -169,7 +169,7 @@
                         \"Kindness\",
                         \"Direction\"
                         ],
-                \"answer\": 1
+                \"ansPosition\": 1
             },
             {
                 \"question\": \"Eccentric means\",
@@ -179,7 +179,7 @@
                         \"Temperamental\",
                         \"Solitary\"
                        ],
-                \"answer\": 0
+                \"ansPosition\": 0
             },
             {
                 \"question\": \"A barometer is used to measure\",
@@ -189,7 +189,7 @@
                         \"Air pressure\",
                         \"Cloudiness\"
                        ],
-                \"answer\": 3
+                \"ansPosition\": 3
             }
           ]
     </string>

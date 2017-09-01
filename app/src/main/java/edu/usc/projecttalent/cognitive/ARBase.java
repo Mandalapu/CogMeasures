@@ -78,15 +78,15 @@ public abstract class ARBase extends QuestionActivity {
     }
 
     protected void checkSolution() {
+        boolean isAR = mBinding instanceof ActivityArQuestionBinding;
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
-        ARItem question = (mBinding instanceof ActivityArQuestionBinding) ? ((ActivityArQuestionBinding) mBinding).getItem():
-                ((ActivitySpQuestionBinding)mBinding).getItem();
+        ARItem question = isAR ? ((ActivityArQuestionBinding) mBinding).getItem(): ((ActivitySpQuestionBinding)mBinding).getItem();
         boolean correct = false;
         if (options.indexOfChild(oldView) == question.getAnsPosition()) {
             mScore++; //correct answer.
             correct = true;
         }
-        mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
+        mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + (isAR? 1 : 0), correct);
         mBlock.addAnswer(mAnswer);
     }
 

@@ -55,6 +55,7 @@ public class TMTestAnswer extends QuestionActivity {
             mQueue.add(new TMItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
         }
 
+        mScore = 0;
         ActivityThurAnswerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
         binding.setVariable(BR.item, mQueue.remove());
         Button btn = (Button) findViewById(R.id.next);

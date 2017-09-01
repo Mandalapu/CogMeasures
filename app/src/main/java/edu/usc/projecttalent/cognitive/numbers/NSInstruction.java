@@ -31,7 +31,7 @@ public class NSInstruction extends NSBase {
         binding.setItem(mExample);
 
         LinearLayout series = (LinearLayout) findViewById(R.id.series);
-        EditText answer = (EditText) findViewById(R.id.answer);
+        answer = (EditText) findViewById(R.id.answer);
 
         series.removeView(answer);
         series.addView(answer, mExample.getAnsPosition());

@@ -33,7 +33,6 @@ public abstract class NSBase extends QuestionActivity {
             return true;
         };
 
-
         for (int i = 0; i < numPad.getChildCount(); i++) {
             ((Button) (numPad.getChildAt(i))).setText(String.format(Locale.getDefault(), "%d", i));
             (numPad.getChildAt(i)).setOnTouchListener(listener);

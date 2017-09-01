@@ -3,7 +3,6 @@ package edu.usc.projecttalent.cognitive.numbers;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
