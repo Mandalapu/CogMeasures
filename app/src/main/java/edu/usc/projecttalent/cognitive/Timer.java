@@ -76,6 +76,7 @@ public class Timer extends CountDownTimer {
         mTimer.cancel();
         shown = false;
         activated = false;
+        createDialogs();
         mTimer.start();
     }
 

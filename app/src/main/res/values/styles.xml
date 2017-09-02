@@ -59,7 +59,7 @@
 
     <style name="numAns" parent="numQues">
         <item name="android:layout_width">60dp</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:editable">false</item>
         <item name="android:ems">10</item>
     </style>

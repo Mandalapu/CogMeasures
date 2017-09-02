@@ -53,7 +53,7 @@
 
             <EditText
                 android:id="@+id/answer"
-                style="@style/numAns" />
+                style="@style/numAns"/>
 
             <Button
                 android:id="@+id/undo"
