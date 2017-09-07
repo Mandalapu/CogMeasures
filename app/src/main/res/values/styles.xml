@@ -21,6 +21,7 @@
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textSize">20sp</item>
+        <item name="android:textColorPrimary">@android:color/holo_red_dark</item>
     </style>
 
     <style name="vocabOption" parent="AppTheme">
@@ -62,6 +63,7 @@
         <item name="android:textSize">40sp</item>
         <item name="android:editable">false</item>
         <item name="android:ems">10</item>
+        <item name="android:layout_height">80dp</item>
     </style>
 
     <style name="numpadButton" parent="AppTheme">
