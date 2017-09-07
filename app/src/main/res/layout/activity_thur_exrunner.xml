@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="edu.usc.projecttalent.cognitive.thurstone.TMTExRunner">
+    tools:context="edu.usc.projecttalent.cognitive.thurstone.TMRunner">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:textSize="30sp"/>
 
     <ImageView
-        android:id="@+id/imgeChangeExample"
+        android:id="@+id/image"
         android:layout_width="250dip"
         android:layout_height="250dip"
         android:layout_gravity="center"

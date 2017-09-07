@@ -12,32 +12,35 @@ import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
- * NSItem images switcher activity.
+ * Thurstone images switcher activity.
  *
  * @author Anindya Dutta
  * @version 2.0
  */
 
-public class TMTExRunner extends BaseActivity {
+public class TMRunner extends BaseActivity {
 
     private int position = 0;
+    Timer mTimer = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thur_exrunner);
 
-        ImageView example = (ImageView) findViewById(R.id.imgeChangeExample);
-        TypedArray images = getResources().obtainTypedArray(R.array.thurstone_ex);
+        ImageView example = (ImageView) findViewById(R.id.image);
+        int questions = getIntent().getIntExtra("questions", R.array.thurstone_ex);
+        TypedArray images = getResources().obtainTypedArray(questions);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(() -> {
                     if (position >= images.length()) {
-                        startActivityForResult(new Intent(getApplicationContext(), TMExAnswer.class), 1);
-                        timer.cancel();
+                        Intent intent = new Intent(getApplicationContext(), TMQuestion.class);
+                        intent.putExtra("answer", questions == R.array.thurstone_ex ? R.array.th_practice : R.array.th_set);
+                        startActivityForResult(intent, 1);
+                        mTimer.cancel();
                     } else
                         example.setImageResource(images.getResourceId(position++, -1));
                 });
