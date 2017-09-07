@@ -90,7 +90,7 @@ public abstract class ARBase extends QuestionActivity {
         mBlock.addAnswer(mAnswer);
     }
 
-    protected void setupOptionsListener(boolean example) {
+    protected void setupOptionsListener(boolean isSV, boolean example) {
         View.OnClickListener optionListener = v -> {
             if (v != oldView) {
                 v.setPadding(2, 2, 2, 2);
@@ -102,7 +102,7 @@ public abstract class ARBase extends QuestionActivity {
         };
 
         LinearLayout options = (LinearLayout) findViewById(R.id.options);
-        for (int i = 0; i < options.getChildCount(); i++) {
+        for (int i = isSV? 1: 0; i < options.getChildCount(); i++) {
             View v = options.getChildAt(i);
             v = example ? ((ViewGroup)v).getChildAt(0) : v;
             v.setOnClickListener(optionListener);

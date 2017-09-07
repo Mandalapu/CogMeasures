@@ -50,7 +50,7 @@ public class ARQuestion extends ARBase {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_ar_question);
         next = (Button) findViewById(R.id.next);
         next.setOnClickListener(nextListener);
-        setupOptionsListener(false);
+        setupOptionsListener(false, false);
 
         showNextQuestion();
         next.setEnabled(false);

@@ -47,7 +47,7 @@ public class SVQuestion extends ARBase {
             mQueue.add(new ARItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
         }
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_sp_question);
-        setupOptionsListener(false);
+        setupOptionsListener(true, false);
         next = (Button) findViewById(R.id.next);
         next.setOnClickListener(nextListener);
 

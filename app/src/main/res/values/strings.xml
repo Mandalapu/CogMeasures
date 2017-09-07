@@ -368,19 +368,19 @@
     <string name="sp_1_instr">INSTRUCTIONS\n\nLook at the figures below. The first figure is shaped like the letter L. The rest of the figures are like the first, except
         that they have been turned (rotated) in different directions. </string>
     <string name="sp_next">Please press \"Next\" to continue.</string>
-    <string name="sp_1_sol"> If you think of the figure at the left below as being made out of wire and lying on a table, the positions shown in each of the other four
+    <string name="sp_1_sol"> If you think of the figure at the left above as being made out of wire and lying on a table, the positions shown in each of the other four
         figures could be made simply by turning (rotating) the wire figure at the left around, without lifting it off the table. \n\n Please press \"Next\" to continue.</string>
-    <string name="sp_2_instr">INSTRUCTIONS\n\nNow look at the next row of figures. The first figure is shaped like the letter P. But for  the rest of the drawings, even
+    <string name="sp_2_instr">INSTRUCTIONS\n\nNow look at the next row of figures. The first figure is shaped like the letter P. But for  the rest of the figures, even
         if they were turned (rotated), they would still be backwards; you would have to lift the figure at the left off the table and flip it over to make any of the
         other figures. </string>
     <string name="sp_intro"> INSTRUCTIONS\n\nIn this task each question has one figure at the left and five similar figures to the right of it. Only one of the five
         figures on the right exactly matches the figure at the left if you turn (rotate) it. The rest of the figures are backwards even when they are turned (rotated).</string>
-    <string name="sp_3_instr">Now look at the sample question below.\nChoose the one figure which, when turned (rotated), exactly matches the figure at the left?</string>
+    <string name="sp_3_instr">Now look at the sample question below.\nChoose the one figure, which, when turned (rotated), exactly matches the figure at the left.</string>
     <string name="sp_3_sol">INSTRUCTIONS\n\nYou should have picked the fourth answer choice. All of the other choices have been \"lifted off the table and flipped over\"
         as well as turned (rotated), and thus are backwards. </string>
-    <string name="sp_begin">For each question in this task, choose the one figure which, when turned (rotated), exactly matches the figure at the left.\n\n
-        If you are ready to begin, please press \"Next\".</string>
-    <string name="sp_question">Choose the one figure which, when turned (rotated), exactly matches the figure at the left.</string>
+    <string name="sp_begin">For each question in this task, choose the one figure, which, when turned (rotated), exactly matches the figure at the left.\n\n
+        If you are ready to begin, please press \"Next.\"</string>
+    <string name="sp_question">Choose the one figure, which, when turned (rotated), exactly matches the figure at the left.</string>
     <!-- 2D visualization -->
 
     <!-- Warning messages -->

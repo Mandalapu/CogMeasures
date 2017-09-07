@@ -10,6 +10,7 @@ import android.widget.Button;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import edu.usc.projecttalent.cognitive.ARBase;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpPracticeBinding;
@@ -22,7 +23,7 @@ import edu.usc.projecttalent.cognitive.reasoning.ARItem;
  * @version 2.0
  */
 
-public class SVSample extends BaseActivity {
+public class SVSample extends ARBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class SVSample extends BaseActivity {
 
         ActivitySpPracticeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sp_practice);
         binding.setItem(mQueue.remove());
+
+        setupOptionsListener(true, false);
 
         Button next = (Button) findViewById(R.id.next);
         next.setOnClickListener(v -> {

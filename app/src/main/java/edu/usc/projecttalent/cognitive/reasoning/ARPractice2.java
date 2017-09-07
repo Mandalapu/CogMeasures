@@ -36,6 +36,6 @@ public class ARPractice2 extends ARBase {
             }
         });
 
-        setupOptionsListener(true);
+        setupOptionsListener(false, true);
     }
 }
