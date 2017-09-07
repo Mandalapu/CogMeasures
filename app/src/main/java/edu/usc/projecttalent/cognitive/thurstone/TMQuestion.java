@@ -36,33 +36,81 @@ import edu.usc.projecttalent.cognitive.reasoning.ARInstruction;
 public class TMQuestion extends QuestionActivity {
 
     private View oldView;
+    private ActivityThurAnswerBinding mBinding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mSection = new Section(getString(R.string.thurs_example));
-        mFtWarn = true;
+        int questionSet = getIntent().getIntExtra("answer",R.array.th_practice);
+
+        mSection = new Section(getString(questionSet == R.array.th_practice ? R.string.thurs_example : R.string.thurstone_title));
         mContext = this;
         mTimer = Timer.getTimer(3);
         prepareFilter();
-        Drawable highlight = ContextCompat.getDrawable(this, R.drawable.btn_bg);
 
         Resources res = getResources();
-        int questionSet = getIntent().getIntExtra("answer",R.array.th_practice);
         TypedArray questions = res.obtainTypedArray(questionSet);
         mQueue = new LinkedList<>();
         for (int i = 0; i < questions.length(); i++) {
             mQueue.add(new TMItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
         }
 
-        mScore = 0;
-        ActivityThurAnswerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
-        binding.setVariable(BR.item, mQueue.remove());
-        Button btn = (Button) findViewById(R.id.next);
-        mTimer.startTimer();
-
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
         TableRow options = (TableRow) findViewById(R.id.options);
+        setOptionListener(options);
+        mBlock = new Block(1);
+        mScore = 0;
+
+        nextQuestion();
+        setNextListener(options, questionSet);
+    }
+
+    private void setNextListener(TableRow options, int questionSet) {
+        View.OnClickListener listener = v -> {
+            if (oldView == null && mFtWarn) {
+                mFtWarn = false;
+                sendBroadcast(new Intent(Timer.NOANSWER));
+                return;
+            }
+            TMItem question = mBinding.getItem();
+            boolean correct = false;
+            if (options.indexOfChild(oldView) == question.getAnsPosition()) {
+                mScore++; //correct answer.
+                correct = true;
+            }
+            mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct);
+            mBlock.addAnswer(mAnswer);
+            if (oldView != null)
+                oldView.setBackground(null);
+            oldView = null;
+            if (!mQueue.isEmpty()) {
+                nextQuestion();
+                return;
+            }
+            mBlock.endBlock(mScore);
+            mSection.addBlock(mBlock);
+            if(questionSet == R.array.th_practice) {
+                mSection.endSection(); //end this section.
+                Survey.getSurvey().addSection(mSection);
+                int nextStep = mScore == 0? endSection(): startTest();
+                return;
+            }
+            mSkipClass = ARInstruction.class;
+            finishSection();
+        };
+        (findViewById(R.id.next)).setOnClickListener(listener);
+    }
+
+    private void nextQuestion() {
+        mBinding.setVariable(BR.item, mQueue.remove());
+        mAnswer = new Answer();
+        mTimer.startTimer();
+        mFtWarn = true;
+    }
+
+    private void setOptionListener(TableRow options) {
+        Drawable highlight = ContextCompat.getDrawable(this, R.drawable.btn_bg);
         for (int i = 0; i < options.getChildCount(); i++) {
             (options.getChildAt(i)).setOnClickListener(v -> {
                 if (v != oldView) {
@@ -71,58 +119,12 @@ public class TMQuestion extends QuestionActivity {
                     if (oldView != null)
                         oldView.setBackground(null);
                     oldView = v;
-                    btn.setEnabled(true);
                 }
             });
         }
-
-        mBlock = new Block(1);
-        mAnswer = new Answer();
-
-        View.OnClickListener listener = v -> {
-            if (oldView == null && mFtWarn) {
-                mFtWarn = false;
-                sendBroadcast(new Intent(Timer.NOANSWER));
-                return;
-            }
-            TMItem question = binding.getItem();
-            boolean correct = false;
-            if (options.indexOfChild(oldView) == question.getAnsPosition()) {
-                mScore++; //correct answer.
-                correct = true;
-            }
-            mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct); //to shift indices from 1-5.
-            mBlock.addAnswer(mAnswer);
-            if (oldView != null)
-                oldView.setBackground(null);
-            oldView = null;
-            if (!mQueue.isEmpty()) {
-                mAnswer = new Answer();
-                binding.setVariable(BR.item, mQueue.remove());
-                mTimer.startTimer();
-                mFtWarn = true;
-            } else {
-                mBlock.endBlock(mScore);
-                mSection.addBlock(mBlock);
-                if(questionSet == R.array.th_practice) {
-                    mSection.endSection(); //end this section.
-                    Survey.getSurvey().addSection(mSection);
-                    if (mScore == 0) {
-                        endSection();
-                    } else {
-                        startTest();
-                    }
-                } else {
-                    mSkipClass = ARInstruction.class;
-                    finishSection();
-                }
-            }
-        };
-
-        btn.setOnClickListener(listener);
     }
 
-    private void startTest() {
+    private int startTest() {
         Intent intent = new Intent(this, TMRunner.class);
         intent.putExtra("questions", R.array.th_questions);
 
@@ -132,14 +134,16 @@ public class TMQuestion extends QuestionActivity {
                 .setCancelable(false)
                 .create();
         dialog.show();
+        return 0;
     }
 
-    private void endSection() {
+    private int endSection() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setMessage(R.string.pressnext)
                 .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, ARInstruction.class), 1))
                 .setCancelable(false)
                 .create();
         dialog.show();
+        return 0;
     }
 }
