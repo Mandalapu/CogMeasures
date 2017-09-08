@@ -11,6 +11,7 @@ import java.util.Random;
 
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
+import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
@@ -36,10 +37,14 @@ public class RTQuestion extends QuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reac_question);
 
+        mContext = this;
         mTrials = getIntent().getIntExtra("trials", NO_OF_TRIALS);
         mSkipClass = mTrials == 5 ? RTStart.class : SVPractice.class;
         mSection = new Section(getString(mTrials == 5? R.string.reaction_practice : R.string.reaction_time));
         mBlock = new Block(1);
+
+        prepareRTFilter();
+        mTimer = Timer.getTimer(0.5);
 
         Button space = (Button) findViewById(R.id.buttonSpace);
         Random r = new Random();
@@ -54,6 +59,7 @@ public class RTQuestion extends QuestionActivity {
             image.setImageResource(R.drawable.red_circle_large);
             isRed = true;
             mAnswer = new Answer();
+            mTimer.startTimer();
             start = System.currentTimeMillis();
         };
 

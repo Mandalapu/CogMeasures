@@ -60,8 +60,7 @@ public class VSQuestion extends QuestionActivity {
         RadioGroup options = (RadioGroup) findViewById(R.id.options);
         showNextQuestion();
 
-        Button button = (Button) findViewById(R.id.next);
-        button.setOnClickListener(v -> {
+        findViewById(R.id.next).setOnClickListener(v -> {
             if (options.getCheckedRadioButtonId() == -1 && mFtWarn) {
                 mFtWarn = false;
                 sendBroadcast(new Intent(Timer.NOANSWER));

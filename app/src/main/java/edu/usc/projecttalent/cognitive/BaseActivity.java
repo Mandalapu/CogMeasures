@@ -71,6 +71,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         registerReceiver(mReceiver, filter);
     }
 
+    protected void prepareRTFilter() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Timer.QUIT);
+        filter.addAction(Timer.RESUME);
+        registerReceiver(mReceiver, filter);
+    }
+
     protected int getBlockId(int set) {
         switch (set) {
             case R.string.ns_1:
