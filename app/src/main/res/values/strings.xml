@@ -334,8 +334,8 @@
 	</string>
 
     <string name="ar_instr1">INSTRUCTIONS\n\nIn each question, you are to decide what figure belongs where the \"?\" is in the pattern. To do this you have
-        to figure out what the rule is according to which the drawings change, going from row to row, and what the rule is for the changes going from column to column.
-        The items have different kinds of patterns and different rules by which the drawings change.\n\nPlease press \"Next\" to continue.</string>
+        to figure out how the figures change going from row to row, and how the figures change going from column to column.
+        The items have different kinds of patterns and different rules by which the figures change.\n\nPlease press \"Next\" to continue.</string>
 
     <string name="start_task">Would you like to see another example, or are you ready to start this task?</string>
     <string name="example">Another example</string>
@@ -343,7 +343,7 @@
 
     <string name="pr_wrong">Here is another example. Going from left to right, the circles get larger, and going from top to bottom they get darker.
         Therefore the answer has to be a circle which is the largest of the three sizes, and the darkest. Choices C and E are both the right size, but E is the only
-       large circle with the correct shading. Thus E is the only drawing that fits in the pattern formed by the other circles. E is the answer that should be chosen.\n\n
+       large circle with the correct shading. Thus E is the only figure that fits in the pattern formed by the other circles. E is the answer that should be chosen.\n\n
         Please press \"Next\" to continue.
 	</string>
 
@@ -355,7 +355,7 @@
         Please press \"Next\" to continue.</string>
     <string name="ar_intro">INSTRUCTIONS\n\n
 		&#8226; You will now be asked six more questions like the ones you just did. \n
-		&#8226; For each question, decide what rules the pattern follows. Choose the answer that belongs in \"?\" by pressing the answer.\n
+		&#8226; For each question, decide what rules the pattern follows. Choose the answer that belongs at the \"?\" by pressing the answer.\n
 		&#8226; Many of the patterns are based on rules that are different from the ones in the sample items.\n\n
 		If you are ready to begin, please press \"Next\" to continue.
 	</string>
@@ -365,7 +365,7 @@
     <!-- Abstract reasoning -->
 
     <!-- 2D visualization -->
-    <string name="sp_1_instr">INSTRUCTIONS\n\nLook at the figures below. The first figure is shaped like the letter L. The rest of the figures are like the first, except
+    <string name="sp_1_instr">INSTRUCTIONS\n\nLook at the figures below. The figure at the left is shaped like the letter L. The rest of the figures are like it, except
         that they have been turned (rotated) in different directions. </string>
     <string name="sp_next">Please press \"Next\" to continue.</string>
     <string name="sp_1_sol"> If you think of the figure at the left above as being made out of wire and lying on a table, the positions shown in each of the other four
