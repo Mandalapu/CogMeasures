@@ -1,6 +1,4 @@
-package edu.usc.projecttalent.cognitive.vocab;
-
-import edu.usc.projecttalent.cognitive.Item;
+package edu.usc.projecttalent.cognitive.holders;
 
 /**
  * JSON encapsulation for vocabulary question.

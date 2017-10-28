@@ -3,7 +3,6 @@ package edu.usc.projecttalent.cognitive.vocab;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -13,14 +12,13 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.BR;
-import edu.usc.projecttalent.cognitive.Item;
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityVocabBinding;
+import edu.usc.projecttalent.cognitive.holders.VSItem;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
@@ -57,7 +55,7 @@ public class VSQuestion extends QuestionActivity {
         mQueue.addAll(new Gson().fromJson(getString(R.string.vocab3), question));
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
-        RadioGroup options = (RadioGroup) findViewById(R.id.options);
+        RadioGroup options = findViewById(R.id.options);
         showNextQuestion();
 
         findViewById(R.id.next).setOnClickListener(v -> {
@@ -68,7 +66,7 @@ public class VSQuestion extends QuestionActivity {
             }
 
             int answer = mBinding.getItem().getAnsPosition();
-            RadioButton checked = (RadioButton) options.findViewById(options.getCheckedRadioButtonId());
+            RadioButton checked = options.findViewById(options.getCheckedRadioButtonId());
             int index = options.indexOfChild(checked);
             options.clearCheck();
 

@@ -11,12 +11,12 @@ import java.util.Locale;
 import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 
-public abstract class NSBase extends QuestionActivity {
+abstract class NSBase extends QuestionActivity {
 
     protected EditText answer, answer2;
 
     protected void setNumPad() {
-        LinearLayout numPad = (LinearLayout) findViewById(R.id.numpad);
+        LinearLayout numPad = findViewById(R.id.numpad);
 
         View.OnTouchListener listener = (v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -30,6 +30,7 @@ public abstract class NSBase extends QuestionActivity {
                 v.setBackgroundResource(R.drawable.circle);
                 ((Button) v).setTextColor(getResources().getColor(android.R.color.black));
             }
+            v.performClick();
             return true;
         };
 

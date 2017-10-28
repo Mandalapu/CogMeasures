@@ -1,4 +1,4 @@
-package edu.usc.projecttalent.cognitive;
+package edu.usc.projecttalent.cognitive.holders;
 
 /**
  * Item as a super-class to all item objects in the application.

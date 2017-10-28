@@ -11,16 +11,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.databinding.ActivityArQuestionBinding;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpQuestionBinding;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.reasoning.ARIntroduction;
-import edu.usc.projecttalent.cognitive.reasoning.ARItem;
+import edu.usc.projecttalent.cognitive.holders.ARItem;
 import edu.usc.projecttalent.cognitive.reasoning.ARPractice1;
 import edu.usc.projecttalent.cognitive.reasoning.ARPractice2;
+import edu.usc.projecttalent.cognitive.BR;
 
 /**
  * Common code for Abstract reasoning and Spatial visualization.

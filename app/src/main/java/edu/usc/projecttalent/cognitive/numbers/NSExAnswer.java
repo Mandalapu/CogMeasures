@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityNsExansBinding;
+import edu.usc.projecttalent.cognitive.holders.NSExample;
 
 /**
  * Number section example 1 answer.
@@ -27,8 +28,8 @@ public class NSExAnswer extends BaseActivity {
         ActivityNsExansBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_exans);
         binding.setItem(example);
 
-        LinearLayout series = (LinearLayout) findViewById(R.id.series);
-        EditText answer = (EditText) findViewById(R.id.answer);
+        LinearLayout series = findViewById(R.id.series);
+        EditText answer = findViewById(R.id.answer);
         series.removeView(answer);
         series.addView(answer, example.getAnsPosition());
 

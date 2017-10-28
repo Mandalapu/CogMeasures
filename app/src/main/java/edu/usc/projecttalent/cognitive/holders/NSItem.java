@@ -1,6 +1,4 @@
-package edu.usc.projecttalent.cognitive.numbers;
-
-import edu.usc.projecttalent.cognitive.Item;
+package edu.usc.projecttalent.cognitive.holders;
 
 /**
  * Number section question JSON encapsulation.

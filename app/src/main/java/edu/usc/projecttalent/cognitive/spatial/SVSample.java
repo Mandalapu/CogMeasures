@@ -11,10 +11,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.ARBase;
-import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpPracticeBinding;
-import edu.usc.projecttalent.cognitive.reasoning.ARItem;
+import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 /**
  * Spatial Visualization sample and instructions on how to solve the questions.
@@ -42,7 +41,7 @@ public class SVSample extends ARBase {
 
         setupOptionsListener(true, false);
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = findViewById(R.id.next);
         next.setOnClickListener(v -> {
             if (!mQueue.isEmpty())
                 binding.setItem(mQueue.remove());

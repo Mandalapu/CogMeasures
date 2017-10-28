@@ -12,6 +12,7 @@ import java.util.Queue;
 import edu.usc.projecttalent.cognitive.ARBase;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityArMainBinding;
+import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 public class ARPractice2 extends ARBase {
 
@@ -27,7 +28,7 @@ public class ARPractice2 extends ARBase {
         ActivityArMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar_main);
         binding.setItem(itemList.remove());
 
-        Button button = (Button) findViewById(R.id.next);
+        Button button = findViewById(R.id.next);
         button.setOnClickListener(v -> {
             if (!itemList.isEmpty()) {
                 binding.setItem(itemList.remove());

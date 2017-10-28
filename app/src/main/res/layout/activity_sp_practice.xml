@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="edu.usc.projecttalent.cognitive.reasoning.ARItem" />
+            type="edu.usc.projecttalent.cognitive.holders.ARItem" />
 
         <import type="android.view.View" />
     </data>

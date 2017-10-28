@@ -13,7 +13,7 @@ import java.util.Queue;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivitySpPracticeBinding;
-import edu.usc.projecttalent.cognitive.reasoning.ARItem;
+import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 /**
  * Spatial Visualization practice without scoring and with solutions.
@@ -39,7 +39,7 @@ public class SVPractice extends BaseActivity {
         ActivitySpPracticeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sp_practice);
         binding.setItem(mQueue.remove());
 
-        Button button = (Button) findViewById(R.id.next);
+        Button button = findViewById(R.id.next);
         button.setOnClickListener(v -> {
             if (!mQueue.isEmpty())
                 binding.setItem(mQueue.remove());

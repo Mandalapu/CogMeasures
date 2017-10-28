@@ -9,6 +9,7 @@ import android.widget.Button;
 import edu.usc.projecttalent.cognitive.ARBase;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityArMainBinding;
+import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 public class ARPractice1 extends ARBase {
 
@@ -22,7 +23,7 @@ public class ARPractice1 extends ARBase {
         ActivityArMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar_main);
         binding.setItem(item);
 
-        Button button = (Button) findViewById(R.id.next);
+        Button button = findViewById(R.id.next);
         button.setOnClickListener(v -> startTask(2));
     }
 }

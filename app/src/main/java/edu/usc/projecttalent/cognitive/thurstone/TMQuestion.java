@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TableRow;
 
 import java.util.LinkedList;
@@ -20,6 +19,7 @@ import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityThurAnswerBinding;
+import edu.usc.projecttalent.cognitive.holders.TMItem;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
@@ -57,7 +57,7 @@ public class TMQuestion extends QuestionActivity {
         }
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
-        TableRow options = (TableRow) findViewById(R.id.options);
+        TableRow options = findViewById(R.id.options);
         setOptionListener(options);
         mBlock = new Block(1);
         mScore = 0;

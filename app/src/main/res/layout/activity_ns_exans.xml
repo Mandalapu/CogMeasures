@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="edu.usc.projecttalent.cognitive.numbers.NSExample" />
+            type="edu.usc.projecttalent.cognitive.holders.NSExample" />
 
         <import type="android.view.View" />
     </data>

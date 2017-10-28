@@ -12,6 +12,7 @@ import java.util.Queue;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityArMainBinding;
+import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 public class ARInstruction extends BaseActivity {
 
@@ -24,9 +25,9 @@ public class ARInstruction extends BaseActivity {
         itemList.add(new ARItem(getString(R.string.ar_text), arr, getString(R.string.ar_text1), false));
         itemList.add(new ARItem("", arr, getString(R.string.ar_text3), true));
 
-        final ActivityArMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar_main);
+        ActivityArMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar_main);
         binding.setItem(itemList.remove());
-        Button button = (Button) findViewById(R.id.next);
+        Button button = findViewById(R.id.next);
         button.setOnClickListener(v -> {
             if (!itemList.isEmpty())
                 binding.setItem(itemList.remove());

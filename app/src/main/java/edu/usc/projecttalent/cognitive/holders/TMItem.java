@@ -1,10 +1,8 @@
-package edu.usc.projecttalent.cognitive.thurstone;
+package edu.usc.projecttalent.cognitive.holders;
 
 import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
-
-import edu.usc.projecttalent.cognitive.Item;
 
 /**
  * Model for thurstone question.

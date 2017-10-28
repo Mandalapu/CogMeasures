@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="edu.usc.projecttalent.cognitive.thurstone.TMItem" />
+            type="edu.usc.projecttalent.cognitive.holders.TMItem" />
     </data>
 
     <LinearLayout

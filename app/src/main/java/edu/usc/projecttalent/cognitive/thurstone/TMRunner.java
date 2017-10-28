@@ -28,7 +28,7 @@ public class TMRunner extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thur_exrunner);
 
-        ImageView example = (ImageView) findViewById(R.id.image);
+        ImageView example = findViewById(R.id.image);
         int questions = getIntent().getIntExtra("questions", R.array.thurstone_ex);
         TypedArray images = getResources().obtainTypedArray(questions);
 

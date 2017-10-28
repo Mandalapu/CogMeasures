@@ -9,14 +9,12 @@ import android.widget.Button;
 import java.util.LinkedList;
 
 import edu.usc.projecttalent.cognitive.ARBase;
-import edu.usc.projecttalent.cognitive.BR;
 import edu.usc.projecttalent.cognitive.EndTest;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
-import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
-import edu.usc.projecttalent.cognitive.reasoning.ARItem;
+import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 /**
  * Block-adaptive test for Spatial 2D Visualization.
@@ -48,7 +46,7 @@ public class SVQuestion extends ARBase {
         }
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_sp_question);
         setupOptionsListener(true, false);
-        next = (Button) findViewById(R.id.next);
+        next = findViewById(R.id.next);
         next.setOnClickListener(nextListener);
 
         showNextQuestion();

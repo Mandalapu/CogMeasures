@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityNsMainBinding;
+import edu.usc.projecttalent.cognitive.holders.NSExample;
 
 /**
  * Number section introduction and instructions.
@@ -30,8 +31,8 @@ public class NSInstruction extends NSBase {
         ActivityNsMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_main);
         binding.setItem(mExample);
 
-        LinearLayout series = (LinearLayout) findViewById(R.id.series);
-        answer = (EditText) findViewById(R.id.answer);
+        LinearLayout series = findViewById(R.id.series);
+        answer = findViewById(R.id.answer);
 
         series.removeView(answer);
         series.addView(answer, mExample.getAnsPosition());
@@ -44,5 +45,4 @@ public class NSInstruction extends NSBase {
             startActivityForResult(intent, 1);
         });
     }
-
 }

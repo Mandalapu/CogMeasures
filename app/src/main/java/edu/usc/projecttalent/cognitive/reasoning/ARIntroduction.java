@@ -1,6 +1,5 @@
 package edu.usc.projecttalent.cognitive.reasoning;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import edu.usc.projecttalent.cognitive.BaseActivity;

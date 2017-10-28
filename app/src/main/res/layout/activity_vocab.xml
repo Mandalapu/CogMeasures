@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="edu.usc.projecttalent.cognitive.vocab.VSItem" />
+            type="edu.usc.projecttalent.cognitive.holders.VSItem" />
     </data>
 
     <LinearLayout

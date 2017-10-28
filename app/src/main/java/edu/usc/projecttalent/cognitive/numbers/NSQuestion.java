@@ -3,28 +3,22 @@ package edu.usc.projecttalent.cognitive.numbers;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Locale;
-import java.util.Queue;
 
 import edu.usc.projecttalent.cognitive.BR;
-import edu.usc.projecttalent.cognitive.Item;
-import edu.usc.projecttalent.cognitive.QuestionActivity;
 import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.Timer;
 import edu.usc.projecttalent.cognitive.databinding.ActivityNsQuestionBinding;
+import edu.usc.projecttalent.cognitive.holders.NSItem;
 import edu.usc.projecttalent.cognitive.model.Answer;
 import edu.usc.projecttalent.cognitive.model.Block;
 import edu.usc.projecttalent.cognitive.model.Section;
@@ -65,9 +59,9 @@ public class NSQuestion extends NSBase {
         item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
         binding.setVariable(BR.item, item);
 
-        series = (LinearLayout) findViewById(R.id.series);
-        answer = (EditText) findViewById(R.id.answer);
-        answer2 = (EditText) findViewById(R.id.answer2);
+        series = findViewById(R.id.series);
+        answer = findViewById(R.id.answer);
+        answer2 = findViewById(R.id.answer2);
 
         series.removeView(answer);
         series.addView(answer, binding.getItem().getAnsPosition()); //set the edit box to correct position.
@@ -125,7 +119,7 @@ public class NSQuestion extends NSBase {
             series.removeView(answer); //update position of answer box.
             series.addView(answer, binding.getItem().getAnsPosition());
         } else {
-            EditText answer = (EditText) series.findViewById(R.id.answer2);
+            EditText answer = series.findViewById(R.id.answer2);
             series.removeView(answer);
             series.addView(answer, 2);
         }

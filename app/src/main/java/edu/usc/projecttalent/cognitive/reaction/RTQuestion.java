@@ -46,11 +46,11 @@ public class RTQuestion extends QuestionActivity {
         prepareRTFilter();
         mTimer = Timer.getTimer(0.5);
 
-        Button space = (Button) findViewById(R.id.buttonSpace);
+        Button space = findViewById(R.id.buttonSpace);
         Random r = new Random();
         int low = 2, high = 8; //between 2 and 8 seconds.
 
-        final ImageView image = (ImageView) findViewById(R.id.imageView);
+        final ImageView image = findViewById(R.id.imageView);
         image.setImageResource(R.drawable.cross);
 
         final Handler handler = new Handler();
