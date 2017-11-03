@@ -30,17 +30,13 @@ public class SVPractice extends BaseActivity {
         Resources res = getResources();
 
         Queue<ARItem> mQueue = new LinkedList<>();
-        TypedArray options = res.obtainTypedArray(R.array.sp_ex_1);
-        mQueue.add(new ARItem(getString(R.string.sp_1_instr), options, getString(R.string.sp_1_sol), false));
-
-        options = res.obtainTypedArray(R.array.sp_ex_2);
-        mQueue.add(new ARItem(getString(R.string.sp_2_instr), options, getString(R.string.sp_next), false));
+        mQueue.add(new ARItem(getString(R.string.sp_1_instr), res.obtainTypedArray(R.array.sp_ex_1), getString(R.string.sp_1_sol), false));
+        mQueue.add(new ARItem(getString(R.string.sp_2_instr),  res.obtainTypedArray(R.array.sp_ex_2), getString(R.string.sp_next), false));
 
         ActivitySpPracticeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sp_practice);
         binding.setItem(mQueue.remove());
 
-        Button button = findViewById(R.id.next);
-        button.setOnClickListener(v -> {
+        (findViewById(R.id.next)).setOnClickListener(v -> {
             if (!mQueue.isEmpty())
                 binding.setItem(mQueue.remove());
             else
