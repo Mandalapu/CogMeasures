@@ -151,17 +151,17 @@
             android:layout_marginLeft="20dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{item.instructions}"
-                android:textSize="25sp" />
+                android:textSize="22sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{item.details}"
                 android:layout_marginTop="20dp"
-                android:textSize="25sp" />
+                android:textSize="22sp" />
 
             <Button
                 android:id="@id/next"

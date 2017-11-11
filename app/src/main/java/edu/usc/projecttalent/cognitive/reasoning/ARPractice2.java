@@ -23,7 +23,7 @@ public class ARPractice2 extends ARBase {
         Queue<ARItem> itemList = new LinkedList<>();
         TypedArray arr = getResources().obtainTypedArray(R.array.ar_ex_3);
         itemList.add(new ARItem(getString(R.string.practiceq2), arr, "", false));
-        itemList.add(new ARItem(getString(R.string.ar_instr_header), arr, getString(R.string.pr_explain), true));
+        itemList.add(new ARItem("", arr, getString(R.string.pr_explain), true));
 
         ActivityArMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar_main);
         binding.setItem(itemList.remove());
