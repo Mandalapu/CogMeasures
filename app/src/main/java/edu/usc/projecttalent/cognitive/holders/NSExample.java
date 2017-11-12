@@ -67,14 +67,23 @@ public class NSExample implements Serializable {
         return options;
     }
 
+    /**
+     * @param options set the numbers in the series.
+     */
     public void setOptions(int[] options) {
         this.options = options;
     }
 
+    /**
+     * @return the position where the answer should be typed in.
+     */
     public int getAnsPosition() {
         return ansPosition;
     }
 
+    /**
+     * @return the solution for the question.
+     */
     public String getAnswerText() {
         return answerText;
     }

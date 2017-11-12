@@ -3,22 +3,42 @@ package edu.usc.projecttalent.cognitive.model;
 import java.util.Date;
 
 /**
- * Model for answer for retrofit.
+ * Model for answer for retrofit. A set of answers make up a block.
  *
  * @author Anindya Dutta
  * @version 2.0
  */
 
 public class Answer {
+    /**
+     * The timestamp when the user first sees the question.
+     */
     private Date start;
+    /**
+     * The answer that the user selects.
+     */
     private long user_ans;
+    /**
+     * whether or not his answer was correct.
+     */
     private boolean correct;
+    /**
+     * The timestamp when the user clicks the Next button.
+     */
     private Date end;
 
+    /**
+     * Create a new answer: record the start time.
+     */
     public Answer() {
         this.start = new Date();
     }
 
+    /**
+     * End the answer. Record the end time, the answer and if it was correct.
+     * @param user_ans the answer the user sent.
+     * @param correct whether or not it was correct.
+     */
     public void endAnswer(long user_ans, boolean correct) {
         this.user_ans = user_ans;
         this.correct = correct;

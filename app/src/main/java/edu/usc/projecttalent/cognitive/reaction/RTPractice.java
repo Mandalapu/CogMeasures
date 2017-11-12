@@ -6,6 +6,10 @@ import android.os.Bundle;
 import edu.usc.projecttalent.cognitive.BaseActivity;
 import edu.usc.projecttalent.cognitive.R;
 
+/**
+ * Set up the practice environment for the reaction time.
+ * 5 chances of getting used to the format of the test is given to the user.
+ */
 public class RTPractice extends BaseActivity {
 
     @Override
@@ -15,6 +19,7 @@ public class RTPractice extends BaseActivity {
 
         (findViewById(R.id.next)).setOnClickListener(v -> {
             Intent intent = new Intent(this, RTQuestion.class);
+            //number of trials that the user can perform in the section.
             intent.putExtra("trials", 5);
             startActivityForResult(intent, 1);
         });

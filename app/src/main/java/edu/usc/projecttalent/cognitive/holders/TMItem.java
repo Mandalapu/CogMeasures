@@ -12,22 +12,40 @@ import android.widget.ImageView;
  */
 
 public class TMItem extends Item {
+    /**
+     * a set of images for each question.
+     */
     private TypedArray options;
 
+    /**
+     * Constructor to initialize the thurstone question with the images and correct answer.
+     * @param options
+     */
     @SuppressWarnings("ResourceType")
     public TMItem(TypedArray options) {
         this.options = options;
         this.ansPosition = options.getInt(4, -1);
     }
 
+    /**
+     * @return the set of options for the question.
+     */
     public TypedArray getOptions() {
         return options;
     }
 
+    /**
+     * @param options set the options for the question.
+     */
     public void setOptions(TypedArray options) {
         this.options = options;
     }
 
+    /**
+     * Add images to the image view via data binding.
+     * @param view the view in which the image has to be attached.
+     * @param imageUrl the image url that needs to be attached to the view.
+     */
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, int imageUrl) {
         view.setImageResource(imageUrl);

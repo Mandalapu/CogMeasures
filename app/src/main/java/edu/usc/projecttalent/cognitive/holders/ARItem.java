@@ -20,7 +20,7 @@ public class ARItem extends Item {
      */
     private TypedArray options;
     /**
-     * The details line for a question. Not available for all questions. Typically appears below the question image.
+     * The detail s line for a question. Not available for all questions. Typically appears below the question image.
      */
     private String details;
     /**
