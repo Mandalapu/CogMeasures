@@ -6,7 +6,7 @@ import android.os.Bundle;
 import edu.usc.projecttalent.cognitive.vocab.VSInstruction;
 
 /**
- * NSIntroduction page that welcomes users to Cognitive Measures.
+ * Activity that provides general instructions about the Cognitive Measures application.
  *
  * @author Anindya Dutta
  * @version 2.0
@@ -14,6 +14,10 @@ import edu.usc.projecttalent.cognitive.vocab.VSInstruction;
 
 public class CMIntro extends BaseActivity {
 
+    /**
+     * Provide basic instructions and move to vocabulary section on clicking Next.
+     * @param savedInstanceState nothing is sent to the bundle currently.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

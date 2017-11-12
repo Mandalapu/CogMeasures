@@ -7,7 +7,7 @@ import android.widget.EditText;
 import edu.usc.projecttalent.cognitive.model.Survey;
 
 /**
- * Takes the user ID as input and stores it for the survey.
+ * First activity of the application. Takes the user ID as input and stores it for the survey.
  *
  * @author Anindya Dutta
  * @version 2.0
@@ -15,6 +15,10 @@ import edu.usc.projecttalent.cognitive.model.Survey;
 
 public class MainActivity extends BaseActivity {
 
+    /**
+     * Input the user ID. Set up the next button to move to the Instructions activity.
+     * @param savedInstanceState null is sent to this currently.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

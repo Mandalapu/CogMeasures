@@ -20,9 +20,19 @@ import edu.usc.projecttalent.cognitive.R;
 
 public class TMRunner extends BaseActivity {
 
+    /**
+     * the item that is being currently shown.
+     */
     private int position = 0;
+    /**
+     * Timer for the thurstone runner, timed 5 seconds.
+     */
     Timer mTimer = new Timer();
 
+    /**
+     * Shows a set of images, equally interval-ed at 5 seconds to the user.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

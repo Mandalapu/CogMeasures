@@ -24,15 +24,28 @@ import edu.usc.projecttalent.cognitive.BR;
 
 /**
  * Common code for Abstract reasoning and Spatial visualization.
- * Created by anind on 8/23/2017.
+ * Created by Anindya Dutta on 8/23/2017.
  */
 
 public abstract class ARBase extends QuestionActivity {
 
+    /**
+     * the old view that was saved in the previous click.
+     */
     private static View oldView;
+    /**
+     * binding to all the questions.
+     */
     protected static ViewDataBinding mBinding;
+    /**
+     * reference to the next button.
+     */
     protected static Button next;
 
+    /**
+     * listener for next button.
+     * Handles broadcasts and also handles skipping section logic.
+     */
     protected View.OnClickListener nextListener = v ->  {
         if (oldView == null && mFtWarn) {
             mFtWarn = false;
@@ -65,6 +78,9 @@ public abstract class ARBase extends QuestionActivity {
         }
     };
 
+    /**
+     * show the next question in the queue.
+     */
     protected void showNextQuestion() {
         mAnswer = new Answer();
         mBinding.setVariable(BR.item, mQueue.remove());
@@ -73,23 +89,38 @@ public abstract class ARBase extends QuestionActivity {
         next.setEnabled(false);
     }
 
+    /**
+     * method implemented separately in each subclass.
+     * @return
+     */
     protected int nextSet() {
         return 0;
     }
 
+    /**
+     * check if the solution is correct for this question.
+     * also checks whether it is AR or SV and handles appropriately.
+     */
     protected void checkSolution() {
+        //check if it is AR or SV.
         boolean isAR = mBinding instanceof ActivityArQuestionBinding;
-        LinearLayout options = (LinearLayout) findViewById(R.id.options);
+        LinearLayout options = findViewById(R.id.options);
         ARItem question = isAR ? ((ActivityArQuestionBinding) mBinding).getItem(): ((ActivitySpQuestionBinding)mBinding).getItem();
         boolean correct = false;
         if (options.indexOfChild(oldView) == question.getAnsPosition()) {
             mScore++; //correct answer.
             correct = true;
         }
+        //add answer to block.
         mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + (isAR? 1 : 0), correct);
         mBlock.addAnswer(mAnswer);
     }
 
+    /**
+     * setting up the options listener for the section.
+     * @param isSV false if abstract reasoning, true if spatial visualization.
+     * @param example true if the item is an example item.
+     */
     protected void setupOptionsListener(boolean isSV, boolean example) {
         View.OnClickListener optionListener = v -> {
             if (v != oldView) {
@@ -101,7 +132,7 @@ public abstract class ARBase extends QuestionActivity {
             }
         };
 
-        LinearLayout options = (LinearLayout) findViewById(R.id.options);
+        LinearLayout options = findViewById(R.id.options);
         for (int i = isSV? 1: 0; i < options.getChildCount(); i++) {
             View v = options.getChildAt(i);
             v = example ? ((ViewGroup)v).getChildAt(0) : v;
@@ -109,6 +140,10 @@ public abstract class ARBase extends QuestionActivity {
         }
     }
 
+    /**
+     * Gives an option to skip the rest of the examples and show the questions directly.
+     * @param item the example item based on which decisions are taken.
+     */
     protected void startTask(int item) {
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.start_now)

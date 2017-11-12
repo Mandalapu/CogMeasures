@@ -14,6 +14,10 @@ import edu.usc.projecttalent.cognitive.R;
 
 public class SVInstruction extends BaseActivity {
 
+    /**
+     * Contains instructions for the section. Redirects to the sample questions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -14,6 +14,11 @@ import retrofit2.http.POST;
 
 interface APIEndPoint {
 
+    /**
+     * Send the data back to the server.
+     * @param value data to be sent back to the server.
+     * @return void (success or failure)
+     */
     @POST("add.php")
     @FormUrlEncoded
     Call<Void> getData(@Field("value") String value);

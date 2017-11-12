@@ -27,7 +27,7 @@ import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.reasoning.ARInstruction;
 
 /**
- * Thurstone example activity.
+ * Thurstone question activity. This activity is used for recording user answers.
  *
  * @author Anindya Dutta
  * @version 2.0
@@ -35,24 +35,35 @@ import edu.usc.projecttalent.cognitive.reasoning.ARInstruction;
 
 public class TMQuestion extends QuestionActivity {
 
+    /**
+     * View that has been clicked for the answer.
+     */
     private View oldView;
+    /**
+     * binding for each question.
+     */
     private ActivityThurAnswerBinding mBinding;
 
+    /**
+     * Set a timer and show all questions to the user. The entire thing is one block.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         int questionSet = getIntent().getIntExtra("answer",R.array.th_practice);
 
+        //set the name of the section.
         mSection = new Section(getString(questionSet == R.array.th_practice ? R.string.thurs_example : R.string.thurstone_title));
         mContext = this;
-        mTimer = Timer.getTimer(3);
+        mTimer = Timer.getTimer(3); //timer for 3 minutes.
         prepareFilter();
 
         Resources res = getResources();
         TypedArray questions = res.obtainTypedArray(questionSet);
         mQueue = new LinkedList<>();
-        for (int i = 0; i < questions.length(); i++) {
+        for (int i = 0; i < questions.length(); i++) { //add all questions.
             mQueue.add(new TMItem(res.obtainTypedArray(questions.getResourceId(i, 0))));
         }
 
@@ -66,6 +77,12 @@ public class TMQuestion extends QuestionActivity {
         setNextListener(options, questionSet);
     }
 
+    /**
+     * Sets the next listener. Checks for answers, calculates scores, updates JSON objects and
+     * redirects to appropriate activities.
+     * @param options the set of answers
+     * @param questionSet the question set ID (practice or real test)
+     */
     private void setNextListener(TableRow options, int questionSet) {
         View.OnClickListener listener = v -> {
             if (oldView == null && mFtWarn) {
@@ -102,6 +119,9 @@ public class TMQuestion extends QuestionActivity {
         (findViewById(R.id.next)).setOnClickListener(listener);
     }
 
+    /**
+     * Add the next question to the activity binding and reset timers.
+     */
     private void nextQuestion() {
         mBinding.setVariable(BR.item, mQueue.remove());
         mAnswer = new Answer();
@@ -109,6 +129,10 @@ public class TMQuestion extends QuestionActivity {
         mFtWarn = true;
     }
 
+    /**
+     * Set the listener for the answer. Captures user clicks on the options.
+     * @param options the set of options.
+     */
     private void setOptionListener(TableRow options) {
         Drawable highlight = ContextCompat.getDrawable(this, R.drawable.btn_bg);
         for (int i = 0; i < options.getChildCount(); i++) {
@@ -124,6 +148,10 @@ public class TMQuestion extends QuestionActivity {
         }
     }
 
+    /**
+     * starts the test after all practice items have been answered.
+     * @return 0, indicating that the dialog was shown properly.
+     */
     private int startTest() {
         Intent intent = new Intent(this, TMRunner.class);
         intent.putExtra("questions", R.array.th_questions);
@@ -137,6 +165,10 @@ public class TMQuestion extends QuestionActivity {
         return 0;
     }
 
+    /**
+     * end this section and move to Abstract reasoning.
+     * @return 0, indicating that the dialog was shown properly.
+     */
     private int endSection() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setMessage(R.string.pressnext)

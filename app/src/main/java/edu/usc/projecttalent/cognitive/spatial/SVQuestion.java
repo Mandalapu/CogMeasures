@@ -25,6 +25,10 @@ import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 public class SVQuestion extends ARBase {
 
+    /**
+     * Add all questions from first block to this section. Handle timers and filters.
+     * @param savedInstanceState null for this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,10 @@ public class SVQuestion extends ARBase {
         showNextQuestion();
     }
 
+    /**
+     * calculate which set to show next based on score.
+     * @return the set of questions that the user should answer next.
+     */
     @Override
     protected int nextSet() {
         switch (mScore) {

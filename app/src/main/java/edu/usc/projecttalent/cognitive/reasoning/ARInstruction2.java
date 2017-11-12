@@ -6,7 +6,7 @@ import edu.usc.projecttalent.cognitive.ARBase;
 import edu.usc.projecttalent.cognitive.R;
 
 /**
- * NSInstruction for Abstract reasoning section.
+ * Instructions 2 for Abstract reasoning section.
  *
  * @author Anindya Dutta
  * @version 2.0

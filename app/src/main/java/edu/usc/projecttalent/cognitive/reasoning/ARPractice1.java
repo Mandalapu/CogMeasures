@@ -11,8 +11,15 @@ import edu.usc.projecttalent.cognitive.R;
 import edu.usc.projecttalent.cognitive.databinding.ActivityArMainBinding;
 import edu.usc.projecttalent.cognitive.holders.ARItem;
 
+/**
+ * Practice item 1. Shows an example to the user and asks to answer correctly.
+ */
 public class ARPractice1 extends ARBase {
 
+    /**
+     * show the example and set up the next button to show the second example or move to questions.
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Resources res = getResources();

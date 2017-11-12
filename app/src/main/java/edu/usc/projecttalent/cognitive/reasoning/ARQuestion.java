@@ -26,6 +26,10 @@ import edu.usc.projecttalent.cognitive.reaction.RTInstruction;
 
 public class ARQuestion extends ARBase {
 
+    /**
+     * Show questions adaptively. Manage timers and next button. Handle user clicks.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,10 @@ public class ARQuestion extends ARBase {
         next.setEnabled(false);
     }
 
+    /**
+     * Find the next set of questions based on the current score.
+     * @return the next set.
+     */
     @Override
     protected int nextSet() {
         switch (mScore) {

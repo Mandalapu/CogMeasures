@@ -24,6 +24,10 @@ import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 public class SVPractice extends BaseActivity {
 
+    /**
+     * Add practice examples to the activity and then move on to show instructions for this section.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

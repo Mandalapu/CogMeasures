@@ -14,6 +14,10 @@ import edu.usc.projecttalent.cognitive.R;
 
 public class ARIntroduction extends BaseActivity {
 
+    /**
+     * set up the next button to go to the Question class.
+     * @param savedInstanceState null
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

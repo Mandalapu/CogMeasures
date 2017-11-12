@@ -34,8 +34,15 @@ import edu.usc.projecttalent.cognitive.numbers.NSInstruction;
 
 public class VSQuestion extends QuestionActivity {
 
-    ActivityVocabBinding mBinding;
+    /**
+     * binding for all the questions.
+     */
+    private ActivityVocabBinding mBinding;
 
+    /**
+     * Sets up all the questions, timers, filters and checks for correctness of answers.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +102,9 @@ public class VSQuestion extends QuestionActivity {
         });
     }
 
+    /**
+     * Show the next question in the queue.
+     */
     private void showNextQuestion() {
         mAnswer = new Answer();
         mBinding.setVariable(BR.item, mQueue.remove());
@@ -102,6 +112,10 @@ public class VSQuestion extends QuestionActivity {
         mFtWarn = true;
     }
 
+    /**
+     * Find the next set of questions that should be displayed based on the score.
+     * @return the next set of questions.
+     */
     private int nextSet() {
         switch (mScore) {
             case 0:

@@ -24,6 +24,10 @@ import edu.usc.projecttalent.cognitive.holders.ARItem;
 
 public class SVSample extends ARBase {
 
+    /**
+     * Add instructions on how to solve questions. Then start the questions module.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

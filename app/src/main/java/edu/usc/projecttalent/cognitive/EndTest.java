@@ -21,9 +21,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EndTest extends BaseActivity {
 
+    /**
+     * The key to be used for the JSON data.
+     */
     private static final String JSON = "json";
+    /**
+     * The URL used where the data is uploaded during pilot session.
+     */
     private static final String BASE_URL = "http://projecttalent.usc.edu/pilot/";
 
+    /**
+     * Ends the test. Collect all the data, create a Retrofit instance and send this data to the server.
+     * Also send this data back through the activities to the beginning of this application.
+     * @param savedInstanceState nothing is sent to this bundle currently.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
