@@ -218,7 +218,7 @@
           \"question\": \"INSTRUCTIONS\n\n In this task, on each screen you will see several numbers that make up a series. There will be one or more empty boxes
         somewhere in the series. Sometimes an empty box will be at the end of the series, sometimes in the middle, and sometimes at the
         beginning. Please press the number buttons to enter the number that goes in each empty box. The answer will be a number between 0 and 99.\n\n
-        Here is an example. Enter the number that goes in the empty box. Then press &quot;Next&quot; to continue.\",
+        Here is an example. Enter the number that goes in the empty box. Then press \'\'Next\'\' to continue.\",
          \"options\": [1, 2, 3, 4],
          \"ansPosition\": 2,
           \"answerText\": \"INSTRUCTIONS\n\nThe answer we were looking for is 3, so the completed sequence is:\"
@@ -227,7 +227,7 @@
     <string name="ns_example2">
         {
           \"id\": 2,
-          \"question\": \"INSTRUCTIONS\n\nBelow is another example.\nPlease enter the number that belongs in the empty box. Then press &quot;Next&quot; to continue.\",
+          \"question\": \"INSTRUCTIONS\n\nBelow is another example.\nPlease enter the number that belongs in the empty box. Then press \'\'Next\'\' to continue.\",
           \"options\": [2, 4, 6, 8],
           \"ansPosition\": 3,
           \"answerText\": \"INSTRUCTIONS\n\nThe answer we were looking for is 8 because the numbers (2, 4, 6, 8) increase by 2. The completed sequence is:\"
@@ -327,8 +327,10 @@
         figures (A, B, C, D or E) under the pattern belongs where the \"?\" is.\n\n
         Then press \"Next\" to continue.</string>
 
-    <string name="ar_text3">In the case of the example, the correct answer is E. In the top row, the figure at the right is the same as the one to the left of it
-        except that it has been turned upside down. Following these rules, the figure that goes at the \"?\" should be larger than the one above it, and exactly the same
+    <string name="ar_text3">In the case of the example, the correct answer is E. Going from left to
+        right, the figures are the same size, but the figure on the right has been turn upside down.
+        Going from top to bottom, the figures get larger in size. Following these rules, the figure
+        that goes at the \"?\" should be larger than the one above it, and exactly the same
         size as the one to the left of it, but upside down. Therefore, E is the correct answer.\n\n
         Please press \"Next\" to continue.
 	</string>
@@ -347,7 +349,7 @@
         Please press \"Next\" to continue.
 	</string>
 
-    <string name="practiceq2">INSTRUCTIONS\n\nNow look at another example, which is quite different from either of the previous ones.\n\n
+    <string name="practiceq2">Now look at another example, which is quite different from either of the previous ones.\n\n
     Choose the figure that belongs at the \"?\" below, then press \"Next\" to continue.</string>
     <string name="pr_explain">If you study the pattern you will see that going from left to right there is one more line in each figure
         than in the one to the left of it. Going from top to bottom, the number of lines in any figure is one less than in the figure just above it. Therefore, the
@@ -417,7 +419,7 @@
     <string name="exit_button_text">You may now exit by tapping on the exit button below.</string>
     <string name="rt_practice">Now you will practice.\n\nFocus on the cross, and press the SPACEBAR button each time you see the red circle.\n\n
         Please press the SPACEBAR button when you are ready to begin</string>
-    <string name="reaction_instr1">This task measures your speed. You will be shown a black cross for a few seconds, followed by a red circle. Then the cross will
+    <string name="reaction_instr1">This task measures your speed. You will be shown a black cross (+) for a few seconds, followed by a red circle (). Then the cross will
         appear again, followed by the circle, and so on.\n\n
         Your task is to:\n
         (1) hold your finger over the SPACEBAR button.\n
