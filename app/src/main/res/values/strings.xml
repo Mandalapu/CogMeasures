@@ -11,15 +11,15 @@
         \t&#8226; There is only one right answer for each question.\n\n
         Press the \"Next\" button to begin the first task.</string>
     <string name="finish_message">You have completed the puzzles.\n\n
-        IMPORTANT! Please press \"Finish\" to be sure all of your answers are saved.\n\n
-        Once you press \"Finish\" the program will close. Press the droidSURVEY button to complete the survey questions.</string>
+        IMPORTANT! Please press \"Finish\" to be sure all of your answers are saved.</string>
 
     <string name="begin">Begin</string>
     <string name="button_str_back">Back</string>
     <string name="finishbutton_str">Finish</string>
 
     <!-- Vocabulary strings -->
-    <string name="vo_text">INSTRUCTIONS\n\nThis task contains words for you to define. The items are multiple choice - select the best response for each word. Please click  \"Next\" to continue.
+    <string name="vo_text">INSTRUCTIONS\n\nThis task contains words for you to define. The items are multiple choice - select the best response for each word.
+        \n\nPlease click  \"Next\" to continue.
     </string>
     <string name="vocabulary">Vocabulary</string>
     <string name="vocab3">
@@ -221,16 +221,16 @@
         Here is an example. Enter the number that goes in the empty box. Then press \'\'Next\'\' to continue.\",
          \"options\": [1, 2, 3, 4],
          \"ansPosition\": 2,
-          \"answerText\": \"INSTRUCTIONS\n\nThe answer we were looking for is 3, so the completed sequence is:\"
+          \"answerText\": \"The answer we were looking for is 3, so the completed sequence is:\"
         }
     </string>
     <string name="ns_example2">
         {
           \"id\": 2,
-          \"question\": \"INSTRUCTIONS\n\nBelow is another example.\nPlease enter the number that belongs in the empty box. Then press \'\'Next\'\' to continue.\",
+          \"question\": \"Below is another example.\nPlease enter the number that belongs in the empty box. Then press \'\'Next\'\' to continue.\",
           \"options\": [2, 4, 6, 8],
           \"ansPosition\": 3,
-          \"answerText\": \"INSTRUCTIONS\n\nThe answer we were looking for is 8 because the numbers (2, 4, 6, 8) increase by 2. The completed sequence is:\"
+          \"answerText\": \"The answer we were looking for is 8 because the numbers (2, 4, 6, 8) increase by 2. The completed sequence is:\"
         }
     </string>
     <string name="ns_3">
@@ -328,14 +328,14 @@
         Then press \"Next\" to continue.</string>
 
     <string name="ar_text3">In the case of the example, the correct answer is E. Going from left to
-        right, the figures are the same size, but the figure on the right has been turn upside down.
+        right, the figures are the same size, but the figure on the right has been turned upside down.
         Going from top to bottom, the figures get larger in size. Following these rules, the figure
         that goes at the \"?\" should be larger than the one above it, and exactly the same
         size as the one to the left of it, but upside down. Therefore, E is the correct answer.\n\n
         Please press \"Next\" to continue.
 	</string>
 
-    <string name="ar_instr1">INSTRUCTIONS\n\nIn each question, you are to decide what figure belongs where the \"?\" is in the pattern. To do this you have
+    <string name="ar_instr1">In each question, you are to decide what figure belongs where the \"?\" is in the pattern. To do this you have
         to figure out how the figures change going from row to row, and how the figures change going from column to column.
         The items have different kinds of patterns and different rules by which the figures change.\n\nPlease press \"Next\" to continue.</string>
 
@@ -359,7 +359,7 @@
 		&#8226; You will now be asked six more questions like the ones you just did. \n
 		&#8226; For each question, decide what rules the pattern follows. Choose the answer that belongs at the \"?\" by pressing the answer.\n
 		&#8226; Many of the patterns are based on rules that are different from the ones in the sample items.\n\n
-		If you are ready to begin, please press \"Next\" to continue.
+		When you are ready to begin, please press \"Next\".
 	</string>
     <string name="start_now">Start Now</string>
     <string name="ar_instr_header">INSTRUCTIONS</string>
@@ -372,13 +372,13 @@
     <string name="sp_next">Please press \"Next\" to continue.</string>
     <string name="sp_1_sol"> If you think of the figure at the left above as being made out of wire and lying on a table, the positions shown in each of the other four
         figures could be made simply by turning (rotating) the wire figure at the left around, without lifting it off the table. \n\n Please press \"Next\" to continue.</string>
-    <string name="sp_2_instr">INSTRUCTIONS\n\nNow look at the next row of figures. The first figure is shaped like the letter P. But for  the rest of the figures, even
+    <string name="sp_2_instr">Now look at the next row of figures. The first figure is shaped like the letter P. But for  the rest of the figures, even
         if they were turned (rotated), they would still be backwards; you would have to lift the figure at the left off the table and flip it over to make any of the
         other figures. </string>
-    <string name="sp_intro"> INSTRUCTIONS\n\nIn this task each question has one figure at the left and five similar figures to the right of it. Only one of the five
+    <string name="sp_intro"> In this task each question has one figure at the left and five similar figures to the right of it. Only one of the five
         figures on the right exactly matches the figure at the left if you turn (rotate) it. The rest of the figures are backwards even when they are turned (rotated).</string>
     <string name="sp_3_instr">Now look at the sample question below.\nChoose the one figure, which, when turned (rotated), exactly matches the figure at the left.</string>
-    <string name="sp_3_sol">INSTRUCTIONS\n\nYou should have picked the fourth answer choice. All of the other choices have been \"lifted off the table and flipped over\"
+    <string name="sp_3_sol">You should have picked the fourth answer choice. All of the other choices have been \"lifted off the table and flipped over\"
         as well as turned (rotated), and thus are backwards. </string>
     <string name="sp_begin">For each question in this task, choose the one figure, which, when turned (rotated), exactly matches the figure at the left.\n\n
         If you are ready to begin, please press \"Next.\"</string>
@@ -406,8 +406,6 @@
     <string name="reaction_time">Reaction Time</string>
     <string name="reaction_practice">Reaction Practice</string>
     <!--Context switch -->
-
-    <string name="userIdinstr">Please enter your user ID. This is the same number you entered for the first part of the survey.</string>
 
     <!--Reaction time -->
     <string name="rt_complete">Thank you for completing the Reaction Time Test</string>
@@ -450,7 +448,7 @@
         When you are ready, press \"Begin\".</string>
     <string name="thur_ex_instr">Here are some pictures to study.</string>
     <string name="rt_start">Now that you have practiced, it is time to begin the task.\n\n
-        The procedures is the same as before, but there are more items. You will see a cross, followed by a red circle. Each time you see the red circle,
+        The procedure is the same as before, but there are more items. You will see a cross, followed by a red circle. Each time you see the red circle,
         press the SPACEBAR as quickly as you can.\n\n When you are ready, press the SPACEBAR button.</string>
     <!-- Thurstone -->
 </resources>

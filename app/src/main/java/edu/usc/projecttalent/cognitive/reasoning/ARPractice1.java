@@ -25,7 +25,7 @@ public class ARPractice1 extends ARBase {
         Resources res = getResources();
 
         TypedArray arr = res.obtainTypedArray(R.array.ar_ex_2);
-        ARItem item = new ARItem(getString(R.string.ar_instr_header), arr, getString(R.string.pr_wrong), true);
+        ARItem item = new ARItem("", arr, getString(R.string.pr_wrong), true);
 
         ActivityArMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ar_main);
         binding.setItem(item);

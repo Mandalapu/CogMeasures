@@ -13,7 +13,7 @@ public class Block {
     /**
      * The block number. The first blcck of the section is always block 3.
      */
-    private int number;
+   // private int number;
     /**
      * A list of user answers for the block. The length of the list is usually 3.
      */
@@ -27,7 +27,7 @@ public class Block {
      * @param number the block number for this block.
      */
     public Block(int number) {
-        this.number = number;
+    //    this.number = number;
         answers = new ArrayList<>();
     }
 

@@ -14,7 +14,7 @@ public class Survey {
     /**
      * The user ID for the test-taker.
      */
-    private int userId;
+    // private int userId;
     /**
      * Timestamp for when the user began the survey.
      */
@@ -71,6 +71,6 @@ public class Survey {
      * @param id the user ID.
      */
     public void setUser(int id) {
-        survey.userId = id;
+        // survey.userId = id;
     }
 }
