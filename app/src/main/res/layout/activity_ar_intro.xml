@@ -10,6 +10,7 @@
     tools:context="edu.usc.projecttalent.cognitive.reasoning.ARIntroduction">
 
     <TextView
+        android:id="@+id/ar_instr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

@@ -1,8 +1,11 @@
 package edu.usc.projecttalent.cognitive.vocab;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -98,7 +101,9 @@ public class VSQuestion extends QuestionActivity {
                 showNextQuestion();
                 return;
             }
+
             finishSection();
+            createFile("vocab_", 1);
         });
     }
 

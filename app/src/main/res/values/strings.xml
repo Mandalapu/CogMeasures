@@ -197,7 +197,7 @@
     <!-- Number Series -->
     <string name="ns_section_title">Number Series</string>
     <plurals name="ns_instr">
-        <item quantity="one">Please enter the number that belongs in the empty box. Then press \"Next\" to continue. </item>
+        <item quantity="one">Please enter the number that belongs in the empty space. Then press \"Next\" to continue. </item>
         <item quantity="other">Please enter the number that belongs in the empty boxes. Then press \"Next\" to continue.</item>
     </plurals>
     <string name="title_activity_sec_nsex2_a_">Example 2 Answer</string>
@@ -215,7 +215,7 @@
     <string name="ns_example1">
         {
           \"id\": 1,
-          \"question\": \"INSTRUCTIONS\n\n In this task, on each screen you will see several numbers that make up a series. There will be one or more empty boxes
+          \"question\": \"INSTRUCTIONS\n\nIn this task, on each screen you will see several numbers that make up a series. There will be one or more empty boxes
         somewhere in the series. Sometimes an empty box will be at the end of the series, sometimes in the middle, and sometimes at the
         beginning. Please press the number buttons to enter the number that goes in each empty box. The answer will be a number between 0 and 99.\n\n
         Here is an example. Enter the number that goes in the empty box. Then press \'\'Next\'\' to continue.\",
@@ -320,12 +320,10 @@
 
     <!-- Abstract reasoning -->
     <string name="ar_section_title">Abstract Reasoning</string>
-    <string name="ar_text">INSTRUCTIONS\n\n
-		Each item in this task consists of a set of figures arranged in a pattern formed according to certain rules. Look at the following patterns in the example.
+    <string name="ar_text">INSTRUCTIONS\n\nEach item in this task consists of a set of figures arranged in a pattern formed according to certain rules. Look at the following patterns in the example.
 	</string>
     <string name="ar_text1">The question mark (?) in the lower right corner of the box shows where a figure is missing in the pattern. Choose which of the five
-        figures (A, B, C, D or E) under the pattern belongs where the \"?\" is.\n\n
-        Then press \"Next\" to continue.</string>
+        figures (A, B, C, D or E) under the pattern belongs where the \"?\" is.\n\nThen press \"Next\" to continue.</string>
 
     <string name="ar_text3">In the case of the example, the correct answer is E. Going from left to
         right, the figures are the same size, but the figure on the right has been turned upside down.
@@ -349,17 +347,16 @@
         Please press \"Next\" to continue.
 	</string>
 
-    <string name="practiceq2">Now look at another example, which is quite different from either of the previous ones.\n\n
-    Choose the figure that belongs at the \"?\" below, then press \"Next\" to continue.</string>
+    <string name="practiceq2">Now look at another example, which is quite different from either of the previous ones.\n\nChoose the figure that belongs at the \"?\" below, then press \"Next\" to continue.</string>
     <string name="pr_explain">If you study the pattern you will see that going from left to right there is one more line in each figure
         than in the one to the left of it. Going from top to bottom, the number of lines in any figure is one less than in the figure just above it. Therefore, the
         missing figure should have three lines. The correct answer is choice C (the three lines, slanting in the proper direction).\n\n
         Please press \"Next\" to continue.</string>
     <string name="ar_intro">INSTRUCTIONS\n\n
-		&#8226; You will now be asked six more questions like the ones you just did. \n
-		&#8226; For each question, decide what rules the pattern follows. Choose the answer that belongs at the \"?\" by pressing the answer.\n
-		&#8226; Many of the patterns are based on rules that are different from the ones in the sample items.\n\n
-		When you are ready to begin, please press \"Next\".
+        <li>You will now be asked six more questions like the ones you just did.</li>\n
+        <li>For each question, decide what rules the pattern follows. Choose the answer that belongs at the \"?\" by pressing the answer.</li>\n
+        <li>Many of the patterns are based on rules that are different from the ones in the sample items.</li>\n\n
+        When you are ready to begin, please press "Next".
 	</string>
     <string name="start_now">Start Now</string>
     <string name="ar_instr_header">INSTRUCTIONS</string>
@@ -371,7 +368,7 @@
         that they have been turned (rotated) in different directions. </string>
     <string name="sp_next">Please press \"Next\" to continue.</string>
     <string name="sp_1_sol"> If you think of the figure at the left above as being made out of wire and lying on a table, the positions shown in each of the other four
-        figures could be made simply by turning (rotating) the wire figure at the left around, without lifting it off the table. \n\n Please press \"Next\" to continue.</string>
+        figures could be made simply by turning (rotating) the wire figure at the left around, without lifting it off the table. \n\nPlease press \"Next\" to continue.</string>
     <string name="sp_2_instr">Now look at the next row of figures. The first figure is shaped like the letter P. But for  the rest of the figures, even
         if they were turned (rotated), they would still be backwards; you would have to lift the figure at the left off the table and flip it over to make any of the
         other figures. </string>
@@ -380,8 +377,7 @@
     <string name="sp_3_instr">Now look at the sample question below.\nChoose the one figure, which, when turned (rotated), exactly matches the figure at the left.</string>
     <string name="sp_3_sol">You should have picked the fourth answer choice. All of the other choices have been \"lifted off the table and flipped over\"
         as well as turned (rotated), and thus are backwards. </string>
-    <string name="sp_begin">For each question in this task, choose the one figure, which, when turned (rotated), exactly matches the figure at the left.\n\n
-        If you are ready to begin, please press \"Next.\"</string>
+    <string name="sp_begin">For each question in this task, choose the one figure, which, when turned (rotated), exactly matches the figure at the left.\n\nIf you are ready to begin, please press \"Next.\"</string>
     <string name="sp_question">Choose the one figure, which, when turned (rotated), exactly matches the figure at the left.</string>
     <!-- 2D visualization -->
 
@@ -415,8 +411,7 @@
     <string name="end_exit">You can now exit by tapping on the exit button below.</string>
     <string name="exit">Exit</string>
     <string name="exit_button_text">You may now exit by tapping on the exit button below.</string>
-    <string name="rt_practice">Now you will practice.\n\nFocus on the cross, and press the SPACEBAR button each time you see the red circle.\n\n
-        Please press the SPACEBAR button when you are ready to begin</string>
+    <string name="rt_practice">Now you will practice.\n\nFocus on the cross, and press the SPACEBAR button each time you see the red circle.\n\nPlease press the SPACEBAR button when you are ready to begin</string>
     <string name="reaction_instr1">This task measures your speed. You will be shown a black cross (+) for a few seconds, followed by a red circle (). Then the cross will
         appear again, followed by the circle, and so on.\n\n
         Your task is to:\n
@@ -427,13 +422,11 @@
     <!-- Reaction time -->
 
     <!-- Thurstone -->
-    <string name="thur_practice">You will see each picture for 5 seconds. Make use of the time and study each picture carefully, for the full 5 seconds.\n\n
-        Please press \"Next\" when you are ready to begin.</string>
+    <string name="thur_practice">You will see each picture for 5 seconds. Make use of the time and study each picture carefully, for the full 5 seconds.\n\nPlease press \"Next\" when you are ready to begin.</string>
     <string name="now_click">Now click on the picture you have seen.</string>
     <string name="pressnext">Please press \"Next\" to go to the next task.</string>
     <string name="thurs_instr">The next task measures your memory. You will see a series of pictures for 5 seconds each. You will then see the original picture along with
-        several similar pictures. Your task is to pick which of the pictures is the one you saw previously.\n\n
-        For example, you will see a picture like this &#8230;</string>
+        several similar pictures. Your task is to pick which of the pictures is the one you saw previously.\n\nFor example, you will see a picture like this &#8230;</string>
     <string name="instr_thurs_q">Press on the picture you have studied, then press \"Next\".</string>
     <string name="click_picture">Now click on the picture you have seen.</string>
     <string name="th_instr">Then later you will see the first picture along with several similar pictures, like these. Your task is to press the picture which is the same
@@ -442,13 +435,9 @@
     <string name="thurs_example">Thurstone Example</string>
     <string name="thanks">Thank you for completing the test.</string>
     <string name="thurstone_title">Thurstone</string>
-    <string name="real_test_instr">Now that you have practiced, it is time to begin the task.\n
-        The procedure is the same as before, but there are more items. You will see each picture for 5 seconds.\n
-        Use the time to study each picture carefully.\n\n
-        When you are ready, press \"Begin\".</string>
+    <string name="real_test_instr">Now that you have practiced, it is time to begin the task.\nThe procedure is the same as before, but there are more items. You will see each picture for 5 seconds.\nUse the time to study each picture carefully.\n\nWhen you are ready, press \"Begin\".</string>
     <string name="thur_ex_instr">Here are some pictures to study.</string>
-    <string name="rt_start">Now that you have practiced, it is time to begin the task.\n\n
-        The procedure is the same as before, but there are more items. You will see a cross, followed by a red circle. Each time you see the red circle,
-        press the SPACEBAR as quickly as you can.\n\n When you are ready, press the SPACEBAR button.</string>
+    <string name="rt_start">Now that you have practiced, it is time to begin the task.\n\nThe procedure is the same as before, but there are more items. You will see a cross, followed by a red circle. Each time you see the red circle,
+        press the SPACEBAR as quickly as you can.\n\nWhen you are ready, press the SPACEBAR button.</string>
     <!-- Thurstone -->
 </resources>

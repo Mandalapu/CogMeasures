@@ -1,7 +1,9 @@
 package edu.usc.projecttalent.cognitive;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.databinding.ViewDataBinding;
 import android.support.v4.content.ContextCompat;
@@ -9,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.google.gson.Gson;
 
 import java.util.LinkedList;
 
@@ -75,6 +79,8 @@ public abstract class ARBase extends QuestionActivity {
             showNextQuestion();
         } else {
             finishSection();
+            boolean isAr = mBinding instanceof ActivityArQuestionBinding;
+            createFile(isAr ? "ar_" : "sv_", isAr ? 4 : 0);
         }
     };
 

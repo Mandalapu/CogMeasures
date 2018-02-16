@@ -1,11 +1,15 @@
 package edu.usc.projecttalent.cognitive.reaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.google.gson.Gson;
 
 import java.util.Random;
 
@@ -109,6 +113,7 @@ public class RTQuestion extends QuestionActivity {
                     mSection.addBlock(mBlock); //add this section to the block.
                     if(mTrials == NO_OF_TRIALS) { //actual question section has ended.
                         finishSection();
+                        createFile(mTrials == 5 ? "rt_prac_" : "reaction_", 5);
                     } else { //practice section has ended.
                         mSection.endSection(); //end this section.
                         Survey.getSurvey().addSection(mSection);

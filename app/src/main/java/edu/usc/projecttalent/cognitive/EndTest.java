@@ -1,9 +1,12 @@
 package edu.usc.projecttalent.cognitive;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
+
+import java.sql.Timestamp;
 
 import edu.usc.projecttalent.cognitive.model.Survey;
 import retrofit2.Call;
@@ -43,24 +46,10 @@ public class EndTest extends BaseActivity {
         (findViewById(R.id.finish)).setOnClickListener(v -> {
             Survey survey = Survey.getSurvey();
             survey.endSurvey();
-            String result = new Gson().toJson(survey);
-            //add retrofit code.
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            APIEndPoint service = retrofit.create(APIEndPoint.class);
-            Call<Void> call = service.getData(result);
-            call.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                }
+            createFile("survey_", 0);
 
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                }
-            });
-
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String result = Build.SERIAL + "_" + timestamp;
 
             Intent intent = new Intent();
             intent.putExtra(JSON, result);

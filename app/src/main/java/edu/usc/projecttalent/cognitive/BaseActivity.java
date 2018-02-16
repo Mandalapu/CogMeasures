@@ -6,7 +6,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import com.google.gson.Gson;
+
+import edu.usc.projecttalent.cognitive.model.Survey;
+import edu.usc.projecttalent.cognitive.util.Fileutils;
 
 /**
  * Base activity. This class is extended by all activities in the project.
@@ -158,5 +165,17 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected void setNext(Class nextClass) {
         (findViewById(R.id.next)).setOnClickListener(v -> startActivityForResult(new Intent(this, nextClass), 1));
+    }
+
+    protected void createFile(String fileName, int moduleNumber) {
+
+        SharedPreferences preferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("module", moduleNumber);
+        editor.commit();
+        Log.e("aarushi", preferences.getInt("module", -1)+"");
+
+
+        new Fileutils().writeFile(fileName, new Gson().toJson(Survey.getSurvey()));
     }
 }

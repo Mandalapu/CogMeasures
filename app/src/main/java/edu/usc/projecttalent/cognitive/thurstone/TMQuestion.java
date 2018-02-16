@@ -1,7 +1,9 @@
 package edu.usc.projecttalent.cognitive.thurstone;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
@@ -11,6 +13,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TableRow;
+
+import com.google.gson.Gson;
 
 import java.util.LinkedList;
 
@@ -115,6 +119,7 @@ public class TMQuestion extends QuestionActivity {
             }
             mSkipClass = ARInstruction.class;
             finishSection();
+            createFile("thurstone_", 3);
         };
         (findViewById(R.id.next)).setOnClickListener(listener);
     }
@@ -170,6 +175,7 @@ public class TMQuestion extends QuestionActivity {
      * @return 0, indicating that the dialog was shown properly.
      */
     private int endSection() {
+        createFile("thurstone_", 3);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setMessage(R.string.pressnext)
                 .setNeutralButton(R.string.next, (d, which) -> startActivityForResult(new Intent(this, ARInstruction.class), 1))
