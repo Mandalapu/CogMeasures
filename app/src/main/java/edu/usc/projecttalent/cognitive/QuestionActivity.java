@@ -3,6 +3,7 @@ package edu.usc.projecttalent.cognitive;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.util.Queue;
 
@@ -68,5 +69,7 @@ public abstract class QuestionActivity extends BaseActivity {
                 .setCancelable(false)
                 .create();
         dialog.show();
+        TextView textView =  dialog.findViewById(android.R.id.message);
+        textView.setTextSize(30);
     }
 }

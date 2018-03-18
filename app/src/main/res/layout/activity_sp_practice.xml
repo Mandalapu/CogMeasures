@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{item.instructions}"
-            android:textSize="25sp" />
+            android:textSize="31sp" />
 
         <LinearLayout
             android:id="@+id/options"
@@ -37,14 +37,17 @@
             <ImageView
                 style="@style/figure"
                 android:layout_gravity="center"
+                android:background="@color/green"
                 android:layout_marginEnd="80dp"
+                android:padding="2dp"
                 android:visibility="@{item.options.getResourceId(0,0)==0? View.GONE:View.VISIBLE}"
                 app:imageUrl="@{item.options.getResourceId(0,0)}" />
 
             <ImageView
+                android:id="@+id/question"
                 style="@style/figure"
-                android:background="@{item.answer &amp;&amp; item.ansPosition == 0? @drawable/black:null}"
-                android:padding="@{item.answer &amp;&amp; item.ansPosition == 0? 2: 0}"
+                android:background="@{item.options.getResourceId(0,0)==0? @drawable/green: item.answer &amp;&amp; item.ansPosition == 0? @drawable/black:null}"
+                android:padding="@{item.options.getResourceId(0,0)==0 || (item.answer &amp;&amp; item.ansPosition == 0)? 2: 0}"
                 app:imageUrl="@{item.options.getResourceId(1,0)}" />
 
             <ImageView
@@ -78,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
             android:text="@{item.details}"
-            android:textSize="25sp" />
+            android:textSize="31sp" />
 
         <Button
             android:id="@+id/next"

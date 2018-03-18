@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -164,5 +165,7 @@ public abstract class ARBase extends QuestionActivity {
                 })
                 .setCancelable(false).create();
         dialog.show();
+        TextView textView =  dialog.findViewById(android.R.id.message);
+        textView.setTextSize(30);
     }
 }

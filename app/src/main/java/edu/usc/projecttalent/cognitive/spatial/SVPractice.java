@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -44,7 +45,7 @@ public class SVPractice extends BaseActivity {
             if (!mQueue.isEmpty())
                 binding.setItem(mQueue.remove());
             else
-                startActivityForResult(new Intent(this, SVInstruction.class), 1);
+                startActivityForResult(new Intent(this, SVSample.class), 1);
         });
     }
 }

@@ -1,5 +1,8 @@
 package edu.usc.projecttalent.cognitive.model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -61,8 +64,11 @@ public class Survey {
      * @return the survey object.
      */
     public static Survey getSurvey() {
-        if (survey == null)
+        if (survey == null) {
             survey = new Survey();
+
+        }
+
         return survey;
     }
 
@@ -72,5 +78,13 @@ public class Survey {
      */
     public void setUser(int id) {
         // survey.userId = id;
+    }
+
+    public boolean isEmpty() {
+        return survey.sections.isEmpty();
+    }
+
+    public static void setSurvey(Survey s) {
+        survey = s;
     }
 }

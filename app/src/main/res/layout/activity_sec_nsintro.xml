@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ns_intro"
-        android:textSize="25sp" />
+        android:textSize="29sp" />
 
     <Button
         android:id="@id/next"

@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -167,6 +168,8 @@ public class TMQuestion extends QuestionActivity {
                 .setCancelable(false)
                 .create();
         dialog.show();
+        TextView textView =  dialog.findViewById(android.R.id.message);
+        textView.setTextSize(30);
         return 0;
     }
 
@@ -182,6 +185,8 @@ public class TMQuestion extends QuestionActivity {
                 .setCancelable(false)
                 .create();
         dialog.show();
+        TextView textView =  dialog.findViewById(android.R.id.message);
+        textView.setTextSize(30);
         return 0;
     }
 }

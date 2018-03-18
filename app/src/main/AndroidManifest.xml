@@ -30,7 +30,6 @@
         <activity android:name=".reasoning.ARQuestion" />
         <activity android:name=".spatial.SVPractice" />
         <activity android:name=".spatial.SVSample" />
-        <activity android:name=".spatial.SVInstruction" />
         <activity android:name=".spatial.SVQuestion" />
         <activity android:name=".reaction.RTInstruction" />
         <activity android:name=".reaction.RTQuestion" />

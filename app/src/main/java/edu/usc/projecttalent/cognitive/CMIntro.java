@@ -1,17 +1,17 @@
 package edu.usc.projecttalent.cognitive;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.google.gson.Gson;
+
+import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.numbers.NSInstruction;
 import edu.usc.projecttalent.cognitive.reaction.RTInstruction;
 import edu.usc.projecttalent.cognitive.reasoning.ARInstruction;
-import edu.usc.projecttalent.cognitive.spatial.SVInstruction;
 import edu.usc.projecttalent.cognitive.spatial.SVPractice;
 import edu.usc.projecttalent.cognitive.thurstone.TMInstruction;
 import edu.usc.projecttalent.cognitive.util.Fileutils;
@@ -36,6 +36,13 @@ public class CMIntro extends BaseActivity {
         setContentView(R.layout.activity_cmintro);
         setNext(getNextClass());
 
+        Survey survey = Survey.getSurvey();
+        SharedPreferences preferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        String data = preferences.getString("data", "reset");
+        if (survey.isEmpty() && !data.equals("reset")) {
+            Survey.setSurvey(new Gson().fromJson(data, Survey.class));
+        }
+
         String[] permissions = {
                 "android.permission.READ_EXTERNAL_STORAGE",
                 "android.permission.WRITE_EXTERNAL_STORAGE"
@@ -45,12 +52,12 @@ public class CMIntro extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions, requestCode);
         }
+      //  (findViewById(R.id.next)).performClick();
 
     }
 
     private Class getNextClass() {
         int next = getSharedPreferences("pref", Context.MODE_PRIVATE).getInt("module", 0);
-        Log.e("aarushi", next+"");
         switch (next){
             case 0: return VSInstruction.class;
             case 1: return NSInstruction.class;

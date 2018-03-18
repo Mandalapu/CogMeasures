@@ -3,6 +3,7 @@ package edu.usc.projecttalent.cognitive;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.widget.TextView;
 
 import static edu.usc.projecttalent.cognitive.BaseActivity.mContext;
 
@@ -79,8 +80,12 @@ public class Timer extends CountDownTimer {
             activated = true;
         }
         if (millisUntilFinished <= 60 * 1000 && !shown) {
-            if(mMillis > 0.5 * 60 * 1000)
+            if(mMillis > 0.5 * 60 * 1000) {
                 mWarningDialog.show();
+                TextView textView =  mWarningDialog.findViewById(android.R.id.message);
+                textView.setTextSize(30);
+            }
+
             shown = true;
             mContext.sendBroadcast(new Intent(WARNING));
         }
@@ -100,6 +105,8 @@ public class Timer extends CountDownTimer {
                 .setPositiveButton(R.string.resume, (dialog, which) -> mContext.sendBroadcast(new Intent(RESUME)))
                 .setCancelable(false).create();
         quitDialog.show();
+        TextView textView =  quitDialog.findViewById(android.R.id.message);
+        textView.setTextSize(30);
     }
 
     /**

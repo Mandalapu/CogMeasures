@@ -3,13 +3,7 @@
 
     <string name="app_name">Cognitive Measures</string>
 
-    <string name="agreement">The following are a series of cognitive tasks, several of which are the versions of the tasks you completed in the original Project Talent
-        study.\n\n
-        \t&#8226; Read the instructions for each task carefully.\n
-        \t&#8226; Do the best you can. If you are unsure of the right answer, pick the one you think is the best.\n
-        \t&#8226; If a task includes multiple-choice questions, select only one answer.\n
-        \t&#8226; There is only one right answer for each question.\n\n
-        Press the \"Next\" button to begin the first task.</string>
+    <string name="agreement">The puzzles that you are about to do will require your complete attention. If you need to take a quick break, please do so now. When you are ready to begin, press "Next."</string>
     <string name="finish_message">You have completed the puzzles.\n\n
         IMPORTANT! Please press \"Finish\" to be sure all of your answers are saved.</string>
 
@@ -18,8 +12,8 @@
     <string name="finishbutton_str">Finish</string>
 
     <!-- Vocabulary strings -->
-    <string name="vo_text">INSTRUCTIONS\n\nThis task contains words for you to define. The items are multiple choice - select the best response for each word.
-        \n\nPlease click  \"Next\" to continue.
+    <string name="vo_text">INSTRUCTIONS\n\nThis task contains words for you to define. The items are multiple choice; select the best response for each word.
+        \n\nPlease press  \"Next\" to continue.
     </string>
     <string name="vocabulary">Vocabulary</string>
     <string name="vocab3">
@@ -204,9 +198,9 @@
     <string name="ns_intro">
 		INSTRUCTIONS\n\n
         &#8226; You will now see six more questions like the ones you just did.\n
-		&#8226; Please enter the number that belongs in each empty box.\n
+		&#8226; Please enter the number that belongs in each empty space.\n
         &#8226; The numbers might increase, like <b>2, 4, 6,</b> or decrease, like <b>6, 4, 2</b>.\n
-		&#8226; You may be asked a question with more than one empty box in the sequence.\n
+		&#8226; You may be asked a question with more than one empty space in the sequence.\n
 		&#8226; Some of the questions may be easy but others may be hard. Just do the best you can.\n\n
 		If you are ready to begin, please press \"Next\" to continue.
 	</string>
@@ -215,10 +209,10 @@
     <string name="ns_example1">
         {
           \"id\": 1,
-          \"question\": \"INSTRUCTIONS\n\nIn this task, on each screen you will see several numbers that make up a series. There will be one or more empty boxes
-        somewhere in the series. Sometimes an empty box will be at the end of the series, sometimes in the middle, and sometimes at the
-        beginning. Please press the number buttons to enter the number that goes in each empty box. The answer will be a number between 0 and 99.\n\n
-        Here is an example. Enter the number that goes in the empty box. Then press \'\'Next\'\' to continue.\",
+          \"question\": \"INSTRUCTIONS\n\nIn this task, on each screen you will see several numbers that make up a series. There will be one or more empty spaces
+        somewhere in the series. Sometimes an empty space will be at the end of the series, sometimes in the middle, and sometimes at the
+        beginning. Please press the number buttons to enter the number that goes in each empty space. The answer will be a number between 0 and 99.\n\n
+        Here is an example. Enter the number that goes in the empty space. Then press \'\'Next\'\' to continue.\",
          \"options\": [1, 2, 3, 4],
          \"ansPosition\": 2,
           \"answerText\": \"The answer we were looking for is 3, so the completed sequence is:\"
@@ -227,7 +221,7 @@
     <string name="ns_example2">
         {
           \"id\": 2,
-          \"question\": \"Below is another example.\nPlease enter the number that belongs in the empty box. Then press \'\'Next\'\' to continue.\",
+          \"question\": \"Below is another example.\nPlease enter the number that belongs in the empty space. Then press \'\'Next\'\' to continue.\",
           \"options\": [2, 4, 6, 8],
           \"ansPosition\": 3,
           \"answerText\": \"The answer we were looking for is 8 because the numbers (2, 4, 6, 8) increase by 2. The completed sequence is:\"
@@ -320,7 +314,7 @@
 
     <!-- Abstract reasoning -->
     <string name="ar_section_title">Abstract Reasoning</string>
-    <string name="ar_text">INSTRUCTIONS\n\nEach item in this task consists of a set of figures arranged in a pattern formed according to certain rules. Look at the following patterns in the example.
+    <string name="ar_text">INSTRUCTIONS\n\nEach item in this task consists of a set of figures arranged in a pattern formed according to certain rules. Look at the pattern in the example.
 	</string>
     <string name="ar_text1">The question mark (?) in the lower right corner of the box shows where a figure is missing in the pattern. Choose which of the five
         figures (A, B, C, D or E) under the pattern belongs where the \"?\" is.\n\nThen press \"Next\" to continue.</string>
@@ -329,8 +323,7 @@
         right, the figures are the same size, but the figure on the right has been turned upside down.
         Going from top to bottom, the figures get larger in size. Following these rules, the figure
         that goes at the \"?\" should be larger than the one above it, and exactly the same
-        size as the one to the left of it, but upside down. Therefore, E is the correct answer.\n\n
-        Please press \"Next\" to continue.
+        size as the one to the left of it, but upside down. Therefore, E is the correct answer.\n\nPlease press \"Next\" to continue.
 	</string>
 
     <string name="ar_instr1">In each question, you are to decide what figure belongs where the \"?\" is in the pattern. To do this you have
@@ -343,18 +336,17 @@
 
     <string name="pr_wrong">Here is another example. Going from left to right, the circles get larger, and going from top to bottom they get darker.
         Therefore the answer has to be a circle which is the largest of the three sizes, and the darkest. Choices C and E are both the right size, but E is the only
-       large circle with the correct shading. Thus E is the only figure that fits in the pattern formed by the other circles. E is the answer that should be chosen.\n\n
-        Please press \"Next\" to continue.
+       large circle with the correct shading. Thus E is the only figure that fits in the pattern formed by the other circles. E is the answer that should be chosen.\n\nPlease press \"Next\" to continue.
 	</string>
 
     <string name="practiceq2">Now look at another example, which is quite different from either of the previous ones.\n\nChoose the figure that belongs at the \"?\" below, then press \"Next\" to continue.</string>
     <string name="pr_explain">If you study the pattern you will see that going from left to right there is one more line in each figure
         than in the one to the left of it. Going from top to bottom, the number of lines in any figure is one less than in the figure just above it. Therefore, the
-        missing figure should have three lines. The correct answer is choice C (the three lines, slanting in the proper direction).\n\n
-        Please press \"Next\" to continue.</string>
+        missing figure should have three lines. The correct answer is choice C (the three lines, slanting in the proper direction).\n\nPlease press \"Next\" to continue.</string>
     <string name="ar_intro">INSTRUCTIONS\n\n
         <li>You will now be asked six more questions like the ones you just did.</li>\n
-        <li>For each question, decide what rules the pattern follows. Choose the answer that belongs at the \"?\" by pressing the answer.</li>\n
+        <li> <pre>For each question, decide what rules the pattern follows. Choose the answer that belongs at the \"?\" by
+                  pressing the answer.</pre></li>\n
         <li>Many of the patterns are based on rules that are different from the ones in the sample items.</li>\n\n
         When you are ready to begin, please press "Next".
 	</string>
@@ -369,12 +361,10 @@
     <string name="sp_next">Please press \"Next\" to continue.</string>
     <string name="sp_1_sol"> If you think of the figure at the left above as being made out of wire and lying on a table, the positions shown in each of the other four
         figures could be made simply by turning (rotating) the wire figure at the left around, without lifting it off the table. \n\nPlease press \"Next\" to continue.</string>
-    <string name="sp_2_instr">Now look at the next row of figures. The first figure is shaped like the letter P. But for  the rest of the figures, even
-        if they were turned (rotated), they would still be backwards; you would have to lift the figure at the left off the table and flip it over to make any of the
+    <string name="sp_2_instr">Now look at the next row of figures. The first figure is shaped like the letter P. But for  the rest of the figures, even if they were turned (rotated), they would still be backwards; you would have to lift the figure at the left off the table and flip it over to make any of the
         other figures. </string>
-    <string name="sp_intro"> In this task each question has one figure at the left and five similar figures to the right of it. Only one of the five
-        figures on the right exactly matches the figure at the left if you turn (rotate) it. The rest of the figures are backwards even when they are turned (rotated).</string>
-    <string name="sp_3_instr">Now look at the sample question below.\nChoose the one figure, which, when turned (rotated), exactly matches the figure at the left.</string>
+    <string name="sp_3_instr">In this task each question has one figure at the left and five similar figures to the right of it. Only one of the five
+        figures on the right exactly matches the figure at the left if you turn (rotate) it. The rest of the figures are backwards even when they are turned (rotated).\n\nNow look at the sample question below.\nChoose the one figure, which, when turned (rotated), exactly matches the figure at the left.</string>
     <string name="sp_3_sol">You should have picked the fourth answer choice. All of the other choices have been \"lifted off the table and flipped over\"
         as well as turned (rotated), and thus are backwards. </string>
     <string name="sp_begin">For each question in this task, choose the one figure, which, when turned (rotated), exactly matches the figure at the left.\n\nIf you are ready to begin, please press \"Next.\"</string>
@@ -387,10 +377,10 @@
     <string name="timeup">2 minutes up</string>
     <string name="ok">OK</string>
     <string name="next">Next</string>
-    <string name="msg2">You have not submitted a response yet.Your answers are important to us.\nPlease try to answer as best you can. If you are not willing to provide
-        an answer, please press \"Next\" to continue.</string>
+    <string name="msg2">You have not submitted a response yet. Your answers are important to us.\nPlease try to answer as best you can. If you are not willing to provide
+        an answer, please press \"Next\" to continue.\n\nPress OK to return to the question.</string>
     <string name="msg3">You did not complete the question. Your answers are important to us. Please try to answer as best you can. If you are not willing to provide an
-        answer, please press \"Next\" to continue.</string>
+        answer, please press \"Next\" to continue.\n\nPress OK to return to the question.</string>
     <string name="quit_resume">Would you like to quit? Or go back to where you left off?</string>
     <!-- Warning messages -->
 

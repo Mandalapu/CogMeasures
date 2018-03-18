@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -68,6 +69,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .setNeutralButton(R.string.ok, null)
                 .create();
         ansDialog.show();
+        TextView textView =  ansDialog.findViewById(android.R.id.message);
+        textView.setTextSize(30);
     }
 
     /**
@@ -172,10 +175,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("module", moduleNumber);
+
+        editor.putString("data", fileName.startsWith("survey") ? "reset" : new Gson().toJson(Survey.getSurvey()));
         editor.commit();
-        Log.e("aarushi", preferences.getInt("module", -1)+"");
-
-
         new Fileutils().writeFile(fileName, new Gson().toJson(Survey.getSurvey()));
     }
 }

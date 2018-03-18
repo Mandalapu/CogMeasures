@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:text="@string/reaction_instr1"
-        android:textSize="25sp" />
+        android:textSize="27sp" />
 
     <Button
         android:id="@+id/next"
