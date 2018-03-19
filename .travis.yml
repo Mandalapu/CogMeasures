@@ -1,16 +1,9 @@
 language: android
-sudo: required
 android:
   components:
-    - tools
-    - platform-tools
-    - tools
-
-    # The BuildTools version used by your project
     - build-tools-27.0.2
-
-    # The SDK version used to compile your project
     - android-27
+    - extra
  android:
  before_install:
 - chmod +x gradlew
