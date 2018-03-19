@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.databinding.ViewDataBinding;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -167,5 +168,6 @@ public abstract class ARBase extends QuestionActivity {
         dialog.show();
         TextView textView =  dialog.findViewById(android.R.id.message);
         textView.setTextSize(30);
+        Log.d("anindya", "hello");
     }
 }
