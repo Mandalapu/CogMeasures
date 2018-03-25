@@ -75,7 +75,7 @@ public class TMQuestion extends QuestionActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_thur_answer);
         TableRow options = findViewById(R.id.options);
         setOptionListener(options);
-        mBlock = new Block(1);
+        mBlock = new Block();
         mScore = 0;
 
         nextQuestion();
@@ -101,7 +101,7 @@ public class TMQuestion extends QuestionActivity {
                 mScore++; //correct answer.
                 correct = true;
             }
-            mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1, correct);
+            mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1);
             mBlock.addAnswer(mAnswer);
             if (oldView != null)
                 oldView.setBackground(null);

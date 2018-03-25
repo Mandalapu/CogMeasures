@@ -2,6 +2,7 @@ package edu.usc.projecttalent.cognitive.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Model for section for retrofit. A set of sections make a survey.
@@ -22,7 +23,7 @@ public class Section {
     /**
      * A list of two blocks (except Thurstone and Reaction time which have one block).
      */
-    private ArrayList<Block> blocks;
+    private List<Block> blocks;
     /**
      * The timestamp when the user ended this section.
      */

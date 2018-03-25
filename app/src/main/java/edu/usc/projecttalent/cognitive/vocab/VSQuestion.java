@@ -59,7 +59,7 @@ public class VSQuestion extends QuestionActivity {
         mTimer = Timer.getTimer(2);
         prepareFilter();
 
-        mBlock = new Block(3);
+        mBlock = new Block();
         Type question = new TypeToken<ArrayList<VSItem>>() {}.getType();
         mQueue = new LinkedList<>();
         mQueue.addAll(new Gson().fromJson(getString(R.string.vocab3), question));
@@ -83,7 +83,7 @@ public class VSQuestion extends QuestionActivity {
             if (answer == index) {
                 mScore++;
             }
-            mAnswer.endAnswer(index + 1, answer == index); //to shift indices to 1-5.
+            mAnswer.endAnswer(index + 1); //to shift indices to 1-5.
             mBlock.addAnswer(mAnswer);
 
             if (!mQueue.isEmpty()) {
@@ -95,7 +95,7 @@ public class VSQuestion extends QuestionActivity {
 
             if (mSection.getBlockSize() == 1) {
                 int block = nextSet();
-                mBlock = new Block(getBlockId(block));
+                mBlock = new Block();
                 mQueue.addAll(new Gson().fromJson(getString(block), question));
                 mScore = 0;
                 showNextQuestion();

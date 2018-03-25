@@ -52,8 +52,6 @@ public class CMIntro extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions, requestCode);
         }
-      //  (findViewById(R.id.next)).performClick();
-
     }
 
     private Class getNextClass() {

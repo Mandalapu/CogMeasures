@@ -59,7 +59,7 @@ public class NSQuestion extends NSBase {
         mTimer = Timer.getTimer(3); //get a 3 minute timer.
         prepareFilter(); //add filters for broadcast.
 
-        mBlock = new Block(3); //first block is Block 3.
+        mBlock = new Block();
         mFtWarn = true; //for FTU.
 
         mQueue = new LinkedList<>();
@@ -160,7 +160,7 @@ public class NSQuestion extends NSBase {
      */
     private void showNextSet() {
         int block = nextSet(); //find the next block.
-        mBlock = new Block(getBlockId(block)); //create new blcok with ID.
+        mBlock = new Block(); //create new blcok with ID.
         //retrieve all questions for the block.
         mQueue.addAll(new Gson().fromJson(getString(block), new TypeToken<ArrayList<NSItem>>() {}.getType()));
         mScore = 0; //reset the score.
@@ -181,14 +181,12 @@ public class NSQuestion extends NSBase {
             //if user has not entered any answer then the above will throw exception.
             //We do not need to do anything as they are still initialized to -99.
         }
-        boolean correct = false;
         //below the answers are hardcoded for 5.3 because there is only one case out of 15 which
         //requires this code.
         if ((userAns1 == 72 && userAns2 == 76) || (userAns1 == 78 && userAns2 == 82)) {
-            correct = true;
             mScore++;
         }
-        mAnswer.endAnswer(userAns1, correct); //add the answer.
+        mAnswer.endAnswer(userAns1); //add the answer.
         mBlock.addAnswer(mAnswer); //if it is correct.
     }
 
@@ -205,10 +203,8 @@ public class NSQuestion extends NSBase {
         }
         answer.setText(""); //reset the field.
         int ans = question.getOptions()[question.getAnsPosition()]; //actual answer.
-        boolean correct = false;
         if (userAns == ans) { //correct.
             mScore++;
-            correct = true;
         } else if (question.getAnsOptions() != null) { //if more than one answer.
             int[] answers = question.getAnsOptions(); //get all answers.
             Arrays.sort(answers); //sort all possible answers.
@@ -216,10 +212,9 @@ public class NSQuestion extends NSBase {
             int pos = Arrays.binarySearch(answers, userAns);
             if (pos != -1) { //answer found
                 mScore++;
-                correct = true;
             }
         }
-        mAnswer.endAnswer(userAns, correct); //end answer.
+        mAnswer.endAnswer(userAns); //end answer.
         mBlock.addAnswer(mAnswer); //add answer to block.
     }
 

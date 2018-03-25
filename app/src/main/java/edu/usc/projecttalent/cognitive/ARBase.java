@@ -70,7 +70,7 @@ public abstract class ARBase extends QuestionActivity {
 
         if (mSection.getBlockSize() == 1) { //get next block.
             int block = nextSet();
-            mBlock = new Block(getBlockId(block));
+            mBlock = new Block();
             TypedArray questions = getResources().obtainTypedArray(block); //all questions of Set X.
             mQueue = new LinkedList<>();
             for (int i = 0; i < questions.length(); i++) {
@@ -113,13 +113,11 @@ public abstract class ARBase extends QuestionActivity {
         boolean isAR = mBinding instanceof ActivityArQuestionBinding;
         LinearLayout options = findViewById(R.id.options);
         ARItem question = isAR ? ((ActivityArQuestionBinding) mBinding).getItem(): ((ActivitySpQuestionBinding)mBinding).getItem();
-        boolean correct = false;
         if (options.indexOfChild(oldView) == question.getAnsPosition()) {
             mScore++; //correct answer.
-            correct = true;
         }
         //add answer to block.
-        mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + (isAR? 1 : 0), correct);
+        mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + (isAR? 1 : 0));
         mBlock.addAnswer(mAnswer);
     }
 
