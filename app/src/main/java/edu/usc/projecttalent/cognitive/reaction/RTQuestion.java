@@ -67,7 +67,7 @@ public class RTQuestion extends QuestionActivity {
         //set the section name depending on the number of trials.
         mSection = new Section(getString(mTrials == 5? R.string.reaction_practice : R.string.reaction_time));
         //start a new block. By default, there is only one block in RT. So block no. is 1.
-        mBlock = new Block(1);
+        mBlock = new Block();
 
         //prepare filters for reaction time.
         prepareRTFilter();
@@ -100,13 +100,13 @@ public class RTQuestion extends QuestionActivity {
 
                 if (isRed) { //if stimulus was shown, correct click.
                     //add the time in milliseconds delay.
-                    mAnswer.endAnswer(System.currentTimeMillis() - start, true);
+                    mAnswer.endAnswer(System.currentTimeMillis() - start);
                     counter++; //update counter
                     image.setImageResource(R.drawable.cross); //show the cross.
                     isRed = false; //re-init the stimulus flag.
                 } else { //false click
                     mAnswer = new Answer();
-                    mAnswer.endAnswer(0, false); //add false for dalse click.
+                    mAnswer.endAnswer(0); //add false for dalse click.
                 }
                 mBlock.addAnswer(mAnswer); //add this answer to the block.
                 if (counter == mTrials) { //the section has ended now.

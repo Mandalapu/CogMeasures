@@ -177,7 +177,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         editor.putInt("module", moduleNumber);
 
         editor.putString("data", fileName.startsWith("survey") ? "reset" : new Gson().toJson(Survey.getSurvey()));
-        editor.commit();
+        editor.apply();
         new Fileutils().writeFile(fileName, new Gson().toJson(Survey.getSurvey()));
     }
 }

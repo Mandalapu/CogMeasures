@@ -41,7 +41,7 @@ public class ARQuestion extends ARBase {
         mTimer = Timer.getTimer(3);
         prepareFilter();
 
-        mBlock = new Block(3); //first block is Block 3.
+        mBlock = new Block(); //first block is Block 3.
 
         final Resources res = getResources();
         TypedArray questions = res.obtainTypedArray(R.array.ar_3);

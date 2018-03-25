@@ -1,8 +1,5 @@
 package edu.usc.projecttalent.cognitive.model;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,10 +11,6 @@ import java.util.Date;
  */
 
 public class Survey {
-    /**
-     * The user ID for the test-taker.
-     */
-    // private int userId;
     /**
      * Timestamp for when the user began the survey.
      */
@@ -70,14 +63,6 @@ public class Survey {
         }
 
         return survey;
-    }
-
-    /**
-     * Set the user ID for this survey.
-     * @param id the user ID.
-     */
-    public void setUser(int id) {
-        // survey.userId = id;
     }
 
     public boolean isEmpty() {
