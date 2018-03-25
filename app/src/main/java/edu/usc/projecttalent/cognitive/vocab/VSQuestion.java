@@ -1,11 +1,10 @@
 package edu.usc.projecttalent.cognitive.vocab;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -68,43 +67,57 @@ public class VSQuestion extends QuestionActivity {
         RadioGroup options = findViewById(R.id.options);
         showNextQuestion();
 
-        findViewById(R.id.next).setOnClickListener(v -> {
+        findViewById(R.id.next).setOnClickListener(getListener(question, options));
+    }
+
+    @NonNull
+    private View.OnClickListener getListener(Type question, RadioGroup options) {
+        return v -> {
             if (options.getCheckedRadioButtonId() == -1 && mFtWarn) {
                 mFtWarn = false;
                 sendBroadcast(new Intent(Timer.NOANSWER));
-                return;
+            } else {
+                processQuestion(question, options);
             }
+        };
+    }
 
-            int answer = mBinding.getItem().getAnsPosition();
-            RadioButton checked = options.findViewById(options.getCheckedRadioButtonId());
-            int index = options.indexOfChild(checked);
-            options.clearCheck();
+    private void processQuestion(Type question, RadioGroup options) {
+        int answer = mBinding.getItem().getAnsPosition();
+        RadioButton checked = options.findViewById(options.getCheckedRadioButtonId());
+        int index = options.indexOfChild(checked);
+        options.clearCheck();
 
-            if (answer == index) {
-                mScore++;
-            }
-            mAnswer.endAnswer(index + 1); //to shift indices to 1-5.
-            mBlock.addAnswer(mAnswer);
+        if (answer == index) {
+            mScore++;
+        }
+        mAnswer.endAnswer(index + 1); //to shift indices to 1-5.
+        mBlock.addAnswer(mAnswer);
 
-            if (!mQueue.isEmpty()) {
-                showNextQuestion();
-                return;
-            }
-            mBlock.endBlock(mScore);
-            mSection.addBlock(mBlock);
+        if (!mQueue.isEmpty()) {
+            showNextQuestion();
+        } else {
+            showNextSectionIfAvailable(question);
+        }
+    }
 
-            if (mSection.getBlockSize() == 1) {
-                int block = nextSet();
-                mBlock = new Block();
-                mQueue.addAll(new Gson().fromJson(getString(block), question));
-                mScore = 0;
-                showNextQuestion();
-                return;
-            }
-
+    private void showNextSectionIfAvailable(Type question) {
+        mBlock.endBlock(mScore);
+        mSection.addBlock(mBlock);
+        if (mSection.getBlockSize() == 1) {
+            getNextSection(question);
+        } else {
             finishSection();
             createFile("vocab_", 1);
-        });
+        }
+    }
+
+    private void getNextSection(Type question) {
+        int block = nextSet();
+        mBlock = new Block();
+        mQueue.addAll(new Gson().fromJson(getString(block), question));
+        mScore = 0;
+        showNextQuestion();
     }
 
     /**

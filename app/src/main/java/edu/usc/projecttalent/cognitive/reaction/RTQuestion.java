@@ -1,15 +1,13 @@
 package edu.usc.projecttalent.cognitive.reaction;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
-import com.google.gson.Gson;
 
 import java.util.Random;
 
@@ -60,16 +58,14 @@ public class RTQuestion extends QuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reac_question);
 
-        mContext = this; //current context
+        mContext = this;
         //if coming from practice activity, this value will be set.
         mTrials = getIntent().getIntExtra("trials", NO_OF_TRIALS);
         mSkipClass = mTrials == 5 ? RTStart.class : SVPractice.class; //where to go in case skipped.
         //set the section name depending on the number of trials.
         mSection = new Section(getString(mTrials == 5? R.string.reaction_practice : R.string.reaction_time));
-        //start a new block. By default, there is only one block in RT. So block no. is 1.
         mBlock = new Block();
 
-        //prepare filters for reaction time.
         prepareRTFilter();
         mTimer = Timer.getTimer(0.5); //timer for 30 seconds attached.
 
@@ -81,7 +77,6 @@ public class RTQuestion extends QuestionActivity {
         image.setImageResource(R.drawable.cross);
 
         final Handler handler = new Handler();
-        //runnable to show the red circle.
         Runnable runnable = () -> {
             image.setImageResource(R.drawable.red_circle_large);
             isRed = true;
@@ -90,54 +85,69 @@ public class RTQuestion extends QuestionActivity {
             start = System.currentTimeMillis();
         };
 
-        //display this runnable randomly.
-        handler.postDelayed(runnable, 1000 * (r.nextInt(high - low) + low));
-
-        space.setOnTouchListener((v, event) -> {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                //once clicked, show the cross sign.
-                setColor(space, android.R.color.black, android.R.color.white);
-
-                if (isRed) { //if stimulus was shown, correct click.
-                    //add the time in milliseconds delay.
-                    mAnswer.endAnswer(System.currentTimeMillis() - start);
-                    counter++; //update counter
-                    image.setImageResource(R.drawable.cross); //show the cross.
-                    isRed = false; //re-init the stimulus flag.
-                } else { //false click
-                    mAnswer = new Answer();
-                    mAnswer.endAnswer(0); //add false for dalse click.
-                }
-                mBlock.addAnswer(mAnswer); //add this answer to the block.
-                if (counter == mTrials) { //the section has ended now.
-                    mSection.addBlock(mBlock); //add this section to the block.
-                    if(mTrials == NO_OF_TRIALS) { //actual question section has ended.
-                        finishSection();
-                        createFile(mTrials == 5 ? "rt_prac_" : "reaction_", 5);
-                    } else { //practice section has ended.
-                        mSection.endSection(); //end this section.
-                        Survey.getSurvey().addSection(mSection);
-                        startActivityForResult(new Intent(this, mSkipClass), 1);
-                    }
-                } else {
-                    //set to show stimulus randomly.
-                    handler.postDelayed(runnable, 1000 * (r.nextInt(high - low) + low));
-                }
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                //set color of space button to show space was clicked.
-                setColor(space, android.R.color.white, android.R.color.black);
-            }
-            return true;
-        });
-
+        showNextRed(r, low, high, handler, runnable);
+        space.setOnTouchListener(getOnTouchListener(space, r, low, high, image, handler, runnable));
     }
 
-    /**
-     * set the color of button.
-     * @param v the view for which color needs to be changed.
-     * @param background new background color.
-     * @param text new text color.
-     */
+    private void showNextRed(Random r, int low, int high, Handler handler, Runnable runnable) {
+        handler.postDelayed(runnable, 1000 * (r.nextInt(high - low) + low));
+    }
+
+    @NonNull
+    private View.OnTouchListener getOnTouchListener(Button space, Random r, int low, int high, ImageView image, Handler handler, Runnable runnable) {
+        return (v, event) -> {
+            v.performClick();
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    processClick(space, r, low, high, image, handler, runnable);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    setColor(space, android.R.color.white, android.R.color.black);
+                    break;
+            }
+            return true;
+        };
+    }
+
+    private void processClick(Button space, Random r, int low, int high, ImageView image, Handler handler, Runnable runnable) {
+        setColor(space, android.R.color.black, android.R.color.white);
+        if (isRed) {
+            countPositive(image);
+        } else {
+            falseClick();
+        }
+        mBlock.addAnswer(mAnswer); //add this answer to the block.
+        if (counter == mTrials) { //the section has ended now.
+            nextSection();
+        } else {
+            showNextRed(r, low, high, handler, runnable);
+        }
+    }
+
+    private void nextSection() {
+        mSection.addBlock(mBlock);
+        if(mTrials == NO_OF_TRIALS) {
+            finishSection();
+            createFile(mTrials == 5 ? "rt_prac_" : "reaction_", 5);
+        } else { //practice section has ended.
+            mSection.endSection();
+            Survey.getSurvey().addSection(mSection);
+            startActivityForResult(new Intent(this, mSkipClass), 1);
+        }
+    }
+
+    private void falseClick() {
+        mAnswer = new Answer();
+        mAnswer.endAnswer(0);
+    }
+
+    private void countPositive(ImageView image) {
+        mAnswer.endAnswer(System.currentTimeMillis() - start);
+        counter++;
+        image.setImageResource(R.drawable.cross);
+        isRed = false;
+    }
+
     private void setColor(Button v, int background, int text) {
         v.setBackgroundColor(getResources().getColor(background));
         v.setTextColor(getResources().getColor(text));
