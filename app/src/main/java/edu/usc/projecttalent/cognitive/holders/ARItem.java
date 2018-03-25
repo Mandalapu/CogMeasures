@@ -4,12 +4,15 @@ import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
+import lombok.Data;
+
 /**
  * Encapsulates Abstract Reasoning questions.
  *
  * @author Anindya Dutta
  */
 
+@Data
 public class ARItem extends Item {
     /**
      * The instruction line for each question, typically the first line on the top.
@@ -64,65 +67,10 @@ public class ARItem extends Item {
         view.setImageResource(imageUrl);
     }
 
-    /*
-    The following getters and setters are used by the data binding logic. These will be called typically
-    by the MVVM structure, in the layout files where the item has been used.
-     */
-
-    /**
-     * @return instructions for the question.
-     */
-    public String getInstructions() {
-        return instructions;
-    }
-
-    /**
-     *
-     * @param instructions instructions for the question
-     */
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    /**
-     * @return a set of options (question and options)
-     */
-    public TypedArray getOptions() {
-        return options;
-    }
-
-    /**
-     * @param options set the option parameter for this item.
-     */
-    public void setOptions(TypedArray options) {
-        this.options = options;
-    }
-
-    /**
-     * @return extra instructions or details
-     */
-    public String getDetails() {
-        return details;
-    }
-
-    /**
-     * @param details set the details for this item
-     */
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
     /**
      * @return True if this item is an answer item, else false.
      */
     public boolean isAnswer() {
         return answer;
-    }
-
-    /**
-     * @param answer set if or not this item is an answer item.
-     */
-    public void setAnswer(boolean answer) {
-        this.answer = answer;
     }
 }

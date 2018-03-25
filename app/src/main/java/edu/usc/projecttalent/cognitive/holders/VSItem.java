@@ -1,5 +1,7 @@
 package edu.usc.projecttalent.cognitive.holders;
 
+import lombok.Data;
+
 /**
  * JSON encapsulation for vocabulary question.
  *
@@ -7,6 +9,7 @@ package edu.usc.projecttalent.cognitive.holders;
  * @version 2.0
  */
 
+@Data
 public class VSItem extends Item {
     /**
      * The question for the vocabulary item/
@@ -16,32 +19,4 @@ public class VSItem extends Item {
      * A set of synonyms for the questions.
      */
     private String[] options;
-
-    /**
-     * @return the question word for this item.
-     */
-    public String getQuestion() {
-        return question;
-    }
-
-    /**
-     * @param question set the question word for this item.
-     */
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    /**
-     * @return the set of synonym options for this question.
-     */
-    public String[] getOptions() {
-        return options;
-    }
-
-    /**
-     * @param options set the options for this question.
-     */
-    public void setOptions(String[] options) {
-        this.options = options;
-    }
 }
