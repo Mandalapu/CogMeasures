@@ -4,6 +4,8 @@ import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
+import lombok.Data;
+
 /**
  * Model for thurstone question.
  *
@@ -11,6 +13,7 @@ import android.widget.ImageView;
  * @version 1.0
  */
 
+@Data
 public class TMItem extends Item {
     /**
      * a set of images for each question.
@@ -25,20 +28,6 @@ public class TMItem extends Item {
     public TMItem(TypedArray options) {
         this.options = options;
         this.ansPosition = options.getInt(4, -1);
-    }
-
-    /**
-     * @return the set of options for the question.
-     */
-    public TypedArray getOptions() {
-        return options;
-    }
-
-    /**
-     * @param options set the options for the question.
-     */
-    public void setOptions(TypedArray options) {
-        this.options = options;
     }
 
     /**
