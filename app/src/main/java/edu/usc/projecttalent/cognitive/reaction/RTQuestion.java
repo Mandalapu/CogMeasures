@@ -71,7 +71,6 @@ public class RTQuestion extends QuestionActivity {
 
         Button space = findViewById(R.id.buttonSpace);
         Random r = new Random();
-        int low = 2, high = 8; //between 2 and 8 seconds.
 
         final ImageView image = findViewById(R.id.imageView);
         image.setImageResource(R.drawable.cross);
@@ -85,21 +84,22 @@ public class RTQuestion extends QuestionActivity {
             start = System.currentTimeMillis();
         };
 
-        showNextRed(r, low, high, handler, runnable);
-        space.setOnTouchListener(getOnTouchListener(space, r, low, high, image, handler, runnable));
+        showNextRed(r, handler, runnable);
+        space.setOnTouchListener(getOnTouchListener(space, r, image, handler, runnable));
     }
 
-    private void showNextRed(Random r, int low, int high, Handler handler, Runnable runnable) {
-        handler.postDelayed(runnable, 1000 * (r.nextInt(high - low) + low));
+    private void showNextRed(Random r, Handler handler, Runnable runnable) {
+        handler.postDelayed(runnable, 1000 * (r.nextInt(8 - 2) + 2));
     }
 
     @NonNull
-    private View.OnTouchListener getOnTouchListener(Button space, Random r, int low, int high, ImageView image, Handler handler, Runnable runnable) {
+    private View.OnTouchListener getOnTouchListener(Button space, Random r, ImageView image, Handler handler, Runnable runnable) {
         return (v, event) -> {
             v.performClick();
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    processClick(space, r, low, high, image, handler, runnable);
+                    setColor(space, android.R.color.black, android.R.color.white);
+                    processClick(r, image, handler, runnable);
                     break;
                 case MotionEvent.ACTION_UP:
                     setColor(space, android.R.color.white, android.R.color.black);
@@ -109,8 +109,7 @@ public class RTQuestion extends QuestionActivity {
         };
     }
 
-    private void processClick(Button space, Random r, int low, int high, ImageView image, Handler handler, Runnable runnable) {
-        setColor(space, android.R.color.black, android.R.color.white);
+    private void processClick(Random r, ImageView image, Handler handler, Runnable runnable) {
         if (isRed) {
             countPositive(image);
         } else {
@@ -120,7 +119,7 @@ public class RTQuestion extends QuestionActivity {
         if (counter == mTrials) { //the section has ended now.
             nextSection();
         } else {
-            showNextRed(r, low, high, handler, runnable);
+            showNextRed(r, handler, runnable);
         }
     }
 
