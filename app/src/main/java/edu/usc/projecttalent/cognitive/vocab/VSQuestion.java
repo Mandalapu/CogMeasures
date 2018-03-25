@@ -83,11 +83,9 @@ public class VSQuestion extends QuestionActivity {
     }
 
     private void processQuestion(Type question, RadioGroup options) {
-        int answer = mBinding.getItem().getAnsPosition();
-        RadioButton checked = options.findViewById(options.getCheckedRadioButtonId());
-        int index = options.indexOfChild(checked);
+        int index = options.indexOfChild(options.findViewById(options.getCheckedRadioButtonId()));
         options.clearCheck();
-        addAnsToBlock(answer, index);
+        addAnsToBlock(mBinding.getItem().getAnsPosition(), index);
         if (!mQueue.isEmpty()) {
             showNextQuestion();
         } else {
