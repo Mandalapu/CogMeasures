@@ -41,10 +41,6 @@ public class RTQuestion extends QuestionActivity {
      */
     private int mTrials;
     /**
-     * default trials if not practice activity.
-     */
-    public static final int NO_OF_TRIALS = 20;
-    /**
      * denotes when stimulus is being shown.
      */
     private boolean isRed = false;
@@ -61,7 +57,7 @@ public class RTQuestion extends QuestionActivity {
 
         mContext = this;
         //if coming from practice activity, this value will be set.
-        mTrials = getIntent().getIntExtra("trials", NO_OF_TRIALS);
+        mTrials = getIntent().getIntExtra("trials", 20);
         mSkipClass = mTrials == 5 ? RTStart.class : SVPractice.class; //where to go in case skipped.
         //set the section name depending on the number of trials.
         mSection = new Section(getString(mTrials == 5? R.string.reaction_practice : R.string.reaction_time));
@@ -124,7 +120,7 @@ public class RTQuestion extends QuestionActivity {
 
     private void nextSection() {
         mSection.addBlock(mBlock);
-        if(mTrials == NO_OF_TRIALS) {
+        if(mTrials == 20) {
             finishSection();
             createFile(mTrials == 5 ? "rt_prac_" : "reaction_", 5);
         } else { //practice section has ended.
