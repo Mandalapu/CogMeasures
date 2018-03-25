@@ -96,10 +96,8 @@ public class TMQuestion extends QuestionActivity {
                 return;
             }
             TMItem question = mBinding.getItem();
-            boolean correct = false;
             if (options.indexOfChild(oldView) == question.getAnsPosition()) {
-                mScore++; //correct answer.
-                correct = true;
+                mScore++;
             }
             mAnswer.endAnswer(oldView == null ? -99 : options.indexOfChild(oldView) + 1);
             mBlock.addAnswer(mAnswer);
