@@ -87,18 +87,20 @@ public class VSQuestion extends QuestionActivity {
         RadioButton checked = options.findViewById(options.getCheckedRadioButtonId());
         int index = options.indexOfChild(checked);
         options.clearCheck();
-
-        if (answer == index) {
-            mScore++;
-        }
-        mAnswer.endAnswer(index + 1); //to shift indices to 1-5.
-        mBlock.addAnswer(mAnswer);
-
+        addAnsToBlock(answer, index);
         if (!mQueue.isEmpty()) {
             showNextQuestion();
         } else {
             showNextSectionIfAvailable(question);
         }
+    }
+
+    private void addAnsToBlock(int answer, int index) {
+        if (answer == index) {
+            mScore++;
+        }
+        mAnswer.endAnswer(index + 1); //to shift indices to 1-5.
+        mBlock.addAnswer(mAnswer);
     }
 
     private void showNextSectionIfAvailable(Type question) {

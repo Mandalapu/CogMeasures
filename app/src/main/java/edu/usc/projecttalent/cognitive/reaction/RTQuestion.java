@@ -75,7 +75,6 @@ public class RTQuestion extends QuestionActivity {
         final ImageView image = findViewById(R.id.imageView);
         image.setImageResource(R.drawable.cross);
 
-        final Handler handler = new Handler();
         Runnable runnable = () -> {
             image.setImageResource(R.drawable.red_circle_large);
             isRed = true;
