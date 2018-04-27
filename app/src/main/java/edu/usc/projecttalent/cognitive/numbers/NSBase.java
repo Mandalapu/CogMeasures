@@ -32,33 +32,34 @@ abstract class NSBase extends QuestionActivity {
         LinearLayout numPad = findViewById(R.id.numpad);
 
         View.OnTouchListener listener = (v, event) -> {
+            Button npBtn = (Button) v;
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (answer2 != null && answer2.hasFocus()) //check which textbox has current focus.
-                    answer2.append(((Button) v).getText());
-                else
-                    answer.append(((Button) v).getText());
-                v.setBackgroundResource(R.drawable.circle_dark);
-                ((Button) v).setTextColor(getResources().getColor(android.R.color.white));
+                EditText active = answer2 != null && answer2.hasFocus() ? answer2 : answer;
+                active.append(npBtn.getText());
+                setBgFg(npBtn, R.drawable.circle_dark, android.R.color.white);
             } else {
-                //on action up, we need to change the color of the circle.
-                v.setBackgroundResource(R.drawable.circle);
-                ((Button) v).setTextColor(getResources().getColor(android.R.color.black));
+                setBgFg(npBtn, R.drawable.circle, android.R.color.black);
             }
-            v.performClick(); //perform the click that was originally intended.
+            v.performClick();
             return true;
         };
 
         for (int i = 0; i < numPad.getChildCount(); i++) {
-            ((Button) (numPad.getChildAt(i))).setText(String.format(Locale.getDefault(), "%d", i));
-            (numPad.getChildAt(i)).setOnTouchListener(listener);
+            Button npBtn = (Button) (numPad.getChildAt(i));
+            npBtn.setText(String.format(Locale.getDefault(), "%d", i));
+            npBtn.setOnTouchListener(listener);
         }
 
-        //set the undo button.
         (findViewById(R.id.undo)).setOnClickListener(v -> {
             EditText hasFocus = answer2 != null && answer2.hasFocus() ? answer2 : answer;
             int length = hasFocus.length();
-            if (length > 0) //delete the last character if there is at least one character.
+            if (length > 0)
                 hasFocus.getText().delete(length - 1, length);
         });
+    }
+
+    private void setBgFg(Button button, int bg, int fg) {
+        button.setBackgroundResource(bg);
+        button.setTextColor(getResources().getColor(fg));
     }
 }

@@ -1,0 +1,177 @@
+[
+  [
+    {
+      "question": "A diagram is a kind of",
+      "options": [
+        "Route",
+        "Building",
+        "Measurement",
+        "Drawing",
+        "Grammatical error"
+      ],
+      "ansPosition": 3
+    },
+    {
+      "question": "To discard is to",
+      "options": [
+        "Gamble",
+        "Hide",
+        "Lie",
+        "Take away",
+        "Throw away"
+      ],
+      "ansPosition": 4
+    },
+    {
+      "question": "Blunt means",
+      "options": [
+        "Heavy",
+        "Dangerous",
+        "Weak",
+        "Sharp",
+        "Dull"
+      ],
+      "ansPosition": 4
+    }
+  ],
+  [
+    {
+      "question": "Which of these is not a measuring device?",
+      "options": [
+        "Caliper",
+        "Protractor",
+        "Voltmeter",
+        "Gauge",
+        "Solder"
+      ],
+      "ansPosition": 4
+    },
+    {
+      "question": "A purpose of lubrication is to",
+      "options": [
+        "Prevent motion",
+        "Increase heat",
+        "Reduce friction",
+        "Prevent warping",
+        "Remove dirt"
+      ],
+      "ansPosition": 2
+    },
+    {
+      "question": "Restricted means",
+      "options": [
+        "Scolded",
+        "Redesigned",
+        "Limited",
+        "Refrained",
+        "Tense"
+      ],
+      "ansPosition": 2
+    }
+  ],
+  [
+    {
+      "question": "A vacuum is a space containing",
+      "options": [
+        "Ozone",
+        "Helium",
+        "Carbon monoxide",
+        "Nitrogen",
+        "Nothing"
+      ],
+      "ansPosition": 4
+    },
+    {
+      "question": "To surrender means to",
+      "options": [
+        "Fight",
+        "Conquer",
+        "Retreat",
+        "Surround",
+        "Yield"
+      ],
+      "ansPosition": 4
+    },
+    {
+      "question": "Obstruction means",
+      "options": [
+        "Obeisance",
+        "Obstacle",
+        "Obstinacy",
+        "Obstreperousness",
+        "Obtuseness"
+      ],
+      "ansPosition": 1
+    }
+  ],
+  [
+    {
+      "question": "To retain means to",
+      "options": [
+        "Get",
+        "Give up",
+        "Keep",
+        "Lose",
+        "Create"
+      ],
+      "ansPosition": 2
+    },
+    {
+      "question": "A municipal court is a",
+      "options": [
+        "City court",
+        "State court",
+        "Federal court",
+        "United Nations court",
+        "Military court"
+      ],
+      "ansPosition": 0
+    },
+    {
+      "question": "Which of these is carnivorous?",
+      "options": [
+        "Chipmunk",
+        "Cow",
+        "Horse",
+        "Tiger",
+        "Elephant"
+      ],
+      "ansPosition": 3
+    }
+  ],
+  [
+    {
+      "question": "Magnitude means",
+      "options": [
+        "Generosity",
+        "Size",
+        "Location",
+        "Kindness",
+        "Direction"
+      ],
+      "ansPosition": 1
+    },
+    {
+      "question": "Eccentric means",
+      "options": [
+        "Odd",
+        "Feeble-minded",
+        "Stingy",
+        "Temperamental",
+        "Solitary"
+      ],
+      "ansPosition": 0
+    },
+    {
+      "question": "A barometer is used to measure",
+      "options": [
+        "Temperature",
+        "Rainfall",
+        "Humidity",
+        "Air pressure",
+        "Cloudiness"
+      ],
+      "ansPosition": 3
+    }
+  ]
+]

@@ -1,0 +1,174 @@
+[
+  [
+    {
+      "options": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "ansPosition": 2
+    },
+    {
+      "options": [
+        6,
+        5,
+        4,
+        3
+      ],
+      "ansPosition": 1
+    },
+    {
+      "options": [
+        5,
+        8,
+        11,
+        14
+      ],
+      "ansPosition": 3
+    }
+  ],
+  [
+    {
+      "options": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "ansPosition": 0
+    },
+    {
+      "options": [
+        1,
+        3,
+        3,
+        5,
+        7,
+        7,
+        9
+      ],
+      "ansPosition": 6
+    },
+    {
+      "options": [
+        18,
+        10,
+        6,
+        4,
+        3
+      ],
+      "ansPosition": 3
+    }
+  ],
+  [
+    {
+      "options": [
+        8,
+        10,
+        12,
+        14
+      ],
+      "ansPosition": 1
+    },
+    {
+      "options": [
+        23,
+        26,
+        30,
+        35,
+        41
+      ],
+      "ansPosition": 4
+    },
+    {
+      "options": [
+        18,
+        17,
+        15,
+        12,
+        8
+      ],
+      "ansPosition": 3
+    }
+  ],
+  [
+    {
+      "options": [
+        17,
+        15,
+        12,
+        8
+      ],
+      "ansPosition": 1
+    },
+    {
+      "options": [
+        10,
+        6,
+        3,
+        1
+      ],
+      "ansPosition": 1
+    },
+    {
+      "options": [
+        17,
+        16,
+        14,
+        10,
+        2
+      ],
+      "ansPosition": 4,
+      "ansOptions": [
+        2,
+        3
+      ]
+    }
+  ],
+  [
+    {
+      "options": [
+        17,
+        20,
+        26,
+        38,
+        62
+      ],
+      "ansPosition": 0
+    },
+    {
+      "options": [
+        5,
+        7,
+        11,
+        19,
+        35
+      ],
+      "ansPosition": 1
+    },
+    {
+      "options": [
+        70,
+        72,
+        76,
+        84
+      ],
+      "ansPosition": 1,
+      "ansPositions": [
+        1,
+        2
+      ],
+      "ansMultiOptions": [
+        [
+          72,
+          76
+        ],
+        [
+          78,
+          82
+        ]
+      ]
+    }
+  ]
+]
