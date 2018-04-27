@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+
+import java.util.Arrays;
+import java.util.List;
 
 import edu.usc.projecttalent.cognitive.model.Survey;
 import edu.usc.projecttalent.cognitive.util.Fileutils;
@@ -47,14 +49,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals(Timer.QUIT)) {
-                finishSection(); //go to end of section.
-            } else if (action.equals(Timer.RESUME)) { //reset timer for the same question.
-                mTimer.startTimer();
-            } else if(action.equals(Timer.NOANSWER)) {
-                showNoAnswerDialog();
-            } else if(action.equals(Timer.ACTIVENEXT)) {
-                (findViewById(R.id.next)).setEnabled(true);
+            switch (action) {
+                case Timer.QUIT:
+                    finishSection();
+                    break;
+                case Timer.RESUME:
+                    mTimer.startTimer();
+                    break;
+                case Timer.NOANSWER:
+                    showNoAnswerDialog();
+                    break;
+                case Timer.ACTIVENEXT:
+                    (findViewById(R.id.next)).setEnabled(true);
+                    break;
             }
         }
     };
@@ -107,7 +114,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         try {
             unregisterReceiver(mReceiver);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -116,11 +123,9 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected void prepareFilter() {
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Timer.WARNING);
-        filter.addAction(Timer.QUIT);
-        filter.addAction(Timer.RESUME);
-        filter.addAction(Timer.NOANSWER);
-        filter.addAction(Timer.ACTIVENEXT);
+        final List<String> actions = Arrays.asList(Timer.WARNING, Timer.QUIT, Timer.RESUME, Timer.NOANSWER, Timer.ACTIVENEXT);
+        for(String action: actions)
+            filter.addAction(action);
         registerReceiver(mReceiver, filter);
     }
 
@@ -136,33 +141,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Finds the block ID by analyzing the questions in the set.
-     * @param set the questions in the set
-     * @return the block number.
-     */
-    protected int getBlockId(int set) {
-        switch (set) {
-            case R.string.ns_1:
-            case R.array.sp_1:
-            case R.array.ar_1:
-            case R.string.vocab1:
-                return 1;
-            case R.string.ns_2:
-            case R.array.sp_2:
-            case R.array.ar_2:
-            case R.string.vocab2:
-                return 2;
-            case R.string.ns_4:
-            case R.array.sp_4:
-            case R.array.ar_4:
-            case R.string.vocab4:
-                return 4;
-            default:
-                return 5;
-        }
-    }
-
-    /**
      * Set the functionality of clicking the next button to move to next class.
      * @param nextClass the class which needs to be opened to clicking next button.
      */
@@ -171,7 +149,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void createFile(String fileName, int moduleNumber) {
-
         SharedPreferences preferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("module", moduleNumber);

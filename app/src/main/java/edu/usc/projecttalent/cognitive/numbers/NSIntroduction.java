@@ -19,7 +19,6 @@ public class NSIntroduction extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sec_nsintro);
-        //set the next button to NSQuestion.
         setNext(NSQuestion.class);
     }
 }

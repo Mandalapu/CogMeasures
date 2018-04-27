@@ -1,8 +1,6 @@
 package edu.usc.projecttalent.cognitive.numbers;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +10,11 @@ import android.widget.LinearLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import edu.usc.projecttalent.cognitive.BR;
 import edu.usc.projecttalent.cognitive.R;
@@ -44,6 +44,8 @@ public class NSQuestion extends NSBase {
      */
     private LinearLayout series;
 
+    private List<List<NSItem>> nsList;
+
     /**
      * Set up the binding for the questions. Show questions with correct skip logic.
      * @param savedInstanceState currently nothing is sent in this bundle.
@@ -52,40 +54,39 @@ public class NSQuestion extends NSBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mContext = this; //set the context.
-        mSkipClass = TMInstruction.class; //class to move to if section is skipped.
-        mSection = new Section(getString(R.string.ns_section_title));  //make new section.
-        mScore = 0; //reset score at the beginning of block.
-        mTimer = Timer.getTimer(3); //get a 3 minute timer.
-        prepareFilter(); //add filters for broadcast.
+        mContext = this;
+        mSkipClass = TMInstruction.class;
+        mSection = new Section(getString(R.string.ns_section_title));
+        mScore = 0;
+        mTimer = Timer.getTimer(3);
+        prepareFilter();
+
+        try (InputStreamReader reader = new InputStreamReader(mContext.getResources().openRawResource(R.raw.number_section))) {
+            nsList = new Gson().fromJson(reader, new TypeToken<List<List<NSItem>>>() {}.getType());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         mBlock = new Block();
-        mFtWarn = true; //for FTU.
+        mFtWarn = true;
 
         mQueue = new LinkedList<>();
-        mQueue.addAll(new Gson().fromJson(getString(R.string.ns_3), new TypeToken<ArrayList<NSItem>>() {}.getType()));
+        mQueue.addAll(nsList.get(2));
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ns_question);
-        //question has been displayed, so start the answer.
         mAnswer = new Answer();
         NSItem item = (NSItem) mQueue.remove();
-        item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1)); //to select the one item instruction.
+        item.setInstr(getResources().getQuantityString(R.plurals.ns_instr, 1));
         binding.setVariable(BR.item, item);
 
-        series = findViewById(R.id.series); //get the layout for the series.
-        answer = findViewById(R.id.answer); //extract first answer view
-        answer2 = findViewById(R.id.answer2); //extract second answer view.
-
-        /*
-        The answer view needs to be put at the correct location, hence we first remove the view from
-        the series and then add it at the correct position. This position is defined by the
-        getAnsPosition() method.
-         */
+        series = findViewById(R.id.series);
+        answer = findViewById(R.id.answer);
+        answer2 = findViewById(R.id.answer2);
         series.removeView(answer);
-        series.addView(answer, binding.getItem().getAnsPosition()); //set the edit box to correct position.
-        setNumPad(); //setting up number pad and undo.
+        series.addView(answer, binding.getItem().getAnsPosition());
+        setNumPad();
 
-        mTimer.startTimer(); //start the timer for first question.
+        mTimer.startTimer();
         (findViewById(R.id.next)).setOnClickListener(nextListener);
         (findViewById(R.id.next)).setEnabled(false);
     }
@@ -93,42 +94,34 @@ public class NSQuestion extends NSBase {
     /**
      * click listener for the next button.
      */
-    private View.OnClickListener nextListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //if there is no answer and warning has not been shown yet
+    private View.OnClickListener nextListener = v -> {
             if (answer.getText().toString().equals("") && mFtWarn) {
-                mFtWarn = false; //send first-time warning to false.
-                /*
-                 the above is done first in order to prevent multiple broadcasts if the user does not
-                 click the button on the dialog on time.
-                 */
-                sendBroadcast(new Intent(Timer.NOANSWER));//send broadcast to show the warning.
+                mFtWarn = false;
+                sendBroadcast(new Intent(Timer.NOANSWER));
                 return;
             }
-            //User has answered, so get the current item.
+
             NSItem curQuestion = binding.getItem();
-            if (curQuestion.getAnsPositions() == null) { //only one option.
+            if (curQuestion.getAnsPositions() == null) {
                 oneOption(curQuestion);
             } else {
                 multiOption();
             }
 
-            if (!mQueue.isEmpty()) { //more questions in the same block.
+            if (!mQueue.isEmpty()) {
                 showNextQuestion();
                 return;
             }
-            mBlock.endBlock(mScore); //end the block with score.
-            mSection.addBlock(mBlock); //add this block to the section.
+            mBlock.endBlock(mScore);
+            mSection.addBlock(mBlock);
 
-            if (mSection.getBlockSize() == 1) { //only block 3 has been shown yet. show next block.
+            if (mSection.getBlockSize() == 1) {
                 showNextSet();
                 return;
             }
             finishSection();
             createFile("number_", 2);
-        }
-    };
+        };
 
     /**
      * Retrieve the next question from the queue and show it to the user.
@@ -136,17 +129,16 @@ public class NSQuestion extends NSBase {
     private void showNextQuestion() {
         NSItem item = (NSItem) mQueue.remove();
         item.setInstr(getResources().getQuantityString(R.plurals.ns_instr,
-                item.getAnsPositions() == null ? 1 : 2)); //to select the one item instruction.
-
-        mAnswer = new Answer(); //start new answer.
-        binding.setVariable(BR.item, item); //add new question.
+                item.getAnsPositions() == null ? 1 : 2));
+        mAnswer = new Answer();
+        binding.setVariable(BR.item, item);
         (findViewById(R.id.next)).setEnabled(false);
-        mTimer.startTimer(); //restart the timer.
-        mFtWarn = true; //set first-time warning to true to show warning again.
+        mTimer.startTimer();
+        mFtWarn = true;
 
         NSItem curQuestion = binding.getItem();
-        if (curQuestion.getAnsPositions() == null) { //if only one answer option.
-            series.removeView(answer); //update position of answer box.
+        if (curQuestion.getAnsPositions() == null) {
+            series.removeView(answer);
             series.addView(answer, binding.getItem().getAnsPosition());
         } else { //for Q5.3, place the second answer box properly. Hard-coded for now.
             EditText answer = series.findViewById(R.id.answer2);
@@ -159,35 +151,29 @@ public class NSQuestion extends NSBase {
      * Show the next set after block 3 is complete.
      */
     private void showNextSet() {
-        int block = nextSet(); //find the next block.
-        mBlock = new Block(); //create new blcok with ID.
-        //retrieve all questions for the block.
-        mQueue.addAll(new Gson().fromJson(getString(block), new TypeToken<ArrayList<NSItem>>() {}.getType()));
-        mScore = 0; //reset the score.
-        showNextQuestion(); //show the first question of new block.
+        mBlock = new Block();
+        mQueue.addAll(nsList.get(nextSet()));
+        mScore = 0;
+        showNextQuestion();
     }
 
     /**
      * For Q5.3, record both answers in the JSON.
      */
     private void multiOption() {
-        //This section is for Sec 5 Q 3.
         int userAns1 = -99;
         int userAns2 = -99;
         try {
             userAns1 = Integer.parseInt(answer.getText().toString());
             userAns2 = Integer.parseInt(answer2.getText().toString());
-        } catch (Exception ignored) {
-            //if user has not entered any answer then the above will throw exception.
-            //We do not need to do anything as they are still initialized to -99.
-        }
+        } catch (Exception ignored) {}
         //below the answers are hardcoded for 5.3 because there is only one case out of 15 which
         //requires this code.
         if ((userAns1 == 72 && userAns2 == 76) || (userAns1 == 78 && userAns2 == 82)) {
             mScore++;
         }
-        mAnswer.endAnswer(userAns1); //add the answer.
-        mBlock.addAnswer(mAnswer); //if it is correct.
+        mAnswer.endAnswer(userAns1);
+        mBlock.addAnswer(mAnswer);
     }
 
     /**
@@ -195,27 +181,24 @@ public class NSQuestion extends NSBase {
      * @param question the question for which processing to be done.
      */
     private void oneOption(NSItem question) {
-        int userAns = -99; //invalid. user did not select an answer;
+        int userAns = -99;
         try {
             userAns = Integer.parseInt(answer.getText().toString());
-        } catch (Exception ignored) {
-            //if user has not answered, ignore and add -99 to the JSON.
-        }
-        answer.setText(""); //reset the field.
-        int ans = question.getOptions()[question.getAnsPosition()]; //actual answer.
-        if (userAns == ans) { //correct.
+        } catch (Exception ignored) {}
+        answer.setText("");
+        int ans = question.getOptions()[question.getAnsPosition()];
+        if (userAns == ans) {
             mScore++;
-        } else if (question.getAnsOptions() != null) { //if more than one answer.
-            int[] answers = question.getAnsOptions(); //get all answers.
-            Arrays.sort(answers); //sort all possible answers.
-            //binary search to see if any answer matches user's answer.
+        } else if (question.getAnsOptions() != null) {
+            int[] answers = question.getAnsOptions();
+            Arrays.sort(answers);
             int pos = Arrays.binarySearch(answers, userAns);
-            if (pos != -1) { //answer found
+            if (pos != -1) {
                 mScore++;
             }
         }
-        mAnswer.endAnswer(userAns); //end answer.
-        mBlock.addAnswer(mAnswer); //add answer to block.
+        mAnswer.endAnswer(userAns);
+        mBlock.addAnswer(mAnswer);
     }
 
     /**
@@ -223,15 +206,6 @@ public class NSQuestion extends NSBase {
      * @return the list of questions for the next set.
      */
     private int nextSet() {
-        switch (mScore) {
-            case 0:
-                return R.string.ns_1;
-            case 1:
-                return R.string.ns_2;
-            case 2:
-                return R.string.ns_4;
-            default:
-                return R.string.ns_5;
-        }
+        return mScore + (mScore > 1 ? 1 : 0);
     }
 }

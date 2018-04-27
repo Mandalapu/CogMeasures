@@ -5,15 +5,15 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.List;
 
 import edu.usc.projecttalent.cognitive.BR;
 import edu.usc.projecttalent.cognitive.QuestionActivity;
@@ -40,6 +40,7 @@ public class VSQuestion extends QuestionActivity {
      * binding for all the questions.
      */
     private ActivityVocabBinding mBinding;
+    private List<List<VSItem>> vsList;
 
     /**
      * Sets up all the questions, timers, filters and checks for correctness of answers.
@@ -58,38 +59,42 @@ public class VSQuestion extends QuestionActivity {
         mTimer = Timer.getTimer(2);
         prepareFilter();
 
+        try (InputStreamReader reader = new InputStreamReader(mContext.getResources().openRawResource(R.raw.vocabulary))) {
+            vsList = new Gson().fromJson(reader, new TypeToken<List<List<VSItem>>>() {}.getType());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         mBlock = new Block();
-        Type question = new TypeToken<ArrayList<VSItem>>() {}.getType();
         mQueue = new LinkedList<>();
-        mQueue.addAll(new Gson().fromJson(getString(R.string.vocab3), question));
+        mQueue.addAll(vsList.get(2));
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_vocab);
-        RadioGroup options = findViewById(R.id.options);
         showNextQuestion();
-
-        findViewById(R.id.next).setOnClickListener(getListener(question, options));
+        RadioGroup options = findViewById(R.id.options);
+        findViewById(R.id.next).setOnClickListener(getListener(options));
     }
 
     @NonNull
-    private View.OnClickListener getListener(Type question, RadioGroup options) {
+    private View.OnClickListener getListener(RadioGroup options) {
         return v -> {
             if (options.getCheckedRadioButtonId() == -1 && mFtWarn) {
                 mFtWarn = false;
                 sendBroadcast(new Intent(Timer.NOANSWER));
             } else {
-                processQuestion(question, options);
+                processQuestion(options);
             }
         };
     }
 
-    private void processQuestion(Type question, RadioGroup options) {
+    private void processQuestion(RadioGroup options) {
         int index = options.indexOfChild(options.findViewById(options.getCheckedRadioButtonId()));
         options.clearCheck();
         addAnsToBlock(mBinding.getItem().getAnsPosition(), index);
         if (!mQueue.isEmpty()) {
             showNextQuestion();
         } else {
-            showNextSectionIfAvailable(question);
+            showNextSectionIfAvailable();
         }
     }
 
@@ -101,21 +106,20 @@ public class VSQuestion extends QuestionActivity {
         mBlock.addAnswer(mAnswer);
     }
 
-    private void showNextSectionIfAvailable(Type question) {
+    private void showNextSectionIfAvailable() {
         mBlock.endBlock(mScore);
         mSection.addBlock(mBlock);
         if (mSection.getBlockSize() == 1) {
-            getNextSection(question);
+            getNextSection();
         } else {
             finishSection();
             createFile("vocab_", 1);
         }
     }
 
-    private void getNextSection(Type question) {
-        int block = nextSet();
+    private void getNextSection() {
         mBlock = new Block();
-        mQueue.addAll(new Gson().fromJson(getString(block), question));
+        mQueue.addAll(vsList.get(nextSet()));
         mScore = 0;
         showNextQuestion();
     }
@@ -135,15 +139,6 @@ public class VSQuestion extends QuestionActivity {
      * @return the next set of questions.
      */
     private int nextSet() {
-        switch (mScore) {
-            case 0:
-                return R.string.vocab1;
-            case 1:
-                return R.string.vocab2;
-            case 2:
-                return R.string.vocab4;
-            default:
-                return R.string.vocab5;
-        }
+        return mScore < 2 ? mScore : mScore + 1;
     }
 }

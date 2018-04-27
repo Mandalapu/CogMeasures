@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "question": "INSTRUCTIONS\n\nIn this task, on each screen you will see several numbers that make up a series. There will be one or more empty spaces somewhere in the series. Sometimes an empty space will be at the end of the series, sometimes in the middle, and sometimes at the beginning. Please press the number buttons to enter the number that goes in each empty space. The answer will be a number between 0 and 99.\n\nHere is an example. Enter the number that goes in the empty space. Then press \"Next\" to continue.",
+    "options": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "ansPosition": 2,
+    "answerText": "The answer we were looking for is 3, so the completed sequence is:"
+  },
+  {
+    "id": 2,
+    "question": "Below is another example.\nPlease enter the number that belongs in the empty space. Then press \"Next\" to continue.",
+    "options": [
+      2,
+      4,
+      6,
+      8
+    ],
+    "ansPosition": 3,
+    "answerText": "The answer we were looking for is 8 because the numbers (2, 4, 6, 8) increase by 2. The completed sequence is:"
+  }
+]
