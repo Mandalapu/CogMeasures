@@ -5,26 +5,26 @@
 
 Android application for Cognitive measures - a part of Project Talent, American Institutes for Research.
 
-##Building the application
+## Building the application
 To build the application locally on your machine:
 
 Windows: `gradle build`
 
 Mac: `./gradlew build`
 
-##Uploading the application
+## Uploading the application
 
 If you are an authorized developer, you will have access to Dropbox where you can upload your apk.
 
-##Documentation
+## Documentation
 Code documentation are available [here](https://dutta14.github.io/Cognitive-Measures/docs/).
 
-##Useful tools
+## Useful tools
 
-###Updating build tools
+### Updating build tools
 As of when this is written, Cognitive measures using build-tools 27.0.3. If you are submitting with newer build tools, please update `.travis.yml` to reflect the same.
 
-###Updating documentation
+### Updating documentation
 If you add a new API to a class, please generate updated Javadoc and commit that as well.
 
 Steps to update Javadoc: `Android Studio > Tools > Generate JavaDoc...`
