@@ -17,7 +17,7 @@ Mac: `./gradlew build`
 If you are an authorized developer, you will have access to Dropbox where you can upload your apk.
 
 ## Documentation
-Code documentation are available [here](https://dutta14.github.io/Cognitive-Measures/docs/).
+Code documentation are available [here](https://dutta14.github.io/Cognitive-Measures/docs/docs).
 
 ## Useful tools
 
